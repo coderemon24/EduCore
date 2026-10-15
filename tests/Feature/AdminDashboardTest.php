@@ -32,4 +32,29 @@ class AdminDashboardTest extends TestCase
         $response->assertSee('admin-sidebar', false);
         $response->assertSee('sidebar-toggle-btn', false);
     }
+
+    /**
+     * Test clean minimalist navbar and modular script inclusion.
+     */
+    public function test_admin_layout_uses_modular_scripts_and_clean_navbar(): void
+    {
+        $response = $this->get('/admin/dashboard');
+
+        $response->assertStatus(200);
+
+        // Assert modular JS files are linked
+        $response->assertSee('admin-assets/js/admin-sidebar.js', false);
+        $response->assertSee('admin-assets/js/admin-search.js', false);
+        $response->assertSee('admin-assets/js/admin-actions.js', false);
+
+        // Assert clean navbar elements are present
+        $response->assertSee('global-search-input', false);
+        $response->assertSee('quick-action-menu-btn', false);
+        $response->assertSee('btn-notifications', false);
+        $response->assertSee('user-profile-menu-btn', false);
+
+        // Assert AI slop and clutter are absent from navbar
+        $response->assertDontSee('Academic Year 2026-2027', false);
+        $response->assertDontSee('animate-ping', false);
+    }
 }

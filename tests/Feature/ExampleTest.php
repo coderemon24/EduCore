@@ -15,7 +15,7 @@ class ExampleTest extends TestCase
         $response = $this->get('/admin/dashboard');
 
         $response->assertStatus(200);
-        $response->assertSee('Institutional Dashboard');
+        $response->assertSee('Institutional Overview');
     }
 
     public function test_root_redirects_to_admin_dashboard(): void

@@ -14,9 +14,40 @@
         font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     }
 
-    /* Tooltip animations for collapsed sidebar */
+    /* Global Clickable Cursor Pointer Rule */
+    button,
+    a,
+    select,
+    [role="button"],
+    [type="button"],
+    [type="submit"],
+    [type="reset"],
+    .cursor-pointer {
+        cursor: pointer !important;
+    }
+
+    /* Custom Slim Scrollbars */
+    .admin-sidebar-scroll::-webkit-scrollbar,
+    #admin-main-content::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+    }
+    .admin-sidebar-scroll::-webkit-scrollbar-track,
+    #admin-main-content::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .admin-sidebar-scroll::-webkit-scrollbar-thumb,
+    #admin-main-content::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 9999px;
+    }
+    .admin-sidebar-scroll::-webkit-scrollbar-thumb:hover,
+    #admin-main-content::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+    }
+
+    /* Collapsed Sidebar Rules */
     .sidebar-collapsed .nav-label,
-    .sidebar-collapsed .nav-badge,
     .sidebar-collapsed .nav-chevron,
     .sidebar-collapsed .nav-section-title {
         display: none !important;
@@ -24,6 +55,12 @@
 
     .sidebar-collapsed .sidebar-brand-text {
         display: none !important;
+    }
+
+    .sidebar-collapsed #admin-sidebar a {
+        justify-content: center !important;
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
     }
 
     .sidebar-collapsed .nav-item-tooltip {

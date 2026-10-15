@@ -10,7 +10,7 @@
 
         <div class="hidden sm:flex items-center gap-2 text-xs">
             <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 font-medium">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                 Term 1 Active
             </span>
             <span class="text-slate-300">•</span>
