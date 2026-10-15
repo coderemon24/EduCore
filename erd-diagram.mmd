@@ -1,0 +1,128 @@
+erDiagram
+    TENANTS ||--o{ USERS : "has"
+    TENANTS ||--o{ ACADEMIC_YEARS : "configures"
+    TENANTS ||--o{ CLASS_LEVELS : "defines"
+    TENANTS ||--o{ SUBSCRIPTIONS : "subscribes"
+
+    USERS ||--o{ USER_ROLES : "assigned"
+    ROLES ||--o{ USER_ROLES : "assigned"
+    USERS ||--o| STUDENTS : "profiles"
+    USERS ||--o| GUARDIANS : "profiles"
+    USERS ||--o| TEACHERS : "profiles"
+
+    ACADEMIC_YEARS ||--o{ SECTIONS : "runs"
+    CLASS_LEVELS ||--o{ SECTIONS : "contains"
+    CLASS_LEVELS ||--o{ SUBJECTS : "teaches"
+    
+    STUDENTS ||--o{ ENROLLMENTS : "registers"
+    SECTIONS ||--o{ ENROLLMENTS : "contains"
+    
+    STUDENTS ||--o{ STUDENT_GUARDIANS : "linked_to"
+    GUARDIANS ||--o{ STUDENT_GUARDIANS : "cares_for"
+
+    TEACHERS ||--o{ SECTION_SUBJECTS : "teaches"
+    SUBJECTS ||--o{ SECTION_SUBJECTS : "included_in"
+    SECTIONS ||--o{ SECTION_SUBJECTS : "has"
+
+    SECTION_SUBJECTS ||--o{ TIMETABLE_SLOTS : "scheduled"
+    
+    ENROLLMENTS ||--o{ ATTENDANCES : "records"
+    
+    SECTION_SUBJECTS ||--o{ EXAMS : "assessed_by"
+    EXAMS ||--o{ EXAM_RESULTS : "grades"
+    ENROLLMENTS ||--o{ EXAM_RESULTS : "receives"
+
+    ENROLLMENTS ||--o{ FEE_INVOICES : "billed_to"
+    FEE_INVOICES ||--o{ FEE_PAYMENTS : "settled_by"
+
+    TENANTS {
+        uuid id PK
+        string name
+        string subdomain UK
+        string custom_domain UK
+        string status
+        timestamp created_at
+    }
+
+    USERS {
+        uuid id PK
+        uuid tenant_id FK
+        string email
+        string password_hash
+        string first_name
+        string last_name
+        string phone
+        string status
+    }
+
+    STUDENTS {
+        uuid id PK
+        uuid tenant_id FK
+        uuid user_id FK
+        string admission_number UK
+        date date_of_birth
+        string gender
+        string blood_group
+    }
+
+    GUARDIANS {
+        uuid id PK
+        uuid tenant_id FK
+        uuid user_id FK
+        string relationship_type
+        string occupation
+    }
+
+    TEACHERS {
+        uuid id PK
+        uuid tenant_id FK
+        uuid user_id FK
+        string employee_id UK
+        string qualification
+        date hire_date
+    }
+
+    CLASS_LEVELS {
+        uuid id PK
+        uuid tenant_id FK
+        string name
+        int numeric_order
+    }
+
+    SECTIONS {
+        uuid id PK
+        uuid tenant_id FK
+        uuid class_level_id FK
+        uuid academic_year_id FK
+        string name
+        int capacity
+    }
+
+    ENROLLMENTS {
+        uuid id PK
+        uuid tenant_id FK
+        uuid student_id FK
+        uuid section_id FK
+        uuid academic_year_id FK
+        string roll_number
+        string status
+    }
+
+    ATTENDANCES {
+        uuid id PK
+        uuid tenant_id FK
+        uuid enrollment_id FK
+        date date
+        string status
+        string remarks
+    }
+
+    FEE_INVOICES {
+        uuid id PK
+        uuid tenant_id FK
+        uuid enrollment_id FK
+        decimal total_amount
+        decimal paid_amount
+        date due_date
+        string status
+    }
