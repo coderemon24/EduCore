@@ -6,7 +6,7 @@ Provides an institutional School Management System administrative interface with
 ## Requirements
 
 ### Requirement: Dedicated Admin Route File & Bootstrapping
-The application must register and route administrative requests through a dedicated `routes/admin.php` file isolated from the default web route file.
+The application MUST register and route administrative requests through a dedicated `routes/admin.php` file isolated from the default web route file, with administrative routes protected by authentication middleware.
 
 #### Scenario: Admin routes registered in bootstrap/app.php
 - **WHEN** the Laravel application boots
@@ -14,10 +14,9 @@ The application must register and route administrative requests through a dedica
 - **AND** all routes inside `routes/admin.php` are grouped under prefix `admin` and named route prefix `admin.`.
 
 #### Scenario: Admin dashboard URL access
-- **WHEN** an authenticated user or administrator visits `/admin/dashboard`
-- **THEN** `App\Http\Controllers\Admin\AdminController@index` handles the request and returns HTTP 200 with the admin dashboard view.
-
----
+- **WHEN** an authenticated administrator visits `/admin/dashboard`
+- **THEN** `App\Http\Controllers\Admin\AdminController@index` handles the request and returns HTTP 200 with the admin dashboard view
+- **AND** unauthenticated visitors attempting to access `/admin/dashboard` MUST be redirected to `/admin/login`.
 
 ### Requirement: Admin Master Blade Template & Modular Partials
 The admin layout must follow strict template mastering conventions located directly at `resources/views/admin.blade.php` and modularize reusable structural components inside `resources/views/layouts/admin-partial/`.

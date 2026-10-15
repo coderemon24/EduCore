@@ -226,14 +226,20 @@
     </div>
 
     <!-- Sidebar Footer User Quick Card -->
+    @php
+        $sidebarAdmin = Auth::guard('admin')->user();
+        $sidebarAdminName = $sidebarAdmin ? ($sidebarAdmin->full_name ?: $sidebarAdmin->username) : 'System Administrator';
+        $sidebarAdminInitials = collect(explode(' ', $sidebarAdminName))->filter()->map(fn($part) => strtoupper(substr($part, 0, 1)))->take(2)->implode('') ?: 'AD';
+        $sidebarAdminEmail = $sidebarAdmin ? $sidebarAdmin->email : 'admin@gmail.com';
+    @endphp
     <div class="border-t border-slate-200/80 p-3 shrink-0">
         <div class="flex items-center gap-3 rounded-lg bg-slate-50 p-2">
             <div class="h-9 w-9 shrink-0 rounded-full bg-violet-600 text-white flex items-center justify-center font-bold text-xs shadow-xs">
-                AV
+                {{ $sidebarAdminInitials }}
             </div>
             <div class="sidebar-brand-text min-w-0 flex-1">
-                <p class="truncate text-xs font-semibold text-slate-800">Arthur Vance</p>
-                <p class="truncate text-[10px] text-slate-500">principal@school.edu</p>
+                <p class="truncate text-xs font-semibold text-slate-800">{{ $sidebarAdminName }}</p>
+                <p class="truncate text-[10px] text-slate-500">{{ $sidebarAdminEmail }}</p>
             </div>
         </div>
     </div>

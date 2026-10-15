@@ -240,6 +240,13 @@
         <div class="h-5 w-px bg-slate-200"></div>
 
         <!-- User Profile Trigger & Dropdown Menu -->
+        @php
+            $currentAdmin = Auth::guard('admin')->user();
+            $adminDisplayName = $currentAdmin ? ($currentAdmin->full_name ?: $currentAdmin->username) : 'System Administrator';
+            $adminInitials = collect(explode(' ', $adminDisplayName))->filter()->map(fn($part) => strtoupper(substr($part, 0, 1)))->take(2)->implode('') ?: 'AD';
+            $adminDesignation = $currentAdmin ? ($currentAdmin->designation ?: 'Administrator') : 'Super Administrator';
+            $adminEmail = $currentAdmin ? $currentAdmin->email : 'admin@gmail.com';
+        @endphp
         <div class="relative">
             <button type="button"
                     id="user-profile-menu-btn"
@@ -248,12 +255,12 @@
                     class="flex items-center gap-2.5 rounded-lg p-1 transition hover:bg-slate-100/80 focus:outline-none focus:ring-2 focus:ring-violet-500/20 cursor-pointer">
                 <!-- Avatar -->
                 <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-violet-600 text-xs font-bold text-white shadow-xs">
-                    AV
+                    {{ $adminInitials }}
                 </div>
                 <!-- Name & Designation (Right side of profile icon) -->
                 <div class="hidden text-left sm:block">
-                    <p class="text-xs font-semibold text-slate-800 leading-tight">Arthur Vance</p>
-                    <p class="text-[10px] font-medium text-slate-500 leading-tight">Super Administrator</p>
+                    <p class="text-xs font-semibold text-slate-800 leading-tight">{{ $adminDisplayName }}</p>
+                    <p class="text-[10px] font-medium text-slate-500 leading-tight">{{ $adminDesignation }}</p>
                 </div>
                 <!-- Dropdown Chevron -->
                 <svg id="profile-dropdown-chevron" class="h-3.5 w-3.5 text-slate-400 transition-transform duration-200 hidden sm:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -267,9 +274,9 @@
                 
                 <!-- Quick Info Header -->
                 <div class="px-3 py-2 border-b border-slate-100 mb-1">
-                    <p class="text-xs font-semibold text-slate-900">Arthur Vance</p>
-                    <p class="text-[11px] text-slate-500 truncate">principal@school.edu</p>
-                    <span class="mt-1 inline-block rounded bg-violet-50 px-1.5 py-0.5 text-[9px] font-bold text-violet-700">Super Administrator</span>
+                    <p class="text-xs font-semibold text-slate-900">{{ $adminDisplayName }}</p>
+                    <p class="text-[11px] text-slate-500 truncate">{{ $adminEmail }}</p>
+                    <span class="mt-1 inline-block rounded bg-violet-50 px-1.5 py-0.5 text-[9px] font-bold text-violet-700">{{ $adminDesignation }}</span>
                 </div>
 
                 <div class="space-y-0.5">
@@ -296,15 +303,18 @@
 
                 <div class="my-1 border-t border-slate-100"></div>
 
-                <!-- Logout Button -->
+                <!-- Logout Form & Trigger -->
+                <form id="admin-logout-form" method="POST" action="{{ route('admin.logout') }}" class="hidden">
+                    @csrf
+                </form>
                 <button type="button"
-                        data-action="logout"
+                        onclick="document.getElementById('admin-logout-form').submit();"
                         id="btn-logout"
                         class="profile-action-btn flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-left text-rose-600 hover:bg-rose-50 hover:text-rose-700 transition cursor-pointer">
                     <svg class="h-4 w-4 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                     </svg>
-                    <span class="font-semibold">Logout</span>
+                    <span class="font-semibold">Sign Out</span>
                 </button>
             </div>
         </div>

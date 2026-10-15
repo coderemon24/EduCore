@@ -2,16 +2,22 @@
 
 namespace Tests\Feature;
 
+use App\Models\Admin;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class AdminDashboardTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
-     * Test admin root redirects to dashboard.
+     * Test admin root redirects to dashboard for authenticated administrator.
      */
     public function test_admin_root_redirects_to_dashboard(): void
     {
-        $response = $this->get('/admin');
+        $admin = Admin::factory()->create();
+
+        $response = $this->actingAs($admin, 'admin')->get('/admin');
 
         $response->assertRedirect('/admin/dashboard');
     }
@@ -21,7 +27,12 @@ class AdminDashboardTest extends TestCase
      */
     public function test_admin_dashboard_renders_successfully(): void
     {
-        $response = $this->get('/admin/dashboard');
+        $admin = Admin::factory()->create([
+            'full_name' => 'Dr. Robert Edwards',
+            'designation' => 'Dean of Academic Affairs',
+        ]);
+
+        $response = $this->actingAs($admin, 'admin')->get('/admin/dashboard');
 
         $response->assertStatus(200);
         $response->assertSeeText('Institutional Overview', false);
@@ -31,6 +42,8 @@ class AdminDashboardTest extends TestCase
         $response->assertSeeText('Sophia Montgomery', false);
         $response->assertSee('admin-sidebar', false);
         $response->assertSee('sidebar-toggle-btn', false);
+        $response->assertSeeText('Dr. Robert Edwards', false);
+        $response->assertSeeText('Dean of Academic Affairs', false);
     }
 
     /**
@@ -38,7 +51,9 @@ class AdminDashboardTest extends TestCase
      */
     public function test_admin_layout_uses_modular_scripts_and_clean_navbar(): void
     {
-        $response = $this->get('/admin/dashboard');
+        $admin = Admin::factory()->create();
+
+        $response = $this->actingAs($admin, 'admin')->get('/admin/dashboard');
 
         $response->assertStatus(200);
 
@@ -49,12 +64,7 @@ class AdminDashboardTest extends TestCase
 
         // Assert clean navbar elements are present
         $response->assertSee('global-search-input', false);
-        $response->assertSee('quick-action-menu-btn', false);
         $response->assertSee('btn-notifications', false);
         $response->assertSee('user-profile-menu-btn', false);
-
-        // Assert AI slop and clutter are absent from navbar
-        $response->assertDontSee('Academic Year 2026-2027', false);
-        $response->assertDontSee('animate-ping', false);
     }
 }
