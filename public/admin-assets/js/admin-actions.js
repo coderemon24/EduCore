@@ -112,6 +112,70 @@
             });
         });
 
+        // 2b. Export Institutional Report
+        const handleExportReport = () => {
+            withSwal((Swal) => {
+                Swal.fire({
+                    title: 'Generate Academic Report',
+                    text: 'Compiling institutional summary and metrics for academic session 2026-2027...',
+                    icon: 'info',
+                    timer: 1800,
+                    showConfirmButton: false
+                });
+            });
+        };
+
+        document.querySelectorAll('[data-action="export-report"], #btn-export-report').forEach((el) => {
+            el.addEventListener('click', (e) => {
+                e.preventDefault();
+                handleExportReport();
+            });
+        });
+
+        // 2c. Merit Roll Honors Directory
+        document.querySelectorAll('[data-action="view-honors"]').forEach((el) => {
+            el.addEventListener('click', (e) => {
+                e.preventDefault();
+                withSwal((Swal) => {
+                    Swal.fire({
+                        title: 'Academic Merit Roll Directory',
+                        text: 'Displaying complete honors roll for all secondary and higher grades.',
+                        icon: 'info',
+                        confirmButtonColor: '#7c3aed'
+                    });
+                });
+            });
+        });
+
+        // 2d. Student Profile Quick View
+        document.querySelectorAll('[data-action="view-student"]').forEach((el) => {
+            el.addEventListener('click', (e) => {
+                e.preventDefault();
+                const name = el.getAttribute('data-student-name') || 'Student';
+                const id = el.getAttribute('data-student-id') || 'N/A';
+                const grade = el.getAttribute('data-student-grade') || 'N/A';
+                const marks = el.getAttribute('data-student-marks') || 'N/A';
+                const percentage = el.getAttribute('data-student-percentage') || 'N/A';
+
+                withSwal((Swal) => {
+                    Swal.fire({
+                        title: name,
+                        html: `
+                            <div class="text-left text-xs space-y-2 pt-2 text-slate-600">
+                                <div class="p-3 rounded-lg border border-slate-100 bg-slate-50 space-y-1">
+                                    <p><strong>Roll ID:</strong> <span class="font-mono">${id}</span></p>
+                                    <p><strong>Grade:</strong> ${grade}</p>
+                                    <p><strong>Score:</strong> ${marks} (${percentage})</p>
+                                </div>
+                            </div>
+                        `,
+                        icon: 'info',
+                        confirmButtonColor: '#7c3aed'
+                    });
+                });
+            });
+        });
+
         // 3. Notifications Dropdown Toggle (Dropdown panel instead of popup modal)
         const notifBtn = document.getElementById('btn-notifications');
         const notifDropdown = document.getElementById('notifications-dropdown');
