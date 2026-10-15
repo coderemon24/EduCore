@@ -12,8 +12,8 @@
             </svg>
         </button>
 
-        <!-- Optimized Search Container -->
-        <div class="relative w-52 sm:w-72 lg:w-80 group/search">
+        <!-- Optimized Search Container (Hidden on mobile to ensure clean responsive layout) -->
+        <div class="hidden md:block relative md:w-64 lg:w-80 group/search">
             <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400 group-focus-within/search:text-violet-600 transition-colors">
                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />

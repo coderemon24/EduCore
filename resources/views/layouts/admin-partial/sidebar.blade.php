@@ -1,6 +1,6 @@
 <!-- Admin Sidebar Navigation -->
 <aside id="admin-sidebar"
-       class="group/sidebar fixed inset-y-0 left-0 z-50 flex h-screen w-64 flex-col shrink-0 border-r border-slate-200 bg-white transition-all duration-300 ease-in-out lg:static lg:z-auto -translate-x-full lg:translate-x-0">
+       class="group/sidebar fixed inset-y-0 left-0 z-50 flex h-screen w-64 flex-col shrink-0 border-r border-slate-200 bg-white transition-all duration-300 ease-in-out lg:relative lg:z-40 -translate-x-full lg:translate-x-0">
     
     <!-- Sidebar Header / Logo -->
     <div class="flex h-16 shrink-0 items-center justify-between border-b border-slate-200/80 px-4">

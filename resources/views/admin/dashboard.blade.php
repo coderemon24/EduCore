@@ -1,4 +1,4 @@
-@extends('admin')
+@extends('layouts.admin')
 
 @section('title', 'Institutional Overview & Academic Telemetry')
 
@@ -44,7 +44,7 @@
 
     <!-- 4 Pastel-Accented KPI Metric Cards -->
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        
+
         <!-- 1. Total Students (Soft Violet) -->
         <div class="relative overflow-hidden rounded-xl border border-violet-100 bg-white p-5 shadow-xs transition duration-200 hover:shadow-md hover:border-violet-200">
             <div class="flex items-start justify-between">
@@ -145,7 +145,7 @@
 
     <!-- Analytics Section: Comparative Bar Chart & Radial Ratio Donut -->
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-12">
-        
+
         <!-- Comparative Exam & Performance Bar Chart (8 Columns) -->
         <div class="rounded-xl border border-slate-200 bg-white p-5 shadow-xs lg:col-span-8">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-4 border-b border-slate-100">
@@ -276,7 +276,7 @@
 
     <!-- Star Students Data Table & Institutional Bulletins Grid -->
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-12">
-        
+
         <!-- Star Students Data Table (8 Columns) -->
         <div class="rounded-xl border border-slate-200 bg-white shadow-xs overflow-hidden lg:col-span-8">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-5 border-b border-slate-200 gap-3">

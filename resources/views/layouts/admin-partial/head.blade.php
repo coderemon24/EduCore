@@ -46,7 +46,20 @@
         background: #94a3b8;
     }
 
-    /* Collapsed Sidebar Rules */
+    /* Collapsed Sidebar Rules & Floating Tooltips with Elevated Stacking Context */
+    .sidebar-collapsed #admin-sidebar {
+        overflow: visible !important;
+        z-index: 50 !important;
+    }
+
+    .sidebar-collapsed #admin-sidebar .admin-sidebar-scroll {
+        overflow: visible !important;
+    }
+
+    .sidebar-collapsed #admin-sidebar li {
+        position: relative !important;
+    }
+
     .sidebar-collapsed .nav-label,
     .sidebar-collapsed .nav-chevron,
     .sidebar-collapsed .nav-section-title {
@@ -64,7 +77,18 @@
     }
 
     .sidebar-collapsed .nav-item-tooltip {
-        display: block !important;
+        display: inline-flex !important;
+        align-items: center;
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.15s ease-in-out, visibility 0.15s ease-in-out;
+        z-index: 9999 !important;
+    }
+
+    .sidebar-collapsed #admin-sidebar a:hover .nav-item-tooltip {
+        visibility: visible !important;
+        opacity: 1 !important;
     }
 
     .nav-item-tooltip {
