@@ -1,0 +1,124 @@
+schema: spec-driven
+
+# ==============================================================================
+# OpenSpec Project Configuration: Laravel School Management System
+# ==============================================================================
+
+context: |
+  ### Project Overview
+  - **Name**: Laravel School (EduCore School Management System)
+  - **Repository Root**: `c:\laragon\www\laravel-school`
+  - **Application Directory**: Root (`./`)
+  - **Type**: Comprehensive School Management System & Academic ERP Platform.
+  - **Core Application**: Robust administrative portal (`/admin/dashboard`), Student Information System (SIS), Faculty & Teacher directory, Class & Section scheduling, Attendance records, Examination & Grading, Fee Management, and Institution Telemetry.
+
+  ### Technology Stack
+  1. **Backend Framework**:
+     - **Laravel 12** (`laravel/framework: ^12.0`)
+     - **PHP Version**: PHP 8.2+ (Laragon environment)
+     - **Architecture**: Modern Laravel 12 configuration (`bootstrap/app.php`), Route Grouping, Form Requests, Eloquent ORM, Blade Layouts.
+     - **Code Formatter & Linter**: Laravel Pint (`laravel/pint: ^1.24`)
+     - **Testing**: PHPUnit 11 (`phpunit/phpunit: ^11.5.50`)
+
+  2. **Database & Storage**:
+     - **DBMS**: MySQL 8.0 / MariaDB on Laragon (Host: `127.0.0.1:3306`, Database: `laravel-school`, Username: `root`, Password: ``).
+     - **Session & Cache**: Database-backed sessions and cache tables.
+     - **Media & File Storage**: Public storage disk (`public/uploads/` or `storage/app/public/`) for student avatars, teacher profiles, and school documents.
+
+  3. **Frontend & UI Architecture**:
+     - **Template Engine**: Laravel Blade (`resources/views/`)
+     - **Bundler & Build Tool**: Vite 7 (`vite: ^7.0.7`, `laravel-vite-plugin: ^2.0.0`)
+     - **CSS Framework**: Tailwind CSS v4 (`tailwindcss: ^4.0.0`, `@tailwindcss/vite`)
+     - **Design Philosophy**: High-information-density, clean institutional design system following the "no-slop" protocol (no arbitrary glow/glassmorphism, crisp 1px borders, subtle functional accents, accessible typography, high contrast, responsive sidebar/header navigation).
+
+  ### Project Directory Map
+  ```text
+  laravel-school/
+  ├── app/
+  │   ├── Http/
+  │   │   ├── Controllers/
+  │   │   │   └── Admin/
+  │   │   │       ├── DashboardController.php
+  │   │   │       ├── StudentController.php
+  │   │   │       ├── TeacherController.php
+  │   │   │       ├── AcademicClassController.php
+  │   │   │       ├── AttendanceController.php
+  │   │   │       └── FeeController.php
+  │   │   └── Middleware/
+  │   └── Models/
+  │       ├── User.php
+  │       ├── Student.php
+  │       ├── Teacher.php
+  │       ├── AcademicClass.php
+  │       ├── Section.php
+  │       ├── Attendance.php
+  │       └── FeeInvoice.php
+  ├── bootstrap/
+  │   └── app.php
+  ├── config/
+  ├── database/
+  │   ├── migrations/
+  │   └── seeders/
+  ├── openspec/
+  │   ├── config.yaml
+  │   ├── config.yml
+  │   └── specs/
+  ├── resources/
+  │   ├── css/
+  │   │   └── app.css
+  │   ├── js/
+  │   │   └── app.js
+  │   └── views/
+  │       ├── layouts/
+  │       │   ├── admin.blade.php
+  │       │   └── partials/
+  │       │       ├── sidebar.blade.php
+  │       │       ├── header.blade.php
+  │       │       └── footer.blade.php
+  │       └── admin/
+  │           └── dashboard.blade.php
+  ├── routes/
+  │   └── web.php
+  ├── composer.json
+  ├── package.json
+  └── vite.config.js
+  ```
+
+  ### Key Architectural Patterns & Domain Rules
+  1. **Administrative Portal Architecture**:
+     - Dedicated admin layout (`resources/views/layouts/admin.blade.php`) with reusable sidebar, top navigation bar, breadcrumbs, search, notification alerts, and quick actions.
+     - Role-based capabilities (Super Admin, Academic Dean, Teacher, Accountant, Student/Parent).
+  2. **Academic Domain Entities**:
+     - **Students**: Admission number, class, section, roll number, guardian details, attendance telemetry, fee status.
+     - **Faculty / Teachers**: Department, designation, assigned subjects, timetable scheduling.
+     - **Academic Classes & Sections**: Grade levels (Class 1 - 12), capacity, class teacher assignments.
+     - **Attendance**: Daily roll-call records with status (Present, Absent, Late, Excused).
+     - **Fees & Billing**: Tuition, exam fees, invoices, payments, outstanding balance tracking.
+  3. **Frontend Performance & Standards**:
+     - Compile all styles via `@tailwindcss/vite` in [resources/css/app.css].
+     - Use native Blade components and clean semantic markup with zero bloated AI-slop aesthetics.
+
+rules:
+  proposal:
+    - "Detail school administrative workflow improvements and feature scope."
+    - "Explicitly define database schema additions, migrations, and relationship constraints."
+    - "Identify necessary Eloquent models, validation rules, and authorization gates."
+  specs:
+    - "Define testable acceptance criteria covering both UI layout responsiveness and business logic."
+    - "Specify validation rules for student admission, fee payments, and grade entries."
+  design:
+    - "Follow clean Laravel 12 architecture and controller/service patterns."
+    - "Adhere to the institutional UI/UX design standards: clean contrast, purposeful hierarchy, authentic typography, high information density."
+  tasks:
+    - "Organize steps into logical milestones: Layout & Blade Architecture, Models & Migrations, Controllers & Business Logic, Blade Views & Interactions, Verification & Testing."
+
+operations:
+  apply:
+    guidance:
+      - "Run database migrations via 'php artisan migrate' when adding or modifying tables."
+      - "Compile frontend assets using Vite ('npm run build') and verify UI states."
+      - "Follow Laravel Pint conventions for clean, standardized PHP code formatting."
+  archive:
+    guidance:
+      - "Verify that main specifications in openspec/ accurately reflect implemented capabilities."
+      - "Confirm all routes, controllers, and Blade templates execute cleanly."
