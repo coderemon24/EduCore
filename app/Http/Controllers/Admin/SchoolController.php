@@ -70,14 +70,14 @@ class SchoolController extends Controller
 
         $rawCounts = School::query()
             ->withTrashed()
-            ->selectRaw("
+            ->selectRaw('
                 COUNT(CASE WHEN deleted_at IS NULL THEN 1 END) as all_count,
                 COUNT(CASE WHEN deleted_at IS NULL AND status = ? THEN 1 END) as active_count,
                 COUNT(CASE WHEN deleted_at IS NULL AND status = ? THEN 1 END) as pending_count,
                 COUNT(CASE WHEN deleted_at IS NULL AND status = ? THEN 1 END) as suspended_count,
                 COUNT(CASE WHEN deleted_at IS NULL AND status = ? THEN 1 END) as inactive_count,
                 COUNT(CASE WHEN deleted_at IS NOT NULL THEN 1 END) as trashed_count
-            ", [
+            ', [
                 SchoolStatus::Active->value,
                 SchoolStatus::Pending->value,
                 SchoolStatus::Suspended->value,
@@ -86,12 +86,12 @@ class SchoolController extends Controller
             ->first();
 
         $statusCounts = [
-            'all'       => (int) ($rawCounts->all_count ?? 0),
-            'active'    => (int) ($rawCounts->active_count ?? 0),
-            'pending'   => (int) ($rawCounts->pending_count ?? 0),
+            'all' => (int) ($rawCounts->all_count ?? 0),
+            'active' => (int) ($rawCounts->active_count ?? 0),
+            'pending' => (int) ($rawCounts->pending_count ?? 0),
             'suspended' => (int) ($rawCounts->suspended_count ?? 0),
-            'inactive'  => (int) ($rawCounts->inactive_count ?? 0),
-            'trashed'   => (int) ($rawCounts->trashed_count ?? 0),
+            'inactive' => (int) ($rawCounts->inactive_count ?? 0),
+            'trashed' => (int) ($rawCounts->trashed_count ?? 0),
         ];
 
         return view('admin.schools.index', compact('schools', 'statusFilter', 'search', 'statusCounts'));

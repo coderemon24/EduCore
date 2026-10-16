@@ -14,25 +14,25 @@ return [
         // Setting this to false makes EVERY toast render raw
         // HTML, which turns any user-supplied value into a
         // cross-site scripting hole.
-        "escape_html" => true,
+        'escape_html' => true,
 
         // ─────────────────────────────────────────────
         // Toast behavior
         // ─────────────────────────────────────────────
-        "closeButton" => true,
-        "positionClass" => "toast-top-end",
-        "preventDuplicates" => false,
-        "showDuration" => 300,
-        "timeOut" => 5000,
+        'closeButton' => true,
+        'positionClass' => 'toast-top-end',
+        'preventDuplicates' => false,
+        'showDuration' => 300,
+        'timeOut' => 5000,
         // Use 0 to keep toasts on screen until dismissed.
 
-        "stagger" => 800,
+        'stagger' => 800,
         // Gap between consecutive queued toasts, in ms.
         // The entrance animation runs for 500ms, so this
         // staggers them into a cascade rather than a burst.
         // All of maxVisible land within maxVisible * stagger.
 
-        "maxVisible" => 15,
+        'maxVisible' => 15,
         // Most toasts on screen at once; the oldest is
         // dismissed to make room. The container is fixed
         // positioned, so without a cap a burst of flashed
@@ -40,39 +40,39 @@ return [
         // viewport where they cannot be seen or closed.
         // Use 0 for no limit.
 
-        "pauseOnHover" => true,
+        'pauseOnHover' => true,
         // Keyboard focus always pauses the timer, regardless
         // of this setting.
 
         // ─────────────────────────────────────────────
         // Theme & appearance
         // ─────────────────────────────────────────────
-        "theme" => "default",
+        'theme' => 'default',
         // Available themes:
         // default, material, ios, glassmorphism, neon,
         // minimal, neumorphism, neumorphic, compact
 
-        "gradient_enable" => false,
+        'gradient_enable' => false,
         // Available for: default, material, ios,
         // glassmorphism, neon themes
 
-        "color_mode" => false,
+        'color_mode' => false,
         // Enable/disable color mode
 
         // ─────────────────────────────────────────────
         // Animation
         // ─────────────────────────────────────────────
-        "animation" => "default",
+        'animation' => 'default',
         // Available animations:
         // default, slide, fade, pop, bounce
 
         // ─────────────────────────────────────────────
         // Accessibility
         // ─────────────────────────────────────────────
-        "closeButtonLabel" => "Close notification",
+        'closeButtonLabel' => 'Close notification',
         // Accessible name announced for the close button.
 
-        "containerLabel" => "Notifications",
+        'containerLabel' => 'Notifications',
         // Accessible name for the toast region.
 
         // ─────────────────────────────────────────────
@@ -84,12 +84,12 @@ return [
         //
         // Individual values can be omitted or set to null
         // to fall back to the theme's default value.
-        "spacing" => [
-            "enable" => true,
-            "container" => "10px 12px", // Inner toast padding
-            "icon_gap" => "8px",        // Icon ↔ content
-            "content_gap" => "2px",     // Title ↔ description
-            "close_gap" => "6px",       // Content ↔ close/action
+        'spacing' => [
+            'enable' => true,
+            'container' => '10px 12px', // Inner toast padding
+            'icon_gap' => '8px',        // Icon ↔ content
+            'content_gap' => '2px',     // Title ↔ description
+            'close_gap' => '6px',       // Content ↔ close/action
         ],
 
         // ─────────────────────────────────────────────
@@ -101,10 +101,10 @@ return [
         //
         // Weight and line-height are optional. Omit them
         // to keep the theme's default values.
-        "typography" => [
-            "enable" => true,
-            "title_size" => "14px",
-            "description_size" => "13px",
+        'typography' => [
+            'enable' => true,
+            'title_size' => '14px',
+            'description_size' => '13px',
         ],
     ],
 

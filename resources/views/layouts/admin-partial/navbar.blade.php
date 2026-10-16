@@ -92,8 +92,8 @@
                 <svg class="h-4 w-4 text-violet-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
-                <span id="current-calendar-label" class="hidden md:inline">2025–2026 Academic Year</span>
-                <span id="current-term-badge" class="rounded bg-violet-100 px-1.5 py-0.5 text-[10px] font-bold text-violet-700">Term 1</span>
+                <span id="current-calendar-label" class="hidden md:inline">{{ isset($activeAcademicYear) && $activeAcademicYear ? $activeAcademicYear->name.' Session' : 'Active Session' }}</span>
+                <span id="current-term-badge" class="rounded bg-violet-100 px-1.5 py-0.5 text-[10px] font-bold text-violet-700">Active</span>
                 <svg id="calendar-dropdown-chevron" class="h-3.5 w-3.5 text-slate-400 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                 </svg>
@@ -104,42 +104,28 @@
                  class="hidden absolute right-0 mt-1.5 w-64 rounded-xl border border-slate-200 bg-white p-2 shadow-xl z-50 text-xs">
                 <div class="px-2 py-1.5 border-b border-slate-100 mb-1 flex items-center justify-between">
                     <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Academic Calendar</span>
-                    <span class="text-[10px] text-slate-400 font-medium">Switch Session</span>
+                    <a href="{{ Route::has('admin.academic.years.index') ? route('admin.academic.years.index') : url('/admin/academic/years') }}" class="text-[10px] text-violet-600 hover:text-violet-800 font-semibold cursor-pointer">Manage Sessions</a>
                 </div>
                 <div class="space-y-1">
-                    <button type="button"
-                            data-session="2025-2026"
-                            data-session-label="2025–2026 Academic Year"
-                            data-term="Term 1"
-                            class="calendar-session-item flex w-full items-center justify-between rounded-lg px-2.5 py-2 text-left bg-violet-50 text-violet-800 font-semibold transition hover:bg-violet-100 cursor-pointer">
-                        <div class="flex items-center gap-2">
-                            <span class="h-2 w-2 rounded-full bg-violet-600"></span>
-                            <span>2025–2026 Session</span>
+                    @if(isset($allAcademicYears) && $allAcademicYears->isNotEmpty())
+                        @foreach($allAcademicYears as $yearItem)
+                            <a href="{{ Route::has('admin.academic.years.index') ? route('admin.academic.years.index') : url('/admin/academic/years') }}"
+                               class="calendar-session-item flex w-full items-center justify-between rounded-lg px-2.5 py-2 text-left transition hover:bg-slate-50 cursor-pointer {{ $yearItem->is_current ? 'bg-violet-50 text-violet-800 font-semibold' : 'text-slate-700 font-medium' }}">
+                                <div class="flex items-center gap-2">
+                                    <span class="h-2 w-2 rounded-full {{ $yearItem->is_current ? 'bg-violet-600' : 'bg-slate-300' }}"></span>
+                                    <span>{{ $yearItem->name }}</span>
+                                </div>
+                                <span class="rounded px-1.5 py-0.5 text-[10px] font-bold {{ $yearItem->is_current ? 'bg-violet-200/60 text-violet-800' : 'bg-slate-100 text-slate-500' }}">
+                                    {{ $yearItem->is_current ? 'Current' : ucfirst($yearItem->status) }}
+                                </span>
+                            </a>
+                        @endforeach
+                    @else
+                        <div class="p-3 text-center text-slate-400">
+                            <p class="text-xs">No sessions configured</p>
+                            <a href="{{ Route::has('admin.academic.years.index') ? route('admin.academic.years.index') : url('/admin/academic/years') }}" class="text-[11px] text-violet-600 font-semibold mt-1 inline-block">Set up Academic Year &rarr;</a>
                         </div>
-                        <span class="rounded bg-violet-200/60 px-1.5 py-0.5 text-[10px] font-bold text-violet-800">Active</span>
-                    </button>
-                    <button type="button"
-                            data-session="2024-2025"
-                            data-session-label="2024–2025 Academic Year"
-                            data-term="Term 3"
-                            class="calendar-session-item flex w-full items-center justify-between rounded-lg px-2.5 py-2 text-left text-slate-700 font-medium transition hover:bg-slate-50 cursor-pointer">
-                        <div class="flex items-center gap-2">
-                            <span class="h-2 w-2 rounded-full bg-slate-300"></span>
-                            <span>2024–2025 Session</span>
-                        </div>
-                        <span class="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] text-slate-500">Archived</span>
-                    </button>
-                    <button type="button"
-                            data-session="2026-2027"
-                            data-session-label="2026–2027 Academic Year"
-                            data-term="Planning"
-                            class="calendar-session-item flex w-full items-center justify-between rounded-lg px-2.5 py-2 text-left text-slate-700 font-medium transition hover:bg-slate-50 cursor-pointer">
-                        <div class="flex items-center gap-2">
-                            <span class="h-2 w-2 rounded-full bg-slate-300"></span>
-                            <span>2026–2027 Session</span>
-                        </div>
-                        <span class="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] text-slate-500">Upcoming</span>
-                    </button>
+                    @endif
                 </div>
             </div>
         </div>

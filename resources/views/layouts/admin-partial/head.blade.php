@@ -81,7 +81,26 @@
         display: none !important;
     }
 
-    .sidebar-collapsed #admin-sidebar a {
+    .sidebar-collapsed #sidebar-academic-submenu {
+        display: none;
+    }
+
+    .sidebar-collapsed #sidebar-academic-dropdown-wrapper:hover #sidebar-academic-submenu {
+        display: block !important;
+        position: absolute;
+        left: 100%;
+        top: 0;
+        width: 14rem;
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.5rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        padding: 0.5rem;
+        z-index: 9999;
+    }
+
+    .sidebar-collapsed #admin-sidebar a,
+    .sidebar-collapsed #sidebar-academic-toggle {
         justify-content: center !important;
         padding-left: 0.5rem !important;
         padding-right: 0.5rem !important;

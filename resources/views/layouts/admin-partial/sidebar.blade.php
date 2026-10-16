@@ -1,7 +1,7 @@
 <!-- Admin Sidebar Navigation -->
 <aside id="admin-sidebar"
        class="group/sidebar fixed inset-y-0 left-0 z-50 flex h-screen w-64 flex-col shrink-0 border-r border-slate-200 bg-white transition-all duration-300 ease-in-out lg:relative lg:z-40 -translate-x-full lg:translate-x-0">
-    
+
     <!-- Sidebar Header / Logo -->
     <div class="flex h-16 shrink-0 items-center justify-between border-b border-slate-200/80 px-4">
         <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-2.5 overflow-hidden cursor-pointer">
@@ -33,7 +33,7 @@
 
     <!-- Navigation Scroll Area (Scrolls independently when menu items exceed viewport height) -->
     <div class="flex-1 overflow-y-auto px-3 py-4 space-y-6 admin-sidebar-scroll">
-        
+
         <!-- Category: Core Management -->
         <div>
             <div class="nav-section-title px-3 mb-2 text-xs font-bold uppercase tracking-wider text-slate-400">
@@ -69,7 +69,7 @@
                         <svg class="h-4.5 w-4.5 shrink-0 transition-transform duration-200 group-hover:scale-105 {{ $isSchoolsActive ? 'text-violet-600' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                         </svg>
-                        <span class="nav-label truncate text-xs font-semibold tracking-tight">Schools & Campuses</span>
+                        <span class="nav-label truncate text-xs font-semibold tracking-tight">Schools</span>
                         <span class="nav-badge ml-auto inline-flex items-center gap-1 rounded border border-violet-200/90 bg-violet-50/80 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-violet-700 transition-colors group-hover:bg-violet-100">
                             <span class="h-1 w-1 rounded-full bg-violet-500"></span>
                             <span>Tenant</span>
@@ -142,21 +142,87 @@
                 Academic & Operations
             </div>
             <ul class="space-y-1">
-                <!-- Classes -->
-                <li>
-                    <a href="javascript:void(0)"
-                       onclick="window.Swal && Swal.fire({title: 'Academic Classes', text: 'Viewing Class Grades 1-12 and Section allocations.', icon: 'info', confirmButtonColor: '#7c3aed'});"
-                       class="group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-slate-900 cursor-pointer">
-                        <svg class="h-5 w-5 shrink-0 text-slate-400 group-hover:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                <!-- Academic Structure Collapsible Dropdown -->
+                @php
+                    $isAcademicActive = request()->routeIs('admin.academic.*');
+                @endphp
+                <li class="relative group/dropdown" id="sidebar-academic-dropdown-wrapper">
+                    <button type="button"
+                            id="sidebar-academic-toggle"
+                            onclick="window.toggleAcademicSidebarDropdown(event)"
+                            aria-expanded="{{ $isAcademicActive ? 'true' : 'false' }}"
+                            class="group w-full flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-all duration-150 cursor-pointer {{ $isAcademicActive ? 'bg-violet-50 text-violet-800 font-semibold shadow-2xs border-l-2 border-violet-600 pl-2.5' : 'text-slate-600 hover:bg-slate-100/80 hover:text-slate-900' }}">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <svg class="h-4.5 w-4.5 shrink-0 transition-transform duration-200 group-hover:scale-105 {{ $isAcademicActive ? 'text-violet-600' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5" />
+                            </svg>
+                            <span class="nav-label truncate text-xs font-semibold tracking-tight">Academic Structure</span>
+                        </div>
+                        <svg id="academic-dropdown-chevron"
+                             class="nav-chevron h-3.5 w-3.5 shrink-0 text-slate-400 transition-transform duration-200 {{ $isAcademicActive ? 'rotate-180 text-violet-600' : 'rotate-0' }}"
+                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
-                        <span class="nav-label truncate text-sm">Classes</span>
 
+                        <!-- Floating Tooltip for collapsed mode -->
                         <span class="nav-item-tooltip absolute left-full top-1/2 -translate-y-1/2 ml-3 px-3 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md shadow-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
-                            Classes
+                            Academic Structure
                             <span class="absolute left-[-4px] top-1/2 -translate-y-1/2 border-y-4 border-y-transparent border-r-4 border-r-slate-900"></span>
                         </span>
-                    </a>
+                    </button>
+
+                    <!-- Submenu Accordion -->
+                    <ul id="sidebar-academic-submenu"
+                        class="space-y-0.5 mt-1 pl-4 pr-1 {{ $isAcademicActive ? 'block' : 'hidden' }}">
+                        <!-- Academic Years -->
+                        <li>
+                            <a href="{{ Route::has('admin.academic.years.index') ? route('admin.academic.years.index') : url('/admin/academic/years') }}"
+                               class="group relative flex items-center gap-2.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer {{ request()->routeIs('admin.academic.years.*') ? 'bg-violet-100/70 text-violet-800 font-bold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
+                                <span class="h-1.5 w-1.5 rounded-full {{ request()->routeIs('admin.academic.years.*') ? 'bg-violet-600' : 'bg-slate-300 group-hover:bg-slate-400' }}"></span>
+                                <span class="truncate">Academic Years</span>
+                            </a>
+                        </li>
+                        <!-- Classes & Grades -->
+                        <li>
+                            <a href="{{ Route::has('admin.academic.classes.index') ? route('admin.academic.classes.index') : url('/admin/academic/classes') }}"
+                               class="group relative flex items-center gap-2.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer {{ request()->routeIs('admin.academic.classes.*') ? 'bg-violet-100/70 text-violet-800 font-bold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
+                                <span class="h-1.5 w-1.5 rounded-full {{ request()->routeIs('admin.academic.classes.*') ? 'bg-violet-600' : 'bg-slate-300 group-hover:bg-slate-400' }}"></span>
+                                <span class="truncate">Classes & Grades</span>
+                            </a>
+                        </li>
+                        <!-- Sections -->
+                        <li>
+                            <a href="{{ Route::has('admin.academic.sections.index') ? route('admin.academic.sections.index') : url('/admin/academic/sections') }}"
+                               class="group relative flex items-center gap-2.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer {{ request()->routeIs('admin.academic.sections.*') ? 'bg-violet-100/70 text-violet-800 font-bold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
+                                <span class="h-1.5 w-1.5 rounded-full {{ request()->routeIs('admin.academic.sections.*') ? 'bg-violet-600' : 'bg-slate-300 group-hover:bg-slate-400' }}"></span>
+                                <span class="truncate">Sections</span>
+                            </a>
+                        </li>
+                        <!-- Subjects -->
+                        <li>
+                            <a href="{{ Route::has('admin.academic.subjects.index') ? route('admin.academic.subjects.index') : url('/admin/academic/subjects') }}"
+                               class="group relative flex items-center gap-2.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer {{ request()->routeIs('admin.academic.subjects.*') ? 'bg-violet-100/70 text-violet-800 font-bold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
+                                <span class="h-1.5 w-1.5 rounded-full {{ request()->routeIs('admin.academic.subjects.*') ? 'bg-violet-600' : 'bg-slate-300 group-hover:bg-slate-400' }}"></span>
+                                <span class="truncate">Subjects Catalog</span>
+                            </a>
+                        </li>
+                        <!-- Assign Subjects -->
+                        <li>
+                            <a href="{{ Route::has('admin.academic.assign-subjects.index') ? route('admin.academic.assign-subjects.index') : url('/admin/academic/assign-subjects') }}"
+                               class="group relative flex items-center gap-2.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer {{ request()->routeIs('admin.academic.assign-subjects.*') ? 'bg-violet-100/70 text-violet-800 font-bold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
+                                <span class="h-1.5 w-1.5 rounded-full {{ request()->routeIs('admin.academic.assign-subjects.*') ? 'bg-violet-600' : 'bg-slate-300 group-hover:bg-slate-400' }}"></span>
+                                <span class="truncate">Assign Subjects</span>
+                            </a>
+                        </li>
+                        <!-- Groups / Streams -->
+                        <li>
+                            <a href="{{ Route::has('admin.academic.groups.index') ? route('admin.academic.groups.index') : url('/admin/academic/groups') }}"
+                               class="group relative flex items-center gap-2.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer {{ request()->routeIs('admin.academic.groups.*') ? 'bg-violet-100/70 text-violet-800 font-bold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
+                                <span class="h-1.5 w-1.5 rounded-full {{ request()->routeIs('admin.academic.groups.*') ? 'bg-violet-600' : 'bg-slate-300 group-hover:bg-slate-400' }}"></span>
+                                <span class="truncate">Groups / Streams</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <!-- Attendance -->
@@ -276,4 +342,53 @@
             </div>
         </div>
     </div>
+
+    <!-- Direct Fallback Script for Sidebar Academic Structure Dropdown -->
+    <script>
+        window.toggleAcademicSidebarDropdown = function(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            var body = document.getElementById('admin-body') || document.body;
+            var sidebar = document.getElementById('admin-sidebar');
+            var toggle = document.getElementById('sidebar-academic-toggle');
+            var submenu = document.getElementById('sidebar-academic-submenu');
+            var chevron = document.getElementById('academic-dropdown-chevron');
+
+            if (!submenu) return;
+
+            // If sidebar is collapsed in icon mode, expand to full width
+            if (body && body.classList.contains('sidebar-collapsed')) {
+                body.classList.remove('sidebar-collapsed');
+                if (sidebar) {
+                    sidebar.classList.remove('w-20');
+                    sidebar.classList.add('w-64');
+                }
+                try { localStorage.setItem('educore_sidebar_collapsed', 'false'); } catch (_) {}
+            }
+
+            var isHidden = submenu.classList.contains('hidden') || submenu.style.display === 'none';
+
+            if (isHidden) {
+                submenu.classList.remove('hidden');
+                submenu.classList.add('block');
+                submenu.style.display = 'block';
+                if (chevron) {
+                    chevron.classList.add('rotate-180');
+                    chevron.classList.remove('rotate-0');
+                }
+                if (toggle) toggle.setAttribute('aria-expanded', 'true');
+            } else {
+                submenu.classList.add('hidden');
+                submenu.classList.remove('block');
+                submenu.style.display = 'none';
+                if (chevron) {
+                    chevron.classList.remove('rotate-180');
+                    chevron.classList.add('rotate-0');
+                }
+                if (toggle) toggle.setAttribute('aria-expanded', 'false');
+            }
+        };
+    </script>
 </aside>

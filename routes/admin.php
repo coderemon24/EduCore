@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\Academic\AcademicClassController;
+use App\Http\Controllers\Admin\Academic\AcademicGroupController;
+use App\Http\Controllers\Admin\Academic\AcademicYearController;
+use App\Http\Controllers\Admin\Academic\ClassSubjectAssignmentController;
+use App\Http\Controllers\Admin\Academic\SectionController;
+use App\Http\Controllers\Admin\Academic\SubjectController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\SchoolController;
@@ -47,6 +53,32 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::patch('/{school}/status', [SchoolController::class, 'updateStatus'])->name('status.update');
             Route::post('/{school}/restore', [SchoolController::class, 'restore'])->name('restore')->withTrashed();
             Route::delete('/{school}/force-delete', [SchoolController::class, 'forceDelete'])->name('force-delete')->withTrashed();
+        });
+
+        // Academic Structure & Institutional Hierarchy
+        Route::prefix('academic')->name('academic.')->group(function () {
+            // Academic Years / Sessions
+            Route::post('years/{year}/set-current', [AcademicYearController::class, 'setCurrent'])->name('years.set-current');
+            Route::resource('years', AcademicYearController::class)->except(['show']);
+
+            // Dependent Dropdown APIs
+            Route::get('classes/{class}/sections', [AcademicClassController::class, 'getSections'])->name('classes.sections.api');
+            Route::get('classes/{class}/subjects', [AcademicClassController::class, 'getSubjects'])->name('classes.subjects.api');
+
+            // Academic Classes / Grades
+            Route::resource('classes', AcademicClassController::class)->except(['show']);
+
+            // Sections
+            Route::resource('sections', SectionController::class)->except(['show']);
+
+            // Subjects Catalog
+            Route::resource('subjects', SubjectController::class)->except(['show']);
+
+            // Class-Subject Assignments (Curriculum Matrix)
+            Route::resource('assign-subjects', ClassSubjectAssignmentController::class)->except(['show']);
+
+            // Academic Streams / Groups
+            Route::resource('groups', AcademicGroupController::class)->except(['show']);
         });
     });
 });

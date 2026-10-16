@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Enums\SchoolStatus;
 use App\Models\Admin;
 use App\Models\School;
+use Devrabiul\ToastMagic\ToastMagic;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -405,7 +406,6 @@ class SchoolSettingsAndManagementTest extends TestCase
             ]);
 
         $response->assertSessionHas('success');
-        $response->assertSessionHas(\Devrabiul\ToastMagic\ToastMagic::SESSION_KEY);
+        $response->assertSessionHas(ToastMagic::SESSION_KEY);
     }
 }
-

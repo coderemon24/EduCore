@@ -32,9 +32,10 @@
     </div>
 
     <!-- Feature-Wise Modular Admin JavaScript Assets -->
-    <script src="{{ asset('admin-assets/js/admin-sidebar.js') }}" defer></script>
+    <script src="{{ asset('admin-assets/js/admin-sidebar.js') }}?v={{ file_exists(public_path('admin-assets/js/admin-sidebar.js')) ? filemtime(public_path('admin-assets/js/admin-sidebar.js')) : time() }}" defer></script>
     <script src="{{ asset('admin-assets/js/admin-search.js') }}" defer></script>
     <script src="{{ asset('admin-assets/js/admin-actions.js') }}" defer></script>
+    <script src="{{ asset('admin-assets/js/academic-dependent-dropdown.js') }}" defer></script>
 
     <!-- ToastMagic (Toaster) Runtime Scripts -->
     {!! \Devrabiul\ToastMagic\Facades\ToastMagic::scripts() !!}
