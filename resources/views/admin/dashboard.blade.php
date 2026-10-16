@@ -12,13 +12,24 @@
                 <a href="{{ route('admin.dashboard') }}" class="font-medium text-slate-600 hover:text-violet-600 transition">Admin</a>
                 <span>/</span>
                 <span class="font-semibold text-slate-700">Dashboard</span>
-                @if(isset($currentSchool) && $currentSchool)
+                @if(isset($isGlobalSuperAdmin) && $isGlobalSuperAdmin)
+                    <span>/</span>
+                    <span class="rounded bg-violet-100 px-1.5 py-0.5 text-[10px] font-bold text-violet-800">Platform SaaS</span>
+                @elseif(isset($currentSchool) && $currentSchool)
                     <span>/</span>
                     <span class="rounded bg-violet-50 px-1.5 py-0.5 text-[10px] font-semibold text-violet-700">{{ $currentSchool->name }}</span>
                 @endif
             </div>
-            <h1 class="text-2xl font-bold tracking-tight text-slate-900">Institutional Overview</h1>
-            <p class="text-xs text-slate-500 mt-0.5">Overview of student enrollment, faculty metrics, academic performance, and announcements for {{ $currentSchool->name ?? 'EduCore Academy' }}.</p>
+            <h1 class="text-2xl font-bold tracking-tight text-slate-900">
+                {{ isset($isGlobalSuperAdmin) && $isGlobalSuperAdmin ? 'Platform Management Dashboard' : 'Institutional Overview' }}
+            </h1>
+            <p class="text-xs text-slate-500 mt-0.5">
+                @if(isset($isGlobalSuperAdmin) && $isGlobalSuperAdmin)
+                    Global platform overview monitoring {{ isset($allSchools) ? $allSchools->count() : 1 }} academic institutions across the multi-tenant SaaS.
+                @else
+                    Overview of student enrollment, faculty metrics, academic performance, and announcements for {{ $currentSchool->name ?? 'EduCore Academy' }}.
+                @endif
+            </p>
         </div>
 
         <!-- Action Buttons -->

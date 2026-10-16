@@ -217,13 +217,22 @@
 
             <!-- Card: Branding Crest -->
             <div class="rounded-xl border border-slate-200 bg-white p-5 shadow-xs text-center">
-                <div class="h-28 w-28 mx-auto rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-center p-3 mb-3">
-                    <img src="{{ asset($school->logo ?: 'admin-assets/images/laravel-school-transparent.png') }}"
+                <div class="h-28 w-28 mx-auto rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-center p-3 mb-3 relative">
+                    <img src="{{ $school->logo_url }}"
                          alt="{{ $school->name }}"
                          class="h-full w-full object-contain">
                 </div>
                 <h3 class="text-sm font-bold text-slate-800">{{ $school->name }}</h3>
                 <p class="text-[11px] text-slate-400 mt-0.5">Official Institutional Crest</p>
+
+                <!-- Dedicated Favicon Preview in Card -->
+                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                    <span class="text-slate-500 font-medium">Browser Favicon:</span>
+                    <div class="flex items-center gap-1.5">
+                        <img src="{{ $school->favicon_url }}" alt="Favicon" class="h-5 w-5 object-contain rounded border border-slate-200 p-0.5 bg-slate-50">
+                        <span class="text-[11px] font-mono text-slate-600">{{ $school->favicon ? 'Custom Uploaded' : 'Default Crest' }}</span>
+                    </div>
+                </div>
             </div>
 
             <!-- Card: System Record Telemetry -->

@@ -6,12 +6,17 @@
     <div class="flex h-16 shrink-0 items-center justify-between border-b border-slate-200/80 px-4">
         <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-2.5 overflow-hidden cursor-pointer">
             <!-- Brand Logo -->
-            <img src="{{ asset('admin-assets/images/laravel-school-transparent.png') }}"
+            <img src="{{ $currentSchool?->logo_url ?? asset('admin-assets/images/laravel-school-transparent.png') }}"
                  alt="Laravel School Management"
                  class="h-9 w-auto object-contain shrink-0 transition-transform duration-300 hover:scale-105">
             <div class="sidebar-brand-text flex flex-col truncate">
-                <span class="text-xs font-bold uppercase tracking-wider text-slate-800">{{ $currentSchool->name ?? 'EduCore SIS' }}</span>
-                <span class="text-[10px] font-medium text-slate-500">{{ $currentSchool ? ($currentSchool->code ? $currentSchool->code.' • Active' : 'School Admin Portal') : 'School Admin Portal' }}</span>
+                @if(isset($isGlobalSuperAdmin) && $isGlobalSuperAdmin)
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-800">EduCore Platform</span>
+                    <span class="text-[10px] font-medium text-violet-600">Global SaaS Admin</span>
+                @else
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-800">{{ $currentSchool->name ?? 'EduCore SIS' }}</span>
+                    <span class="text-[10px] font-medium text-slate-500">{{ $currentSchool ? ($currentSchool->code ? $currentSchool->code.' • Active' : 'School Admin Portal') : 'School Admin Portal' }}</span>
+                @endif
             </div>
         </a>
 

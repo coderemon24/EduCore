@@ -43,7 +43,8 @@ class StoreSchoolRequest extends FormRequest
             'established_year' => ['nullable', 'integer', 'min:1800', 'max:'.(date('Y') + 1)],
             'timezone' => ['required', 'string', 'max:50', 'timezone:all'],
             'currency' => ['required', 'string', 'max:10'],
-            'logo' => ['nullable', 'string', 'max:255'],
+            'logo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp,svg', 'max:2048'],
+            'favicon' => ['nullable', 'file', 'mimes:ico,png,svg', 'max:1024'],
         ];
     }
 
@@ -61,6 +62,8 @@ class StoreSchoolRequest extends FormRequest
             'phone' => 'phone number',
             'postal_code' => 'postal / ZIP code',
             'established_year' => 'established year',
+            'logo' => 'institutional logo / crest',
+            'favicon' => 'browser favicon',
         ];
     }
 }

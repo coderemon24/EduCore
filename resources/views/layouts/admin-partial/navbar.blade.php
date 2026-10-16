@@ -65,13 +65,22 @@
     <div class="flex items-center gap-2 sm:gap-3">
         <!-- Active Institution / Tenant Indicator -->
         <div class="relative hidden sm:block">
-            <div class="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50/80 px-2.5 py-1.5 text-xs font-medium text-slate-700 shadow-2xs">
-                <svg class="h-3.5 w-3.5 text-violet-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-                <span class="font-semibold text-slate-800">{{ $currentSchool->name ?? 'EduCore Academy' }}</span>
-                <span class="rounded bg-emerald-100 px-1.5 py-0.5 text-[9px] font-bold text-emerald-700 uppercase tracking-wider">{{ $currentSchool?->status?->value ?? 'active' }}</span>
-            </div>
+            @if(isset($isGlobalSuperAdmin) && $isGlobalSuperAdmin)
+                <a href="{{ route('admin.schools.index') }}"
+                   class="inline-flex items-center gap-1.5 rounded-lg border border-violet-200 bg-violet-50/70 px-2.5 py-1.5 text-xs font-medium text-violet-800 shadow-2xs hover:bg-violet-100/70 transition">
+                    <svg class="h-3.5 w-3.5 text-violet-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="font-bold text-violet-900">Platform Management</span>
+                    <span class="rounded bg-violet-200/80 px-1.5 py-0.5 text-[9px] font-bold text-violet-800 uppercase tracking-wider">Super Admin</span>
+                </a>
+            @elseif(isset($currentSchool) && $currentSchool)
+                <div class="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50/80 px-2.5 py-1.5 text-xs font-medium text-slate-700 shadow-2xs">
+                    <img src="{{ $currentSchool->logo_url }}" alt="{{ $currentSchool->name }}" class="h-4 w-4 object-contain shrink-0">
+                    <span class="font-semibold text-slate-800">{{ $currentSchool->name }}</span>
+                    <span class="rounded bg-emerald-100 px-1.5 py-0.5 text-[9px] font-bold text-emerald-700 uppercase tracking-wider">{{ $currentSchool?->status?->value ?? 'active' }}</span>
+                </div>
+            @endif
         </div>
 
         <!-- Academic Calendar Switcher -->

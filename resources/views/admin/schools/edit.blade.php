@@ -49,7 +49,7 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.schools.update', $school) }}" method="POST" id="edit-school-form" class="space-y-6">
+    <form action="{{ route('admin.schools.update', $school) }}" method="POST" enctype="multipart/form-data" id="edit-school-form" class="space-y-6">
         @csrf
         @method('PUT')
 
@@ -231,13 +231,61 @@
                     </select>
                 </div>
 
-                <div class="sm:col-span-2">
-                    <label for="logo" class="block text-xs font-semibold text-slate-700 mb-1.5">Institutional Crest / Logo Asset Path</label>
-                    <input type="text"
+            </div>
+        </div>
+
+        <!-- Card 4: Institutional Branding & Media (Real-Time Dropify Upload) -->
+        <div class="rounded-xl border border-slate-200 bg-white p-5 sm:p-6 shadow-xs">
+            <div class="border-b border-slate-100 pb-3 mb-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                <div>
+                    <h2 class="text-xs font-bold text-slate-900 uppercase tracking-wider">4. Institutional Branding & Visual Identity</h2>
+                    <p class="text-[11px] text-slate-500 mt-0.5">Upload new branding files or retain current assets. Real-time preview is active.</p>
+                </div>
+                <span class="inline-flex items-center gap-1.5 rounded-md border border-violet-100 bg-violet-50/80 px-2 py-1 text-[10px] font-semibold text-violet-700 w-fit">
+                    <svg class="h-3 w-3 text-violet-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <span>Direct Server Storage</span>
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <!-- Logo Upload -->
+                <div>
+                    <label for="logo" class="block text-xs font-semibold text-slate-700 mb-1.5">
+                        School Crest / Primary Logo
+                    </label>
+                    <input type="file"
                            id="logo"
                            name="logo"
-                           value="{{ old('logo', $school->logo) }}"
-                           class="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs font-mono text-slate-800 transition hover:bg-white focus:bg-white focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20 shadow-2xs">
+                           class="dropify"
+                           data-height="160"
+                           data-max-file-size="2M"
+                           data-allowed-file-extensions="png jpg jpeg svg webp"
+                           data-default-file="{{ $school->logo ? $school->logo_url : '' }}" />
+                    <p class="mt-1.5 text-[10px] text-slate-400">Supported: PNG, JPG, SVG, WebP (Max: 2MB). Leave blank to keep existing crest.</p>
+                    @error('logo')
+                        <p class="mt-1 text-[11px] text-rose-600 font-medium">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <!-- Favicon Upload -->
+                <div>
+                    <label for="favicon" class="block text-xs font-semibold text-slate-700 mb-1.5">
+                        Browser Tab Favicon
+                    </label>
+                    <input type="file"
+                           id="favicon"
+                           name="favicon"
+                           class="dropify"
+                           data-height="160"
+                           data-max-file-size="1M"
+                           data-allowed-file-extensions="ico png svg"
+                           data-default-file="{{ $school->favicon ? $school->favicon_url : '' }}" />
+                    <p class="mt-1.5 text-[10px] text-slate-400">Supported: ICO, PNG, SVG (Max: 1MB). Recommended 32x32 or 64x64 square ratio.</p>
+                    @error('favicon')
+                        <p class="mt-1 text-[11px] text-rose-600 font-medium">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
         </div>
@@ -262,10 +310,59 @@
 </div>
 @endsection
 
+@push('styles')
+<link rel="stylesheet" href="{{ asset('admin-assets/css/dropify.min.css') }}">
+<style>
+    .dropify-wrapper {
+        border-radius: 0.75rem !important;
+        border: 1.5px dashed #cbd5e1 !important;
+        background-color: #f8fafc !important;
+        transition: all 0.2s ease-in-out !important;
+    }
+    .dropify-wrapper:hover {
+        border-color: #7c3aed !important;
+        background-color: #ffffff !important;
+        box-shadow: 0 4px 12px rgba(124, 58, 237, 0.08) !important;
+    }
+    .dropify-wrapper .dropify-message p {
+        font-size: 12px !important;
+        color: #475569 !important;
+        font-weight: 500 !important;
+    }
+    .dropify-wrapper .dropify-message span.file-icon {
+        font-size: 32px !important;
+        color: #7c3aed !important;
+    }
+    .dropify-wrapper .dropify-clear {
+        border-radius: 0.375rem !important;
+        background-color: #f43f5e !important;
+        color: #ffffff !important;
+        border: none !important;
+        font-size: 10px !important;
+        padding: 3px 8px !important;
+    }
+</style>
+@endpush
+
 @push('scripts')
+<script src="{{ asset('admin-assets/js/dropify.min.js') }}"></script>
 <script>
-    // jQuery prevent duplicate submits
     $(function() {
+        // Initialize Dropify for rich real-time image preview
+        $('.dropify').dropify({
+            messages: {
+                'default': 'Drag and drop an image here or click to browse',
+                'replace': 'Drag and drop or click to replace image',
+                'remove':  'Remove',
+                'error':   'Ooops, something wrong happened.'
+            },
+            error: {
+                'fileSize': 'The file size is too big (@{{ value }} max).',
+                'fileExtension': 'The file format is not allowed (@{{ value }} only).'
+            }
+        });
+
+        // jQuery prevent duplicate submits
         $('#edit-school-form').on('submit', function() {
             var $btn = $('#btn-edit-submit');
             $btn.prop('disabled', true).addClass('opacity-75 cursor-not-allowed').text('Saving Changes...');

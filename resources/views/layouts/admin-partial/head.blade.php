@@ -4,6 +4,17 @@
 
 <title>@yield('title', 'Admin Dashboard') | Laravel School Management System</title>
 
+<!-- Dynamic Institutional Favicon -->
+@php
+    $faviconUrl = isset($school) && $school instanceof \App\Models\School && $school->favicon_url
+        ? $school->favicon_url
+        : (isset($currentSchool) && $currentSchool?->favicon_url
+            ? $currentSchool->favicon_url
+            : asset('admin-assets/images/laravel-school-transparent.png'));
+@endphp
+<link rel="icon" type="image/x-icon" href="{{ $faviconUrl }}">
+<link rel="shortcut icon" href="{{ $faviconUrl }}">
+
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

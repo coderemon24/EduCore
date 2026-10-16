@@ -12,6 +12,8 @@ use DateTimeZone;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class SchoolController extends Controller
@@ -80,7 +82,31 @@ class SchoolController extends Controller
      */
     public function store(StoreSchoolRequest $request): RedirectResponse
     {
-        $school = School::create($request->validated());
+        $data = $request->validated();
+
+        if ($request->hasFile('logo')) {
+            $logoFile = $request->file('logo');
+            $logoDir = public_path('uploads/schools/logos');
+            if (! File::isDirectory($logoDir)) {
+                File::makeDirectory($logoDir, 0755, true, true);
+            }
+            $logoName = 'logo_'.time().'_'.Str::random(10).'.'.$logoFile->getClientOriginalExtension();
+            $logoFile->move($logoDir, $logoName);
+            $data['logo'] = 'uploads/schools/logos/'.$logoName;
+        }
+
+        if ($request->hasFile('favicon')) {
+            $faviconFile = $request->file('favicon');
+            $faviconDir = public_path('uploads/schools/favicons');
+            if (! File::isDirectory($faviconDir)) {
+                File::makeDirectory($faviconDir, 0755, true, true);
+            }
+            $faviconName = 'favicon_'.time().'_'.Str::random(10).'.'.$faviconFile->getClientOriginalExtension();
+            $faviconFile->move($faviconDir, $faviconName);
+            $data['favicon'] = 'uploads/schools/favicons/'.$faviconName;
+        }
+
+        $school = School::create($data);
 
         return redirect()->route('admin.schools.show', $school)
             ->with('success', "Institutional tenant \"{$school->name}\" was created successfully.");
@@ -110,7 +136,43 @@ class SchoolController extends Controller
      */
     public function update(UpdateSchoolRequest $request, School $school): RedirectResponse
     {
-        $school->update($request->validated());
+        $data = $request->validated();
+
+        if ($request->hasFile('logo')) {
+            if ($school->logo && File::exists(public_path($school->logo))) {
+                File::delete(public_path($school->logo));
+            }
+
+            $logoFile = $request->file('logo');
+            $logoDir = public_path('uploads/schools/logos');
+            if (! File::isDirectory($logoDir)) {
+                File::makeDirectory($logoDir, 0755, true, true);
+            }
+            $logoName = 'logo_'.time().'_'.Str::random(10).'.'.$logoFile->getClientOriginalExtension();
+            $logoFile->move($logoDir, $logoName);
+            $data['logo'] = 'uploads/schools/logos/'.$logoName;
+        } else {
+            unset($data['logo']);
+        }
+
+        if ($request->hasFile('favicon')) {
+            if ($school->favicon && File::exists(public_path($school->favicon))) {
+                File::delete(public_path($school->favicon));
+            }
+
+            $faviconFile = $request->file('favicon');
+            $faviconDir = public_path('uploads/schools/favicons');
+            if (! File::isDirectory($faviconDir)) {
+                File::makeDirectory($faviconDir, 0755, true, true);
+            }
+            $faviconName = 'favicon_'.time().'_'.Str::random(10).'.'.$faviconFile->getClientOriginalExtension();
+            $faviconFile->move($faviconDir, $faviconName);
+            $data['favicon'] = 'uploads/schools/favicons/'.$faviconName;
+        } else {
+            unset($data['favicon']);
+        }
+
+        $school->update($data);
 
         return redirect()->route('admin.schools.show', $school)
             ->with('success', "Institutional details for \"{$school->name}\" have been updated successfully.");

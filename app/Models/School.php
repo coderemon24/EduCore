@@ -38,11 +38,52 @@ class School extends Model
         'country',
         'postal_code',
         'logo',
+        'favicon',
         'website',
         'established_year',
         'timezone',
         'currency',
     ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var list<string>
+     */
+    protected $appends = [
+        'logo_url',
+        'favicon_url',
+    ];
+
+    /**
+     * Get the accessible public URL for the school logo.
+     */
+    public function getLogoUrlAttribute(): string
+    {
+        if (! empty($this->logo)) {
+            $relativePath = ltrim($this->logo, '/\\');
+            if (file_exists(public_path($relativePath))) {
+                return asset($relativePath);
+            }
+        }
+
+        return asset('admin-assets/images/laravel-school-transparent.png');
+    }
+
+    /**
+     * Get the accessible public URL for the school favicon.
+     */
+    public function getFaviconUrlAttribute(): string
+    {
+        if (! empty($this->favicon)) {
+            $relativePath = ltrim($this->favicon, '/\\');
+            if (file_exists(public_path($relativePath))) {
+                return asset($relativePath);
+            }
+        }
+
+        return $this->logo_url;
+    }
 
     /**
      * Get the attributes that should be cast.
