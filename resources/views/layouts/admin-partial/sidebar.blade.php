@@ -10,8 +10,8 @@
                  alt="Laravel School Management"
                  class="h-9 w-auto object-contain shrink-0 transition-transform duration-300 hover:scale-105">
             <div class="sidebar-brand-text flex flex-col truncate">
-                <span class="text-xs font-bold uppercase tracking-wider text-slate-800">EduCore SIS</span>
-                <span class="text-[10px] font-medium text-slate-500">School Admin Portal</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-800">{{ $currentSchool->name ?? 'EduCore SIS' }}</span>
+                <span class="text-[10px] font-medium text-slate-500">{{ $currentSchool ? ($currentSchool->code ? $currentSchool->code.' • Active' : 'School Admin Portal') : 'School Admin Portal' }}</span>
             </div>
         </a>
 
@@ -47,6 +47,25 @@
                         <!-- Floating Tooltip for collapsed mode -->
                         <span class="nav-item-tooltip absolute left-full top-1/2 -translate-y-1/2 ml-3 px-3 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md shadow-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
                             Overview
+                            <span class="absolute left-[-4px] top-1/2 -translate-y-1/2 border-y-4 border-y-transparent border-r-4 border-r-slate-900"></span>
+                        </span>
+                    </a>
+                </li>
+
+                <!-- Schools & Institutions (Multi-Tenant Management) -->
+                <li>
+                    <a href="javascript:void(0)"
+                       onclick="window.Swal && Swal.fire({title: 'Institutions & Campuses', html: '<p class=\'text-xs text-slate-600 mb-2\'>Active Institution: <b>{{ addslashes($currentSchool->name ?? 'EduCore Academy') }}</b> ({{ $currentSchool->code ?? 'EDU-001' }})</p><p class=\'text-xs text-slate-500\'>Multi-tenant SaaS institution management module.</p>', icon: 'info', confirmButtonColor: '#7c3aed'});"
+                       class="group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-slate-900 cursor-pointer">
+                        <svg class="h-5 w-5 shrink-0 text-slate-400 group-hover:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                        <span class="nav-label truncate text-sm">Schools & Campuses</span>
+                        <span class="nav-badge ml-auto rounded-full bg-violet-100 px-1.5 py-0.5 text-[9px] font-bold text-violet-700">Tenant</span>
+
+                        <!-- Floating Tooltip for collapsed mode -->
+                        <span class="nav-item-tooltip absolute left-full top-1/2 -translate-y-1/2 ml-3 px-3 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md shadow-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
+                            Schools & Campuses
                             <span class="absolute left-[-4px] top-1/2 -translate-y-1/2 border-y-4 border-y-transparent border-r-4 border-r-slate-900"></span>
                         </span>
                     </a>

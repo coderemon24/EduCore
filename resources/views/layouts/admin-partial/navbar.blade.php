@@ -63,6 +63,17 @@
 
     <!-- Right: Academic Calendar, Quick Action, Alerts & User Profile Dropdown -->
     <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Active Institution / Tenant Indicator -->
+        <div class="relative hidden sm:block">
+            <div class="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50/80 px-2.5 py-1.5 text-xs font-medium text-slate-700 shadow-2xs">
+                <svg class="h-3.5 w-3.5 text-violet-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+                <span class="font-semibold text-slate-800">{{ $currentSchool->name ?? 'EduCore Academy' }}</span>
+                <span class="rounded bg-emerald-100 px-1.5 py-0.5 text-[9px] font-bold text-emerald-700 uppercase tracking-wider">{{ $currentSchool?->status?->value ?? 'active' }}</span>
+            </div>
+        </div>
+
         <!-- Academic Calendar Switcher -->
         <div class="relative">
             <button type="button"

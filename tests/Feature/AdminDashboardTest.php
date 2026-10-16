@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Admin;
+use App\Models\School;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -66,5 +67,23 @@ class AdminDashboardTest extends TestCase
         $response->assertSee('global-search-input', false);
         $response->assertSee('btn-notifications', false);
         $response->assertSee('user-profile-menu-btn', false);
+    }
+
+    /**
+     * Test admin dashboard layout synchronizes with active school identity.
+     */
+    public function test_admin_dashboard_syncs_with_active_school_identity(): void
+    {
+        $admin = Admin::factory()->create();
+        $school = School::factory()->create([
+            'name' => 'St. Jude International Academy',
+            'code' => 'SJA-100',
+        ]);
+
+        $response = $this->actingAs($admin, 'admin')->get('/admin/dashboard');
+
+        $response->assertStatus(200);
+        $response->assertSeeText('St. Jude International Academy', false);
+        $response->assertSeeText('Schools & Campuses', false);
     }
 }

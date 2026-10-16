@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\School;
 
 class AdminController extends Controller
 {
@@ -11,6 +12,7 @@ class AdminController extends Controller
      */
     public function index()
     {
+        $currentSchool = School::first();
         $kpi = [
             'students' => [
                 'count' => '15,000',
@@ -142,7 +144,8 @@ class AdminController extends Controller
             'examPerformance',
             'genderRatio',
             'starStudents',
-            'notices'
+            'notices',
+            'currentSchool'
         ));
     }
 }
