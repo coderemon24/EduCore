@@ -81,11 +81,13 @@
         display: none !important;
     }
 
-    .sidebar-collapsed #sidebar-academic-submenu {
+    .sidebar-collapsed #sidebar-academic-submenu,
+    .sidebar-collapsed #sidebar-students-submenu {
         display: none;
     }
 
-    .sidebar-collapsed #sidebar-academic-dropdown-wrapper:hover #sidebar-academic-submenu {
+    .sidebar-collapsed #sidebar-academic-dropdown-wrapper:hover #sidebar-academic-submenu,
+    .sidebar-collapsed #sidebar-students-dropdown-wrapper:hover #sidebar-students-submenu {
         display: block !important;
         position: absolute;
         left: 100%;
@@ -100,7 +102,8 @@
     }
 
     .sidebar-collapsed #admin-sidebar a,
-    .sidebar-collapsed #sidebar-academic-toggle {
+    .sidebar-collapsed #sidebar-academic-toggle,
+    .sidebar-collapsed #sidebar-students-toggle {
         justify-content: center !important;
         padding-left: 0.5rem !important;
         padding-right: 0.5rem !important;

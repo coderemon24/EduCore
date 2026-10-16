@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\Academic\SectionRequest;
 use App\Models\AcademicClass;
 use App\Models\Section;
 use Devrabiul\ToastMagic\Facades\ToastMagic;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -22,10 +23,14 @@ class SectionController extends Controller
         $classFilter = $request->query('class_id', 'all');
         $search = trim((string) $request->query('search', ''));
 
-        $query = Section::query()->with(['academicClass:id,name']);
+        if ($statusFilter === 'trashed') {
+            $query = Section::onlyTrashed()->with(['academicClass' => fn ($q) => $q->withTrashed()->select(['id', 'name'])])->latest('deleted_at');
+        } else {
+            $query = Section::query()->with(['academicClass' => fn ($q) => $q->withTrashed()->select(['id', 'name'])]);
 
-        if ($statusFilter !== 'all' && in_array($statusFilter, ['active', 'inactive'], true)) {
-            $query->where('status', $statusFilter);
+            if ($statusFilter !== 'all' && in_array($statusFilter, ['active', 'inactive'], true)) {
+                $query->where('status', $statusFilter);
+            }
         }
 
         if ($classFilter !== 'all' && is_numeric($classFilter)) {
@@ -41,7 +46,7 @@ class SectionController extends Controller
         }
 
         $sections = $query
-            ->select(['id', 'school_id', 'academic_class_id', 'name', 'capacity', 'room_number', 'status', 'created_at'])
+            ->select(['id', 'school_id', 'academic_class_id', 'name', 'capacity', 'room_number', 'status', 'created_at', 'deleted_at'])
             ->latest()
             ->paginate(15)
             ->withQueryString();
@@ -49,10 +54,12 @@ class SectionController extends Controller
         $classes = AcademicClass::ordered()->select(['id', 'name'])->get();
 
         $rawCounts = Section::query()
+            ->withTrashed()
             ->selectRaw("
-                COUNT(*) as all_count,
-                COUNT(CASE WHEN status = 'active' THEN 1 END) as active_count,
-                COUNT(CASE WHEN status = 'inactive' THEN 1 END) as inactive_count
+                COUNT(CASE WHEN deleted_at IS NULL THEN 1 END) as all_count,
+                COUNT(CASE WHEN deleted_at IS NULL AND status = 'active' THEN 1 END) as active_count,
+                COUNT(CASE WHEN deleted_at IS NULL AND status = 'inactive' THEN 1 END) as inactive_count,
+                COUNT(CASE WHEN deleted_at IS NOT NULL THEN 1 END) as trashed_count
             ")
             ->first();
 
@@ -60,6 +67,7 @@ class SectionController extends Controller
             'all' => (int) ($rawCounts->all_count ?? 0),
             'active' => (int) ($rawCounts->active_count ?? 0),
             'inactive' => (int) ($rawCounts->inactive_count ?? 0),
+            'trashed' => (int) ($rawCounts->trashed_count ?? 0),
         ];
 
         return view('admin.academic.sections.index', compact('sections', 'classes', 'statusFilter', 'classFilter', 'search', 'statusCounts'));
@@ -119,17 +127,68 @@ class SectionController extends Controller
     }
 
     /**
-     * Remove the specified section from storage.
+     * Remove (soft delete / archive) the specified section from storage.
      */
-    public function destroy(Section $section): RedirectResponse
+    public function destroy(Request $request, Section $section): JsonResponse|RedirectResponse
     {
         $name = $section->name;
         $classId = $section->academic_class_id;
         $section->delete();
 
-        ToastMagic::success("Section '{$name}' deleted successfully.");
+        $message = "Section '{$name}' moved to archive (soft deleted).";
+        ToastMagic::success($message);
+
+        if ($request->expectsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => $message,
+            ]);
+        }
 
         return redirect()->route('admin.academic.sections.index', ['class_id' => $classId])
-            ->with('success', "Section '{$name}' deleted successfully.");
+            ->with('success', $message);
+    }
+
+    /**
+     * Restore a soft-deleted section.
+     */
+    public function restore(Request $request, Section $section): JsonResponse|RedirectResponse
+    {
+        $section->restore();
+
+        $message = "Section '{$section->name}' was restored successfully.";
+        ToastMagic::success($message);
+
+        if ($request->expectsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => $message,
+            ]);
+        }
+
+        return redirect()->back(fallback: route('admin.academic.sections.index'))
+            ->with('success', $message);
+    }
+
+    /**
+     * Permanently remove (force delete) the specified section.
+     */
+    public function forceDelete(Request $request, Section $section): JsonResponse|RedirectResponse
+    {
+        $name = $section->name;
+        $section->forceDelete();
+
+        $message = "Section '{$name}' has been permanently purged.";
+        ToastMagic::success($message);
+
+        if ($request->expectsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => $message,
+            ]);
+        }
+
+        return redirect()->route('admin.academic.sections.index', ['status' => 'trashed'])
+            ->with('success', $message);
     }
 }

@@ -378,8 +378,325 @@ class AcademicStructureTest extends TestCase
             ->delete(route('admin.academic.groups.destroy', $group));
 
         $deleteResponse->assertRedirect(route('admin.academic.groups.index'));
-        $this->assertDatabaseMissing('academic_groups', [
+        $this->assertSoftDeleted('academic_groups', [
             'id' => $group->id,
         ]);
+    }
+
+    /**
+     * Test Academic Year soft delete, restore, and force delete.
+     */
+    public function test_academic_year_soft_delete_restore_and_force_delete(): void
+    {
+        $year = AcademicYear::create([
+            'school_id' => $this->school->id,
+            'name' => '2028-2029',
+            'start_date' => '2028-01-01',
+            'end_date' => '2028-12-31',
+            'is_current' => false,
+            'status' => 'active',
+        ]);
+
+        // Soft delete
+        $delResponse = $this->actingAs($this->admin, 'admin')
+            ->delete(route('admin.academic.years.destroy', $year));
+        $delResponse->assertRedirect(route('admin.academic.years.index'));
+        $this->assertSoftDeleted('academic_years', ['id' => $year->id]);
+
+        // Restore
+        $restoreResponse = $this->actingAs($this->admin, 'admin')
+            ->post(route('admin.academic.years.restore', $year));
+        $restoreResponse->assertRedirect();
+        $this->assertNotSoftDeleted('academic_years', ['id' => $year->id]);
+
+        // Re-delete and force delete
+        $year->delete();
+        $yearId = $year->id;
+        $forceResponse = $this->actingAs($this->admin, 'admin')
+            ->delete(route('admin.academic.years.force-delete', $year));
+        $forceResponse->assertRedirect(route('admin.academic.years.index', ['status' => 'trashed']));
+        $this->assertDatabaseMissing('academic_years', ['id' => $yearId]);
+    }
+
+    /**
+     * Test cannot delete or force delete active current academic year.
+     */
+    public function test_cannot_delete_or_force_delete_current_academic_year(): void
+    {
+        $year = AcademicYear::create([
+            'school_id' => $this->school->id,
+            'name' => 'Current Year',
+            'start_date' => '2025-01-01',
+            'end_date' => '2025-12-31',
+            'is_current' => true,
+            'status' => 'active',
+        ]);
+
+        // Soft delete should be rejected
+        $delResponse = $this->actingAs($this->admin, 'admin')
+            ->delete(route('admin.academic.years.destroy', $year));
+        $delResponse->assertSessionHas('error');
+        $this->assertNotSoftDeleted('academic_years', ['id' => $year->id]);
+
+        // Force delete should also be rejected
+        $forceResponse = $this->actingAs($this->admin, 'admin')
+            ->delete(route('admin.academic.years.force-delete', $year));
+        $forceResponse->assertSessionHas('error');
+        $this->assertDatabaseHas('academic_years', ['id' => $year->id]);
+    }
+
+    /**
+     * Test Academic Class soft delete, restore, and force delete.
+     */
+    public function test_academic_class_soft_delete_restore_and_force_delete(): void
+    {
+        $class = AcademicClass::create([
+            'school_id' => $this->school->id,
+            'name' => 'Grade 12',
+            'order_index' => 12,
+            'status' => 'active',
+        ]);
+
+        // Soft delete
+        $delResponse = $this->actingAs($this->admin, 'admin')
+            ->delete(route('admin.academic.classes.destroy', $class));
+        $delResponse->assertRedirect(route('admin.academic.classes.index'));
+        $this->assertSoftDeleted('academic_classes', ['id' => $class->id]);
+
+        // Restore
+        $restoreResponse = $this->actingAs($this->admin, 'admin')
+            ->post(route('admin.academic.classes.restore', $class));
+        $restoreResponse->assertRedirect();
+        $this->assertNotSoftDeleted('academic_classes', ['id' => $class->id]);
+
+        // Force delete
+        $class->delete();
+        $classId = $class->id;
+        $forceResponse = $this->actingAs($this->admin, 'admin')
+            ->delete(route('admin.academic.classes.force-delete', $class));
+        $forceResponse->assertRedirect(route('admin.academic.classes.index', ['status' => 'trashed']));
+        $this->assertDatabaseMissing('academic_classes', ['id' => $classId]);
+    }
+
+    /**
+     * Test Section soft delete, restore, and force delete.
+     */
+    public function test_section_soft_delete_restore_and_force_delete(): void
+    {
+        $class = AcademicClass::create([
+            'school_id' => $this->school->id,
+            'name' => 'Grade 6',
+            'order_index' => 6,
+            'status' => 'active',
+        ]);
+
+        $section = Section::create([
+            'school_id' => $this->school->id,
+            'academic_class_id' => $class->id,
+            'name' => 'Section Blue',
+            'capacity' => 35,
+            'status' => 'active',
+        ]);
+
+        // Soft delete
+        $delResponse = $this->actingAs($this->admin, 'admin')
+            ->delete(route('admin.academic.sections.destroy', $section));
+        $delResponse->assertRedirect(route('admin.academic.sections.index', ['class_id' => $class->id]));
+        $this->assertSoftDeleted('sections', ['id' => $section->id]);
+
+        // Restore
+        $restoreResponse = $this->actingAs($this->admin, 'admin')
+            ->post(route('admin.academic.sections.restore', $section));
+        $restoreResponse->assertRedirect();
+        $this->assertNotSoftDeleted('sections', ['id' => $section->id]);
+
+        // Force delete
+        $section->delete();
+        $sectionId = $section->id;
+        $forceResponse = $this->actingAs($this->admin, 'admin')
+            ->delete(route('admin.academic.sections.force-delete', $section));
+        $forceResponse->assertRedirect(route('admin.academic.sections.index', ['status' => 'trashed']));
+        $this->assertDatabaseMissing('sections', ['id' => $sectionId]);
+    }
+
+    /**
+     * Test Subject soft delete, restore, and force delete.
+     */
+    public function test_subject_soft_delete_restore_and_force_delete(): void
+    {
+        $subject = Subject::create([
+            'school_id' => $this->school->id,
+            'name' => 'Astronomy',
+            'code' => 'AST-101',
+            'type' => 'theory',
+            'status' => 'active',
+        ]);
+
+        // Soft delete
+        $delResponse = $this->actingAs($this->admin, 'admin')
+            ->delete(route('admin.academic.subjects.destroy', $subject));
+        $delResponse->assertRedirect(route('admin.academic.subjects.index'));
+        $this->assertSoftDeleted('subjects', ['id' => $subject->id]);
+
+        // Restore
+        $restoreResponse = $this->actingAs($this->admin, 'admin')
+            ->post(route('admin.academic.subjects.restore', $subject));
+        $restoreResponse->assertRedirect();
+        $this->assertNotSoftDeleted('subjects', ['id' => $subject->id]);
+
+        // Force delete
+        $subject->delete();
+        $subjectId = $subject->id;
+        $forceResponse = $this->actingAs($this->admin, 'admin')
+            ->delete(route('admin.academic.subjects.force-delete', $subject));
+        $forceResponse->assertRedirect(route('admin.academic.subjects.index', ['status' => 'trashed']));
+        $this->assertDatabaseMissing('subjects', ['id' => $subjectId]);
+    }
+
+    /**
+     * Test ClassSubjectAssignment soft delete, restore, and force delete.
+     */
+    public function test_class_subject_assignment_soft_delete_restore_and_force_delete(): void
+    {
+        $class = AcademicClass::create([
+            'school_id' => $this->school->id,
+            'name' => 'Grade 11',
+            'order_index' => 11,
+            'status' => 'active',
+        ]);
+
+        $subject = Subject::create([
+            'school_id' => $this->school->id,
+            'name' => 'Economics',
+            'code' => 'ECO-101',
+            'type' => 'theory',
+            'status' => 'active',
+        ]);
+
+        $assignment = ClassSubjectAssignment::create([
+            'school_id' => $this->school->id,
+            'academic_class_id' => $class->id,
+            'subject_id' => $subject->id,
+            'type' => 'compulsory',
+            'full_marks' => 100,
+            'pass_marks' => 33,
+        ]);
+
+        // Soft delete
+        $delResponse = $this->actingAs($this->admin, 'admin')
+            ->delete(route('admin.academic.assign-subjects.destroy', $assignment));
+        $delResponse->assertRedirect(route('admin.academic.assign-subjects.index', ['class_id' => $class->id]));
+        $this->assertSoftDeleted('class_subject_assignments', ['id' => $assignment->id]);
+
+        // Restore
+        $restoreResponse = $this->actingAs($this->admin, 'admin')
+            ->post(route('admin.academic.assign-subjects.restore', $assignment));
+        $restoreResponse->assertRedirect();
+        $this->assertNotSoftDeleted('class_subject_assignments', ['id' => $assignment->id]);
+
+        // Force delete
+        $assignment->delete();
+        $assignmentId = $assignment->id;
+        $forceResponse = $this->actingAs($this->admin, 'admin')
+            ->delete(route('admin.academic.assign-subjects.force-delete', $assignment));
+        $forceResponse->assertRedirect(route('admin.academic.assign-subjects.index', ['status' => 'trashed']));
+        $this->assertDatabaseMissing('class_subject_assignments', ['id' => $assignmentId]);
+    }
+
+    /**
+     * Test AcademicGroup soft delete, restore, and force delete.
+     */
+    public function test_academic_group_soft_delete_restore_and_force_delete(): void
+    {
+        $group = AcademicGroup::create([
+            'school_id' => $this->school->id,
+            'name' => 'Commerce Stream',
+            'code' => 'COM',
+            'status' => 'active',
+        ]);
+
+        // Soft delete
+        $delResponse = $this->actingAs($this->admin, 'admin')
+            ->delete(route('admin.academic.groups.destroy', $group));
+        $delResponse->assertRedirect(route('admin.academic.groups.index'));
+        $this->assertSoftDeleted('academic_groups', ['id' => $group->id]);
+
+        // Restore
+        $restoreResponse = $this->actingAs($this->admin, 'admin')
+            ->post(route('admin.academic.groups.restore', $group));
+        $restoreResponse->assertRedirect();
+        $this->assertNotSoftDeleted('academic_groups', ['id' => $group->id]);
+
+        // Force delete
+        $group->delete();
+        $groupId = $group->id;
+        $forceResponse = $this->actingAs($this->admin, 'admin')
+            ->delete(route('admin.academic.groups.force-delete', $group));
+        $forceResponse->assertRedirect(route('admin.academic.groups.index', ['status' => 'trashed']));
+        $this->assertDatabaseMissing('academic_groups', ['id' => $groupId]);
+    }
+
+    /**
+     * Test trashed tabs in academic structure directories.
+     */
+    public function test_academic_structure_trashed_tabs(): void
+    {
+        // 1. Academic Classes Trashed Tab
+        $activeClass = AcademicClass::create([
+            'school_id' => $this->school->id,
+            'name' => 'Active Grade',
+            'order_index' => 1,
+            'status' => 'active',
+        ]);
+        $trashedClass = AcademicClass::create([
+            'school_id' => $this->school->id,
+            'name' => 'Trashed Grade',
+            'order_index' => 2,
+            'status' => 'active',
+        ]);
+        $trashedClass->delete();
+
+        $classesResponse = $this->actingAs($this->admin, 'admin')
+            ->get(route('admin.academic.classes.index', ['status' => 'trashed']));
+        $classesResponse->assertOk();
+        $classesResponse->assertSee('Trashed Grade');
+        $classesResponse->assertDontSee('Active Grade');
+        $classesResponse->assertSee('Restore');
+        $classesResponse->assertSee('Purge');
+
+        // 2. Academic Years Trashed Tab
+        $trashedYear = AcademicYear::create([
+            'school_id' => $this->school->id,
+            'name' => '1999-2000',
+            'start_date' => '1999-01-01',
+            'end_date' => '1999-12-31',
+            'is_current' => false,
+            'status' => 'active',
+        ]);
+        $trashedYear->delete();
+
+        $yearsResponse = $this->actingAs($this->admin, 'admin')
+            ->get(route('admin.academic.years.index', ['status' => 'trashed']));
+        $yearsResponse->assertOk();
+        $yearsResponse->assertSee('1999-2000');
+        $yearsResponse->assertSee('Restore');
+        $yearsResponse->assertSee('Purge');
+
+        // 3. Subjects Trashed Tab
+        $trashedSubject = Subject::create([
+            'school_id' => $this->school->id,
+            'name' => 'Obsolete History',
+            'code' => 'OBS-99',
+            'type' => 'theory',
+            'status' => 'active',
+        ]);
+        $trashedSubject->delete();
+
+        $subjectsResponse = $this->actingAs($this->admin, 'admin')
+            ->get(route('admin.academic.subjects.index', ['status' => 'trashed']));
+        $subjectsResponse->assertOk();
+        $subjectsResponse->assertSee('Obsolete History');
+        $subjectsResponse->assertSee('Restore');
+        $subjectsResponse->assertSee('Purge');
     }
 }

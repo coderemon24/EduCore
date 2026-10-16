@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Academic\AcademicYearRequest;
 use App\Models\AcademicYear;
 use Devrabiul\ToastMagic\Facades\ToastMagic;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -20,10 +21,14 @@ class AcademicYearController extends Controller
         $statusFilter = $request->query('status', 'all');
         $search = trim((string) $request->query('search', ''));
 
-        $query = AcademicYear::query()->latest('start_date');
+        if ($statusFilter === 'trashed') {
+            $query = AcademicYear::onlyTrashed()->latest('deleted_at');
+        } else {
+            $query = AcademicYear::query()->latest('start_date');
 
-        if ($statusFilter !== 'all' && in_array($statusFilter, ['active', 'inactive'], true)) {
-            $query->where('status', $statusFilter);
+            if ($statusFilter !== 'all' && in_array($statusFilter, ['active', 'inactive'], true)) {
+                $query->where('status', $statusFilter);
+            }
         }
 
         if (! empty($search)) {
@@ -31,15 +36,17 @@ class AcademicYearController extends Controller
         }
 
         $years = $query
-            ->select(['id', 'school_id', 'name', 'start_date', 'end_date', 'is_current', 'status', 'created_at'])
+            ->select(['id', 'school_id', 'name', 'start_date', 'end_date', 'is_current', 'status', 'created_at', 'deleted_at'])
             ->paginate(15)
             ->withQueryString();
 
         $rawCounts = AcademicYear::query()
+            ->withTrashed()
             ->selectRaw("
-                COUNT(*) as all_count,
-                COUNT(CASE WHEN status = 'active' THEN 1 END) as active_count,
-                COUNT(CASE WHEN status = 'inactive' THEN 1 END) as inactive_count
+                COUNT(CASE WHEN deleted_at IS NULL THEN 1 END) as all_count,
+                COUNT(CASE WHEN deleted_at IS NULL AND status = 'active' THEN 1 END) as active_count,
+                COUNT(CASE WHEN deleted_at IS NULL AND status = 'inactive' THEN 1 END) as inactive_count,
+                COUNT(CASE WHEN deleted_at IS NOT NULL THEN 1 END) as trashed_count
             ")
             ->first();
 
@@ -47,6 +54,7 @@ class AcademicYearController extends Controller
             'all' => (int) ($rawCounts->all_count ?? 0),
             'active' => (int) ($rawCounts->active_count ?? 0),
             'inactive' => (int) ($rawCounts->inactive_count ?? 0),
+            'trashed' => (int) ($rawCounts->trashed_count ?? 0),
         ];
 
         return view('admin.academic.years.index', compact('years', 'statusFilter', 'search', 'statusCounts'));
@@ -129,22 +137,95 @@ class AcademicYearController extends Controller
     }
 
     /**
-     * Remove the specified academic year from storage.
+     * Remove (soft delete / archive) the specified academic year from storage.
      */
-    public function destroy(AcademicYear $year): RedirectResponse
+    public function destroy(Request $request, AcademicYear $year): JsonResponse|RedirectResponse
     {
         if ($year->is_current) {
-            ToastMagic::error('Cannot delete the active current academic year. Designate another year as active first.');
+            $message = 'Cannot archive the active current academic year. Designate another year as active first.';
+            ToastMagic::error($message);
 
-            return redirect()->back(fallback: route('admin.academic.years.index'))->with('error', 'Cannot delete the active current academic year.');
+            if ($request->expectsJson() || $request->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => $message,
+                ], 422);
+            }
+
+            return redirect()->back(fallback: route('admin.academic.years.index'))->with('error', $message);
         }
 
         $yearName = $year->name;
         $year->delete();
 
-        ToastMagic::success("Academic Year '{$yearName}' deleted successfully.");
+        $message = "Academic Year '{$yearName}' moved to archive (soft deleted).";
+        ToastMagic::success($message);
+
+        if ($request->expectsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => $message,
+            ]);
+        }
 
         return redirect()->route('admin.academic.years.index')
-            ->with('success', "Academic Year '{$yearName}' deleted successfully.");
+            ->with('success', $message);
+    }
+
+    /**
+     * Restore a soft-deleted academic year session.
+     */
+    public function restore(Request $request, AcademicYear $year): JsonResponse|RedirectResponse
+    {
+        $year->restore();
+
+        $message = "Academic Year '{$year->name}' was restored successfully.";
+        ToastMagic::success($message);
+
+        if ($request->expectsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => $message,
+            ]);
+        }
+
+        return redirect()->back(fallback: route('admin.academic.years.index'))
+            ->with('success', $message);
+    }
+
+    /**
+     * Permanently remove (force delete) the specified academic year session.
+     */
+    public function forceDelete(Request $request, AcademicYear $year): JsonResponse|RedirectResponse
+    {
+        if ($year->is_current) {
+            $message = 'Cannot permanently purge the active current academic year.';
+            ToastMagic::error($message);
+
+            if ($request->expectsJson() || $request->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => $message,
+                ], 422);
+            }
+
+            return redirect()->back(fallback: route('admin.academic.years.index', ['status' => 'trashed']))->with('error', $message);
+        }
+
+        $yearName = $year->name;
+        $year->forceDelete();
+
+        $message = "Academic Year '{$yearName}' has been permanently purged.";
+        ToastMagic::success($message);
+
+        if ($request->expectsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => $message,
+            ]);
+        }
+
+        return redirect()->route('admin.academic.years.index', ['status' => 'trashed'])
+            ->with('success', $message);
     }
 }

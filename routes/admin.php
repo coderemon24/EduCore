@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\SchoolController;
 use App\Http\Controllers\Admin\SchoolSettingController;
+use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\Admin\StudentPromotionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,6 +61,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::prefix('academic')->name('academic.')->group(function () {
             // Academic Years / Sessions
             Route::post('years/{year}/set-current', [AcademicYearController::class, 'setCurrent'])->name('years.set-current');
+            Route::post('years/{year}/restore', [AcademicYearController::class, 'restore'])->name('years.restore')->withTrashed();
+            Route::delete('years/{year}/force-delete', [AcademicYearController::class, 'forceDelete'])->name('years.force-delete')->withTrashed();
             Route::resource('years', AcademicYearController::class)->except(['show']);
 
             // Dependent Dropdown APIs
@@ -66,19 +70,57 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('classes/{class}/subjects', [AcademicClassController::class, 'getSubjects'])->name('classes.subjects.api');
 
             // Academic Classes / Grades
+            Route::post('classes/{class}/restore', [AcademicClassController::class, 'restore'])->name('classes.restore')->withTrashed();
+            Route::delete('classes/{class}/force-delete', [AcademicClassController::class, 'forceDelete'])->name('classes.force-delete')->withTrashed();
             Route::resource('classes', AcademicClassController::class)->except(['show']);
 
             // Sections
+            Route::post('sections/{section}/restore', [SectionController::class, 'restore'])->name('sections.restore')->withTrashed();
+            Route::delete('sections/{section}/force-delete', [SectionController::class, 'forceDelete'])->name('sections.force-delete')->withTrashed();
             Route::resource('sections', SectionController::class)->except(['show']);
 
             // Subjects Catalog
+            Route::post('subjects/{subject}/restore', [SubjectController::class, 'restore'])->name('subjects.restore')->withTrashed();
+            Route::delete('subjects/{subject}/force-delete', [SubjectController::class, 'forceDelete'])->name('subjects.force-delete')->withTrashed();
             Route::resource('subjects', SubjectController::class)->except(['show']);
 
             // Class-Subject Assignments (Curriculum Matrix)
-            Route::resource('assign-subjects', ClassSubjectAssignmentController::class)->except(['show']);
+            Route::post('assign-subjects/{assignment}/restore', [ClassSubjectAssignmentController::class, 'restore'])->name('assign-subjects.restore')->withTrashed();
+            Route::delete('assign-subjects/{assignment}/force-delete', [ClassSubjectAssignmentController::class, 'forceDelete'])->name('assign-subjects.force-delete')->withTrashed();
+            Route::resource('assign-subjects', ClassSubjectAssignmentController::class)->parameters(['assign-subjects' => 'assignment'])->except(['show']);
 
             // Academic Streams / Groups
+            Route::post('groups/{group}/restore', [AcademicGroupController::class, 'restore'])->name('groups.restore')->withTrashed();
+            Route::delete('groups/{group}/force-delete', [AcademicGroupController::class, 'forceDelete'])->name('groups.force-delete')->withTrashed();
             Route::resource('groups', AcademicGroupController::class)->except(['show']);
+        });
+
+        // Student Management (SIS)
+        Route::prefix('students')->name('students.')->group(function () {
+            // Bulk Class Promotion
+            Route::get('promotions', [StudentPromotionController::class, 'bulkIndex'])->name('promotions.index');
+            Route::get('promotions/roster', [StudentPromotionController::class, 'getRoster'])->name('promotions.roster');
+            Route::post('promotions', [StudentPromotionController::class, 'processBulk'])->name('promotions.store');
+
+            // Individual Student Promotion / Transfer
+            Route::get('{student}/promote', [StudentPromotionController::class, 'promote'])->name('promote');
+            Route::post('{student}/promote', [StudentPromotionController::class, 'processPromote'])->name('promote.store');
+
+            // Bulk Actions (Move to Trash, Restore, Force Delete)
+            Route::post('bulk-action', [StudentController::class, 'bulkAction'])->name('bulk-action');
+
+            // Soft Delete, Restore & Force Delete
+            Route::post('{student}/restore', [StudentController::class, 'restore'])->name('restore')->withTrashed();
+            Route::delete('{student}/force-delete', [StudentController::class, 'forceDelete'])->name('force-delete')->withTrashed();
+
+            // Core Resource Routes
+            Route::get('/', [StudentController::class, 'index'])->name('index');
+            Route::get('/create', [StudentController::class, 'create'])->name('create');
+            Route::post('/', [StudentController::class, 'store'])->name('store');
+            Route::get('/{student}', [StudentController::class, 'show'])->name('show')->withTrashed();
+            Route::get('/{student}/edit', [StudentController::class, 'edit'])->name('edit');
+            Route::put('/{student}', [StudentController::class, 'update'])->name('update');
+            Route::delete('/{student}', [StudentController::class, 'destroy'])->name('destroy');
         });
     });
 });

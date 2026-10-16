@@ -6,10 +6,11 @@ use App\Models\Concerns\BelongsToSchool;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AcademicGroup extends Model
 {
-    use BelongsToSchool, HasFactory;
+    use BelongsToSchool, HasFactory, SoftDeletes;
 
     /**
      * The table associated with the model.

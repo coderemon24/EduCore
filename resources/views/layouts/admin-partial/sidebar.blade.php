@@ -83,21 +83,63 @@
                     </a>
                 </li>
 
-                <!-- Students -->
-                <li>
-                    <a href="javascript:void(0)"
-                       onclick="window.Swal && Swal.fire({title: 'Students Directory', text: 'Opening Student Directory and Enrollment Module.', icon: 'info', confirmButtonColor: '#7c3aed'});"
-                       class="group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-slate-900 cursor-pointer">
-                        <svg class="h-5 w-5 shrink-0 text-slate-400 group-hover:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14c4.418 0 8 1.79 8 4v2H4v-2c0-2.21 3.582-4 8-4zm0-2a5 5 0 100-10 5 5 0 000 10z" />
+                <!-- Student Management Collapsible Dropdown -->
+                @php
+                    $isStudentsActive = request()->routeIs('admin.students.*');
+                @endphp
+                <li class="relative group/dropdown" id="sidebar-students-dropdown-wrapper">
+                    <button type="button"
+                            id="sidebar-students-toggle"
+                            onclick="window.toggleStudentsSidebarDropdown(event)"
+                            aria-expanded="{{ $isStudentsActive ? 'true' : 'false' }}"
+                            class="group w-full flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-all duration-150 cursor-pointer {{ $isStudentsActive ? 'bg-violet-50 text-violet-800 font-semibold shadow-2xs border-l-2 border-violet-600 pl-2.5' : 'text-slate-600 hover:bg-slate-100/80 hover:text-slate-900' }}">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <svg class="h-4.5 w-4.5 shrink-0 transition-transform duration-200 group-hover:scale-105 {{ $isStudentsActive ? 'text-violet-600' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 14c4.418 0 8 1.79 8 4v2H4v-2c0-2.21 3.582-4 8-4zm0-2a5 5 0 100-10 5 5 0 000 10z" />
+                            </svg>
+                            <span class="nav-label truncate text-xs font-semibold tracking-tight">Student Management</span>
+                        </div>
+                        <svg id="students-dropdown-chevron"
+                             class="nav-chevron h-3.5 w-3.5 shrink-0 text-slate-400 transition-transform duration-200 {{ $isStudentsActive ? 'rotate-180 text-violet-600' : 'rotate-0' }}"
+                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
-                        <span class="nav-label truncate text-sm">Students</span>
 
+                        <!-- Floating Tooltip for collapsed mode -->
                         <span class="nav-item-tooltip absolute left-full top-1/2 -translate-y-1/2 ml-3 px-3 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md shadow-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
-                            Students
+                            Student Management
                             <span class="absolute left-[-4px] top-1/2 -translate-y-1/2 border-y-4 border-y-transparent border-r-4 border-r-slate-900"></span>
                         </span>
-                    </a>
+                    </button>
+
+                    <!-- Submenu Accordion -->
+                    <ul id="sidebar-students-submenu"
+                        class="space-y-0.5 mt-1 pl-4 pr-1 {{ $isStudentsActive ? 'block' : 'hidden' }}">
+                        <!-- Student Directory -->
+                        <li>
+                            <a href="{{ route('admin.students.index') }}"
+                               class="group relative flex items-center gap-2.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer {{ request()->routeIs('admin.students.index') || request()->routeIs('admin.students.show') ? 'bg-violet-100/70 text-violet-800 font-bold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
+                                <span class="h-1.5 w-1.5 rounded-full {{ request()->routeIs('admin.students.index') || request()->routeIs('admin.students.show') ? 'bg-violet-600' : 'bg-slate-300 group-hover:bg-slate-400' }}"></span>
+                                <span class="truncate">Student Directory</span>
+                            </a>
+                        </li>
+                        <!-- Student Admission -->
+                        <li>
+                            <a href="{{ route('admin.students.create') }}"
+                               class="group relative flex items-center gap-2.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer {{ request()->routeIs('admin.students.create') ? 'bg-violet-100/70 text-violet-800 font-bold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
+                                <span class="h-1.5 w-1.5 rounded-full {{ request()->routeIs('admin.students.create') ? 'bg-violet-600' : 'bg-slate-300 group-hover:bg-slate-400' }}"></span>
+                                <span class="truncate">New Admission</span>
+                            </a>
+                        </li>
+                        <!-- Promotions & Transfers -->
+                        <li>
+                            <a href="{{ route('admin.students.promotions.index') }}"
+                               class="group relative flex items-center gap-2.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer {{ request()->routeIs('admin.students.promotions.*') || request()->routeIs('admin.students.promote*') ? 'bg-violet-100/70 text-violet-800 font-bold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
+                                <span class="h-1.5 w-1.5 rounded-full {{ request()->routeIs('admin.students.promotions.*') || request()->routeIs('admin.students.promote*') ? 'bg-violet-600' : 'bg-slate-300 group-hover:bg-slate-400' }}"></span>
+                                <span class="truncate">Promotions & Transfers</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <!-- Teachers -->
@@ -355,6 +397,52 @@
             var toggle = document.getElementById('sidebar-academic-toggle');
             var submenu = document.getElementById('sidebar-academic-submenu');
             var chevron = document.getElementById('academic-dropdown-chevron');
+
+            if (!submenu) return;
+
+            // If sidebar is collapsed in icon mode, expand to full width
+            if (body && body.classList.contains('sidebar-collapsed')) {
+                body.classList.remove('sidebar-collapsed');
+                if (sidebar) {
+                    sidebar.classList.remove('w-20');
+                    sidebar.classList.add('w-64');
+                }
+                try { localStorage.setItem('educore_sidebar_collapsed', 'false'); } catch (_) {}
+            }
+
+            var isHidden = submenu.classList.contains('hidden') || submenu.style.display === 'none';
+
+            if (isHidden) {
+                submenu.classList.remove('hidden');
+                submenu.classList.add('block');
+                submenu.style.display = 'block';
+                if (chevron) {
+                    chevron.classList.add('rotate-180');
+                    chevron.classList.remove('rotate-0');
+                }
+                if (toggle) toggle.setAttribute('aria-expanded', 'true');
+            } else {
+                submenu.classList.add('hidden');
+                submenu.classList.remove('block');
+                submenu.style.display = 'none';
+                if (chevron) {
+                    chevron.classList.remove('rotate-180');
+                    chevron.classList.add('rotate-0');
+                }
+                if (toggle) toggle.setAttribute('aria-expanded', 'false');
+            }
+        };
+
+        window.toggleStudentsSidebarDropdown = function(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            var body = document.getElementById('admin-body') || document.body;
+            var sidebar = document.getElementById('admin-sidebar');
+            var toggle = document.getElementById('sidebar-students-toggle');
+            var submenu = document.getElementById('sidebar-students-submenu');
+            var chevron = document.getElementById('students-dropdown-chevron');
 
             if (!submenu) return;
 

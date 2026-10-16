@@ -21,10 +21,14 @@ class AcademicClassController extends Controller
         $statusFilter = $request->query('status', 'all');
         $search = trim((string) $request->query('search', ''));
 
-        $query = AcademicClass::query()->ordered();
+        if ($statusFilter === 'trashed') {
+            $query = AcademicClass::onlyTrashed()->latest('deleted_at');
+        } else {
+            $query = AcademicClass::query()->ordered();
 
-        if ($statusFilter !== 'all' && in_array($statusFilter, ['active', 'inactive'], true)) {
-            $query->where('status', $statusFilter);
+            if ($statusFilter !== 'all' && in_array($statusFilter, ['active', 'inactive'], true)) {
+                $query->where('status', $statusFilter);
+            }
         }
 
         if (! empty($search)) {
@@ -37,15 +41,17 @@ class AcademicClassController extends Controller
         $classes = $query
             ->withCount(['sections', 'subjects'])
             ->with(['sections' => fn ($q) => $q->select(['id', 'academic_class_id', 'name', 'capacity'])])
-            ->select(['id', 'school_id', 'name', 'numeric_code', 'order_index', 'status', 'created_at'])
+            ->select(['id', 'school_id', 'name', 'numeric_code', 'order_index', 'status', 'created_at', 'deleted_at'])
             ->paginate(15)
             ->withQueryString();
 
         $rawCounts = AcademicClass::query()
+            ->withTrashed()
             ->selectRaw("
-                COUNT(*) as all_count,
-                COUNT(CASE WHEN status = 'active' THEN 1 END) as active_count,
-                COUNT(CASE WHEN status = 'inactive' THEN 1 END) as inactive_count
+                COUNT(CASE WHEN deleted_at IS NULL THEN 1 END) as all_count,
+                COUNT(CASE WHEN deleted_at IS NULL AND status = 'active' THEN 1 END) as active_count,
+                COUNT(CASE WHEN deleted_at IS NULL AND status = 'inactive' THEN 1 END) as inactive_count,
+                COUNT(CASE WHEN deleted_at IS NOT NULL THEN 1 END) as trashed_count
             ")
             ->first();
 
@@ -53,6 +59,7 @@ class AcademicClassController extends Controller
             'all' => (int) ($rawCounts->all_count ?? 0),
             'active' => (int) ($rawCounts->active_count ?? 0),
             'inactive' => (int) ($rawCounts->inactive_count ?? 0),
+            'trashed' => (int) ($rawCounts->trashed_count ?? 0),
         ];
 
         return view('admin.academic.classes.index', compact('classes', 'statusFilter', 'search', 'statusCounts'));
@@ -107,17 +114,68 @@ class AcademicClassController extends Controller
     }
 
     /**
-     * Remove the specified academic class from storage.
+     * Remove (soft delete / archive) the specified academic class from storage.
      */
-    public function destroy(AcademicClass $class): RedirectResponse
+    public function destroy(Request $request, AcademicClass $class): JsonResponse|RedirectResponse
     {
         $name = $class->name;
         $class->delete();
 
-        ToastMagic::success("Class '{$name}' deleted successfully.");
+        $message = "Class '{$name}' moved to archive (soft deleted).";
+        ToastMagic::success($message);
+
+        if ($request->expectsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => $message,
+            ]);
+        }
 
         return redirect()->route('admin.academic.classes.index')
-            ->with('success', "Class '{$name}' deleted successfully.");
+            ->with('success', $message);
+    }
+
+    /**
+     * Restore a soft-deleted academic class.
+     */
+    public function restore(Request $request, AcademicClass $class): JsonResponse|RedirectResponse
+    {
+        $class->restore();
+
+        $message = "Class '{$class->name}' was restored successfully.";
+        ToastMagic::success($message);
+
+        if ($request->expectsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => $message,
+            ]);
+        }
+
+        return redirect()->back(fallback: route('admin.academic.classes.index'))
+            ->with('success', $message);
+    }
+
+    /**
+     * Permanently remove (force delete) the specified academic class.
+     */
+    public function forceDelete(Request $request, AcademicClass $class): JsonResponse|RedirectResponse
+    {
+        $name = $class->name;
+        $class->forceDelete();
+
+        $message = "Class '{$name}' has been permanently purged.";
+        ToastMagic::success($message);
+
+        if ($request->expectsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => $message,
+            ]);
+        }
+
+        return redirect()->route('admin.academic.classes.index', ['status' => 'trashed'])
+            ->with('success', $message);
     }
 
     /**

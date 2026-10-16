@@ -9,6 +9,7 @@ use App\Models\AcademicYear;
 use App\Models\ClassSubjectAssignment;
 use App\Models\Subject;
 use Devrabiul\ToastMagic\Facades\ToastMagic;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -20,12 +21,31 @@ class ClassSubjectAssignmentController extends Controller
      */
     public function index(Request $request): View
     {
+        $statusFilter = $request->query('status', 'all');
         $classFilter = $request->query('class_id', 'all');
         $yearFilter = $request->query('year_id', 'all');
         $search = trim((string) $request->query('search', ''));
 
-        $query = ClassSubjectAssignment::query()
-            ->with(['academicClass:id,name,numeric_code', 'subject:id,name,code,type', 'academicYear:id,name']);
+        if ($statusFilter === 'trashed') {
+            $query = ClassSubjectAssignment::onlyTrashed()
+                ->with([
+                    'academicClass' => fn ($q) => $q->withTrashed()->select(['id', 'name', 'numeric_code']),
+                    'subject' => fn ($q) => $q->withTrashed()->select(['id', 'name', 'code', 'type']),
+                    'academicYear' => fn ($q) => $q->withTrashed()->select(['id', 'name']),
+                ])
+                ->latest('deleted_at');
+        } else {
+            $query = ClassSubjectAssignment::query()
+                ->with([
+                    'academicClass' => fn ($q) => $q->withTrashed()->select(['id', 'name', 'numeric_code']),
+                    'subject' => fn ($q) => $q->withTrashed()->select(['id', 'name', 'code', 'type']),
+                    'academicYear' => fn ($q) => $q->withTrashed()->select(['id', 'name']),
+                ]);
+
+            if ($statusFilter !== 'all' && in_array($statusFilter, ['compulsory', 'optional', 'elective'], true)) {
+                $query->where('type', $statusFilter);
+            }
+        }
 
         if ($classFilter !== 'all' && is_numeric($classFilter)) {
             $query->where('academic_class_id', (int) $classFilter);
@@ -43,7 +63,7 @@ class ClassSubjectAssignmentController extends Controller
         }
 
         $assignments = $query
-            ->select(['id', 'school_id', 'academic_class_id', 'subject_id', 'academic_year_id', 'type', 'full_marks', 'pass_marks', 'created_at'])
+            ->select(['id', 'school_id', 'academic_class_id', 'subject_id', 'academic_year_id', 'type', 'full_marks', 'pass_marks', 'created_at', 'deleted_at'])
             ->latest()
             ->paginate(20)
             ->withQueryString();
@@ -51,7 +71,26 @@ class ClassSubjectAssignmentController extends Controller
         $classes = AcademicClass::ordered()->select(['id', 'name'])->get();
         $academicYears = AcademicYear::latest('start_date')->select(['id', 'name', 'is_current'])->get();
 
-        return view('admin.academic.assign-subjects.index', compact('assignments', 'classes', 'academicYears', 'classFilter', 'yearFilter', 'search'));
+        $rawCounts = ClassSubjectAssignment::query()
+            ->withTrashed()
+            ->selectRaw("
+                COUNT(CASE WHEN deleted_at IS NULL THEN 1 END) as all_count,
+                COUNT(CASE WHEN deleted_at IS NULL AND type = 'compulsory' THEN 1 END) as compulsory_count,
+                COUNT(CASE WHEN deleted_at IS NULL AND type = 'optional' THEN 1 END) as optional_count,
+                COUNT(CASE WHEN deleted_at IS NULL AND type = 'elective' THEN 1 END) as elective_count,
+                COUNT(CASE WHEN deleted_at IS NOT NULL THEN 1 END) as trashed_count
+            ")
+            ->first();
+
+        $statusCounts = [
+            'all' => (int) ($rawCounts->all_count ?? 0),
+            'compulsory' => (int) ($rawCounts->compulsory_count ?? 0),
+            'optional' => (int) ($rawCounts->optional_count ?? 0),
+            'elective' => (int) ($rawCounts->elective_count ?? 0),
+            'trashed' => (int) ($rawCounts->trashed_count ?? 0),
+        ];
+
+        return view('admin.academic.assign-subjects.index', compact('assignments', 'classes', 'academicYears', 'classFilter', 'yearFilter', 'search', 'statusFilter', 'statusCounts'));
     }
 
     /**
@@ -136,16 +175,66 @@ class ClassSubjectAssignmentController extends Controller
     }
 
     /**
-     * Remove the specified subject assignment from a class.
+     * Remove (soft delete / archive) the specified subject assignment from a class.
      */
-    public function destroy(ClassSubjectAssignment $assignment): RedirectResponse
+    public function destroy(Request $request, ClassSubjectAssignment $assignment): JsonResponse|RedirectResponse
     {
         $classId = $assignment->academic_class_id;
         $assignment->delete();
 
-        ToastMagic::success('Subject assignment removed from class successfully.');
+        $message = 'Curriculum subject assignment moved to archive (soft deleted).';
+        ToastMagic::success($message);
+
+        if ($request->expectsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => $message,
+            ]);
+        }
 
         return redirect()->route('admin.academic.assign-subjects.index', ['class_id' => $classId])
-            ->with('success', 'Subject assignment removed from class successfully.');
+            ->with('success', $message);
+    }
+
+    /**
+     * Restore a soft-deleted curriculum assignment.
+     */
+    public function restore(Request $request, ClassSubjectAssignment $assignment): JsonResponse|RedirectResponse
+    {
+        $assignment->restore();
+
+        $message = 'Curriculum subject assignment was restored successfully.';
+        ToastMagic::success($message);
+
+        if ($request->expectsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => $message,
+            ]);
+        }
+
+        return redirect()->back(fallback: route('admin.academic.assign-subjects.index'))
+            ->with('success', $message);
+    }
+
+    /**
+     * Permanently remove (force delete) the specified curriculum assignment.
+     */
+    public function forceDelete(Request $request, ClassSubjectAssignment $assignment): JsonResponse|RedirectResponse
+    {
+        $assignment->forceDelete();
+
+        $message = 'Curriculum subject assignment has been permanently purged.';
+        ToastMagic::success($message);
+
+        if ($request->expectsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => $message,
+            ]);
+        }
+
+        return redirect()->route('admin.academic.assign-subjects.index', ['status' => 'trashed'])
+            ->with('success', $message);
     }
 }
