@@ -4,8 +4,8 @@ import Alpine from 'alpinejs';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
-// Expose jQuery globally
-window.$ = window.jQuery = $;
+// Expose jQuery globally (preserve existing global instance & plugins if loaded)
+window.$ = window.jQuery = window.jQuery || $;
 
 // Expose Alpine.js globally and initialize
 window.Alpine = Alpine;

@@ -36,6 +36,47 @@
     <script src="{{ asset('admin-assets/js/admin-search.js') }}" defer></script>
     <script src="{{ asset('admin-assets/js/admin-actions.js') }}" defer></script>
 
+    <!-- ToastMagic (Toaster) Runtime Scripts -->
+    {!! \Devrabiul\ToastMagic\Facades\ToastMagic::scripts() !!}
+
+    <!-- Universal Bridge: Trigger Toastr for Standard Laravel Flash Sessions if not explicitly queued -->
+    @if (session('success') && empty(session(\Devrabiul\ToastMagic\ToastMagic::SESSION_KEY)))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                if (window.toastMagic) {
+                    window.toastMagic.success({
+                        heading: 'Success',
+                        description: @json(session('success'))
+                    });
+                }
+            });
+        </script>
+    @endif
+    @if (session('error') && empty(session(\Devrabiul\ToastMagic\ToastMagic::SESSION_KEY)))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                if (window.toastMagic) {
+                    window.toastMagic.error({
+                        heading: 'Error',
+                        description: @json(session('error'))
+                    });
+                }
+            });
+        </script>
+    @endif
+    @if (session('status') && empty(session(\Devrabiul\ToastMagic\ToastMagic::SESSION_KEY)))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                if (window.toastMagic) {
+                    window.toastMagic.info({
+                        heading: 'Status',
+                        description: @json(session('status'))
+                    });
+                }
+            });
+        </script>
+    @endif
+
     @stack('scripts')
 </body>
 </html>

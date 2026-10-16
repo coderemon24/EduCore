@@ -91,6 +91,27 @@ class SchoolManagementTest extends TestCase
     }
 
     /**
+     * Test slug collision handles soft deleted schools in single lookup.
+     */
+    public function test_school_slug_collision_handles_soft_deleted_schools_in_single_lookup(): void
+    {
+        $school1 = School::create([
+            'name' => 'Metro Public School',
+            'status' => SchoolStatus::Active,
+        ]);
+
+        $school1->delete();
+
+        $school2 = School::create([
+            'name' => 'Metro Public School',
+            'status' => SchoolStatus::Active,
+        ]);
+
+        $this->assertSame('metro-public-school', $school1->slug);
+        $this->assertSame('metro-public-school-1', $school2->slug);
+    }
+
+    /**
      * Test school slug must be strictly unique at database level.
      */
     public function test_school_slug_must_be_unique_at_database_level(): void

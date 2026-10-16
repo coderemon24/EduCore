@@ -9,6 +9,7 @@ use App\Http\Requests\Admin\UpdateSchoolRequest;
 use App\Http\Requests\Admin\UpdateSchoolStatusRequest;
 use App\Models\School;
 use DateTimeZone;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -45,15 +46,52 @@ class SchoolController extends Controller
             });
         }
 
-        $schools = $query->paginate(10)->withQueryString();
+        $schools = $query
+            ->select([
+                'id',
+                'name',
+                'slug',
+                'code',
+                'status',
+                'email',
+                'phone',
+                'city',
+                'state',
+                'country',
+                'logo',
+                'favicon',
+                'timezone',
+                'currency',
+                'created_at',
+                'deleted_at',
+            ])
+            ->paginate(10)
+            ->withQueryString();
+
+        $rawCounts = School::query()
+            ->withTrashed()
+            ->selectRaw("
+                COUNT(CASE WHEN deleted_at IS NULL THEN 1 END) as all_count,
+                COUNT(CASE WHEN deleted_at IS NULL AND status = ? THEN 1 END) as active_count,
+                COUNT(CASE WHEN deleted_at IS NULL AND status = ? THEN 1 END) as pending_count,
+                COUNT(CASE WHEN deleted_at IS NULL AND status = ? THEN 1 END) as suspended_count,
+                COUNT(CASE WHEN deleted_at IS NULL AND status = ? THEN 1 END) as inactive_count,
+                COUNT(CASE WHEN deleted_at IS NOT NULL THEN 1 END) as trashed_count
+            ", [
+                SchoolStatus::Active->value,
+                SchoolStatus::Pending->value,
+                SchoolStatus::Suspended->value,
+                SchoolStatus::Inactive->value,
+            ])
+            ->first();
 
         $statusCounts = [
-            'all' => School::count(),
-            'active' => School::where('status', SchoolStatus::Active)->count(),
-            'pending' => School::where('status', SchoolStatus::Pending)->count(),
-            'suspended' => School::where('status', SchoolStatus::Suspended)->count(),
-            'inactive' => School::where('status', SchoolStatus::Inactive)->count(),
-            'trashed' => School::onlyTrashed()->count(),
+            'all'       => (int) ($rawCounts->all_count ?? 0),
+            'active'    => (int) ($rawCounts->active_count ?? 0),
+            'pending'   => (int) ($rawCounts->pending_count ?? 0),
+            'suspended' => (int) ($rawCounts->suspended_count ?? 0),
+            'inactive'  => (int) ($rawCounts->inactive_count ?? 0),
+            'trashed'   => (int) ($rawCounts->trashed_count ?? 0),
         ];
 
         return view('admin.schools.index', compact('schools', 'statusFilter', 'search', 'statusCounts'));
@@ -108,8 +146,11 @@ class SchoolController extends Controller
 
         $school = School::create($data);
 
+        $message = "Institutional tenant \"{$school->name}\" was created successfully.";
+        ToastMagic::success($message);
+
         return redirect()->route('admin.schools.show', $school)
-            ->with('success', "Institutional tenant \"{$school->name}\" was created successfully.");
+            ->with('success', $message);
     }
 
     /**
@@ -174,8 +215,11 @@ class SchoolController extends Controller
 
         $school->update($data);
 
+        $message = "Institutional details for \"{$school->name}\" have been updated successfully.";
+        ToastMagic::success($message);
+
         return redirect()->route('admin.schools.show', $school)
-            ->with('success', "Institutional details for \"{$school->name}\" have been updated successfully.");
+            ->with('success', $message);
     }
 
     /**
@@ -187,6 +231,7 @@ class SchoolController extends Controller
         $school->delete();
 
         $message = "Institution \"{$schoolName}\" was moved to archive (soft deleted).";
+        ToastMagic::success($message);
 
         if ($request->expectsJson() || $request->ajax()) {
             return response()->json([
@@ -205,6 +250,7 @@ class SchoolController extends Controller
     {
         $school->restore();
         $message = "Institution \"{$school->name}\" was restored to operational directory successfully.";
+        ToastMagic::success($message);
 
         if ($request->expectsJson() || $request->ajax()) {
             return response()->json([
@@ -225,6 +271,7 @@ class SchoolController extends Controller
         $school->forceDelete();
 
         $message = "Institution \"{$schoolName}\" has been permanently purged.";
+        ToastMagic::success($message);
 
         if ($request->expectsJson() || $request->ajax()) {
             return response()->json([
@@ -245,6 +292,7 @@ class SchoolController extends Controller
         $school->update(['status' => $newStatus]);
 
         $message = "Status for \"{$school->name}\" changed to {$newStatus->label()}.";
+        ToastMagic::success($message);
 
         if ($request->expectsJson() || $request->ajax()) {
             return response()->json([

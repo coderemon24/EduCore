@@ -17,6 +17,7 @@
     "dependencies": {
         "alpinejs": "^3.17.4",
         "jquery": "^4.0.0",
+        "select2": "^4.1.0",
         "sweetalert2": "^11.26.25"
     }
 }

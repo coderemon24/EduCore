@@ -106,15 +106,25 @@ class School extends Model
         static::creating(function (School $school) {
             if (empty($school->slug) && ! empty($school->name)) {
                 $baseSlug = Str::slug($school->name);
-                $slug = $baseSlug;
-                $counter = 1;
 
-                while (static::where('slug', $slug)->exists()) {
-                    $slug = $baseSlug.'-'.$counter;
+                $existingSlugs = static::withTrashed()
+                    ->where('slug', $baseSlug)
+                    ->orWhere('slug', 'LIKE', "{$baseSlug}-%")
+                    ->pluck('slug')
+                    ->flip();
+
+                if (! $existingSlugs->has($baseSlug)) {
+                    $school->slug = $baseSlug;
+
+                    return;
+                }
+
+                $counter = 1;
+                while ($existingSlugs->has("{$baseSlug}-{$counter}")) {
                     $counter++;
                 }
 
-                $school->slug = $slug;
+                $school->slug = "{$baseSlug}-{$counter}";
             }
         });
     }

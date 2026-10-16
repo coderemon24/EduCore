@@ -110,6 +110,20 @@
         </div>
     </div>
 
+    <!-- Flash Message Notification -->
+    @if (session('success'))
+        <div class="rounded-xl border border-emerald-200 bg-emerald-50/80 p-4 text-xs font-medium text-emerald-800 shadow-xs flex items-center gap-3">
+            <div class="flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-100 text-emerald-700 shrink-0">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+            </div>
+            <div class="flex-1">
+                <p class="font-semibold">{{ session('success') }}</p>
+            </div>
+        </div>
+    @endif
+
     <!-- 4 High-Level Parameter Metric Cards -->
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <!-- 1. Operational Status -->

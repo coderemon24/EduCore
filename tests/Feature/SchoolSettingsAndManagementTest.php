@@ -373,4 +373,39 @@ class SchoolSettingsAndManagementTest extends TestCase
         $response->assertSee('Restore');
         $response->assertSee('Purge');
     }
+
+    /**
+     * Test admin layout includes Select2 and ToastMagic assets.
+     */
+    public function test_admin_layout_includes_select2_and_toastmagic_assets(): void
+    {
+        $response = $this->actingAs($this->superAdmin, 'admin')
+            ->get(route('admin.schools.create'));
+
+        $response->assertOk();
+        $response->assertSee('select2.min.css');
+        $response->assertSee('select2-custom.css');
+        $response->assertSee('select2.min.js');
+        $response->assertSee('admin-select2.js');
+        $response->assertSee('laravel-toaster-magic');
+    }
+
+    /**
+     * Test storing school flashes both standard session success and ToastMagic message.
+     */
+    public function test_storing_school_flashes_both_session_and_toastmagic(): void
+    {
+        $response = $this->actingAs($this->superAdmin, 'admin')
+            ->post(route('admin.schools.store'), [
+                'name' => 'Select2 Toastr Academy',
+                'status' => 'active',
+                'timezone' => 'UTC',
+                'currency' => 'USD',
+                'country' => 'United States',
+            ]);
+
+        $response->assertSessionHas('success');
+        $response->assertSessionHas(\Devrabiul\ToastMagic\ToastMagic::SESSION_KEY);
+    }
 }
+

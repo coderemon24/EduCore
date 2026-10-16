@@ -227,7 +227,8 @@
                     <select id="timezone"
                             name="timezone"
                             required
-                            class="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs text-slate-800 transition hover:bg-white focus:bg-white focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20 shadow-2xs cursor-pointer">
+                            class="select2 w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs text-slate-800 transition hover:bg-white focus:bg-white focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20 shadow-2xs cursor-pointer"
+                            data-placeholder="Select Institutional Timezone">
                         @foreach($timezones as $tz)
                             <option value="{{ $tz }}" {{ old('timezone', $school->timezone) === $tz ? 'selected' : '' }}>
                                 {{ $tz }}
@@ -242,7 +243,8 @@
                     <select id="currency"
                             name="currency"
                             required
-                            class="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs text-slate-800 transition hover:bg-white focus:bg-white focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20 shadow-2xs cursor-pointer">
+                            class="select2 w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs text-slate-800 transition hover:bg-white focus:bg-white focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20 shadow-2xs cursor-pointer"
+                            data-placeholder="Select Financial Currency">
                         @foreach($currencies as $code => $label)
                             <option value="{{ $code }}" {{ old('currency', $school->currency) === $code ? 'selected' : '' }}>
                                 {{ $label }} ({{ $code }})

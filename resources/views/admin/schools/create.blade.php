@@ -78,7 +78,8 @@
                     <select id="status"
                             name="status"
                             required
-                            class="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs text-slate-800 transition hover:bg-white focus:bg-white focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20 shadow-2xs cursor-pointer">
+                            class="select2 w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs text-slate-800 transition hover:bg-white focus:bg-white focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20 shadow-2xs cursor-pointer"
+                            data-placeholder="Select Initial Status">
                         <option value="active" {{ old('status', 'active') === 'active' ? 'selected' : '' }}>Active (Operational)</option>
                         <option value="pending" {{ old('status') === 'pending' ? 'selected' : '' }}>Pending Verification</option>
                         <option value="suspended" {{ old('status') === 'suspended' ? 'selected' : '' }}>Suspended</option>
@@ -215,7 +216,8 @@
                     <select id="timezone"
                             name="timezone"
                             required
-                            class="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs text-slate-800 transition hover:bg-white focus:bg-white focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20 shadow-2xs cursor-pointer">
+                            class="select2 w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs text-slate-800 transition hover:bg-white focus:bg-white focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20 shadow-2xs cursor-pointer"
+                            data-placeholder="Select Institutional Timezone">
                         @foreach($timezones as $tz)
                             <option value="{{ $tz }}" {{ old('timezone', 'America/New_York') === $tz ? 'selected' : '' }}>
                                 {{ $tz }}
@@ -229,7 +231,8 @@
                     <select id="currency"
                             name="currency"
                             required
-                            class="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs text-slate-800 transition hover:bg-white focus:bg-white focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20 shadow-2xs cursor-pointer">
+                            class="select2 w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs text-slate-800 transition hover:bg-white focus:bg-white focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20 shadow-2xs cursor-pointer"
+                            data-placeholder="Select Operating Currency">
                         @foreach($currencies as $code => $label)
                             <option value="{{ $code }}" {{ old('currency', 'USD') === $code ? 'selected' : '' }}>
                                 {{ $label }} ({{ $code }})
@@ -267,10 +270,10 @@
                            name="logo"
                            class="dropify"
                            data-height="160"
-                           data-max-file-size="2M"
+                           data-max-file-size="5M"
                            data-allowed-file-extensions="png jpg jpeg svg webp"
                            data-default-file="" />
-                    <p class="mt-1.5 text-[10px] text-slate-400">Supported: PNG, JPG, SVG, WebP (Max: 2MB). Recommended transparent background.</p>
+                    <p class="mt-1.5 text-[10px] text-slate-400">Supported: PNG, JPG, SVG, WebP (Max: 5MB). Recommended transparent background.</p>
                     @error('logo')
                         <p class="mt-1 text-[11px] text-rose-600 font-medium">{{ $message }}</p>
                     @enderror
@@ -286,10 +289,10 @@
                            name="favicon"
                            class="dropify"
                            data-height="160"
-                           data-max-file-size="1M"
+                           data-max-file-size="5M"
                            data-allowed-file-extensions="ico png svg"
                            data-default-file="" />
-                    <p class="mt-1.5 text-[10px] text-slate-400">Supported: ICO, PNG, SVG (Max: 1MB). Recommended 32x32 or 64x64 square ratio.</p>
+                    <p class="mt-1.5 text-[10px] text-slate-400">Supported: ICO, PNG, SVG (Max: 5MB). Recommended 32x32 or 64x64 square ratio.</p>
                     @error('favicon')
                         <p class="mt-1 text-[11px] text-rose-600 font-medium">{{ $message }}</p>
                     @enderror
@@ -335,6 +338,7 @@
         font-size: 12px !important;
         color: #475569 !important;
         font-weight: 500 !important;
+        margin-top: 6px !important;
     }
     .dropify-wrapper .dropify-message span.file-icon {
         font-size: 32px !important;
@@ -345,8 +349,49 @@
         background-color: #f43f5e !important;
         color: #ffffff !important;
         border: none !important;
-        font-size: 10px !important;
-        padding: 3px 8px !important;
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        padding: 4px 10px !important;
+        top: 10px !important;
+        right: 10px !important;
+        z-index: 20 !important;
+        transition: all 0.15s ease-in-out !important;
+    }
+    .dropify-wrapper.has-preview .dropify-clear {
+        display: block !important;
+        opacity: 0.95 !important;
+    }
+    .dropify-wrapper .dropify-clear:hover {
+        background-color: #e11d48 !important;
+        opacity: 1 !important;
+        transform: scale(1.02);
+    }
+    .dropify-wrapper .dropify-preview {
+        background-color: #f8fafc !important;
+        padding: 8px !important;
+    }
+    .dropify-wrapper .dropify-preview .dropify-render img {
+        border-radius: 0.5rem !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+        background-color: #ffffff !important;
+        padding: 4px !important;
+        max-height: 140px !important;
+        max-width: 90% !important;
+        object-fit: contain !important;
+        margin: 0 auto !important;
+    }
+    .dropify-wrapper .dropify-infos {
+        background: rgba(15, 23, 42, 0.75) !important;
+        backdrop-filter: blur(2px) !important;
+    }
+    .dropify-wrapper .dropify-infos .dropify-infos-inner p.dropify-infos-message {
+        font-size: 11px !important;
+        color: #f1f5f9 !important;
+    }
+    .dropify-wrapper .dropify-infos .dropify-infos-inner p.dropify-filename {
+        font-size: 12px !important;
+        font-weight: 600 !important;
+        color: #ffffff !important;
     }
 </style>
 @endpush
@@ -354,26 +399,52 @@
 @push('scripts')
 <script src="{{ asset('admin-assets/js/dropify.min.js') }}"></script>
 <script>
-    $(function() {
-        // Initialize Dropify for rich real-time image preview
-        $('.dropify').dropify({
-            messages: {
-                'default': 'Drag and drop an image here or click to browse',
-                'replace': 'Drag and drop or click to replace image',
-                'remove':  'Remove',
-                'error':   'Ooops, something wrong happened.'
-            },
-            error: {
-                'fileSize': 'The file size is too big (@{{ value }} max).',
-                'fileExtension': 'The file format is not allowed (@{{ value }} only).'
+    (function() {
+        function initDropify() {
+            if (window.jQuery && typeof window.jQuery.fn.dropify === 'function') {
+                window.jQuery('.dropify').each(function() {
+                    var $el = window.jQuery(this);
+                    if (!$el.data('dropify')) {
+                        $el.dropify({
+                            messages: {
+                                'default': 'Drag and drop an image here or click to browse',
+                                'replace': 'Drag and drop or click to replace image',
+                                'remove':  'Remove',
+                                'error':   'Ooops, something wrong happened.'
+                            },
+                            error: {
+                                'fileSize': 'The file size is too big (@{{ value }} max).',
+                                'fileExtension': 'The file format is not allowed (@{{ value }} only).'
+                            },
+                            imgFileExtensions: ['png', 'jpg', 'jpeg', 'gif', 'bmp', 'webp', 'svg', 'ico']
+                        });
+                    }
+                });
             }
-        });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initDropify);
+        } else {
+            initDropify();
+        }
+        window.addEventListener('load', initDropify);
 
         // Double-submit prevention
-        $('#create-school-form').on('submit', function() {
-            var $btn = $('#btn-create-submit');
-            $btn.prop('disabled', true).addClass('opacity-75 cursor-not-allowed').text('Onboarding Tenant...');
+        document.addEventListener('DOMContentLoaded', function() {
+            var form = document.getElementById('create-school-form');
+            if (form) {
+                form.addEventListener('submit', function() {
+                    var btn = document.getElementById('btn-create-submit');
+                    if (btn) {
+                        btn.disabled = true;
+                        btn.classList.add('opacity-75', 'cursor-not-allowed');
+                        var label = btn.querySelector('span');
+                        if (label) label.textContent = 'Onboarding Tenant...';
+                    }
+                });
+            }
         });
-    });
+    })();
 </script>
 @endpush

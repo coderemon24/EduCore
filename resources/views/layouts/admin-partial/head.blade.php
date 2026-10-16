@@ -107,6 +107,16 @@
     }
 </style>
 
+<!-- Core jQuery & Select2 Vendor Scripts (Synchronous for Admin Stack & Form Plugins) -->
+<script src="{{ asset('admin-assets/js/jquery.min.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('admin-assets/css/select2.min.css') }}">
+<link rel="stylesheet" href="{{ asset('admin-assets/css/select2-custom.css') }}">
+<script src="{{ asset('admin-assets/js/select2.min.js') }}"></script>
+<script src="{{ asset('admin-assets/js/admin-select2.js') }}"></script>
+
+<!-- ToastMagic (Toaster) Styles -->
+{!! \Devrabiul\ToastMagic\Facades\ToastMagic::styles() !!}
+
 <!-- Vite Assets -->
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 

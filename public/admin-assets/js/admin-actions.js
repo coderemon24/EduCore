@@ -68,6 +68,12 @@
                             text: `Student ${result.value.name} successfully registered. System ID generated.`,
                             confirmButtonColor: '#7c3aed'
                         });
+                        if (window.toastMagic) {
+                            window.toastMagic.success({
+                                heading: 'Admission Registered',
+                                description: `Student ${result.value.name} successfully registered.`
+                            });
+                        }
                     }
                 });
             });
@@ -391,6 +397,12 @@
                                     text: 'Your account password has been successfully updated.',
                                     confirmButtonColor: '#7c3aed'
                                 });
+                                if (window.toastMagic) {
+                                    window.toastMagic.success({
+                                        heading: 'Security Update',
+                                        description: 'Account password updated successfully.'
+                                    });
+                                }
                             }
                         });
                     });

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UpdateSchoolSettingRequest;
 use App\Models\School;
 use DateTimeZone;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -53,7 +54,10 @@ class SchoolSettingController extends Controller
             $school->update($request->validated());
         }
 
+        $message = 'Institutional profile and settings updated successfully.';
+        ToastMagic::success($message);
+
         return redirect()->route('admin.settings.school')
-            ->with('success', 'Institutional profile and settings updated successfully.');
+            ->with('success', $message);
     }
 }
