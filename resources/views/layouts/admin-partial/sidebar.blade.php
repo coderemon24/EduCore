@@ -53,19 +53,26 @@
                 </li>
 
                 <!-- Schools & Institutions (Multi-Tenant Management) -->
+                @php
+                    $isSuperAdmin = Auth::guard('admin')->user()?->role === 'super_admin';
+                    $isSchoolsActive = request()->routeIs('admin.schools.*');
+                    $schoolTargetRoute = $isSuperAdmin ? route('admin.schools.index') : route('admin.settings.school');
+                @endphp
                 <li>
-                    <a href="javascript:void(0)"
-                       onclick="window.Swal && Swal.fire({title: 'Institutions & Campuses', html: '<p class=\'text-xs text-slate-600 mb-2\'>Active Institution: <b>{{ addslashes($currentSchool->name ?? 'EduCore Academy') }}</b> ({{ $currentSchool->code ?? 'EDU-001' }})</p><p class=\'text-xs text-slate-500\'>Multi-tenant SaaS institution management module.</p>', icon: 'info', confirmButtonColor: '#7c3aed'});"
-                       class="group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-slate-900 cursor-pointer">
-                        <svg class="h-5 w-5 shrink-0 text-slate-400 group-hover:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    <a href="{{ $schoolTargetRoute }}"
+                       class="group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-150 cursor-pointer {{ $isSchoolsActive ? 'bg-violet-50 text-violet-700 font-semibold shadow-2xs border-l-2 border-violet-600 pl-2.5' : 'text-slate-600 hover:bg-slate-100/80 hover:text-slate-900' }}">
+                        <svg class="h-4.5 w-4.5 shrink-0 transition-transform duration-200 group-hover:scale-105 {{ $isSchoolsActive ? 'text-violet-600' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                         </svg>
-                        <span class="nav-label truncate text-sm">Schools & Campuses</span>
-                        <span class="nav-badge ml-auto rounded-full bg-violet-100 px-1.5 py-0.5 text-[9px] font-bold text-violet-700">Tenant</span>
+                        <span class="nav-label truncate text-xs font-semibold tracking-tight">Schools & Campuses</span>
+                        <span class="nav-badge ml-auto inline-flex items-center gap-1 rounded border border-violet-200/90 bg-violet-50/80 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-violet-700 transition-colors group-hover:bg-violet-100">
+                            <span class="h-1 w-1 rounded-full bg-violet-500"></span>
+                            <span>Tenant</span>
+                        </span>
 
                         <!-- Floating Tooltip for collapsed mode -->
                         <span class="nav-item-tooltip absolute left-full top-1/2 -translate-y-1/2 ml-3 px-3 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md shadow-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
-                            Schools & Campuses
+                            Schools & Campuses <span class="text-violet-300 text-[10px]">&bull; Multi-Tenant</span>
                             <span class="absolute left-[-4px] top-1/2 -translate-y-1/2 border-y-4 border-y-transparent border-r-4 border-r-slate-900"></span>
                         </span>
                     </a>
@@ -224,11 +231,13 @@
                 </li>
 
                 <!-- Settings -->
+                @php
+                    $isSettingsActive = request()->routeIs('admin.settings.*');
+                @endphp
                 <li>
-                    <a href="javascript:void(0)"
-                       onclick="window.Swal && Swal.fire({title: 'System Settings', text: 'Opening Institution Profile, Grading Rules, and Roles.', icon: 'info', confirmButtonColor: '#7c3aed'});"
-                       class="group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-slate-900 cursor-pointer">
-                        <svg class="h-5 w-5 shrink-0 text-slate-400 group-hover:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <a href="{{ route('admin.settings.school') }}"
+                       class="group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors cursor-pointer {{ $isSettingsActive ? 'bg-violet-50 text-violet-700 font-semibold shadow-xs' : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900' }}">
+                        <svg class="h-5 w-5 shrink-0 {{ $isSettingsActive ? 'text-violet-600' : 'text-slate-400 group-hover:text-slate-600' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>

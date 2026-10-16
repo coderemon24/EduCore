@@ -1,6 +1,15 @@
 import './bootstrap';
+import $ from 'jquery';
+import Alpine from 'alpinejs';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+
+// Expose jQuery globally
+window.$ = window.jQuery = $;
+
+// Expose Alpine.js globally and initialize
+window.Alpine = Alpine;
+Alpine.start();
 
 // Expose globally on window
 window.Swal = Swal;
@@ -18,4 +27,4 @@ window.Toast = Swal.mixin({
     }
 });
 
-console.log('EduCore SIS Admin Assets initialized successfully.');
+console.log('EduCore SIS Admin Assets with jQuery & Alpine.js initialized successfully.');
