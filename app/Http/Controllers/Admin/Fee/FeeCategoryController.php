@@ -42,7 +42,12 @@ class FeeCategoryController extends Controller
      */
     public function store(StoreFeeCategoryRequest $request): RedirectResponse
     {
+        $schoolId = app()->has('current_school_id')
+            ? app('current_school_id')
+            : (auth()->guard('web')->user()?->school_id ?? session('current_school_id') ?? \App\Models\School::value('id') ?? 1);
+
         FeeCategory::create([
+            'school_id' => $schoolId,
             'name' => $request->validated('name'),
             'code' => strtoupper($request->validated('code')),
             'description' => $request->validated('description'),

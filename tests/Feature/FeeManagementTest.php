@@ -487,4 +487,62 @@ class FeeManagementTest extends TestCase
             ->get(route('admin.fees.reports.index'));
         $reportsRes->assertStatus(200);
     }
+
+    /**
+     * Test creating fee category and fee structure works for both super admin and school accountant.
+     */
+    public function test_fee_category_and_structure_creation(): void
+    {
+        // 1. Super Admin creating a fee category without explicit tenant container binding
+        $superAdminRes = $this->actingAs($this->superAdmin, 'admin')
+            ->post(route('admin.fees.categories.store'), [
+                'name' => 'Transport Fee',
+                'code' => 'TRANS_01',
+                'description' => 'Daily school bus transport charges',
+                'is_active' => true,
+            ]);
+
+        $superAdminRes->assertRedirect(route('admin.fees.categories.index'));
+        $this->assertDatabaseHas('fee_categories', [
+            'code' => 'TRANS_01',
+            'name' => 'Transport Fee',
+        ]);
+
+        $createdCategory = FeeCategory::where('code', 'TRANS_01')->firstOrFail();
+        $this->assertNotNull($createdCategory->school_id);
+
+        // 2. Super Admin creating a fee structure
+        $structRes = $this->actingAs($this->superAdmin, 'admin')
+            ->post(route('admin.fees.structures.store'), [
+                'academic_year_id' => $this->academicYear->id,
+                'academic_class_id' => $this->academicClass->id,
+                'fee_category_id' => $createdCategory->id,
+                'name' => 'Grade 10 Monthly Bus Service',
+                'amount' => '45.00',
+                'frequency' => 'monthly',
+                'due_day' => 10,
+                'is_active' => true,
+            ]);
+
+        $structRes->assertRedirect(route('admin.fees.structures.index'));
+        $this->assertDatabaseHas('fee_structures', [
+            'name' => 'Grade 10 Monthly Bus Service',
+            'amount' => 45.00,
+        ]);
+
+        // 3. School Accountant creating a fee category
+        $accountantRes = $this->actingAs($this->accountant, 'web')
+            ->post(route('admin.fees.categories.store'), [
+                'name' => 'Library Fee',
+                'code' => 'LIB_01',
+                'description' => 'Annual library subscription',
+                'is_active' => true,
+            ]);
+
+        $accountantRes->assertRedirect(route('admin.fees.categories.index'));
+        $this->assertDatabaseHas('fee_categories', [
+            'code' => 'LIB_01',
+            'school_id' => $this->school->id,
+        ]);
+    }
 }

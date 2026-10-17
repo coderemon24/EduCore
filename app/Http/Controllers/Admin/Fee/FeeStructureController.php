@@ -63,7 +63,12 @@ class FeeStructureController extends Controller
      */
     public function store(StoreFeeStructureRequest $request): RedirectResponse
     {
+        $schoolId = app()->has('current_school_id')
+            ? app('current_school_id')
+            : (auth()->guard('web')->user()?->school_id ?? session('current_school_id') ?? \App\Models\School::value('id') ?? 1);
+
         FeeStructure::create([
+            'school_id' => $schoolId,
             'academic_year_id' => $request->validated('academic_year_id'),
             'academic_class_id' => $request->validated('academic_class_id'),
             'fee_category_id' => $request->validated('fee_category_id'),

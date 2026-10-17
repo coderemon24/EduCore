@@ -23,7 +23,9 @@ class StoreFeeCategoryRequest extends FormRequest
      */
     public function rules(): array
     {
-        $schoolId = app()->has('current_school_id') ? app('current_school_id') : null;
+        $schoolId = app()->has('current_school_id')
+            ? app('current_school_id')
+            : (auth()->guard('web')->user()?->school_id ?? session('current_school_id') ?? \App\Models\School::value('id') ?? 1);
         $categoryId = $this->route('category')?->id ?? $this->route('category');
 
         return [

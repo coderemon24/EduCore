@@ -18,8 +18,10 @@ trait BelongsToSchool
         static::addGlobalScope(new SchoolScope);
 
         static::creating(function ($model) {
-            if (empty($model->school_id) && app()->has('current_school_id')) {
-                $schoolId = app('current_school_id');
+            if (empty($model->school_id)) {
+                $schoolId = app()->has('current_school_id')
+                    ? app('current_school_id')
+                    : (Auth::guard('web')->user()?->school_id ?? session('current_school_id') ?? School::value('id') ?? 1);
 
                 if ($schoolId !== null) {
                     $model->school_id = $schoolId;
