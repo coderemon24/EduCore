@@ -183,6 +183,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
             // Attendance Reports & Register
             Route::get('reports', [AttendanceReportController::class, 'index'])->name('reports.index')->middleware('school.permission:attendance.reports');
+            Route::get('reports/export', [AttendanceReportController::class, 'export'])->name('reports.export')->middleware('school.permission:attendance.reports');
         });
 
         // Class Timetables & Schedules
@@ -226,6 +227,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
             // Financial Reports
             Route::get('reports', [FeeReportController::class, 'index'])->name('reports.index')->middleware('school.permission:fees.reports');
+            Route::get('reports/export', [FeeReportController::class, 'export'])->name('reports.export')->middleware('school.permission:fees.reports');
         });
     });
 });

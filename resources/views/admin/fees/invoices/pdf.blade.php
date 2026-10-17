@@ -21,6 +21,12 @@
         }
         table {
             border-collapse: collapse;
+            width: 100%;
+            table-layout: fixed;
+        }
+        th, td {
+            word-wrap: break-word;
+            overflow: hidden;
         }
         .header-table {
             width: 100%;
@@ -232,10 +238,10 @@
     <table class="items-table" cellpadding="0" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <th style="width: 40px; text-align: center;">#</th>
-                <th style="text-align: left;">Fee Item & Description</th>
-                <th style="width: 140px; text-align: left;">Category</th>
-                <th style="width: 110px; text-align: right;">Amount</th>
+                <th style="width: 6%; text-align: center;">#</th>
+                <th style="width: 48%; text-align: left;">Fee Item & Description</th>
+                <th style="width: 26%; text-align: left;">Category</th>
+                <th style="width: 20%; text-align: right;">Amount</th>
             </tr>
         </thead>
         <tbody>

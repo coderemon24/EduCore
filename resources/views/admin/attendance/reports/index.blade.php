@@ -22,6 +22,12 @@
         </div>
 
         <div class="flex items-center gap-2 flex-wrap">
+            <x-report-export-dropdown
+                :action="route('admin.attendance.reports.export')"
+                :params="request()->query()"
+                label="Export Register"
+            />
+
             <button type="button"
                     onclick="window.print()"
                     class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 transition cursor-pointer print:hidden">

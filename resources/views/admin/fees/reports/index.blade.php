@@ -22,6 +22,12 @@
         </div>
 
         <div class="flex items-center gap-2">
+            <x-report-export-dropdown
+                :action="route('admin.fees.reports.export')"
+                :params="request()->query()"
+                label="Export Report"
+            />
+
             <button type="button"
                     onclick="window.print()"
                     class="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition shadow-2xs cursor-pointer">
