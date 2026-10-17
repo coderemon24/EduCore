@@ -45,7 +45,7 @@
         <!-- Total Invoiced -->
         <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-2xs">
             <div class="flex items-center justify-between">
-                <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Total Invoiced</span>
+                <span class="text-xs font-medium text-slate-500">Total Invoiced</span>
                 <span class="rounded-lg bg-blue-50 p-2 text-blue-600">
                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l4-2 4 2 4-2 4 2z" />
@@ -55,13 +55,13 @@
             <div class="mt-3 flex items-baseline justify-between">
                 <span class="text-2xl font-bold font-mono tracking-tight text-slate-900">{{ number_format($totalInvoiced, 2) }}</span>
             </div>
-            <p class="text-[11px] text-slate-500 mt-1">Gross fees billed across students</p>
+            <p class="text-xs text-slate-500 mt-1">Gross fees billed across students</p>
         </div>
 
         <!-- Total Collected -->
         <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-2xs">
             <div class="flex items-center justify-between">
-                <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Total Collected</span>
+                <span class="text-xs font-medium text-slate-500">Total Collected</span>
                 <span class="rounded-lg bg-emerald-50 p-2 text-emerald-600">
                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -71,13 +71,13 @@
             <div class="mt-3 flex items-baseline justify-between">
                 <span class="text-2xl font-bold font-mono tracking-tight text-emerald-700">{{ number_format($totalCollected, 2) }}</span>
             </div>
-            <p class="text-[11px] text-slate-500 mt-1">Confirmed offline collections received</p>
+            <p class="text-xs text-slate-500 mt-1">Confirmed offline collections received</p>
         </div>
 
         <!-- Outstanding Dues -->
         <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-2xs">
             <div class="flex items-center justify-between">
-                <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Outstanding Dues</span>
+                <span class="text-xs font-medium text-slate-500">Outstanding Dues</span>
                 <span class="rounded-lg bg-amber-50 p-2 text-amber-600">
                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -87,13 +87,13 @@
             <div class="mt-3 flex items-baseline justify-between">
                 <span class="text-2xl font-bold font-mono tracking-tight text-amber-700">{{ number_format($totalOutstanding, 2) }}</span>
             </div>
-            <p class="text-[11px] text-slate-500 mt-1">Pending student balances to collect</p>
+            <p class="text-xs text-slate-500 mt-1">Pending student balances to collect</p>
         </div>
 
         <!-- Overdue Invoices -->
         <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-2xs">
             <div class="flex items-center justify-between">
-                <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Overdue Invoices</span>
+                <span class="text-xs font-medium text-slate-500">Overdue Invoices</span>
                 <span class="rounded-lg bg-rose-50 p-2 text-rose-600">
                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -104,7 +104,7 @@
                 <span class="text-2xl font-bold font-mono tracking-tight text-rose-700">{{ $overdueCount }}</span>
                 <span class="text-xs text-rose-600 font-medium">Action Needed</span>
             </div>
-            <p class="text-[11px] text-slate-500 mt-1">Invoices past assigned due date</p>
+            <p class="text-xs text-slate-500 mt-1">Invoices past assigned due date</p>
         </div>
     </div>
 
@@ -196,7 +196,7 @@
         <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse text-xs">
                 <thead>
-                    <tr class="border-b border-slate-200 bg-slate-50/75 text-slate-600 uppercase tracking-wider font-semibold">
+                    <tr class="border-b border-slate-200 bg-slate-50 text-slate-700 font-semibold">
                         <th class="px-4 py-3">Invoice #</th>
                         <th class="px-4 py-3">Student Details</th>
                         <th class="px-4 py-3">Class & Section</th>

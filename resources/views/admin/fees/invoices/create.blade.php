@@ -17,7 +17,7 @@
             </div>
             <h1 class="text-2xl font-bold tracking-tight text-slate-900">Issue Student Invoices</h1>
             <p class="text-xs text-slate-500 mt-0.5">
-                Generate monthly tuition and academic obligations for an entire class or a specific student.
+                Generate tuition and fee invoices for an entire class or an individual student.
             </p>
         </div>
 

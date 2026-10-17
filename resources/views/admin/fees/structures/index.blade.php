@@ -104,7 +104,7 @@
         <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse text-xs">
                 <thead>
-                    <tr class="border-b border-slate-200 bg-slate-50/75 text-slate-600 uppercase tracking-wider font-semibold">
+                    <tr class="border-b border-slate-200 bg-slate-50 text-slate-700 font-semibold">
                         <th class="px-4 py-3 w-12 text-center">#</th>
                         <th class="px-4 py-3">Fee Structure Name</th>
                         <th class="px-4 py-3">Category</th>
@@ -211,7 +211,7 @@
 </div>
 
 <!-- Create / Edit Fee Structure Modal -->
-<div id="structure-modal" class="fixed inset-0 z-50 hidden bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4">
+<div id="structure-modal" class="fixed inset-0 z-50 hidden bg-slate-900/50 flex items-center justify-center p-4">
     <div class="w-full max-w-lg rounded-xl border border-slate-200 bg-white shadow-xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
         <div class="flex items-center justify-between border-b border-slate-200 bg-slate-50/75 px-5 py-3.5">
             <h3 id="structure-modal-title" class="text-sm font-bold text-slate-900">Add Fee Structure</h3>

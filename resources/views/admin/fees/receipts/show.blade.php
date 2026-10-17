@@ -64,7 +64,7 @@
             </div>
 
             <div class="text-right">
-                <span class="inline-block px-3 py-1 rounded bg-slate-900 text-white text-xs font-bold uppercase tracking-wider">
+                <span class="inline-block px-3 py-1 rounded bg-slate-900 text-white text-xs font-semibold">
                     Official Fee Receipt
                 </span>
                 <div class="text-sm font-mono font-bold text-slate-800 mt-2">
@@ -78,7 +78,7 @@
 
         @if($payment->isReversed())
             <div class="rounded-lg border-2 border-dashed border-rose-400 bg-rose-50/75 p-3 text-center">
-                <span class="text-sm font-black uppercase tracking-widest text-rose-700 block">VOID / PAYMENT REVERSED</span>
+                <span class="text-xs font-bold uppercase text-rose-700 block">VOID / PAYMENT REVERSED</span>
                 <span class="text-xs text-rose-600 mt-0.5 block">Reversed on {{ $payment->reversed_at?->format('M d, Y H:i') }} • Reason: {{ $payment->reversal_reason }}</span>
             </div>
         @endif
@@ -86,7 +86,7 @@
         <!-- Student & Invoice Details Grid -->
         <div class="grid grid-cols-2 gap-4 rounded-lg bg-slate-50/75 p-4 border border-slate-100 text-xs">
             <div>
-                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Student Particulars</span>
+                <span class="text-xs font-semibold text-slate-500 block mb-1">Student Details</span>
                 <div class="font-bold text-slate-900 text-sm">{{ $payment->student?->first_name }} {{ $payment->student?->last_name }}</div>
                 <div class="font-mono text-slate-600 mt-0.5">Admission No: <span class="font-semibold text-slate-800">{{ $payment->student?->admission_number }}</span></div>
                 <div class="text-slate-600 mt-0.5">
@@ -98,7 +98,7 @@
             </div>
 
             <div class="text-right">
-                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Payment Reference</span>
+                <span class="text-xs font-semibold text-slate-500 block mb-1">Payment Details</span>
                 <div class="text-slate-700">Invoice: <span class="font-mono font-bold text-violet-700">{{ $payment->invoice?->invoice_number }}</span></div>
                 <div class="text-slate-700 mt-0.5">Method: <span class="font-semibold">{{ ucfirst(str_replace('_', ' ', $payment->payment_method)) }}</span></div>
                 @if($payment->transaction_reference || $payment->cheque_number)
@@ -106,7 +106,7 @@
                         Ref: {{ $payment->transaction_reference ?? 'Chq #'.$payment->cheque_number }}
                     </div>
                 @endif
-                <div class="text-[11px] text-slate-500 mt-0.5">Tendered By Cashier: {{ $payment->receiver?->name ?? 'Admin' }}</div>
+                <div class="text-xs text-slate-500 mt-0.5">Cashier: {{ $payment->receiver?->name ?? 'Admin' }}</div>
             </div>
         </div>
 
@@ -114,7 +114,7 @@
         <div class="overflow-hidden border border-slate-200 rounded-lg">
             <table class="w-full text-left border-collapse text-xs">
                 <thead>
-                    <tr class="border-b border-slate-200 bg-slate-100/75 text-slate-700 font-bold uppercase tracking-wider">
+                    <tr class="border-b border-slate-200 bg-slate-50 text-slate-700 font-semibold">
                         <th class="px-4 py-2.5 w-10 text-center">#</th>
                         <th class="px-4 py-2.5">Fee Category & Description</th>
                         <th class="px-4 py-2.5 text-right">Billed Amount</th>

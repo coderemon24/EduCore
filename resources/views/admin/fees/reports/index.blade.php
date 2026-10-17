@@ -93,9 +93,9 @@
         <!-- Collection Summary Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-2xs">
-                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Total Revenue Collected</span>
+                <span class="text-xs font-medium text-slate-500 block">Total Revenue Collected</span>
                 <span class="text-2xl font-bold font-mono text-emerald-700 block mt-1">{{ number_format($totalCollected, 2) }}</span>
-                <span class="text-[11px] text-slate-500 mt-1 block">{{ $totalTransactions }} settled {{ Str::plural('transaction', $totalTransactions) }}</span>
+                <span class="text-xs text-slate-500 mt-1 block">{{ $totalTransactions }} settled {{ Str::plural('transaction', $totalTransactions) }}</span>
             </div>
 
             <!-- Cash Collections -->
@@ -104,9 +104,9 @@
                 $cashTotal = $cashData ? (float) $cashData->total_amount : 0.00;
             @endphp
             <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-2xs">
-                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Cash Tendered</span>
+                <span class="text-xs font-medium text-slate-500 block">Cash Tendered</span>
                 <span class="text-2xl font-bold font-mono text-slate-900 block mt-1">{{ number_format($cashTotal, 2) }}</span>
-                <span class="text-[11px] text-slate-500 mt-1 block">{{ $cashData?->count ?? 0 }} cash entries</span>
+                <span class="text-xs text-slate-500 mt-1 block">{{ $cashData?->count ?? 0 }} cash entries</span>
             </div>
 
             <!-- Bank Transfers & Cheques -->
@@ -115,9 +115,9 @@
                 $bankCount = (int) (($methodBreakdown['bank_transfer']?->count ?? 0) + ($methodBreakdown['cheque']?->count ?? 0));
             @endphp
             <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-2xs">
-                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Bank Wire & Cheques</span>
+                <span class="text-xs font-medium text-slate-500 block">Bank Wire & Cheques</span>
                 <span class="text-2xl font-bold font-mono text-blue-700 block mt-1">{{ number_format($bankTotal, 2) }}</span>
-                <span class="text-[11px] text-slate-500 mt-1 block">{{ $bankCount }} deposits verified</span>
+                <span class="text-xs text-slate-500 mt-1 block">{{ $bankCount }} deposits verified</span>
             </div>
 
             <!-- POS Card & Other -->
@@ -126,23 +126,23 @@
                 $posCount = (int) (($methodBreakdown['pos_card']?->count ?? 0) + ($methodBreakdown['other']?->count ?? 0));
             @endphp
             <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-2xs">
-                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">POS Terminal / Card</span>
+                <span class="text-xs font-medium text-slate-500 block">POS Terminal / Card</span>
                 <span class="text-2xl font-bold font-mono text-violet-700 block mt-1">{{ number_format($posTotal, 2) }}</span>
-                <span class="text-[11px] text-slate-500 mt-1 block">{{ $posCount }} electronic receipts</span>
+                <span class="text-xs text-slate-500 mt-1 block">{{ $posCount }} electronic receipts</span>
             </div>
         </div>
 
         <!-- Detailed Transactions Register -->
         <div class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-2xs">
             <div class="px-5 py-3 border-b border-slate-100 bg-slate-50/75 flex items-center justify-between">
-                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700">Detailed Daily Collection Log</h3>
+                <h3 class="text-xs font-semibold text-slate-700">Daily Collection Log</h3>
                 <span class="text-xs text-slate-500">Period: {{ \Carbon\Carbon::parse($startDate)->format('M d') }} - {{ \Carbon\Carbon::parse($endDate)->format('M d, Y') }}</span>
             </div>
 
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse text-xs">
                     <thead>
-                        <tr class="border-b border-slate-200 bg-slate-50/50 text-slate-600 font-semibold uppercase tracking-wider">
+                        <tr class="border-b border-slate-200 bg-slate-50 text-slate-700 font-semibold">
                             <th class="px-4 py-2.5">Receipt #</th>
                             <th class="px-4 py-2.5">Date</th>
                             <th class="px-4 py-2.5">Student</th>
@@ -226,15 +226,15 @@
         <div class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-2xs">
             <div class="px-5 py-3 border-b border-slate-100 bg-slate-50/75 flex items-center justify-between">
                 <div>
-                    <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700">Class-Wise Recovery & Outstanding Dues Summary</h3>
-                    <p class="text-[11px] text-slate-400 mt-0.5">Session: {{ $currentYear?->name ?? 'Active Session' }}</p>
+                    <h3 class="text-xs font-semibold text-slate-700">Class Dues & Recovery Summary</h3>
+                    <p class="text-xs text-slate-500 mt-0.5">Session: {{ $currentYear?->name ?? 'Active Session' }}</p>
                 </div>
             </div>
 
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse text-xs">
                     <thead>
-                        <tr class="border-b border-slate-200 bg-slate-50/50 text-slate-600 font-semibold uppercase tracking-wider">
+                        <tr class="border-b border-slate-200 bg-slate-50 text-slate-700 font-semibold">
                             <th class="px-4 py-3">Academic Grade Level</th>
                             <th class="px-4 py-3 text-right">Billed Invoices</th>
                             <th class="px-4 py-3 text-right">Waivers</th>

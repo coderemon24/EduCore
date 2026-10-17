@@ -33,7 +33,7 @@
     <div class="rounded-xl border border-slate-200 bg-white p-5 shadow-2xs space-y-3">
         <div class="flex items-start justify-between pb-3 border-b border-slate-100">
             <div>
-                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Student Obligation</span>
+                <span class="text-xs font-semibold text-slate-500">Student Details</span>
                 <h2 class="text-base font-bold text-slate-900 mt-0.5">
                     {{ $invoice->student?->first_name }} {{ $invoice->student?->last_name }}
                 </h2>
@@ -43,23 +43,23 @@
             </div>
 
             <div class="text-right">
-                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Invoice Number</span>
+                <span class="text-xs font-semibold text-slate-500">Invoice Number</span>
                 <div class="font-mono font-bold text-violet-700 text-sm mt-0.5">{{ $invoice->invoice_number }}</div>
-                <div class="text-[11px] text-slate-400">Due: {{ $invoice->due_date->format('M d, Y') }}</div>
+                <div class="text-xs text-slate-400">Due: {{ $invoice->due_date->format('M d, Y') }}</div>
             </div>
         </div>
 
         <div class="grid grid-cols-3 gap-3 text-center pt-1">
-            <div class="p-2 rounded-lg bg-slate-50 border border-slate-100">
-                <span class="text-[10px] text-slate-500 block uppercase font-medium">Billed Subtotal</span>
+            <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-100">
+                <span class="text-xs text-slate-500 block font-medium">Billed Subtotal</span>
                 <span class="font-mono font-bold text-slate-900 text-sm">{{ number_format($invoice->subtotal, 2) }}</span>
             </div>
-            <div class="p-2 rounded-lg bg-slate-50 border border-slate-100">
-                <span class="text-[10px] text-slate-500 block uppercase font-medium">Already Paid</span>
+            <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-100">
+                <span class="text-xs text-slate-500 block font-medium">Already Paid</span>
                 <span class="font-mono font-bold text-emerald-700 text-sm">{{ number_format($invoice->paid_amount, 2) }}</span>
             </div>
-            <div class="p-2 rounded-lg bg-amber-50/75 border border-amber-200">
-                <span class="text-[10px] text-amber-700 block uppercase font-bold">Outstanding Due</span>
+            <div class="p-2.5 rounded-lg bg-amber-50/75 border border-amber-200">
+                <span class="text-xs text-amber-700 block font-semibold">Outstanding Due</span>
                 <span class="font-mono font-bold text-amber-900 text-base" id="due-balance-amount">{{ number_format($invoice->due_amount, 2) }}</span>
             </div>
         </div>
