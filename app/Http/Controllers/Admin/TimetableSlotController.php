@@ -64,13 +64,13 @@ class TimetableSlotController extends Controller
         $subjects = Subject::orderBy('name')->get();
 
         $daysOfWeek = [
+            'saturday' => 'Saturday',
+            'sunday' => 'Sunday',
             'monday' => 'Monday',
             'tuesday' => 'Tuesday',
             'wednesday' => 'Wednesday',
             'thursday' => 'Thursday',
             'friday' => 'Friday',
-            'saturday' => 'Saturday',
-            'sunday' => 'Sunday',
         ];
 
         $slotsGrouped = collect();

@@ -158,9 +158,16 @@
             </p>
         </div>
     @else
-        <!-- Schedule Columns: Monday to Friday / Saturday -->
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-6 items-start">
-            @foreach(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'] as $dayKey)
+        <!-- Schedule Columns: Saturday to Thursday -->
+        @php
+            $displayDays = ['saturday', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday'];
+            if (($slotsGrouped['friday'] ?? collect())->isNotEmpty()) {
+                $displayDays[] = 'friday';
+            }
+            $gridColsClass = count($displayDays) > 6 ? 'lg:grid-cols-7' : 'lg:grid-cols-6';
+        @endphp
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 {{ $gridColsClass }} items-start">
+            @foreach($displayDays as $dayKey)
                 @php
                     $daySlots = $slotsGrouped[$dayKey] ?? collect();
                     $dayTitle = $daysOfWeek[$dayKey];
