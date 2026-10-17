@@ -2,11 +2,15 @@
 
 use App\Http\Controllers\Admin\Academic\AcademicClassController;
 use App\Http\Controllers\Admin\Academic\AcademicGroupController;
+use App\Http\Controllers\Admin\Academic\AcademicHolidayController;
 use App\Http\Controllers\Admin\Academic\AcademicYearController;
 use App\Http\Controllers\Admin\Academic\ClassSubjectAssignmentController;
 use App\Http\Controllers\Admin\Academic\SectionController;
 use App\Http\Controllers\Admin\Academic\SubjectController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\Attendance\AttendanceReportController;
+use App\Http\Controllers\Admin\Attendance\StaffAttendanceController;
+use App\Http\Controllers\Admin\Attendance\StudentAttendanceController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SchoolController;
@@ -14,6 +18,7 @@ use App\Http\Controllers\Admin\SchoolSettingController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\StudentPromotionController;
+use App\Http\Controllers\Admin\TimetableSlotController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -95,6 +100,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::post('groups/{group}/restore', [AcademicGroupController::class, 'restore'])->name('groups.restore')->withTrashed();
             Route::delete('groups/{group}/force-delete', [AcademicGroupController::class, 'forceDelete'])->name('groups.force-delete')->withTrashed();
             Route::resource('groups', AcademicGroupController::class)->except(['show']);
+
+            // Academic Holidays & Non-Working Days
+            Route::get('holidays/check-date', [AcademicHolidayController::class, 'checkDate'])->name('holidays.check-date');
+            Route::resource('holidays', AcademicHolidayController::class)->except(['create', 'show', 'edit'])->middleware('school.permission:academic.holidays');
         });
 
         // Student Management (SIS)
@@ -154,6 +163,34 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/{role}/edit', [RoleController::class, 'edit'])->name('edit')->middleware('school.permission:roles.manage');
             Route::put('/{role}', [RoleController::class, 'update'])->name('update')->middleware('school.permission:roles.manage');
             Route::delete('/{role}', [RoleController::class, 'destroy'])->name('destroy')->middleware('school.permission:roles.manage');
+        });
+
+        // Attendance Management
+        Route::prefix('attendance')->name('attendance.')->group(function () {
+            // Student Attendance
+            Route::get('students', [StudentAttendanceController::class, 'index'])->name('students.index')->middleware('school.permission:attendance.view');
+            Route::post('students', [StudentAttendanceController::class, 'store'])->name('students.store')->middleware('school.permission:attendance.students.mark');
+            Route::put('students/{attendance}', [StudentAttendanceController::class, 'update'])->name('students.update')->middleware('school.permission:attendance.students.mark');
+
+            // Staff Attendance
+            Route::get('staff', [StaffAttendanceController::class, 'index'])->name('staff.index')->middleware('school.permission:attendance.view');
+            Route::post('staff', [StaffAttendanceController::class, 'store'])->name('staff.store')->middleware('school.permission:attendance.staff.mark');
+
+            // Attendance Reports & Register
+            Route::get('reports', [AttendanceReportController::class, 'index'])->name('reports.index')->middleware('school.permission:attendance.reports');
+        });
+
+        // Class Timetables & Schedules
+        Route::prefix('timetables')->name('timetables.')->group(function () {
+            Route::get('/', [TimetableSlotController::class, 'index'])->name('index')->middleware('school.permission:timetables.view');
+            Route::post('/', [TimetableSlotController::class, 'store'])->name('store')->middleware('school.permission:timetables.manage');
+            Route::put('/{slot}', [TimetableSlotController::class, 'update'])->name('update')->middleware('school.permission:timetables.manage');
+            Route::delete('/{slot}', [TimetableSlotController::class, 'destroy'])->name('destroy')->middleware('school.permission:timetables.manage');
+            Route::get('/teachers', function () {
+                request()->merge(['view_mode' => 'teacher']);
+
+                return app(TimetableSlotController::class)->index(request());
+            })->name('teachers')->middleware('school.permission:timetables.view');
         });
     });
 });

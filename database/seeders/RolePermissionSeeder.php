@@ -39,6 +39,19 @@ class RolePermissionSeeder extends Seeder
             ['name' => 'Manage Subjects', 'slug' => 'academic.subjects', 'group' => 'academic', 'description' => 'Catalog curriculum courses and subjects.'],
             ['name' => 'Manage Assignments', 'slug' => 'academic.assignments', 'group' => 'academic', 'description' => 'Assign subject instructors and marks curriculum.'],
 
+            // Attendance Management
+            ['name' => 'View Attendance', 'slug' => 'attendance.view', 'group' => 'attendance', 'description' => 'View student and staff attendance records and registers.'],
+            ['name' => 'Mark Student Attendance', 'slug' => 'attendance.students.mark', 'group' => 'attendance', 'description' => 'Record and modify daily student roll-call.'],
+            ['name' => 'Mark Staff Attendance', 'slug' => 'attendance.staff.mark', 'group' => 'attendance', 'description' => 'Record faculty and staff daily attendance.'],
+            ['name' => 'View Attendance Reports', 'slug' => 'attendance.reports', 'group' => 'attendance', 'description' => 'Generate monthly attendance register and reports.'],
+
+            // Timetables & Schedules
+            ['name' => 'View Timetables', 'slug' => 'timetables.view', 'group' => 'timetables', 'description' => 'View weekly class timetables and teacher schedules.'],
+            ['name' => 'Manage Timetables', 'slug' => 'timetables.manage', 'group' => 'timetables', 'description' => 'Create, edit, and schedule timetable slots.'],
+
+            // Academic Holidays & Calendar
+            ['name' => 'Manage Holidays', 'slug' => 'academic.holidays', 'group' => 'academic', 'description' => 'Configure school holidays and non-working days.'],
+
             // Roles & Permissions
             ['name' => 'View Roles', 'slug' => 'roles.view', 'group' => 'roles', 'description' => 'View institutional access roles and permission matrices.'],
             ['name' => 'Manage Roles', 'slug' => 'roles.manage', 'group' => 'roles', 'description' => 'Create and customize roles and grant permission sets.'],
@@ -59,6 +72,9 @@ class RolePermissionSeeder extends Seeder
             'students.view',
             'staff.view',
             'academic.view',
+            'attendance.view',
+            'attendance.students.mark',
+            'timetables.view',
         ])->pluck('id')->toArray();
 
         $schools = School::all();

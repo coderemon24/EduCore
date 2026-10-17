@@ -8,7 +8,7 @@
             <!-- Brand Logo -->
             <img src="{{ $currentSchool?->logo_url ?? asset('admin-assets/images/laravel-school-transparent.png') }}"
                  alt="Laravel School Management"
-                 class="h-9 w-auto object-contain shrink-0 transition-transform duration-300 hover:scale-105">
+                 class="h-9 w-auto object-contain shrink-0">
             <div class="sidebar-brand-text flex flex-col truncate">
                 @if(isset($isGlobalSuperAdmin) && $isGlobalSuperAdmin)
                     <span class="text-xs font-bold uppercase tracking-wider text-slate-800">EduCore Platform</span>
@@ -68,7 +68,7 @@
                 <li>
                     <a href="{{ $schoolTargetRoute }}"
                        class="group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-150 cursor-pointer {{ $isSchoolsActive ? 'bg-violet-50 text-violet-700 font-semibold shadow-2xs border-l-2 border-violet-600 pl-2.5' : 'text-slate-600 hover:bg-slate-100/80 hover:text-slate-900' }}">
-                        <svg class="h-4.5 w-4.5 shrink-0 transition-transform duration-200 group-hover:scale-105 {{ $isSchoolsActive ? 'text-violet-600' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg class="h-4.5 w-4.5 shrink-0 {{ $isSchoolsActive ? 'text-violet-600' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                         </svg>
                         <span class="nav-label truncate text-xs font-semibold tracking-tight">Schools</span>
@@ -97,7 +97,7 @@
                             aria-expanded="{{ $isStudentsActive ? 'true' : 'false' }}"
                             class="group w-full flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-all duration-150 cursor-pointer {{ $isStudentsActive ? 'bg-violet-50 text-violet-800 font-semibold shadow-2xs border-l-2 border-violet-600 pl-2.5' : 'text-slate-600 hover:bg-slate-100/80 hover:text-slate-900' }}">
                         <div class="flex items-center gap-3 min-w-0">
-                            <svg class="h-4.5 w-4.5 shrink-0 transition-transform duration-200 group-hover:scale-105 {{ $isStudentsActive ? 'text-violet-600' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg class="h-4.5 w-4.5 shrink-0 {{ $isStudentsActive ? 'text-violet-600' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 14c4.418 0 8 1.79 8 4v2H4v-2c0-2.21 3.582-4 8-4zm0-2a5 5 0 100-10 5 5 0 000 10z" />
                             </svg>
                             <span class="nav-label truncate text-xs font-semibold tracking-tight">Student Management</span>
@@ -152,7 +152,7 @@
                 <li>
                     <a href="{{ route('admin.teachers.index') }}"
                        class="group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-150 cursor-pointer {{ $isTeachersActive ? 'bg-violet-50 text-violet-700 font-semibold shadow-2xs border-l-2 border-violet-600 pl-2.5' : 'text-slate-600 hover:bg-slate-100/80 hover:text-slate-900' }}">
-                        <svg class="h-4.5 w-4.5 shrink-0 transition-transform duration-200 group-hover:scale-105 {{ $isTeachersActive ? 'text-violet-600' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg class="h-4.5 w-4.5 shrink-0 {{ $isTeachersActive ? 'text-violet-600' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                         </svg>
                         <span class="nav-label truncate text-xs font-semibold tracking-tight">Teachers & Faculty</span>
@@ -171,7 +171,7 @@
                 <li>
                     <a href="{{ route('admin.staff.index') }}"
                        class="group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-150 cursor-pointer {{ $isStaffActive ? 'bg-violet-50 text-violet-700 font-semibold shadow-2xs border-l-2 border-violet-600 pl-2.5' : 'text-slate-600 hover:bg-slate-100/80 hover:text-slate-900' }}">
-                        <svg class="h-4.5 w-4.5 shrink-0 transition-transform duration-200 group-hover:scale-105 {{ $isStaffActive ? 'text-violet-600' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg class="h-4.5 w-4.5 shrink-0 {{ $isStaffActive ? 'text-violet-600' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
                         <span class="nav-label truncate text-xs font-semibold tracking-tight">Staff Directory</span>
@@ -219,7 +219,7 @@
                             aria-expanded="{{ $isAcademicActive ? 'true' : 'false' }}"
                             class="group w-full flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-all duration-150 cursor-pointer {{ $isAcademicActive ? 'bg-violet-50 text-violet-800 font-semibold shadow-2xs border-l-2 border-violet-600 pl-2.5' : 'text-slate-600 hover:bg-slate-100/80 hover:text-slate-900' }}">
                         <div class="flex items-center gap-3 min-w-0">
-                            <svg class="h-4.5 w-4.5 shrink-0 transition-transform duration-200 group-hover:scale-105 {{ $isAcademicActive ? 'text-violet-600' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg class="h-4.5 w-4.5 shrink-0 {{ $isAcademicActive ? 'text-violet-600' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5" />
                             </svg>
                             <span class="nav-label truncate text-xs font-semibold tracking-tight">Academic Structure</span>
@@ -288,24 +288,125 @@
                                 <span class="truncate">Groups / Streams</span>
                             </a>
                         </li>
+                        <!-- Academic Holidays -->
+                        <li>
+                            <a href="{{ Route::has('admin.academic.holidays.index') ? route('admin.academic.holidays.index') : url('/admin/academic/holidays') }}"
+                               class="group relative flex items-center gap-2.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer {{ request()->routeIs('admin.academic.holidays.*') ? 'bg-violet-100/70 text-violet-800 font-bold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
+                                <span class="h-1.5 w-1.5 rounded-full {{ request()->routeIs('admin.academic.holidays.*') ? 'bg-violet-600' : 'bg-slate-300 group-hover:bg-slate-400' }}"></span>
+                                <span class="truncate">Holidays & Calendar</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
-                <!-- Attendance -->
-                <li>
-                    <a href="javascript:void(0)"
-                       onclick="window.Swal && Swal.fire({title: 'Daily Attendance', text: 'Daily roll-call and student attendance.', icon: 'info', confirmButtonColor: '#7c3aed'});"
-                       class="group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-slate-900 cursor-pointer">
-                        <svg class="h-5 w-5 shrink-0 text-slate-400 group-hover:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                <!-- Attendance Management Collapsible Dropdown -->
+                @php
+                    $isAttendanceActive = request()->routeIs('admin.attendance.*');
+                @endphp
+                <li class="relative group/dropdown" id="sidebar-attendance-dropdown-wrapper">
+                    <button type="button"
+                            id="sidebar-attendance-toggle"
+                            onclick="window.toggleAttendanceSidebarDropdown(event)"
+                            aria-expanded="{{ $isAttendanceActive ? 'true' : 'false' }}"
+                            class="group w-full flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-all duration-150 cursor-pointer {{ $isAttendanceActive ? 'bg-violet-50 text-violet-800 font-semibold shadow-2xs border-l-2 border-violet-600 pl-2.5' : 'text-slate-600 hover:bg-slate-100/80 hover:text-slate-900' }}">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <svg class="h-4.5 w-4.5 shrink-0 {{ $isAttendanceActive ? 'text-violet-600' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                            </svg>
+                            <span class="nav-label truncate text-xs font-semibold tracking-tight">Attendance</span>
+                        </div>
+                        <svg id="attendance-dropdown-chevron"
+                             class="nav-chevron h-3.5 w-3.5 shrink-0 text-slate-400 transition-transform duration-200 {{ $isAttendanceActive ? 'rotate-180 text-violet-600' : 'rotate-0' }}"
+                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
-                        <span class="nav-label truncate text-sm">Attendance</span>
 
+                        <!-- Floating Tooltip for collapsed mode -->
                         <span class="nav-item-tooltip absolute left-full top-1/2 -translate-y-1/2 ml-3 px-3 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md shadow-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
-                            Attendance
+                            Attendance Records
                             <span class="absolute left-[-4px] top-1/2 -translate-y-1/2 border-y-4 border-y-transparent border-r-4 border-r-slate-900"></span>
                         </span>
-                    </a>
+                    </button>
+
+                    <!-- Submenu Accordion -->
+                    <ul id="sidebar-attendance-submenu"
+                        class="space-y-0.5 mt-1 pl-4 pr-1 {{ $isAttendanceActive ? 'block' : 'hidden' }}">
+                        <!-- Student Attendance -->
+                        <li>
+                            <a href="{{ route('admin.attendance.students.index') }}"
+                               class="group relative flex items-center gap-2.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer {{ request()->routeIs('admin.attendance.students.*') ? 'bg-violet-100/70 text-violet-800 font-bold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
+                                <span class="h-1.5 w-1.5 rounded-full {{ request()->routeIs('admin.attendance.students.*') ? 'bg-violet-600' : 'bg-slate-300 group-hover:bg-slate-400' }}"></span>
+                                <span class="truncate">Student Roll-Call</span>
+                            </a>
+                        </li>
+                        <!-- Staff Attendance -->
+                        <li>
+                            <a href="{{ route('admin.attendance.staff.index') }}"
+                               class="group relative flex items-center gap-2.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer {{ request()->routeIs('admin.attendance.staff.*') ? 'bg-violet-100/70 text-violet-800 font-bold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
+                                <span class="h-1.5 w-1.5 rounded-full {{ request()->routeIs('admin.attendance.staff.*') ? 'bg-violet-600' : 'bg-slate-300 group-hover:bg-slate-400' }}"></span>
+                                <span class="truncate">Staff Attendance</span>
+                            </a>
+                        </li>
+                        <!-- Monthly Register & Reports -->
+                        <li>
+                            <a href="{{ route('admin.attendance.reports.index') }}"
+                               class="group relative flex items-center gap-2.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer {{ request()->routeIs('admin.attendance.reports.*') ? 'bg-violet-100/70 text-violet-800 font-bold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
+                                <span class="h-1.5 w-1.5 rounded-full {{ request()->routeIs('admin.attendance.reports.*') ? 'bg-violet-600' : 'bg-slate-300 group-hover:bg-slate-400' }}"></span>
+                                <span class="truncate">Monthly Register</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Timetable & Schedules Collapsible Dropdown -->
+                @php
+                    $isTimetableActive = request()->routeIs('admin.timetables.*');
+                @endphp
+                <li class="relative group/dropdown" id="sidebar-timetable-dropdown-wrapper">
+                    <button type="button"
+                            id="sidebar-timetable-toggle"
+                            onclick="window.toggleTimetableSidebarDropdown(event)"
+                            aria-expanded="{{ $isTimetableActive ? 'true' : 'false' }}"
+                            class="group w-full flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-all duration-150 cursor-pointer {{ $isTimetableActive ? 'bg-violet-50 text-violet-800 font-semibold shadow-2xs border-l-2 border-violet-600 pl-2.5' : 'text-slate-600 hover:bg-slate-100/80 hover:text-slate-900' }}">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <svg class="h-4.5 w-4.5 shrink-0 {{ $isTimetableActive ? 'text-violet-600' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <span class="nav-label truncate text-xs font-semibold tracking-tight">Timetables</span>
+                        </div>
+                        <svg id="timetable-dropdown-chevron"
+                             class="nav-chevron h-3.5 w-3.5 shrink-0 text-slate-400 transition-transform duration-200 {{ $isTimetableActive ? 'rotate-180 text-violet-600' : 'rotate-0' }}"
+                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+
+                        <!-- Floating Tooltip for collapsed mode -->
+                        <span class="nav-item-tooltip absolute left-full top-1/2 -translate-y-1/2 ml-3 px-3 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md shadow-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
+                            Class Schedules
+                            <span class="absolute left-[-4px] top-1/2 -translate-y-1/2 border-y-4 border-y-transparent border-r-4 border-r-slate-900"></span>
+                        </span>
+                    </button>
+
+                    <!-- Submenu Accordion -->
+                    <ul id="sidebar-timetable-submenu"
+                        class="space-y-0.5 mt-1 pl-4 pr-1 {{ $isTimetableActive ? 'block' : 'hidden' }}">
+                        <!-- Class Timetable -->
+                        <li>
+                            <a href="{{ route('admin.timetables.index') }}"
+                               class="group relative flex items-center gap-2.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer {{ request()->routeIs('admin.timetables.index') && request('view_mode') !== 'teacher' ? 'bg-violet-100/70 text-violet-800 font-bold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
+                                <span class="h-1.5 w-1.5 rounded-full {{ request()->routeIs('admin.timetables.index') && request('view_mode') !== 'teacher' ? 'bg-violet-600' : 'bg-slate-300 group-hover:bg-slate-400' }}"></span>
+                                <span class="truncate">Class Timetables</span>
+                            </a>
+                        </li>
+                        <!-- Teacher Schedule -->
+                        <li>
+                            <a href="{{ route('admin.timetables.teachers') }}"
+                               class="group relative flex items-center gap-2.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer {{ request()->routeIs('admin.timetables.teachers') || (request()->routeIs('admin.timetables.index') && request('view_mode') === 'teacher') ? 'bg-violet-100/70 text-violet-800 font-bold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
+                                <span class="h-1.5 w-1.5 rounded-full {{ request()->routeIs('admin.timetables.teachers') || (request()->routeIs('admin.timetables.index') && request('view_mode') === 'teacher') ? 'bg-violet-600' : 'bg-slate-300 group-hover:bg-slate-400' }}"></span>
+                                <span class="truncate">Faculty Schedules</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <!-- Examinations -->
@@ -376,7 +477,7 @@
                 <li>
                     <a href="{{ route('admin.roles.index') }}"
                        class="group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-150 cursor-pointer {{ $isRolesActive ? 'bg-violet-50 text-violet-700 font-semibold shadow-2xs border-l-2 border-violet-600 pl-2.5' : 'text-slate-600 hover:bg-slate-100/80 hover:text-slate-900' }}">
-                        <svg class="h-4.5 w-4.5 shrink-0 transition-transform duration-200 group-hover:scale-105 {{ $isRolesActive ? 'text-violet-600' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg class="h-4.5 w-4.5 shrink-0 {{ $isRolesActive ? 'text-violet-600' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                         </svg>
                         <span class="nav-label truncate text-xs font-semibold tracking-tight">Roles & Permissions</span>
@@ -493,6 +594,96 @@
             if (!submenu) return;
 
             // If sidebar is collapsed in icon mode, expand to full width
+            if (body && body.classList.contains('sidebar-collapsed')) {
+                body.classList.remove('sidebar-collapsed');
+                if (sidebar) {
+                    sidebar.classList.remove('w-20');
+                    sidebar.classList.add('w-64');
+                }
+                try { localStorage.setItem('educore_sidebar_collapsed', 'false'); } catch (_) {}
+            }
+
+            var isHidden = submenu.classList.contains('hidden') || submenu.style.display === 'none';
+
+            if (isHidden) {
+                submenu.classList.remove('hidden');
+                submenu.classList.add('block');
+                submenu.style.display = 'block';
+                if (chevron) {
+                    chevron.classList.add('rotate-180');
+                    chevron.classList.remove('rotate-0');
+                }
+                if (toggle) toggle.setAttribute('aria-expanded', 'true');
+            } else {
+                submenu.classList.add('hidden');
+                submenu.classList.remove('block');
+                submenu.style.display = 'none';
+                if (chevron) {
+                    chevron.classList.remove('rotate-180');
+                    chevron.classList.add('rotate-0');
+                }
+                if (toggle) toggle.setAttribute('aria-expanded', 'false');
+            }
+        };
+
+        window.toggleAttendanceSidebarDropdown = function(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            var body = document.getElementById('admin-body') || document.body;
+            var sidebar = document.getElementById('admin-sidebar');
+            var toggle = document.getElementById('sidebar-attendance-toggle');
+            var submenu = document.getElementById('sidebar-attendance-submenu');
+            var chevron = document.getElementById('attendance-dropdown-chevron');
+
+            if (!submenu) return;
+
+            if (body && body.classList.contains('sidebar-collapsed')) {
+                body.classList.remove('sidebar-collapsed');
+                if (sidebar) {
+                    sidebar.classList.remove('w-20');
+                    sidebar.classList.add('w-64');
+                }
+                try { localStorage.setItem('educore_sidebar_collapsed', 'false'); } catch (_) {}
+            }
+
+            var isHidden = submenu.classList.contains('hidden') || submenu.style.display === 'none';
+
+            if (isHidden) {
+                submenu.classList.remove('hidden');
+                submenu.classList.add('block');
+                submenu.style.display = 'block';
+                if (chevron) {
+                    chevron.classList.add('rotate-180');
+                    chevron.classList.remove('rotate-0');
+                }
+                if (toggle) toggle.setAttribute('aria-expanded', 'true');
+            } else {
+                submenu.classList.add('hidden');
+                submenu.classList.remove('block');
+                submenu.style.display = 'none';
+                if (chevron) {
+                    chevron.classList.remove('rotate-180');
+                    chevron.classList.add('rotate-0');
+                }
+                if (toggle) toggle.setAttribute('aria-expanded', 'false');
+            }
+        };
+
+        window.toggleTimetableSidebarDropdown = function(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            var body = document.getElementById('admin-body') || document.body;
+            var sidebar = document.getElementById('admin-sidebar');
+            var toggle = document.getElementById('sidebar-timetable-toggle');
+            var submenu = document.getElementById('sidebar-timetable-submenu');
+            var chevron = document.getElementById('timetable-dropdown-chevron');
+
+            if (!submenu) return;
+
             if (body && body.classList.contains('sidebar-collapsed')) {
                 body.classList.remove('sidebar-collapsed');
                 if (sidebar) {

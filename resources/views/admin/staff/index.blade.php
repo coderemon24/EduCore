@@ -82,7 +82,7 @@
                             </svg>
                         @endif
                         <span>{{ $tab['label'] }}</span>
-                        <span class="rounded-full px-1.5 py-0.2 text-[10px] font-bold {{ $isSelected ? 'bg-black/20 text-white' : ($isTrashTab ? 'bg-rose-200 text-rose-800' : 'bg-slate-200 text-slate-700') }}">
+                        <span class="rounded px-1.5 py-0.5 text-[10px] font-semibold {{ $isSelected ? 'bg-black/20 text-white' : ($isTrashTab ? 'bg-rose-200 text-rose-800' : 'bg-slate-200 text-slate-700') }}">
                             {{ $tab['count'] }}
                         </span>
                     </a>
@@ -218,7 +218,7 @@
                                     @if($staff->avatar_url)
                                         <img src="{{ $staff->avatar_url }}" alt="{{ $staff->full_name }}" class="h-9 w-9 rounded-full object-cover shrink-0 border border-slate-200">
                                     @else
-                                        <div class="h-9 w-9 rounded-full bg-violet-100 text-violet-700 font-bold text-xs flex items-center justify-center shrink-0 border border-violet-200">
+                                        <div class="h-9 w-9 rounded-md bg-slate-100 text-slate-700 font-semibold text-xs flex items-center justify-center shrink-0 border border-slate-200">
                                             {{ $initials }}
                                         </div>
                                     @endif
@@ -247,13 +247,11 @@
                             <!-- Employment Type -->
                             <td class="py-3 px-4 whitespace-nowrap">
                                 @if($staff->is_teaching)
-                                    <span class="inline-flex items-center gap-1 rounded-full border border-violet-200 bg-violet-50 px-2 py-0.5 text-[10px] font-bold text-violet-700">
-                                        <span class="h-1.5 w-1.5 rounded-full bg-violet-600"></span>
+                                    <span class="inline-flex items-center rounded border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-medium text-slate-700">
                                         Teaching Faculty
                                     </span>
                                 @else
-                                    <span class="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[10px] font-bold text-slate-600">
-                                        <span class="h-1.5 w-1.5 rounded-full bg-slate-400"></span>
+                                    <span class="inline-flex items-center rounded border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-medium text-slate-600">
                                         Non-Teaching
                                     </span>
                                 @endif
@@ -288,22 +286,19 @@
                             <!-- Status Badge -->
                             <td class="py-3 px-4 whitespace-nowrap">
                                 @if($staff->trashed())
-                                    <span class="inline-flex items-center rounded-full border border-rose-200 bg-rose-50 px-2 py-0.5 text-[10px] font-bold text-rose-700">
-                                        Trashed
+                                    <span class="inline-flex items-center rounded border border-rose-200 bg-rose-50 px-2 py-0.5 text-[11px] font-medium text-rose-700">
+                                        Archived
                                     </span>
                                 @elseif($staff->status === 'active')
-                                    <span class="inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[10px] font-bold text-emerald-700">
-                                        <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                                    <span class="inline-flex items-center rounded border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[11px] font-medium text-emerald-700">
                                         Active
                                     </span>
                                 @elseif($staff->status === 'inactive')
-                                    <span class="inline-flex items-center gap-1 rounded-full border border-amber-200 bg-amber-50 px-2 py-0.5 text-[10px] font-bold text-amber-700">
-                                        <span class="h-1.5 w-1.5 rounded-full bg-amber-500"></span>
+                                    <span class="inline-flex items-center rounded border border-amber-200 bg-amber-50 px-2 py-0.5 text-[11px] font-medium text-amber-700">
                                         Inactive
                                     </span>
                                 @elseif($staff->status === 'suspended')
-                                    <span class="inline-flex items-center gap-1 rounded-full border border-rose-200 bg-rose-50 px-2 py-0.5 text-[10px] font-bold text-rose-700">
-                                        <span class="h-1.5 w-1.5 rounded-full bg-rose-500"></span>
+                                    <span class="inline-flex items-center rounded border border-rose-200 bg-rose-50 px-2 py-0.5 text-[11px] font-medium text-rose-700">
                                         Suspended
                                     </span>
                                 @endif
