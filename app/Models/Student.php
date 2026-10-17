@@ -126,4 +126,20 @@ class Student extends Model
         return $this->guardians()->wherePivot('is_primary', true)->first()
             ?? $this->guardians()->first();
     }
+
+    /**
+     * Invoices billed to this student.
+     */
+    public function feeInvoices(): HasMany
+    {
+        return $this->hasMany(FeeInvoice::class);
+    }
+
+    /**
+     * Payments made for this student.
+     */
+    public function feePayments(): HasMany
+    {
+        return $this->hasMany(FeePayment::class);
+    }
 }

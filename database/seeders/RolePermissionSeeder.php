@@ -58,6 +58,15 @@ class RolePermissionSeeder extends Seeder
 
             // Institution Settings
             ['name' => 'Manage Institution Settings', 'slug' => 'settings.school.edit', 'group' => 'settings', 'description' => 'Modify school profile, contact information, and logo.'],
+
+            // Fees & Accounts Management
+            ['name' => 'View Fees & Accounts', 'slug' => 'fees.view', 'group' => 'fees', 'description' => 'View invoices, dues directory, fee structures, and collection history.'],
+            ['name' => 'Manage Fee Structures', 'slug' => 'fees.structure.manage', 'group' => 'fees', 'description' => 'Create and configure fee categories and class fee rates.'],
+            ['name' => 'Generate Invoices', 'slug' => 'fees.invoice.create', 'group' => 'fees', 'description' => 'Issue single and bulk student fee invoices.'],
+            ['name' => 'Collect Fee Payments', 'slug' => 'fees.collect', 'group' => 'fees', 'description' => 'Accept offline fee payments and issue receipts.'],
+            ['name' => 'Authorize Fee Discounts', 'slug' => 'fees.discount', 'group' => 'fees', 'description' => 'Apply authorized fee discounts and waivers to invoices.'],
+            ['name' => 'Reverse Payments', 'slug' => 'fees.reverse', 'group' => 'fees', 'description' => 'Authorize and execute safe payment reversals and voids.'],
+            ['name' => 'View Financial Reports', 'slug' => 'fees.reports', 'group' => 'fees', 'description' => 'Access daily collection registers, method summaries, and dues reports.'],
         ];
 
         foreach ($permissions as $permData) {
@@ -68,6 +77,17 @@ class RolePermissionSeeder extends Seeder
         }
 
         $allPermissionIds = Permission::pluck('id')->toArray();
+        $accountantPermissionIds = Permission::whereIn('slug', [
+            'students.view',
+            'staff.view',
+            'fees.view',
+            'fees.structure.manage',
+            'fees.invoice.create',
+            'fees.collect',
+            'fees.discount',
+            'fees.reverse',
+            'fees.reports',
+        ])->pluck('id')->toArray();
         $teacherPermissionIds = Permission::whereIn('slug', [
             'students.view',
             'staff.view',
@@ -111,9 +131,7 @@ class RolePermissionSeeder extends Seeder
                     'is_system' => true,
                 ]
             );
-            $accountantRole->permissions()->sync(
-                Permission::whereIn('slug', ['students.view', 'staff.view'])->pluck('id')->toArray()
-            );
+            $accountantRole->permissions()->sync($accountantPermissionIds);
 
             // 4. Staff Member Role
             $staffRole = Role::updateOrCreate(

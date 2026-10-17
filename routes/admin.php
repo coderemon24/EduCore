@@ -12,6 +12,11 @@ use App\Http\Controllers\Admin\Attendance\AttendanceReportController;
 use App\Http\Controllers\Admin\Attendance\StaffAttendanceController;
 use App\Http\Controllers\Admin\Attendance\StudentAttendanceController;
 use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\Fee\FeeCategoryController;
+use App\Http\Controllers\Admin\Fee\FeeInvoiceController;
+use App\Http\Controllers\Admin\Fee\FeePaymentController;
+use App\Http\Controllers\Admin\Fee\FeeReportController;
+use App\Http\Controllers\Admin\Fee\FeeStructureController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SchoolController;
 use App\Http\Controllers\Admin\SchoolSettingController;
@@ -191,6 +196,34 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
                 return app(TimetableSlotController::class)->index(request());
             })->name('teachers')->middleware('school.permission:timetables.view');
+        });
+
+        // Fees & Accounts Management
+        Route::prefix('fees')->name('fees.')->group(function () {
+            // Fee Categories
+            Route::resource('categories', FeeCategoryController::class)
+                ->except(['create', 'show', 'edit'])
+                ->middleware('school.permission:fees.structure.manage');
+
+            // Fee Structures
+            Route::get('structures/api/by-class', [FeeStructureController::class, 'getByClass'])->name('structures.by-class');
+            Route::resource('structures', FeeStructureController::class)
+                ->except(['create', 'show', 'edit'])
+                ->middleware('school.permission:fees.structure.manage');
+
+            // Invoices & Dues
+            Route::post('invoices/{invoice}/waiver', [FeeInvoiceController::class, 'applyWaiver'])->name('invoices.waiver')->middleware('school.permission:fees.discount');
+            Route::post('invoices/{invoice}/void', [FeeInvoiceController::class, 'void'])->name('invoices.void')->middleware('school.permission:fees.reverse');
+            Route::resource('invoices', FeeInvoiceController::class)->only(['index', 'create', 'store', 'show'])->middleware('school.permission:fees.view');
+
+            // Payment Collection & Receipts
+            Route::get('payments/collect', [FeePaymentController::class, 'create'])->name('payments.collect')->middleware('school.permission:fees.collect');
+            Route::post('payments', [FeePaymentController::class, 'store'])->name('payments.store')->middleware('school.permission:fees.collect');
+            Route::post('payments/{payment}/reverse', [FeePaymentController::class, 'reverse'])->name('payments.reverse')->middleware('school.permission:fees.reverse');
+            Route::get('receipts/{payment}', [FeePaymentController::class, 'show'])->name('receipts.show')->middleware('school.permission:fees.view');
+
+            // Financial Reports
+            Route::get('reports', [FeeReportController::class, 'index'])->name('reports.index')->middleware('school.permission:fees.reports');
         });
     });
 });
