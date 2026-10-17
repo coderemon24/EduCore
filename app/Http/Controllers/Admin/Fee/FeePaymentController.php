@@ -82,6 +82,7 @@ class FeePaymentController extends Controller
     public function show(FeePayment $payment): View
     {
         $payment->load([
+            'school',
             'invoice.items.feeCategory',
             'invoice.academicClass',
             'invoice.section',

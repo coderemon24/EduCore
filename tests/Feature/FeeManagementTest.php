@@ -486,6 +486,42 @@ class FeeManagementTest extends TestCase
         $reportsRes = $this->actingAs($this->accountant)
             ->get(route('admin.fees.reports.index'));
         $reportsRes->assertStatus(200);
+
+        // 6. Receipt View rendered by School Accountant and Super Admin
+        $paymentService = app(FeePaymentService::class);
+        $invoiceGenService = app(InvoiceGenerationService::class);
+        $invoice = $invoiceGenService->createSingleInvoice([
+            'academic_year_id' => $this->academicYear->id,
+            'academic_class_id' => $this->academicClass->id,
+            'student_id' => $this->student->id,
+            'title' => 'Term 1 Tuition View Test',
+            'issue_date' => '2026-02-01',
+            'due_date' => '2026-02-15',
+            'items' => [
+                [
+                    'fee_category_id' => $this->tuitionCategory->id,
+                    'name' => 'Tuition Fee',
+                    'amount' => 100.00,
+                ],
+            ],
+        ], $this->school->id, $this->accountant->id);
+
+        $payment = $paymentService->recordPayment([
+            'fee_invoice_id' => $invoice->id,
+            'amount' => 50.00,
+            'payment_method' => 'cash',
+        ], $this->school->id, $this->accountant->id);
+
+        $receiptRes = $this->actingAs($this->accountant)
+            ->get(route('admin.fees.receipts.show', $payment));
+        $receiptRes->assertStatus(200);
+        $receiptRes->assertSee($payment->receipt_number);
+
+        // 7. Receipt View rendered by Super Admin (where currentSchool in session is null)
+        $superAdminReceiptRes = $this->actingAs($this->superAdmin, 'admin')
+            ->get(route('admin.fees.receipts.show', $payment));
+        $superAdminReceiptRes->assertStatus(200);
+        $superAdminReceiptRes->assertSee($payment->receipt_number);
     }
 
     /**

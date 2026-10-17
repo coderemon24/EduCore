@@ -40,21 +40,25 @@
     <!-- Official Printable Voucher Container -->
     <div id="printable-voucher" class="rounded-xl border border-slate-200 bg-white p-8 shadow-sm print:border-none print:shadow-none print:p-0 space-y-6">
 
+        @php
+            $receiptSchool = $payment->school ?? $currentSchool ?? \App\Models\School::find($payment->school_id) ?? \App\Models\School::first();
+        @endphp
+
         <!-- Header: Institution Brand & Title -->
         <div class="flex items-start justify-between border-b border-slate-200 pb-5">
             <div class="flex items-center gap-3">
-                @if(isset($currentSchool) && $currentSchool->logo_url)
-                    <img src="{{ $currentSchool->logo_url }}" alt="School Logo" class="h-12 w-auto object-contain">
+                @if($receiptSchool && $receiptSchool->logo_url)
+                    <img src="{{ $receiptSchool->logo_url }}" alt="School Logo" class="h-12 w-auto object-contain">
                 @endif
                 <div>
                     <h2 class="text-lg font-bold uppercase tracking-tight text-slate-900">
-                        {{ $currentSchool->name ?? 'EduCore International School' }}
+                        {{ $receiptSchool?->name ?? 'EduCore International School' }}
                     </h2>
                     <p class="text-xs text-slate-500">
-                        {{ $currentSchool->address ?? 'Institutional Academic Campus' }}{{ $currentSchool->city ? ', '.$currentSchool->city : '' }}
+                        {{ $receiptSchool?->address ?? 'Institutional Academic Campus' }}{{ !empty($receiptSchool?->city) ? ', '.$receiptSchool->city : '' }}
                     </p>
                     <p class="text-[11px] text-slate-400">
-                        {{ $currentSchool->email ?? 'admin@educore.edu' }} • Phone: {{ $currentSchool->phone ?? '—' }}
+                        {{ $receiptSchool?->email ?? 'admin@educore.edu' }} • Phone: {{ $receiptSchool?->phone ?? '—' }}
                     </p>
                 </div>
             </div>
