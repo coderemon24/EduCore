@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
+use Spatie\LaravelPdf\Facades\Pdf;
 
 class FeePaymentController extends Controller
 {
@@ -93,6 +94,29 @@ class FeePaymentController extends Controller
         ]);
 
         return view('admin.fees.receipts.show', compact('payment'));
+    }
+
+    /**
+     * Download or stream PDF for an official payment receipt voucher using Spatie Laravel-PDF (DOMPDF driver).
+     */
+    public function downloadPdf(FeePayment $payment)
+    {
+        $payment->load([
+            'school',
+            'invoice.items.feeCategory',
+            'invoice.academicClass',
+            'invoice.section',
+            'student.currentEnrollment.academicClass',
+            'student.currentEnrollment.section',
+            'receiver',
+            'reverser',
+        ]);
+
+        $school = $payment->school ?? \App\Models\School::find($payment->school_id) ?? \App\Models\School::first();
+
+        return Pdf::view('admin.fees.receipts.pdf', compact('payment', 'school'))
+            ->format('a4')
+            ->name("receipt-{$payment->receipt_number}.pdf");
     }
 
     /**

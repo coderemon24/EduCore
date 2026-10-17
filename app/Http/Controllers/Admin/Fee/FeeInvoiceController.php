@@ -20,6 +20,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Spatie\LaravelPdf\Facades\Pdf;
 
 class FeeInvoiceController extends Controller
 {
@@ -215,6 +216,31 @@ class FeeInvoiceController extends Controller
         ]);
 
         return view('admin.fees.invoices.show', compact('invoice'));
+    }
+
+    /**
+     * Download or stream PDF for an invoice using Spatie Laravel-PDF (DOMPDF driver).
+     */
+    public function downloadPdf(FeeInvoice $invoice)
+    {
+        $invoice->load([
+            'student.currentEnrollment.academicClass',
+            'student.currentEnrollment.section',
+            'student.guardians',
+            'academicClass',
+            'section',
+            'items.feeCategory',
+            'payments.receiver',
+            'discounts.authorizer',
+            'creator',
+            'school',
+        ]);
+
+        $school = $invoice->school ?? \App\Models\School::find($invoice->school_id) ?? \App\Models\School::first();
+
+        return Pdf::view('admin.fees.invoices.pdf', compact('invoice', 'school'))
+            ->format('a4')
+            ->name("invoice-{$invoice->invoice_number}.pdf");
     }
 
     /**

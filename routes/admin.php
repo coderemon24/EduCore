@@ -212,6 +212,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 ->middleware('school.permission:fees.structure.manage');
 
             // Invoices & Dues
+            Route::get('invoices/{invoice}/pdf', [FeeInvoiceController::class, 'downloadPdf'])->name('invoices.pdf')->middleware('school.permission:fees.view');
             Route::post('invoices/{invoice}/waiver', [FeeInvoiceController::class, 'applyWaiver'])->name('invoices.waiver')->middleware('school.permission:fees.discount');
             Route::post('invoices/{invoice}/void', [FeeInvoiceController::class, 'void'])->name('invoices.void')->middleware('school.permission:fees.reverse');
             Route::resource('invoices', FeeInvoiceController::class)->only(['index', 'create', 'store', 'show'])->middleware('school.permission:fees.view');
@@ -220,6 +221,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('payments/collect', [FeePaymentController::class, 'create'])->name('payments.collect')->middleware('school.permission:fees.collect');
             Route::post('payments', [FeePaymentController::class, 'store'])->name('payments.store')->middleware('school.permission:fees.collect');
             Route::post('payments/{payment}/reverse', [FeePaymentController::class, 'reverse'])->name('payments.reverse')->middleware('school.permission:fees.reverse');
+            Route::get('receipts/{payment}/pdf', [FeePaymentController::class, 'downloadPdf'])->name('receipts.pdf')->middleware('school.permission:fees.view');
             Route::get('receipts/{payment}', [FeePaymentController::class, 'show'])->name('receipts.show')->middleware('school.permission:fees.view');
 
             // Financial Reports
