@@ -67,6 +67,16 @@ class RolePermissionSeeder extends Seeder
             ['name' => 'Authorize Fee Discounts', 'slug' => 'fees.discount', 'group' => 'fees', 'description' => 'Apply authorized fee discounts and waivers to invoices.'],
             ['name' => 'Reverse Payments', 'slug' => 'fees.reverse', 'group' => 'fees', 'description' => 'Authorize and execute safe payment reversals and voids.'],
             ['name' => 'View Financial Reports', 'slug' => 'fees.reports', 'group' => 'fees', 'description' => 'Access daily collection registers, method summaries, and dues reports.'],
+
+            // Examinations & Grading Management
+            ['name' => 'View Exams & Results', 'slug' => 'exams.view', 'group' => 'exams', 'description' => 'View exam schedules, marks entries, results tabulation, and report cards.'],
+            ['name' => 'Manage Exams & Schedules', 'slug' => 'exams.manage', 'group' => 'exams', 'description' => 'Create, schedule, and configure exams and subject assessment components.'],
+            ['name' => 'Manage Grading Scales', 'slug' => 'exams.grades.manage', 'group' => 'exams', 'description' => 'Configure institutional grading scales, grade tiers, and GPA rules.'],
+            ['name' => 'Enter Student Marks', 'slug' => 'exams.marks.entry', 'group' => 'exams', 'description' => 'Record, update, and submit student marks via high-speed table entry.'],
+            ['name' => 'Calculate Results & Ranks', 'slug' => 'exams.results.calculate', 'group' => 'exams', 'description' => 'Execute automated result tabulation and compute class/section ranks.'],
+            ['name' => 'Publish Exam Results', 'slug' => 'exams.results.publish', 'group' => 'exams', 'description' => 'Officially publish exam results and lock marks from unauthorized modifications.'],
+            ['name' => 'Correct Published Marks', 'slug' => 'exams.marks.correct', 'group' => 'exams', 'description' => 'Authorize post-publication mark revisions with mandatory audit logging.'],
+            ['name' => 'Generate Report Cards', 'slug' => 'exams.reports.generate', 'group' => 'exams', 'description' => 'Preview, print, and export official student mark sheets and report cards.'],
         ];
 
         foreach ($permissions as $permData) {
@@ -95,6 +105,9 @@ class RolePermissionSeeder extends Seeder
             'attendance.view',
             'attendance.students.mark',
             'timetables.view',
+            'exams.view',
+            'exams.marks.entry',
+            'exams.reports.generate',
         ])->pluck('id')->toArray();
 
         $schools = School::all();

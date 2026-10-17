@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\Fee\ReversePaymentRequest;
 use App\Http\Requests\Admin\Fee\StorePaymentRequest;
 use App\Models\FeeInvoice;
 use App\Models\FeePayment;
+use App\Models\School;
 use App\Services\FeePaymentService;
 use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Http\RedirectResponse;
@@ -112,7 +113,7 @@ class FeePaymentController extends Controller
             'reverser',
         ]);
 
-        $school = $payment->school ?? \App\Models\School::find($payment->school_id) ?? \App\Models\School::first();
+        $school = $payment->school ?? School::find($payment->school_id) ?? School::first();
 
         return Pdf::view('admin.fees.receipts.pdf', compact('payment', 'school'))
             ->format('a4')

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Fee;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Fee\StoreFeeCategoryRequest;
 use App\Models\FeeCategory;
+use App\Models\School;
 use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -44,7 +45,7 @@ class FeeCategoryController extends Controller
     {
         $schoolId = app()->has('current_school_id')
             ? app('current_school_id')
-            : (auth()->guard('web')->user()?->school_id ?? session('current_school_id') ?? \App\Models\School::value('id') ?? 1);
+            : (auth()->guard('web')->user()?->school_id ?? session('current_school_id') ?? School::value('id') ?? 1);
 
         FeeCategory::create([
             'school_id' => $schoolId,

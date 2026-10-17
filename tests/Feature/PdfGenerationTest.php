@@ -13,6 +13,7 @@ use App\Models\School;
 use App\Models\Student;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Str;
 use Spatie\LaravelPdf\Facades\Pdf;
 use Tests\TestCase;
 
@@ -105,7 +106,7 @@ class PdfGenerationTest extends TestCase
             'fee_invoice_id' => $this->invoice->id,
             'student_id' => $student->id,
             'receipt_number' => 'REC-2026-99999',
-            'idempotency_token' => \Illuminate\Support\Str::uuid(),
+            'idempotency_token' => Str::uuid(),
             'payment_date' => Carbon::today(),
             'amount' => 200.00,
             'payment_method' => 'cash',

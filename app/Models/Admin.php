@@ -55,4 +55,20 @@ class Admin extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Check if the admin has a given permission (Admins have full institutional access).
+     */
+    public function hasPermission(string $permission): bool
+    {
+        return true;
+    }
+
+    /**
+     * Check if the admin account is active.
+     */
+    public function isActive(): bool
+    {
+        return true;
+    }
 }

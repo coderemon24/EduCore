@@ -12,6 +12,13 @@ use App\Http\Controllers\Admin\Attendance\AttendanceReportController;
 use App\Http\Controllers\Admin\Attendance\StaffAttendanceController;
 use App\Http\Controllers\Admin\Attendance\StudentAttendanceController;
 use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\Exam\ExamController;
+use App\Http\Controllers\Admin\Exam\ExamMarkController;
+use App\Http\Controllers\Admin\Exam\ExamResultController;
+use App\Http\Controllers\Admin\Exam\ExamSubjectController;
+use App\Http\Controllers\Admin\Exam\GradingScaleController;
+use App\Http\Controllers\Admin\Exam\MarksheetSettingController;
+use App\Http\Controllers\Admin\Exam\ReportCardController;
 use App\Http\Controllers\Admin\Fee\FeeCategoryController;
 use App\Http\Controllers\Admin\Fee\FeeInvoiceController;
 use App\Http\Controllers\Admin\Fee\FeePaymentController;
@@ -228,6 +235,80 @@ Route::prefix('admin')->name('admin.')->group(function () {
             // Financial Reports
             Route::get('reports', [FeeReportController::class, 'index'])->name('reports.index')->middleware('school.permission:fees.reports');
             Route::get('reports/export', [FeeReportController::class, 'export'])->name('reports.export')->middleware('school.permission:fees.reports');
+        });
+
+        // Examination & Results Management
+        Route::prefix('exams')->name('exams.')->group(function () {
+            // Grading Scales
+            Route::resource('grades', GradingScaleController::class)
+                ->except(['show'])
+                ->middleware('school.permission:exams.grades.manage');
+
+            // Marks Entry
+            Route::get('marks/entry', [ExamMarkController::class, 'entry'])
+                ->name('marks.entry')
+                ->middleware('school.permission:exams.marks.entry');
+            Route::post('marks/store', [ExamMarkController::class, 'store'])
+                ->name('marks.store')
+                ->middleware('school.permission:exams.marks.entry');
+            Route::post('marks/{mark}/correct', [ExamMarkController::class, 'correct'])
+                ->name('marks.correct')
+                ->middleware('school.permission:exams.marks.correct');
+
+            // Tabulation & Results
+            Route::get('results', [ExamResultController::class, 'index'])
+                ->name('results.index')
+                ->middleware('school.permission:exams.view');
+            Route::post('{exam}/results/calculate', [ExamResultController::class, 'calculate'])
+                ->name('results.calculate')
+                ->middleware('school.permission:exams.results.calculate');
+            Route::post('{exam}/results/publish', [ExamResultController::class, 'publish'])
+                ->name('results.publish')
+                ->middleware('school.permission:exams.results.publish');
+            Route::post('{exam}/results/unpublish', [ExamResultController::class, 'unpublish'])
+                ->name('results.unpublish')
+                ->middleware('school.permission:exams.results.publish');
+
+            // Marksheet & ID Card Settings
+            Route::get('settings/marksheet', [MarksheetSettingController::class, 'index'])
+                ->name('settings.marksheet')
+                ->middleware('school.permission:exams.manage');
+            Route::post('settings/marksheet', [MarksheetSettingController::class, 'update'])
+                ->name('settings.marksheet.update')
+                ->middleware('school.permission:exams.manage');
+
+            // Report Cards & Transcripts
+            Route::get('report-cards', [ReportCardController::class, 'index'])
+                ->name('report-cards.index')
+                ->middleware('school.permission:exams.reports.generate');
+            Route::get('{exam}/report-cards/bulk/pdf', [ReportCardController::class, 'bulkPdf'])
+                ->name('report-cards.bulk-pdf')
+                ->middleware('school.permission:exams.reports.generate');
+            Route::get('{exam}/report-cards/{student}', [ReportCardController::class, 'show'])
+                ->name('report-cards.show')
+                ->middleware('school.permission:exams.reports.generate');
+            Route::get('{exam}/report-cards/{student}/pdf', [ReportCardController::class, 'downloadPdf'])
+                ->name('report-cards.pdf')
+                ->middleware('school.permission:exams.reports.generate');
+
+            // Subject Configuration & Dynamic Components
+            Route::get('{exam}/subjects', [ExamSubjectController::class, 'index'])
+                ->name('subjects.index')
+                ->middleware('school.permission:exams.manage');
+            Route::post('{exam}/subjects', [ExamSubjectController::class, 'store'])
+                ->name('subjects.store')
+                ->middleware('school.permission:exams.manage');
+            Route::delete('{exam}/subjects/{subject}', [ExamSubjectController::class, 'destroy'])
+                ->name('subjects.destroy')
+                ->middleware('school.permission:exams.manage');
+
+            // Exam Sessions (Wildcard resource placed last to prevent shadowing static sub-routes)
+            Route::patch('{exam}/status', [ExamController::class, 'updateStatus'])
+                ->name('update-status')
+                ->middleware('school.permission:exams.manage');
+            Route::resource('/', ExamController::class)
+                ->parameters(['' => 'exam'])
+                ->middleware('school.permission:exams.view');
         });
     });
 });

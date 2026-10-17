@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin\Fee;
 
+use App\Models\School;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -25,7 +26,7 @@ class StoreFeeCategoryRequest extends FormRequest
     {
         $schoolId = app()->has('current_school_id')
             ? app('current_school_id')
-            : (auth()->guard('web')->user()?->school_id ?? session('current_school_id') ?? \App\Models\School::value('id') ?? 1);
+            : (auth()->guard('web')->user()?->school_id ?? session('current_school_id') ?? School::value('id') ?? 1);
         $categoryId = $this->route('category')?->id ?? $this->route('category');
 
         return [

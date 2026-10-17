@@ -10,6 +10,7 @@ use App\Models\AcademicYear;
 use App\Models\FeeCategory;
 use App\Models\FeeInvoice;
 use App\Models\FeeStructure;
+use App\Models\School;
 use App\Models\Section;
 use App\Models\Student;
 use App\Services\FeePaymentService;
@@ -236,7 +237,7 @@ class FeeInvoiceController extends Controller
             'school',
         ]);
 
-        $school = $invoice->school ?? \App\Models\School::find($invoice->school_id) ?? \App\Models\School::first();
+        $school = $invoice->school ?? School::find($invoice->school_id) ?? School::first();
 
         return Pdf::view('admin.fees.invoices.pdf', compact('invoice', 'school'))
             ->format('a4')

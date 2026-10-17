@@ -409,22 +409,91 @@
                     </ul>
                 </li>
 
-                <!-- Examinations -->
-                <li>
-                    <a href="javascript:void(0)"
-                       onclick="window.Swal && Swal.fire({title: 'Examinations & Grading', text: 'Accessing Terminal Exam Schedules, Tabulation, and Report Cards.', icon: 'info', confirmButtonColor: '#7c3aed'});"
-                       class="group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-slate-900 cursor-pointer">
-                        <svg class="h-5 w-5 shrink-0 text-slate-400 group-hover:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                <!-- Exams & Results Collapsible Dropdown -->
+                @php
+                    $canViewExams = !Auth::guard('web')->check() || (Auth::guard('web')->user()?->hasPermission('exams.view'));
+                    $isExamsActive = request()->routeIs('admin.exams.*');
+                @endphp
+                @if($canViewExams)
+                <li class="relative group/dropdown" id="sidebar-exams-dropdown-wrapper">
+                    <button type="button"
+                            id="sidebar-exams-toggle"
+                            onclick="window.toggleExamsSidebarDropdown(event)"
+                            aria-expanded="{{ $isExamsActive ? 'true' : 'false' }}"
+                            class="group w-full flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-all duration-150 cursor-pointer {{ $isExamsActive ? 'bg-violet-50 text-violet-800 font-semibold shadow-2xs border-l-2 border-violet-600 pl-2.5' : 'text-slate-600 hover:bg-slate-100/80 hover:text-slate-900' }}">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <svg class="h-4.5 w-4.5 shrink-0 {{ $isExamsActive ? 'text-violet-600' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            <span class="nav-label truncate text-xs font-semibold tracking-tight">Exams & Results</span>
+                        </div>
+                        <svg id="exams-dropdown-chevron"
+                             class="nav-chevron h-3.5 w-3.5 shrink-0 text-slate-400 transition-transform duration-200 {{ $isExamsActive ? 'rotate-180 text-violet-600' : 'rotate-0' }}"
+                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
-                        <span class="nav-label truncate text-sm">Examinations</span>
 
+                        <!-- Floating Tooltip for collapsed mode -->
                         <span class="nav-item-tooltip absolute left-full top-1/2 -translate-y-1/2 ml-3 px-3 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md shadow-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
-                            Examinations
+                            Exams & Results
                             <span class="absolute left-[-4px] top-1/2 -translate-y-1/2 border-y-4 border-y-transparent border-r-4 border-r-slate-900"></span>
                         </span>
-                    </a>
+                    </button>
+
+                    <!-- Submenu Accordion -->
+                    <ul id="sidebar-exams-submenu"
+                        class="space-y-0.5 mt-1 pl-4 pr-1 {{ $isExamsActive ? 'block' : 'hidden' }}">
+                        <!-- All Exams -->
+                        <li>
+                            <a href="{{ route('admin.exams.index') }}"
+                               class="group relative flex items-center gap-2.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer {{ (request()->routeIs('admin.exams.index') || request()->routeIs('admin.exams.create') || request()->routeIs('admin.exams.edit') || request()->routeIs('admin.exams.subjects.*')) ? 'bg-violet-100/70 text-violet-800 font-bold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
+                                <span class="h-1.5 w-1.5 rounded-full {{ (request()->routeIs('admin.exams.index') || request()->routeIs('admin.exams.create') || request()->routeIs('admin.exams.edit') || request()->routeIs('admin.exams.subjects.*')) ? 'bg-violet-600' : 'bg-slate-300 group-hover:bg-slate-400' }}"></span>
+                                <span class="truncate">All Exams</span>
+                            </a>
+                        </li>
+                        <!-- Marks Entry -->
+                        <li>
+                            <a href="{{ route('admin.exams.marks.entry') }}"
+                               class="group relative flex items-center gap-2.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer {{ request()->routeIs('admin.exams.marks.*') ? 'bg-violet-100/70 text-violet-800 font-bold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
+                                <span class="h-1.5 w-1.5 rounded-full {{ request()->routeIs('admin.exams.marks.*') ? 'bg-violet-600' : 'bg-slate-300 group-hover:bg-slate-400' }}"></span>
+                                <span class="truncate">Marks Entry</span>
+                            </a>
+                        </li>
+                        <!-- Results & Ranks -->
+                        <li>
+                            <a href="{{ route('admin.exams.results.index') }}"
+                               class="group relative flex items-center gap-2.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer {{ request()->routeIs('admin.exams.results.*') ? 'bg-violet-100/70 text-violet-800 font-bold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
+                                <span class="h-1.5 w-1.5 rounded-full {{ request()->routeIs('admin.exams.results.*') ? 'bg-violet-600' : 'bg-slate-300 group-hover:bg-slate-400' }}"></span>
+                                <span class="truncate">Results & Ranks</span>
+                            </a>
+                        </li>
+                        <!-- Report Cards -->
+                        <li>
+                            <a href="{{ route('admin.exams.report-cards.index') }}"
+                               class="group relative flex items-center gap-2.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer {{ request()->routeIs('admin.exams.report-cards.*') ? 'bg-violet-100/70 text-violet-800 font-bold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
+                                <span class="h-1.5 w-1.5 rounded-full {{ request()->routeIs('admin.exams.report-cards.*') ? 'bg-violet-600' : 'bg-slate-300 group-hover:bg-slate-400' }}"></span>
+                                <span class="truncate">Report Cards</span>
+                            </a>
+                        </li>
+                        <!-- Grading Scales -->
+                        <li>
+                            <a href="{{ route('admin.exams.grades.index') }}"
+                               class="group relative flex items-center gap-2.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer {{ request()->routeIs('admin.exams.grades.*') ? 'bg-violet-100/70 text-violet-800 font-bold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
+                                <span class="h-1.5 w-1.5 rounded-full {{ request()->routeIs('admin.exams.grades.*') ? 'bg-violet-600' : 'bg-slate-300 group-hover:bg-slate-400' }}"></span>
+                                <span class="truncate">Grading Scales</span>
+                            </a>
+                        </li>
+                        <!-- Marksheet & ID Card Settings -->
+                        <li>
+                            <a href="{{ route('admin.exams.settings.marksheet') }}"
+                               class="group relative flex items-center gap-2.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer {{ request()->routeIs('admin.exams.settings.marksheet*') ? 'bg-violet-100/70 text-violet-800 font-bold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
+                                <span class="h-1.5 w-1.5 rounded-full {{ request()->routeIs('admin.exams.settings.marksheet*') ? 'bg-violet-600' : 'bg-slate-300 group-hover:bg-slate-400' }}"></span>
+                                <span class="truncate">Marksheet Settings</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
+                @endif
             </ul>
         </div>
 
@@ -779,6 +848,51 @@
             var toggle = document.getElementById('sidebar-fees-toggle');
             var submenu = document.getElementById('sidebar-fees-submenu');
             var chevron = document.getElementById('fees-dropdown-chevron');
+
+            if (!submenu) return;
+
+            if (body && body.classList.contains('sidebar-collapsed')) {
+                body.classList.remove('sidebar-collapsed');
+                if (sidebar) {
+                    sidebar.classList.remove('w-20');
+                    sidebar.classList.add('w-64');
+                }
+                try { localStorage.setItem('educore_sidebar_collapsed', 'false'); } catch (_) {}
+            }
+
+            var isHidden = submenu.classList.contains('hidden') || submenu.style.display === 'none';
+
+            if (isHidden) {
+                submenu.classList.remove('hidden');
+                submenu.classList.add('block');
+                submenu.style.display = 'block';
+                if (chevron) {
+                    chevron.classList.add('rotate-180');
+                    chevron.classList.remove('rotate-0');
+                }
+                if (toggle) toggle.setAttribute('aria-expanded', 'true');
+            } else {
+                submenu.classList.add('hidden');
+                submenu.classList.remove('block');
+                submenu.style.display = 'none';
+                if (chevron) {
+                    chevron.classList.remove('rotate-180');
+                    chevron.classList.add('rotate-0');
+                }
+                if (toggle) toggle.setAttribute('aria-expanded', 'false');
+            }
+        };
+
+        window.toggleExamsSidebarDropdown = function(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            var body = document.getElementById('admin-body') || document.body;
+            var sidebar = document.getElementById('admin-sidebar');
+            var toggle = document.getElementById('sidebar-exams-toggle');
+            var submenu = document.getElementById('sidebar-exams-submenu');
+            var chevron = document.getElementById('exams-dropdown-chevron');
 
             if (!submenu) return;
 

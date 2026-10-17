@@ -8,6 +8,7 @@ use App\Models\AcademicClass;
 use App\Models\AcademicYear;
 use App\Models\FeeCategory;
 use App\Models\FeeStructure;
+use App\Models\School;
 use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -65,7 +66,7 @@ class FeeStructureController extends Controller
     {
         $schoolId = app()->has('current_school_id')
             ? app('current_school_id')
-            : (auth()->guard('web')->user()?->school_id ?? session('current_school_id') ?? \App\Models\School::value('id') ?? 1);
+            : (auth()->guard('web')->user()?->school_id ?? session('current_school_id') ?? School::value('id') ?? 1);
 
         FeeStructure::create([
             'school_id' => $schoolId,
