@@ -60,22 +60,57 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        $credentials = [
-            $this->loginField() => $this->loginIdentifier(),
-            'password' => (string) $this->input('password'),
+        $errorField = $this->has('login') ? 'login' : 'email';
+        $identifier = $this->loginIdentifier();
+        $password = (string) $this->input('password');
+        $remember = $this->boolean('remember');
+
+        // 1. Attempt platform Admin authentication (admins table via admin guard)
+        $adminCredentials = [
+            $this->loginField() => $identifier,
+            'password' => $password,
         ];
 
-        if (! Auth::guard('admin')->attempt($credentials, $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey(), 60);
+        if (Auth::guard('admin')->attempt($adminCredentials, $remember)) {
+            session()->forget('current_school_id');
+            RateLimiter::clear($this->throttleKey());
 
-            $errorField = $this->has('login') ? 'login' : 'email';
-
-            throw ValidationException::withMessages([
-                $errorField => trans('auth.failed'),
-            ]);
+            return;
         }
 
-        RateLimiter::clear($this->throttleKey());
+        // 2. Attempt school User authentication (users table via web guard)
+        $userCredentials = [
+            'email' => $identifier,
+            'password' => $password,
+        ];
+
+        if (Auth::guard('web')->attempt($userCredentials, $remember)) {
+            $user = Auth::guard('web')->user();
+
+            if (! $user || ! $user->isActive()) {
+                Auth::guard('web')->logout();
+                RateLimiter::hit($this->throttleKey(), 60);
+
+                throw ValidationException::withMessages([
+                    $errorField => 'Your account is currently inactive. Please contact your school administrator.',
+                ]);
+            }
+
+            if ($user->school_id) {
+                session(['current_school_id' => $user->school_id]);
+                app()->instance('current_school_id', $user->school_id);
+            }
+
+            RateLimiter::clear($this->throttleKey());
+
+            return;
+        }
+
+        RateLimiter::hit($this->throttleKey(), 60);
+
+        throw ValidationException::withMessages([
+            $errorField => trans('auth.failed'),
+        ]);
     }
 
     /**

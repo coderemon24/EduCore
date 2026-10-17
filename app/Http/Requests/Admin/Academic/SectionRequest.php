@@ -15,7 +15,7 @@ class SectionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::guard('admin')->check();
+        return Auth::guard('admin')->check() || Auth::guard('web')->check();
     }
 
     /**
@@ -34,6 +34,11 @@ class SectionRequest extends FormRequest
                 'required',
                 'integer',
                 Rule::exists('academic_classes', 'id')->where('school_id', $schoolId),
+            ],
+            'class_teacher_id' => [
+                'nullable',
+                'integer',
+                Rule::exists('staff', 'id')->where('school_id', $schoolId)->where('is_teaching', 1),
             ],
             'name' => [
                 'required',

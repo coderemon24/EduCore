@@ -14,8 +14,12 @@ class LoginController extends Controller
     /**
      * Display the admin login view.
      */
-    public function create(): View
+    public function create(): View|RedirectResponse
     {
+        if (Auth::guard('admin')->check() || Auth::guard('web')->check()) {
+            return redirect()->route('admin.dashboard');
+        }
+
         return view('admin.auth.login');
     }
 
@@ -37,9 +41,10 @@ class LoginController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('admin')->logout();
+        Auth::guard('web')->logout();
 
+        $request->session()->forget('current_school_id');
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
         return redirect()->route('admin.login')->with('status', 'You have been securely signed out.');

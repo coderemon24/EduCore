@@ -8,8 +8,10 @@ use App\Http\Controllers\Admin\Academic\SectionController;
 use App\Http\Controllers\Admin\Academic\SubjectController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SchoolController;
 use App\Http\Controllers\Admin\SchoolSettingController;
+use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\StudentPromotionController;
 use Illuminate\Support\Facades\Route;
@@ -121,6 +123,37 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/{student}/edit', [StudentController::class, 'edit'])->name('edit');
             Route::put('/{student}', [StudentController::class, 'update'])->name('update');
             Route::delete('/{student}', [StudentController::class, 'destroy'])->name('destroy');
+        });
+
+        // Faculty & Staff Management
+        Route::get('teachers', function () {
+            request()->merge(['type' => 'teaching']);
+
+            return app(StaffController::class)->index(request());
+        })->name('teachers.index')->middleware('school.permission:staff.view');
+
+        Route::prefix('staff')->name('staff.')->group(function () {
+            Route::post('{id}/restore', [StaffController::class, 'restore'])->name('restore')->withTrashed()->middleware('school.permission:staff.delete');
+            Route::delete('{id}/force-delete', [StaffController::class, 'forceDelete'])->name('force-delete')->withTrashed()->middleware('school.permission:staff.delete');
+            Route::patch('{staff}/status', [StaffController::class, 'updateStatus'])->name('status.update')->middleware('school.permission:staff.manage_status');
+
+            Route::get('/', [StaffController::class, 'index'])->name('index')->middleware('school.permission:staff.view');
+            Route::get('/create', [StaffController::class, 'create'])->name('create')->middleware('school.permission:staff.create');
+            Route::post('/', [StaffController::class, 'store'])->name('store')->middleware('school.permission:staff.create');
+            Route::get('/{staff}', [StaffController::class, 'show'])->name('show')->withTrashed()->middleware('school.permission:staff.view');
+            Route::get('/{staff}/edit', [StaffController::class, 'edit'])->name('edit')->middleware('school.permission:staff.edit');
+            Route::put('/{staff}', [StaffController::class, 'update'])->name('update')->middleware('school.permission:staff.edit');
+            Route::delete('/{staff}', [StaffController::class, 'destroy'])->name('destroy')->middleware('school.permission:staff.delete');
+        });
+
+        // Roles & Permissions Management
+        Route::prefix('roles')->name('roles.')->group(function () {
+            Route::get('/', [RoleController::class, 'index'])->name('index')->middleware('school.permission:roles.view');
+            Route::get('/create', [RoleController::class, 'create'])->name('create')->middleware('school.permission:roles.manage');
+            Route::post('/', [RoleController::class, 'store'])->name('store')->middleware('school.permission:roles.manage');
+            Route::get('/{role}/edit', [RoleController::class, 'edit'])->name('edit')->middleware('school.permission:roles.manage');
+            Route::put('/{role}', [RoleController::class, 'update'])->name('update')->middleware('school.permission:roles.manage');
+            Route::delete('/{role}', [RoleController::class, 'destroy'])->name('destroy')->middleware('school.permission:roles.manage');
         });
     });
 });

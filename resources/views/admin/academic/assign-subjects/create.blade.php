@@ -116,6 +116,26 @@
                 @enderror
             </div>
 
+            <!-- Assigned Subject Teacher (Optional) -->
+            <div>
+                <label for="teacher_id" class="block text-xs font-semibold text-slate-700 mb-1">
+                    Subject Teacher <span class="text-slate-400 font-normal">(Optional)</span>
+                </label>
+                <select name="teacher_id"
+                        id="teacher_id"
+                        class="select2 w-full rounded-lg border border-slate-200 bg-white py-2 px-3 text-xs text-slate-800 focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20">
+                    <option value="">None (Unassigned)</option>
+                    @foreach ($teachers as $teacher)
+                        <option value="{{ $teacher->id }}" {{ (string)old('teacher_id') === (string)$teacher->id ? 'selected' : '' }}>
+                            {{ $teacher->first_name }} {{ $teacher->last_name }} ({{ $teacher->staff_code }})
+                        </option>
+                    @endforeach
+                </select>
+                @error('teacher_id')
+                    <p class="mt-1 text-xs text-rose-600 font-medium">{{ $message }}</p>
+                @enderror
+            </div>
+
             <!-- Marks Configuration Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <!-- Full Marks -->

@@ -28,6 +28,7 @@ class Section extends Model
     protected $fillable = [
         'school_id',
         'academic_class_id',
+        'class_teacher_id',
         'name',
         'capacity',
         'room_number',
@@ -60,5 +61,13 @@ class Section extends Model
     public function academicClass(): BelongsTo
     {
         return $this->belongsTo(AcademicClass::class);
+    }
+
+    /**
+     * Get the staff member appointed as Class Teacher for this section.
+     */
+    public function classTeacher(): BelongsTo
+    {
+        return $this->belongsTo(Staff::class, 'class_teacher_id');
     }
 }

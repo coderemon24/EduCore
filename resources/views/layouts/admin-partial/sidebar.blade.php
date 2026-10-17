@@ -57,12 +57,14 @@
                     </a>
                 </li>
 
-                <!-- Schools & Institutions (Multi-Tenant Management) -->
+                <!-- Schools & Institutions (Multi-Tenant Management) - Platform Admins Only -->
                 @php
-                    $isSuperAdmin = Auth::guard('admin')->user()?->role === 'super_admin';
+                    $isAdminGuard = Auth::guard('admin')->check();
+                    $isSuperAdmin = $isAdminGuard && Auth::guard('admin')->user()?->role === 'super_admin';
                     $isSchoolsActive = request()->routeIs('admin.schools.*');
                     $schoolTargetRoute = $isSuperAdmin ? route('admin.schools.index') : route('admin.settings.school');
                 @endphp
+                @if($isAdminGuard)
                 <li>
                     <a href="{{ $schoolTargetRoute }}"
                        class="group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-150 cursor-pointer {{ $isSchoolsActive ? 'bg-violet-50 text-violet-700 font-semibold shadow-2xs border-l-2 border-violet-600 pl-2.5' : 'text-slate-600 hover:bg-slate-100/80 hover:text-slate-900' }}">
@@ -72,16 +74,17 @@
                         <span class="nav-label truncate text-xs font-semibold tracking-tight">Schools</span>
                         <span class="nav-badge ml-auto inline-flex items-center gap-1 rounded border border-violet-200/90 bg-violet-50/80 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-violet-700 transition-colors group-hover:bg-violet-100">
                             <span class="h-1 w-1 rounded-full bg-violet-500"></span>
-                            <span>Tenant</span>
+                            <span>{{ $isSuperAdmin ? 'Tenant' : 'Profile' }}</span>
                         </span>
 
                         <!-- Floating Tooltip for collapsed mode -->
                         <span class="nav-item-tooltip absolute left-full top-1/2 -translate-y-1/2 ml-3 px-3 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md shadow-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
-                            Schools & Campuses <span class="text-violet-300 text-[10px]">&bull; Multi-Tenant</span>
+                            Schools & Campuses <span class="text-violet-300 text-[10px]">&bull; {{ $isSuperAdmin ? 'Multi-Tenant' : 'Profile' }}</span>
                             <span class="absolute left-[-4px] top-1/2 -translate-y-1/2 border-y-4 border-y-transparent border-r-4 border-r-slate-900"></span>
                         </span>
                     </a>
                 </li>
+                @endif
 
                 <!-- Student Management Collapsible Dropdown -->
                 @php
@@ -142,18 +145,39 @@
                     </ul>
                 </li>
 
-                <!-- Teachers -->
+                <!-- Teachers & Faculty -->
+                @php
+                    $isTeachersActive = request()->routeIs('admin.teachers.*') || (request()->routeIs('admin.staff.*') && request('type') === 'teaching');
+                @endphp
                 <li>
-                    <a href="javascript:void(0)"
-                       onclick="window.Swal && Swal.fire({title: 'Faculty & Teachers', text: 'Opening Faculty Directory and Teacher Profiles.', icon: 'info', confirmButtonColor: '#7c3aed'});"
-                       class="group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-slate-900 cursor-pointer">
-                        <svg class="h-5 w-5 shrink-0 text-slate-400 group-hover:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    <a href="{{ route('admin.teachers.index') }}"
+                       class="group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-150 cursor-pointer {{ $isTeachersActive ? 'bg-violet-50 text-violet-700 font-semibold shadow-2xs border-l-2 border-violet-600 pl-2.5' : 'text-slate-600 hover:bg-slate-100/80 hover:text-slate-900' }}">
+                        <svg class="h-4.5 w-4.5 shrink-0 transition-transform duration-200 group-hover:scale-105 {{ $isTeachersActive ? 'text-violet-600' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                         </svg>
-                        <span class="nav-label truncate text-sm">Teachers</span>
+                        <span class="nav-label truncate text-xs font-semibold tracking-tight">Teachers & Faculty</span>
 
                         <span class="nav-item-tooltip absolute left-full top-1/2 -translate-y-1/2 ml-3 px-3 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md shadow-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
-                            Teachers
+                            Teachers & Faculty
+                            <span class="absolute left-[-4px] top-1/2 -translate-y-1/2 border-y-4 border-y-transparent border-r-4 border-r-slate-900"></span>
+                        </span>
+                    </a>
+                </li>
+
+                <!-- Staff Directory -->
+                @php
+                    $isStaffActive = request()->routeIs('admin.staff.*') && request('type') !== 'teaching';
+                @endphp
+                <li>
+                    <a href="{{ route('admin.staff.index') }}"
+                       class="group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-150 cursor-pointer {{ $isStaffActive ? 'bg-violet-50 text-violet-700 font-semibold shadow-2xs border-l-2 border-violet-600 pl-2.5' : 'text-slate-600 hover:bg-slate-100/80 hover:text-slate-900' }}">
+                        <svg class="h-4.5 w-4.5 shrink-0 transition-transform duration-200 group-hover:scale-105 {{ $isStaffActive ? 'text-violet-600' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        <span class="nav-label truncate text-xs font-semibold tracking-tight">Staff Directory</span>
+
+                        <span class="nav-item-tooltip absolute left-full top-1/2 -translate-y-1/2 ml-3 px-3 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md shadow-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
+                            Staff Directory
                             <span class="absolute left-[-4px] top-1/2 -translate-y-1/2 border-y-4 border-y-transparent border-r-4 border-r-slate-900"></span>
                         </span>
                     </a>
@@ -270,7 +294,7 @@
                 <!-- Attendance -->
                 <li>
                     <a href="javascript:void(0)"
-                       onclick="window.Swal && Swal.fire({title: 'Daily Attendance', text: 'Opening Roll-Call Attendance & Biometric Telemetry.', icon: 'info', confirmButtonColor: '#7c3aed'});"
+                       onclick="window.Swal && Swal.fire({title: 'Daily Attendance', text: 'Daily roll-call and student attendance.', icon: 'info', confirmButtonColor: '#7c3aed'});"
                        class="group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-slate-900 cursor-pointer">
                         <svg class="h-5 w-5 shrink-0 text-slate-400 group-hover:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
@@ -343,6 +367,28 @@
                     </a>
                 </li>
 
+                <!-- Roles & Permissions -->
+                @php
+                    $canManageRoles = !Auth::guard('web')->check() || (Auth::guard('web')->user()?->hasPermission('roles.view'));
+                    $isRolesActive = request()->routeIs('admin.roles.*');
+                @endphp
+                @if($canManageRoles)
+                <li>
+                    <a href="{{ route('admin.roles.index') }}"
+                       class="group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-150 cursor-pointer {{ $isRolesActive ? 'bg-violet-50 text-violet-700 font-semibold shadow-2xs border-l-2 border-violet-600 pl-2.5' : 'text-slate-600 hover:bg-slate-100/80 hover:text-slate-900' }}">
+                        <svg class="h-4.5 w-4.5 shrink-0 transition-transform duration-200 group-hover:scale-105 {{ $isRolesActive ? 'text-violet-600' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                        <span class="nav-label truncate text-xs font-semibold tracking-tight">Roles & Permissions</span>
+
+                        <span class="nav-item-tooltip absolute left-full top-1/2 -translate-y-1/2 ml-3 px-3 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md shadow-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
+                            Roles & Permissions
+                            <span class="absolute left-[-4px] top-1/2 -translate-y-1/2 border-y-4 border-y-transparent border-r-4 border-r-slate-900"></span>
+                        </span>
+                    </a>
+                </li>
+                @endif
+
                 <!-- Settings -->
                 @php
                     $isSettingsActive = request()->routeIs('admin.settings.*');
@@ -368,8 +414,8 @@
 
     <!-- Sidebar Footer User Quick Card -->
     @php
-        $sidebarAdmin = Auth::guard('admin')->user();
-        $sidebarAdminName = $sidebarAdmin ? ($sidebarAdmin->full_name ?: $sidebarAdmin->username) : 'System Administrator';
+        $sidebarAdmin = Auth::guard('admin')->user() ?? Auth::guard('web')->user();
+        $sidebarAdminName = $sidebarAdmin ? ($sidebarAdmin->full_name ?: ($sidebarAdmin->name ?: $sidebarAdmin->username)) : 'System Administrator';
         $sidebarAdminInitials = collect(explode(' ', $sidebarAdminName))->filter()->map(fn($part) => strtoupper(substr($part, 0, 1)))->take(2)->implode('') ?: 'AD';
         $sidebarAdminEmail = $sidebarAdmin ? $sidebarAdmin->email : 'admin@gmail.com';
     @endphp

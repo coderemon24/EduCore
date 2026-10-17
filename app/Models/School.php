@@ -136,4 +136,20 @@ class School extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    /**
+     * Get staff members belonging to this school institution.
+     */
+    public function staff(): HasMany
+    {
+        return $this->hasMany(Staff::class);
+    }
+
+    /**
+     * Get institutional roles defined for this school.
+     */
+    public function roles(): HasMany
+    {
+        return $this->hasMany(Role::class);
+    }
 }

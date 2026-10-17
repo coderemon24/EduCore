@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\AdminAuthentication;
+use App\Http\Middleware\EnsureSchoolPermission;
 use App\Http\Middleware\EnsureSuperAdmin;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -21,6 +22,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'admin.auth' => AdminAuthentication::class,
             'admin.super' => EnsureSuperAdmin::class,
+            'school.permission' => EnsureSchoolPermission::class,
         ]);
 
         $middleware->redirectGuestsTo(fn () => route('admin.login'));

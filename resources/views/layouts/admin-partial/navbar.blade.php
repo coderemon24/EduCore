@@ -247,10 +247,10 @@
 
         <!-- User Profile Trigger & Dropdown Menu -->
         @php
-            $currentAdmin = Auth::guard('admin')->user();
-            $adminDisplayName = $currentAdmin ? ($currentAdmin->full_name ?: $currentAdmin->username) : 'System Administrator';
+            $currentAdmin = Auth::guard('admin')->user() ?? Auth::guard('web')->user();
+            $adminDisplayName = $currentAdmin ? ($currentAdmin->full_name ?: ($currentAdmin->name ?: $currentAdmin->username)) : 'System Administrator';
             $adminInitials = collect(explode(' ', $adminDisplayName))->filter()->map(fn($part) => strtoupper(substr($part, 0, 1)))->take(2)->implode('') ?: 'AD';
-            $adminDesignation = $currentAdmin ? ($currentAdmin->designation ?: 'Administrator') : 'Super Administrator';
+            $adminDesignation = $currentAdmin ? ($currentAdmin->designation ?: (isset($currentAdmin->roles) && $currentAdmin->roles->first() ? $currentAdmin->roles->first()->name : 'Staff Member')) : 'Super Administrator';
             $adminEmail = $currentAdmin ? $currentAdmin->email : 'admin@gmail.com';
         @endphp
         <div class="relative">

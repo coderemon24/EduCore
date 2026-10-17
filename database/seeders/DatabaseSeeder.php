@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             SchoolSeeder::class,
             AcademicSeeder::class,
             StudentSeeder::class,
+            RolePermissionSeeder::class,
+            StaffSeeder::class,
         ]);
     }
 }

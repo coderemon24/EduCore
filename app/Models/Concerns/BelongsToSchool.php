@@ -4,7 +4,9 @@ namespace App\Models\Concerns;
 
 use App\Models\School;
 use App\Models\Scopes\SchoolScope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Auth;
 
 trait BelongsToSchool
 {
@@ -24,6 +26,27 @@ trait BelongsToSchool
                 }
             }
         });
+    }
+
+    /**
+     * Retrieve the model for a bound value with tenant scope.
+     *
+     * @param  Builder  $query
+     * @param  mixed  $value
+     * @param  string|null  $field
+     * @return Builder
+     */
+    public function resolveRouteBindingQuery($query, $value, $field = null)
+    {
+        $schoolId = app()->has('current_school_id')
+            ? app('current_school_id')
+            : (Auth::guard('web')->user()?->school_id ?? session('current_school_id'));
+
+        if ($schoolId !== null) {
+            $query->where($this->qualifyColumn('school_id'), $schoolId);
+        }
+
+        return parent::resolveRouteBindingQuery($query, $value, $field);
     }
 
     /**

@@ -102,6 +102,26 @@
                 </div>
             </div>
 
+            <!-- Class Teacher -->
+            <div>
+                <label for="class_teacher_id" class="block text-xs font-semibold text-slate-700 mb-1">
+                    Class Teacher <span class="text-slate-400 font-normal">(Optional)</span>
+                </label>
+                <select name="class_teacher_id"
+                        id="class_teacher_id"
+                        class="w-full rounded-lg border border-slate-200 bg-white py-2 px-3 text-xs text-slate-800 focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20">
+                    <option value="">None</option>
+                    @foreach($teachers as $teacher)
+                        <option value="{{ $teacher->id }}" {{ old('class_teacher_id', $section->class_teacher_id) == $teacher->id ? 'selected' : '' }}>
+                            {{ $teacher->first_name }} {{ $teacher->last_name }} ({{ $teacher->staff_code }})
+                        </option>
+                    @endforeach
+                </select>
+                @error('class_teacher_id')
+                    <p class="mt-1 text-xs text-rose-600 font-medium">{{ $message }}</p>
+                @enderror
+            </div>
+
             <!-- Status -->
             <div>
                 <label for="status" class="block text-xs font-semibold text-slate-700 mb-1">

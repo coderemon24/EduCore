@@ -29,6 +29,7 @@ class ClassSubjectAssignment extends Model
         'academic_class_id',
         'subject_id',
         'academic_year_id',
+        'teacher_id',
         'type',
         'full_marks',
         'pass_marks',
@@ -69,5 +70,13 @@ class ClassSubjectAssignment extends Model
     public function academicYear(): BelongsTo
     {
         return $this->belongsTo(AcademicYear::class);
+    }
+
+    /**
+     * Get the teacher assigned as instructor for this class-subject.
+     */
+    public function teacher(): BelongsTo
+    {
+        return $this->belongsTo(Staff::class, 'teacher_id');
     }
 }

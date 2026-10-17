@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\Academic\ClassSubjectAssignmentRequest;
 use App\Models\AcademicClass;
 use App\Models\AcademicYear;
 use App\Models\ClassSubjectAssignment;
+use App\Models\Staff;
 use App\Models\Subject;
 use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Http\JsonResponse;
@@ -32,6 +33,7 @@ class ClassSubjectAssignmentController extends Controller
                     'academicClass' => fn ($q) => $q->withTrashed()->select(['id', 'name', 'numeric_code']),
                     'subject' => fn ($q) => $q->withTrashed()->select(['id', 'name', 'code', 'type']),
                     'academicYear' => fn ($q) => $q->withTrashed()->select(['id', 'name']),
+                    'teacher' => fn ($q) => $q->withTrashed()->select(['id', 'first_name', 'last_name', 'staff_code']),
                 ])
                 ->latest('deleted_at');
         } else {
@@ -40,6 +42,7 @@ class ClassSubjectAssignmentController extends Controller
                     'academicClass' => fn ($q) => $q->withTrashed()->select(['id', 'name', 'numeric_code']),
                     'subject' => fn ($q) => $q->withTrashed()->select(['id', 'name', 'code', 'type']),
                     'academicYear' => fn ($q) => $q->withTrashed()->select(['id', 'name']),
+                    'teacher' => fn ($q) => $q->withTrashed()->select(['id', 'first_name', 'last_name', 'staff_code']),
                 ]);
 
             if ($statusFilter !== 'all' && in_array($statusFilter, ['compulsory', 'optional', 'elective'], true)) {
@@ -58,18 +61,20 @@ class ClassSubjectAssignmentController extends Controller
         if (! empty($search)) {
             $query->where(function ($q) use ($search) {
                 $q->whereHas('subject', fn ($sq) => $sq->where('name', 'like', "%{$search}%")->orWhere('code', 'like', "%{$search}%"))
-                    ->orWhereHas('academicClass', fn ($cq) => $cq->where('name', 'like', "%{$search}%"));
+                    ->orWhereHas('academicClass', fn ($cq) => $cq->where('name', 'like', "%{$search}%"))
+                    ->orWhereHas('teacher', fn ($tq) => $tq->where('first_name', 'like', "%{$search}%")->orWhere('last_name', 'like', "%{$search}%"));
             });
         }
 
         $assignments = $query
-            ->select(['id', 'school_id', 'academic_class_id', 'subject_id', 'academic_year_id', 'type', 'full_marks', 'pass_marks', 'created_at', 'deleted_at'])
+            ->select(['id', 'school_id', 'academic_class_id', 'subject_id', 'academic_year_id', 'teacher_id', 'type', 'full_marks', 'pass_marks', 'created_at', 'deleted_at'])
             ->latest()
             ->paginate(20)
             ->withQueryString();
 
         $classes = AcademicClass::ordered()->select(['id', 'name'])->get();
         $academicYears = AcademicYear::latest('start_date')->select(['id', 'name', 'is_current'])->get();
+        $teachers = Staff::teaching()->active()->select(['id', 'first_name', 'last_name', 'staff_code'])->get();
 
         $rawCounts = ClassSubjectAssignment::query()
             ->withTrashed()
@@ -90,7 +95,7 @@ class ClassSubjectAssignmentController extends Controller
             'trashed' => (int) ($rawCounts->trashed_count ?? 0),
         ];
 
-        return view('admin.academic.assign-subjects.index', compact('assignments', 'classes', 'academicYears', 'classFilter', 'yearFilter', 'search', 'statusFilter', 'statusCounts'));
+        return view('admin.academic.assign-subjects.index', compact('assignments', 'classes', 'academicYears', 'teachers', 'classFilter', 'yearFilter', 'search', 'statusFilter', 'statusCounts'));
     }
 
     /**
@@ -101,11 +106,12 @@ class ClassSubjectAssignmentController extends Controller
         $classes = AcademicClass::ordered()->select(['id', 'name'])->get();
         $subjects = Subject::active()->orderBy('name')->select(['id', 'name', 'code', 'type'])->get();
         $academicYears = AcademicYear::latest('start_date')->select(['id', 'name', 'is_current'])->get();
+        $teachers = Staff::teaching()->active()->select(['id', 'first_name', 'last_name', 'staff_code'])->get();
         $activeYear = $academicYears->firstWhere('is_current', true) ?? $academicYears->first();
 
         $defaultClassId = $request->query('class_id');
 
-        return view('admin.academic.assign-subjects.create', compact('classes', 'subjects', 'academicYears', 'activeYear', 'defaultClassId'));
+        return view('admin.academic.assign-subjects.create', compact('classes', 'subjects', 'academicYears', 'teachers', 'activeYear', 'defaultClassId'));
     }
 
     /**
@@ -117,6 +123,7 @@ class ClassSubjectAssignmentController extends Controller
         $classId = $validated['academic_class_id'];
         $subjectIds = $validated['subject_ids'];
         $yearId = $validated['academic_year_id'] ?? null;
+        $teacherId = $validated['teacher_id'] ?? null;
         $type = $validated['type'];
         $fullMarks = $validated['full_marks'];
         $passMarks = $validated['pass_marks'];
@@ -130,6 +137,7 @@ class ClassSubjectAssignmentController extends Controller
                     'academic_year_id' => $yearId,
                 ],
                 [
+                    'teacher_id' => $teacherId,
                     'type' => $type,
                     'full_marks' => $fullMarks,
                     'pass_marks' => $passMarks,
@@ -150,9 +158,10 @@ class ClassSubjectAssignmentController extends Controller
      */
     public function edit(ClassSubjectAssignment $assignment): View
     {
-        $assignment->load(['academicClass:id,name', 'subject:id,name,code', 'academicYear:id,name']);
+        $assignment->load(['academicClass:id,name', 'subject:id,name,code', 'academicYear:id,name', 'teacher']);
+        $teachers = Staff::teaching()->active()->select(['id', 'first_name', 'last_name', 'staff_code'])->get();
 
-        return view('admin.academic.assign-subjects.edit', compact('assignment'));
+        return view('admin.academic.assign-subjects.edit', compact('assignment', 'teachers'));
     }
 
     /**
@@ -161,6 +170,7 @@ class ClassSubjectAssignmentController extends Controller
     public function update(Request $request, ClassSubjectAssignment $assignment): RedirectResponse
     {
         $validated = $request->validate([
+            'teacher_id' => ['nullable', 'integer', 'exists:staff,id'],
             'type' => ['required', 'string', 'in:compulsory,optional,elective'],
             'full_marks' => ['required', 'integer', 'min:1', 'max:500'],
             'pass_marks' => ['required', 'integer', 'min:0', 'lte:full_marks'],

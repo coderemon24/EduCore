@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Academic\SectionRequest;
 use App\Models\AcademicClass;
 use App\Models\Section;
+use App\Models\Staff;
 use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -24,9 +25,18 @@ class SectionController extends Controller
         $search = trim((string) $request->query('search', ''));
 
         if ($statusFilter === 'trashed') {
-            $query = Section::onlyTrashed()->with(['academicClass' => fn ($q) => $q->withTrashed()->select(['id', 'name'])])->latest('deleted_at');
+            $query = Section::onlyTrashed()
+                ->with([
+                    'academicClass' => fn ($q) => $q->withTrashed()->select(['id', 'name']),
+                    'classTeacher' => fn ($q) => $q->select(['id', 'first_name', 'last_name', 'staff_code']),
+                ])
+                ->latest('deleted_at');
         } else {
-            $query = Section::query()->with(['academicClass' => fn ($q) => $q->withTrashed()->select(['id', 'name'])]);
+            $query = Section::query()
+                ->with([
+                    'academicClass' => fn ($q) => $q->withTrashed()->select(['id', 'name']),
+                    'classTeacher' => fn ($q) => $q->select(['id', 'first_name', 'last_name', 'staff_code']),
+                ]);
 
             if ($statusFilter !== 'all' && in_array($statusFilter, ['active', 'inactive'], true)) {
                 $query->where('status', $statusFilter);
@@ -41,17 +51,19 @@ class SectionController extends Controller
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
                     ->orWhere('room_number', 'like', "%{$search}%")
-                    ->orWhereHas('academicClass', fn ($cq) => $cq->where('name', 'like', "%{$search}%"));
+                    ->orWhereHas('academicClass', fn ($cq) => $cq->where('name', 'like', "%{$search}%"))
+                    ->orWhereHas('classTeacher', fn ($tq) => $tq->where('first_name', 'like', "%{$search}%")->orWhere('last_name', 'like', "%{$search}%"));
             });
         }
 
         $sections = $query
-            ->select(['id', 'school_id', 'academic_class_id', 'name', 'capacity', 'room_number', 'status', 'created_at', 'deleted_at'])
+            ->select(['id', 'school_id', 'academic_class_id', 'class_teacher_id', 'name', 'capacity', 'room_number', 'status', 'created_at', 'deleted_at'])
             ->latest()
             ->paginate(15)
             ->withQueryString();
 
         $classes = AcademicClass::ordered()->select(['id', 'name'])->get();
+        $teachers = Staff::teaching()->active()->select(['id', 'first_name', 'last_name', 'staff_code'])->get();
 
         $rawCounts = Section::query()
             ->withTrashed()
@@ -70,7 +82,7 @@ class SectionController extends Controller
             'trashed' => (int) ($rawCounts->trashed_count ?? 0),
         ];
 
-        return view('admin.academic.sections.index', compact('sections', 'classes', 'statusFilter', 'classFilter', 'search', 'statusCounts'));
+        return view('admin.academic.sections.index', compact('sections', 'classes', 'teachers', 'statusFilter', 'classFilter', 'search', 'statusCounts'));
     }
 
     /**
@@ -79,6 +91,7 @@ class SectionController extends Controller
     public function create(Request $request): View
     {
         $classes = AcademicClass::ordered()->select(['id', 'name'])->get();
+        $teachers = Staff::teaching()->active()->select(['id', 'first_name', 'last_name', 'staff_code'])->get();
         $defaultClassId = $request->query('class_id');
 
         $section = new Section([
@@ -87,7 +100,7 @@ class SectionController extends Controller
             'academic_class_id' => $defaultClassId,
         ]);
 
-        return view('admin.academic.sections.create', compact('section', 'classes'));
+        return view('admin.academic.sections.create', compact('section', 'classes', 'teachers'));
     }
 
     /**
@@ -109,8 +122,9 @@ class SectionController extends Controller
     public function edit(Section $section): View
     {
         $classes = AcademicClass::ordered()->select(['id', 'name'])->get();
+        $teachers = Staff::teaching()->active()->select(['id', 'first_name', 'last_name', 'staff_code'])->get();
 
-        return view('admin.academic.sections.edit', compact('section', 'classes'));
+        return view('admin.academic.sections.edit', compact('section', 'classes', 'teachers'));
     }
 
     /**

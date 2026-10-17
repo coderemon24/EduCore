@@ -15,7 +15,7 @@ class ClassSubjectAssignmentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::guard('admin')->check();
+        return Auth::guard('admin')->check() || Auth::guard('web')->check();
     }
 
     /**
@@ -42,6 +42,11 @@ class ClassSubjectAssignmentRequest extends FormRequest
                 'nullable',
                 'integer',
                 Rule::exists('academic_years', 'id')->where('school_id', $schoolId),
+            ],
+            'teacher_id' => [
+                'nullable',
+                'integer',
+                Rule::exists('staff', 'id')->where('school_id', $schoolId)->where('is_teaching', 1),
             ],
             'type' => ['required', 'string', 'in:compulsory,optional,elective'],
             'full_marks' => ['required', 'integer', 'min:1', 'max:500'],
