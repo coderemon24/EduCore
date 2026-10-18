@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\Fee\FeeInvoiceController;
 use App\Http\Controllers\Admin\Fee\FeePaymentController;
 use App\Http\Controllers\Admin\Fee\FeeReportController;
 use App\Http\Controllers\Admin\Fee\FeeStructureController;
+use App\Http\Controllers\Admin\GuardianController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SchoolController;
 use App\Http\Controllers\Admin\SchoolSettingController;
@@ -166,6 +167,19 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/{staff}/edit', [StaffController::class, 'edit'])->name('edit')->middleware('school.permission:staff.edit');
             Route::put('/{staff}', [StaffController::class, 'update'])->name('update')->middleware('school.permission:staff.edit');
             Route::delete('/{staff}', [StaffController::class, 'destroy'])->name('destroy')->middleware('school.permission:staff.delete');
+        });
+
+        // Parents & Guardians Management
+        Route::prefix('guardians')->name('guardians.')->group(function () {
+            Route::post('bulk-action', [GuardianController::class, 'bulkAction'])->name('bulk-action')->middleware('school.permission:guardians.delete');
+            Route::post('{id}/restore', [GuardianController::class, 'restore'])->name('restore')->withTrashed()->middleware('school.permission:guardians.delete');
+            Route::delete('{id}/force-delete', [GuardianController::class, 'forceDelete'])->name('force-delete')->withTrashed()->middleware('school.permission:guardians.delete');
+
+            Route::get('/', [GuardianController::class, 'index'])->name('index')->middleware('school.permission:guardians.view');
+            Route::get('/{guardian}', [GuardianController::class, 'show'])->name('show')->withTrashed()->middleware('school.permission:guardians.view');
+            Route::get('/{guardian}/edit', [GuardianController::class, 'edit'])->name('edit')->middleware('school.permission:guardians.manage');
+            Route::put('/{guardian}', [GuardianController::class, 'update'])->name('update')->middleware('school.permission:guardians.manage');
+            Route::delete('/{guardian}', [GuardianController::class, 'destroy'])->name('destroy')->middleware('school.permission:guardians.delete');
         });
 
         // Roles & Permissions Management

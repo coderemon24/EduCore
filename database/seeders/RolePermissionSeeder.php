@@ -32,6 +32,10 @@ class RolePermissionSeeder extends Seeder
             ['name' => 'Delete Staff', 'slug' => 'staff.delete', 'group' => 'staff', 'description' => 'Delete staff records from institutional roster.'],
             ['name' => 'Manage Staff Status', 'slug' => 'staff.manage_status', 'group' => 'staff', 'description' => 'Activate, deactivate, or suspend staff access.'],
 
+            // Parents & Guardians Management
+            ['name' => 'View Parents & Guardians', 'slug' => 'guardians.view', 'group' => 'guardians', 'description' => 'View parent and guardian directory, family contacts, and ward associations.'],
+            ['name' => 'Manage Parents & Guardians', 'slug' => 'guardians.manage', 'group' => 'guardians', 'description' => 'Edit guardian contact information, address, and occupation details.'],
+            ['name' => 'Delete Guardians', 'slug' => 'guardians.delete', 'group' => 'guardians', 'description' => 'Soft delete, restore, or permanently purge guardian records.'],
             // Academic Structure
             ['name' => 'View Academic Structure', 'slug' => 'academic.view', 'group' => 'academic', 'description' => 'View classes, sections, subjects, and sessions.'],
             ['name' => 'Manage Classes', 'slug' => 'academic.classes', 'group' => 'academic', 'description' => 'Create, modify, and manage academic grade levels.'],
@@ -90,6 +94,7 @@ class RolePermissionSeeder extends Seeder
         $accountantPermissionIds = Permission::whereIn('slug', [
             'students.view',
             'staff.view',
+            'guardians.view',
             'fees.view',
             'fees.structure.manage',
             'fees.invoice.create',
