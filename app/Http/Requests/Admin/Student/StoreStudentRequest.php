@@ -69,6 +69,11 @@ class StoreStudentRequest extends FormRequest
                 'integer',
                 Rule::exists('academic_groups', 'id')->where('school_id', $schoolId),
             ],
+            'optional_subject_id' => [
+                'nullable',
+                'integer',
+                Rule::exists('subjects', 'id')->where('school_id', $schoolId),
+            ],
             'roll_number' => ['nullable', 'string', 'max:30'],
 
             // Guardian Details

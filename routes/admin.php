@@ -131,6 +131,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
             // Bulk Actions (Move to Trash, Restore, Force Delete)
             Route::post('bulk-action', [StudentController::class, 'bulkAction'])->name('bulk-action');
+            Route::post('batch-assign-optional-subject', [StudentController::class, 'batchAssignOptionalSubject'])->name('batch-assign-optional-subject');
 
             // Soft Delete, Restore & Force Delete
             Route::post('{student}/restore', [StudentController::class, 'restore'])->name('restore')->withTrashed();

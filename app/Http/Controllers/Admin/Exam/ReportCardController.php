@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Exam;
 
 use App\Http\Controllers\Controller;
 use App\Models\AcademicClass;
+use App\Models\ClassSubjectAssignment;
 use App\Models\Exam;
 use App\Models\ExamMark;
 use App\Models\ExamResult;
@@ -210,28 +211,39 @@ class ReportCardController extends Controller
         if ($setting->background_image_path && file_exists(public_path($setting->background_image_path))) {
             $path = public_path($setting->background_image_path);
             $mime = mime_content_type($path) ?: 'image/jpeg';
-            $bgDataUri = 'data:' . $mime . ';base64,' . base64_encode(file_get_contents($path));
+            $bgDataUri = 'data:'.$mime.';base64,'.base64_encode(file_get_contents($path));
         }
 
         $logoDataUri = null;
         if ($setting->school_logo_path && file_exists(public_path($setting->school_logo_path))) {
             $path = public_path($setting->school_logo_path);
             $mime = mime_content_type($path) ?: 'image/png';
-            $logoDataUri = 'data:' . $mime . ';base64,' . base64_encode(file_get_contents($path));
+            $logoDataUri = 'data:'.$mime.';base64,'.base64_encode(file_get_contents($path));
         }
 
         $sigDataUri = null;
         if ($setting->principal_signature_path && file_exists(public_path($setting->principal_signature_path))) {
             $path = public_path($setting->principal_signature_path);
             $mime = mime_content_type($path) ?: 'image/png';
-            $sigDataUri = 'data:' . $mime . ';base64,' . base64_encode(file_get_contents($path));
+            $sigDataUri = 'data:'.$mime.';base64,'.base64_encode(file_get_contents($path));
         }
 
         $studentPhotoDataUri = null;
         if ($student->photo_path && file_exists(public_path($student->photo_path))) {
             $path = public_path($student->photo_path);
             $mime = mime_content_type($path) ?: 'image/jpeg';
-            $studentPhotoDataUri = 'data:' . $mime . ';base64,' . base64_encode(file_get_contents($path));
+            $studentPhotoDataUri = 'data:'.$mime.';base64,'.base64_encode(file_get_contents($path));
+        }
+
+        // Resolve student's optional subject ID (from student enrollment or class optional assignment)
+        $optionalSubjectId = (int) ($enrollment?->optional_subject_id ?? 0);
+        if (! $optionalSubjectId && $classId) {
+            $classOpt = ClassSubjectAssignment::where('academic_class_id', $classId)
+                ->where('type', 'optional')
+                ->value('subject_id');
+            if ($classOpt) {
+                $optionalSubjectId = (int) $classOpt;
+            }
         }
 
         return [
@@ -249,6 +261,7 @@ class ReportCardController extends Controller
             'logoDataUri' => $logoDataUri,
             'sigDataUri' => $sigDataUri,
             'studentPhotoDataUri' => $studentPhotoDataUri,
+            'optionalSubjectId' => $optionalSubjectId,
         ];
     }
 }

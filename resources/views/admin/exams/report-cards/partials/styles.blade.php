@@ -145,11 +145,14 @@
     .ms-photo-box {
         width: 65px;
         height: 75px;
-        /* border: 1px solid #0f172a; */
-        /* background-color: #f8fafc; */
         text-align: center;
         vertical-align: middle;
         overflow: hidden;
+    }
+
+    .ms-photo-box-border{
+        border: 1px solid #0f172a;
+        background-color: #f8fafc;
     }
 
     .ms-photo-box img {

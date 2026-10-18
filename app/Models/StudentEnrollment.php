@@ -32,6 +32,7 @@ class StudentEnrollment extends Model
         'academic_class_id',
         'section_id',
         'academic_group_id',
+        'optional_subject_id',
         'roll_number',
         'status',
         'enrolled_at',
@@ -47,6 +48,7 @@ class StudentEnrollment extends Model
     protected function casts(): array
     {
         return [
+            'optional_subject_id' => 'integer',
             'enrolled_at' => 'date',
             'promoted_at' => 'date',
         ];
@@ -98,5 +100,13 @@ class StudentEnrollment extends Model
     public function academicGroup(): BelongsTo
     {
         return $this->belongsTo(AcademicGroup::class);
+    }
+
+    /**
+     * Get the designated 4th / optional subject for this enrollment.
+     */
+    public function optionalSubject(): BelongsTo
+    {
+        return $this->belongsTo(Subject::class, 'optional_subject_id');
     }
 }

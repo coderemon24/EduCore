@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\ClassSubjectAssignment;
 use App\Models\Exam;
 use App\Models\ExamMark;
 use App\Models\ExamResult;
@@ -43,15 +44,25 @@ class ExamResultService
 
         $enrollments = $enrollmentQuery->with(['student'])->get();
 
+        // Optional subject fallback defined at the class assignment level
+        $classOptionalAssignments = ClassSubjectAssignment::whereIn('academic_class_id', $classIds)
+            ->where('type', 'optional')
+            ->pluck('subject_id', 'academic_class_id')
+            ->toArray();
+
         $calculatedCount = 0;
         $passedCount = 0;
         $failedCount = 0;
 
-        DB::transaction(function () use ($exam, $enrollments, &$calculatedCount, &$passedCount, &$failedCount) {
+        DB::transaction(function () use ($exam, $enrollments, $classOptionalAssignments, &$calculatedCount, &$passedCount, &$failedCount) {
             foreach ($enrollments as $enrollment) {
                 $studentId = $enrollment->student_id;
                 $classId = $enrollment->academic_class_id;
                 $sectionId = $enrollment->section_id;
+
+                // Determine student's designated optional subject (individual enrollment override or class default)
+                $studentOptionalSubjectId = $enrollment->optional_subject_id
+                    ?: ($classOptionalAssignments[$classId] ?? null);
 
                 // All exam subjects for this class
                 $examSubjects = $exam->examSubjects->where('academic_class_id', $classId);
@@ -73,6 +84,7 @@ class ExamResultService
                     $obtained = $mark ? (float) $mark->marks_obtained : 0.00;
 
                     $isExempt = ($status === 'exempt');
+                    $isOptional = ($studentOptionalSubjectId && (int) $subj->subject_id === (int) $studentOptionalSubjectId);
 
                     if (! $isExempt) {
                         $totalFullMarks += $fullMarks;
@@ -88,6 +100,8 @@ class ExamResultService
                     );
 
                     $eval['is_exempt'] = $isExempt;
+                    $eval['is_optional'] = $isOptional;
+                    $eval['subject_id'] = $subj->subject_id;
                     if ($status === 'absent' || $status === 'missing' || $status === 'incomplete') {
                         $eval['is_passed'] = false;
                         $eval['point'] = 0.00;

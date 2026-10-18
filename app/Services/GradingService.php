@@ -91,55 +91,96 @@ class GradingService
 
     /**
      * Compute aggregated overall GPA and grade for a collection of subject results.
+     * Supports compulsory vs optional (4th) subjects:
+     * - Optional subject failure does not trigger fail_any_fails_all overall exam failure.
+     * - Optional subject points above 2.00 contribute bonus GP: max(0, Optional GP - 2.00).
+     * - Overall GPA divisor is strictly the count of compulsory subjects, capped at 5.00.
      *
-     * @param  array<int, array{point: float, is_passed: bool, is_exempt?: bool, percentage: float}>  $subjectEvaluations
-     * @return array{gpa: float, grade: string, result_status: string, failed_count: int}
+     * @param  array<int, array{point: float, is_passed: bool, is_exempt?: bool, is_optional?: bool, percentage: float}>  $subjectEvaluations
+     * @return array{gpa: float, grade: string, result_status: string, failed_count: int, failed_compulsory_count: int, failed_optional_count: int, optional_bonus: float}
      */
     public function calculateOverallResult(array $subjectEvaluations, ?GradingScale $scale = null): array
     {
-        $totalPoints = 0.00;
-        $applicableCount = 0;
-        $failedCount = 0;
-        $totalPercentage = 0.00;
+        $compulsoryPoints = 0.00;
+        $compulsoryCount = 0;
+        $compulsoryTotalPercentage = 0.00;
+        $failedCompulsoryCount = 0;
+
+        $optionalBonus = 0.00;
+        $failedOptionalCount = 0;
+
+        $allApplicableCount = 0;
+        $allTotalPoints = 0.00;
+        $allTotalPercentage = 0.00;
 
         foreach ($subjectEvaluations as $eval) {
             if (! empty($eval['is_exempt'])) {
                 continue; // Exempt subjects do not affect GPA
             }
 
-            $applicableCount++;
-            $totalPoints += (float) ($eval['point'] ?? 0.00);
-            $totalPercentage += (float) ($eval['percentage'] ?? 0.00);
+            $allApplicableCount++;
+            $point = (float) ($eval['point'] ?? 0.00);
+            $percentage = (float) ($eval['percentage'] ?? 0.00);
+            $isPassed = ! empty($eval['is_passed']);
 
-            if (empty($eval['is_passed'])) {
-                $failedCount++;
+            $allTotalPoints += $point;
+            $allTotalPercentage += $percentage;
+
+            if (! empty($eval['is_optional'])) {
+                if (! $isPassed) {
+                    $failedOptionalCount++;
+                } else {
+                    $optionalBonus += max(0.00, round($point - 2.00, 2));
+                }
+            } else {
+                $compulsoryCount++;
+                $compulsoryPoints += $point;
+                $compulsoryTotalPercentage += $percentage;
+
+                if (! $isPassed) {
+                    $failedCompulsoryCount++;
+                }
             }
         }
 
-        if ($applicableCount === 0) {
+        if ($allApplicableCount === 0) {
             return [
                 'gpa' => 0.00,
                 'grade' => 'F',
                 'result_status' => 'exempted',
                 'failed_count' => 0,
+                'failed_compulsory_count' => 0,
+                'failed_optional_count' => 0,
+                'optional_bonus' => 0.00,
             ];
         }
 
+        $totalFailedCount = $failedCompulsoryCount + $failedOptionalCount;
         $failAnyFailsAll = $scale ? (bool) $scale->fail_any_fails_all : true;
 
-        if ($failAnyFailsAll && $failedCount > 0) {
+        // fail_any_fails_all applies ONLY to COMPULSORY subjects
+        if ($failAnyFailsAll && $failedCompulsoryCount > 0) {
             $failingTier = $scale ? $scale->gradeTiers->where('is_pass', false)->first() : null;
 
             return [
                 'gpa' => 0.00,
                 'grade' => $failingTier ? $failingTier->grade : 'F',
                 'result_status' => 'failed',
-                'failed_count' => $failedCount,
+                'failed_count' => $totalFailedCount,
+                'failed_compulsory_count' => $failedCompulsoryCount,
+                'failed_optional_count' => $failedOptionalCount,
+                'optional_bonus' => $optionalBonus,
             ];
         }
 
-        $gpa = round($totalPoints / $applicableCount, 2);
-        $avgPercentage = round($totalPercentage / $applicableCount, 2);
+        if ($compulsoryCount > 0) {
+            $rawGpa = ($compulsoryPoints + $optionalBonus) / $compulsoryCount;
+            $gpa = min(5.00, round($rawGpa, 2));
+            $avgPercentage = round($compulsoryTotalPercentage / $compulsoryCount, 2);
+        } else {
+            $gpa = round($allTotalPoints / $allApplicableCount, 2);
+            $avgPercentage = round($allTotalPercentage / $allApplicableCount, 2);
+        }
 
         $grade = 'Passed';
         if ($scale) {
@@ -147,13 +188,26 @@ class GradingService
             if ($tier) {
                 $grade = $tier->grade;
             }
+
+            // If GPA achieves 5.00 (e.g. through optional bonus points), elevate to top tier (A+)
+            if ($gpa >= 5.00) {
+                $topTier = $scale->gradeTiers->where('is_pass', true)->sortByDesc('point')->first();
+                if ($topTier) {
+                    $grade = $topTier->grade;
+                }
+            }
         }
+
+        $isPassedOverall = ($failedCompulsoryCount === 0);
 
         return [
             'gpa' => $gpa,
             'grade' => $grade,
-            'result_status' => $failedCount > 0 ? 'failed' : 'passed',
-            'failed_count' => $failedCount,
+            'result_status' => $isPassedOverall ? 'passed' : 'failed',
+            'failed_count' => $totalFailedCount,
+            'failed_compulsory_count' => $failedCompulsoryCount,
+            'failed_optional_count' => $failedOptionalCount,
+            'optional_bonus' => $optionalBonus,
         ];
     }
 }

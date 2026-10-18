@@ -51,6 +51,11 @@ class UpdateStudentRequest extends FormRequest
             'phone' => ['nullable', 'string', 'max:30'],
             'photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
             'status' => ['required', 'string', 'in:active,inactive,graduated,transferred,suspended'],
+            'optional_subject_id' => [
+                'nullable',
+                'integer',
+                Rule::exists('subjects', 'id')->where('school_id', $schoolId),
+            ],
 
             // Guardian Details
             'guardian_name' => ['nullable', 'string', 'max:150'],

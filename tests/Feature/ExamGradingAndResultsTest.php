@@ -775,5 +775,339 @@ class ExamGradingAndResultsTest extends TestCase
         $toggledResponse->assertDontSee('ATTENDANCE REPORT');
         $toggledResponse->assertDontSee('GPA GRADING');
     }
-}
 
+    /**
+     * Rule 1 Test: Failing in an optional subject does not trigger fail_any_fails_all overall failure.
+     */
+    public function test_optional_subject_failure_does_not_fail_student_overall(): void
+    {
+        $optSubject = Subject::create([
+            'school_id' => $this->school->id,
+            'name' => 'Higher Mathematics',
+            'code' => '126',
+            'type' => 'theory',
+        ]);
+
+        $optExamSubj = ExamSubject::create([
+            'school_id' => $this->school->id,
+            'exam_id' => $this->exam->id,
+            'academic_class_id' => $this->class->id,
+            'subject_id' => $optSubject->id,
+            'full_marks' => 100,
+            'pass_marks' => 33,
+            'order_index' => 3,
+        ]);
+
+        // Designate optSubject as student1's optional subject
+        $enrollment = StudentEnrollment::where('student_id', $this->student1->id)->first();
+        $enrollment->update(['optional_subject_id' => $optSubject->id]);
+
+        $tierA = GradeTier::where('grading_scale_id', $this->scale->id)->where('grade', 'A')->first();
+        $tierF = GradeTier::where('grading_scale_id', $this->scale->id)->where('grade', 'F')->first();
+
+        // Student passes Math with 75 (A, GP 4.00)
+        ExamMark::updateOrCreate(
+            ['exam_subject_id' => $this->mathExamSubj->id, 'student_id' => $this->student1->id],
+            [
+                'school_id' => $this->school->id,
+                'exam_id' => $this->exam->id,
+                'academic_class_id' => $this->class->id,
+                'section_id' => $this->section->id,
+                'marks_obtained' => 75,
+                'percentage' => 75,
+                'grade_tier_id' => $tierA->id,
+                'attendance_status' => 'present',
+                'is_passed' => true,
+            ]
+        );
+
+        // Student passes English with 70 (A, GP 4.00)
+        ExamMark::updateOrCreate(
+            ['exam_subject_id' => $this->engExamSubj->id, 'student_id' => $this->student1->id],
+            [
+                'school_id' => $this->school->id,
+                'exam_id' => $this->exam->id,
+                'academic_class_id' => $this->class->id,
+                'section_id' => $this->section->id,
+                'marks_obtained' => 70,
+                'percentage' => 70,
+                'grade_tier_id' => $tierA->id,
+                'attendance_status' => 'present',
+                'is_passed' => true,
+            ]
+        );
+
+        // Student FAILS Higher Math (Optional) with 20 marks (F, GP 0.00)
+        ExamMark::updateOrCreate(
+            ['exam_subject_id' => $optExamSubj->id, 'student_id' => $this->student1->id],
+            [
+                'school_id' => $this->school->id,
+                'exam_id' => $this->exam->id,
+                'academic_class_id' => $this->class->id,
+                'section_id' => $this->section->id,
+                'marks_obtained' => 20,
+                'percentage' => 20,
+                'grade_tier_id' => $tierF->id,
+                'attendance_status' => 'present',
+                'is_passed' => false,
+            ]
+        );
+
+        // Calculate results with fail_any_fails_all = true
+        $this->scale->update(['fail_any_fails_all' => true]);
+        $service = app(ExamResultService::class);
+        $service->calculateExamResults($this->exam, $this->class->id);
+
+        $res = ExamResult::where('exam_id', $this->exam->id)->where('student_id', $this->student1->id)->first();
+
+        $this->assertNotNull($res);
+        // Student should PASS overall because failure was in optional subject
+        $this->assertEquals('passed', $res->result_status);
+        $this->assertEquals(4.00, (float) $res->gpa);
+        $this->assertEquals('A', $res->overall_grade);
+        $this->assertEquals(1, $res->failed_subjects_count);
+    }
+
+    /**
+     * Rule 2 Test: Optional subject points above 2.00 contribute bonus GP and boost to GPA 5.00 (A+).
+     */
+    public function test_optional_subject_bonus_points_boost_gpa_to_five_point_zero_and_grade_a_plus(): void
+    {
+        $bioSubject = Subject::create([
+            'school_id' => $this->school->id,
+            'name' => 'Biology',
+            'code' => '138',
+            'type' => 'theory',
+        ]);
+
+        $bioExamSubj = ExamSubject::create([
+            'school_id' => $this->school->id,
+            'exam_id' => $this->exam->id,
+            'academic_class_id' => $this->class->id,
+            'subject_id' => $bioSubject->id,
+            'full_marks' => 100,
+            'pass_marks' => 33,
+            'order_index' => 4,
+        ]);
+
+        $enrollment = StudentEnrollment::where('student_id', $this->student1->id)->first();
+        $enrollment->update(['optional_subject_id' => $bioSubject->id]);
+
+        $tierA = GradeTier::where('grading_scale_id', $this->scale->id)->where('grade', 'A')->first();
+        $tierAPlus = GradeTier::where('grading_scale_id', $this->scale->id)->where('grade', 'A+')->first();
+
+        // Math: 75 marks (A, GP 4.00)
+        ExamMark::updateOrCreate(
+            ['exam_subject_id' => $this->mathExamSubj->id, 'student_id' => $this->student1->id],
+            [
+                'school_id' => $this->school->id,
+                'exam_id' => $this->exam->id,
+                'academic_class_id' => $this->class->id,
+                'section_id' => $this->section->id,
+                'marks_obtained' => 75,
+                'percentage' => 75,
+                'grade_tier_id' => $tierA->id,
+                'attendance_status' => 'present',
+                'is_passed' => true,
+            ]
+        );
+
+        // English: 85 marks (A+, GP 5.00)
+        ExamMark::updateOrCreate(
+            ['exam_subject_id' => $this->engExamSubj->id, 'student_id' => $this->student1->id],
+            [
+                'school_id' => $this->school->id,
+                'exam_id' => $this->exam->id,
+                'academic_class_id' => $this->class->id,
+                'section_id' => $this->section->id,
+                'marks_obtained' => 85,
+                'percentage' => 85,
+                'grade_tier_id' => $tierAPlus->id,
+                'attendance_status' => 'present',
+                'is_passed' => true,
+            ]
+        );
+
+        // Biology (Optional): 85 marks (A+, GP 5.00). Bonus = 5.00 - 2.00 = +3.00!
+        ExamMark::updateOrCreate(
+            ['exam_subject_id' => $bioExamSubj->id, 'student_id' => $this->student1->id],
+            [
+                'school_id' => $this->school->id,
+                'exam_id' => $this->exam->id,
+                'academic_class_id' => $this->class->id,
+                'section_id' => $this->section->id,
+                'marks_obtained' => 85,
+                'percentage' => 85,
+                'grade_tier_id' => $tierAPlus->id,
+                'attendance_status' => 'present',
+                'is_passed' => true,
+            ]
+        );
+
+        // Total points = (4.00 + 5.00) + 3.00 = 12.00
+        // Compulsory divisor = 2. GPA = min(5.00, 12 / 2) = 5.00!
+        $service = app(ExamResultService::class);
+        $service->calculateExamResults($this->exam, $this->class->id);
+
+        $res = ExamResult::where('exam_id', $this->exam->id)->where('student_id', $this->student1->id)->first();
+
+        $this->assertEquals(5.00, (float) $res->gpa);
+        $this->assertEquals('A+', $res->overall_grade);
+        $this->assertEquals('passed', $res->result_status);
+    }
+
+    /**
+     * Test optional subject with Grade C or D contributes 0 bonus points.
+     */
+    public function test_optional_subject_with_c_or_d_grade_adds_zero_bonus_points(): void
+    {
+        $agriSubject = Subject::create([
+            'school_id' => $this->school->id,
+            'name' => 'Agriculture Studies',
+            'code' => '134',
+            'type' => 'theory',
+        ]);
+
+        $agriExamSubj = ExamSubject::create([
+            'school_id' => $this->school->id,
+            'exam_id' => $this->exam->id,
+            'academic_class_id' => $this->class->id,
+            'subject_id' => $agriSubject->id,
+            'full_marks' => 100,
+            'pass_marks' => 33,
+            'order_index' => 5,
+        ]);
+
+        $enrollment = StudentEnrollment::where('student_id', $this->student1->id)->first();
+        $enrollment->update(['optional_subject_id' => $agriSubject->id]);
+
+        $tierA = GradeTier::where('grading_scale_id', $this->scale->id)->where('grade', 'A')->first();
+        $tierC = GradeTier::where('grading_scale_id', $this->scale->id)->where('grade', 'C')->first();
+
+        // Math: 70 (A, 4.00)
+        ExamMark::updateOrCreate(
+            ['exam_subject_id' => $this->mathExamSubj->id, 'student_id' => $this->student1->id],
+            [
+                'school_id' => $this->school->id,
+                'exam_id' => $this->exam->id,
+                'academic_class_id' => $this->class->id,
+                'section_id' => $this->section->id,
+                'marks_obtained' => 70,
+                'percentage' => 70,
+                'grade_tier_id' => $tierA->id,
+                'attendance_status' => 'present',
+                'is_passed' => true,
+            ]
+        );
+
+        // English: 70 (A, 4.00)
+        ExamMark::updateOrCreate(
+            ['exam_subject_id' => $this->engExamSubj->id, 'student_id' => $this->student1->id],
+            [
+                'school_id' => $this->school->id,
+                'exam_id' => $this->exam->id,
+                'academic_class_id' => $this->class->id,
+                'section_id' => $this->section->id,
+                'marks_obtained' => 70,
+                'percentage' => 70,
+                'grade_tier_id' => $tierA->id,
+                'attendance_status' => 'present',
+                'is_passed' => true,
+            ]
+        );
+
+        // Agriculture (Optional): 45 marks (C, GP 2.00). Bonus = max(0, 2.00 - 2.00) = 0.00!
+        ExamMark::updateOrCreate(
+            ['exam_subject_id' => $agriExamSubj->id, 'student_id' => $this->student1->id],
+            [
+                'school_id' => $this->school->id,
+                'exam_id' => $this->exam->id,
+                'academic_class_id' => $this->class->id,
+                'section_id' => $this->section->id,
+                'marks_obtained' => 45,
+                'percentage' => 45,
+                'grade_tier_id' => $tierC->id,
+                'attendance_status' => 'present',
+                'is_passed' => true,
+            ]
+        );
+
+        $service = app(ExamResultService::class);
+        $service->calculateExamResults($this->exam, $this->class->id);
+
+        $res = ExamResult::where('exam_id', $this->exam->id)->where('student_id', $this->student1->id)->first();
+
+        // GPA: (4.00 + 4.00 + 0) / 2 = 4.00
+        $this->assertEquals(4.00, (float) $res->gpa);
+        $this->assertEquals('A', $res->overall_grade);
+    }
+
+    /**
+     * Test batch assigning optional subject to class cohort.
+     */
+    public function test_batch_assign_optional_subject_to_class_cohort(): void
+    {
+        $optSubject = Subject::create([
+            'school_id' => $this->school->id,
+            'name' => 'Computer Science',
+            'code' => '142',
+            'type' => 'theory',
+        ]);
+
+        $payload = [
+            'academic_year_id' => $this->year->id,
+            'academic_class_id' => $this->class->id,
+            'section_id' => null,
+            'optional_subject_id' => $optSubject->id,
+            'overwrite_existing' => '1',
+        ];
+
+        $response = $this->actingAs($this->superAdmin, 'admin')
+            ->post(route('admin.students.batch-assign-optional-subject'), $payload);
+
+        $response->assertRedirect();
+
+        $this->assertDatabaseHas('student_enrollments', [
+            'student_id' => $this->student1->id,
+            'optional_subject_id' => $optSubject->id,
+        ]);
+
+        $this->assertDatabaseHas('student_enrollments', [
+            'student_id' => $this->student2->id,
+            'optional_subject_id' => $optSubject->id,
+        ]);
+    }
+
+    /**
+     * Test marksheet card renders (Optional) tag next to 4th subject.
+     */
+    public function test_marksheet_renders_optional_badge_on_4th_subject(): void
+    {
+        $optSubject = Subject::create([
+            'school_id' => $this->school->id,
+            'name' => 'Islamic Studies',
+            'code' => '111',
+            'type' => 'theory',
+        ]);
+
+        ExamSubject::create([
+            'school_id' => $this->school->id,
+            'exam_id' => $this->exam->id,
+            'academic_class_id' => $this->class->id,
+            'subject_id' => $optSubject->id,
+            'full_marks' => 100,
+            'pass_marks' => 33,
+            'order_index' => 6,
+        ]);
+
+        $enrollment = StudentEnrollment::where('student_id', $this->student1->id)->first();
+        $enrollment->update(['optional_subject_id' => $optSubject->id]);
+
+        $response = $this->actingAs($this->superAdmin, 'admin')
+            ->get(route('admin.exams.report-cards.show', [$this->exam->id, $this->student1->id]));
+
+        $response->assertOk();
+        $response->assertSee('(Optional)');
+        $response->assertSee('ISLAMIC STUDIES');
+    }
+}

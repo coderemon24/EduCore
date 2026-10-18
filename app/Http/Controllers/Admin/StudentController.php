@@ -8,8 +8,11 @@ use App\Http\Requests\Admin\Student\UpdateStudentRequest;
 use App\Models\AcademicClass;
 use App\Models\AcademicGroup;
 use App\Models\AcademicYear;
+use App\Models\School;
 use App\Models\Section;
 use App\Models\Student;
+use App\Models\StudentEnrollment;
+use App\Models\Subject;
 use App\Services\StudentAdmissionService;
 use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Http\JsonResponse;
@@ -121,6 +124,7 @@ class StudentController extends Controller
         $sections = $request->filled('academic_class_id')
             ? Section::where('academic_class_id', $request->academic_class_id)->get()
             : collect();
+        $subjects = Subject::active()->orderBy('name')->get();
 
         return view('admin.students.index', compact(
             'students',
@@ -129,7 +133,8 @@ class StudentController extends Controller
             'statusFilter',
             'academicYears',
             'academicClasses',
-            'sections'
+            'sections',
+            'subjects'
         ));
     }
 
@@ -143,13 +148,15 @@ class StudentController extends Controller
         $activeYear = $academicYears->firstWhere('is_current', true) ?? $academicYears->first();
         $academicClasses = AcademicClass::ordered()->with('sections')->get();
         $academicGroups = AcademicGroup::orderBy('name')->get();
+        $subjects = Subject::active()->orderBy('name')->get();
 
         return view('admin.students.create', compact(
             'suggestedAdmissionNumber',
             'academicYears',
             'activeYear',
             'academicClasses',
-            'academicGroups'
+            'academicGroups',
+            'subjects'
         ));
     }
 
@@ -175,7 +182,7 @@ class StudentController extends Controller
     public function show(Student $student): View
     {
         $student->load([
-            'enrollments' => fn ($q) => $q->withTrashed()->with(['academicYear', 'academicClass', 'section', 'academicGroup']),
+            'enrollments' => fn ($q) => $q->withTrashed()->with(['academicYear', 'academicClass', 'section', 'academicGroup', 'optionalSubject']),
             'guardians',
         ]);
 
@@ -187,9 +194,11 @@ class StudentController extends Controller
      */
     public function edit(Student $student): View
     {
-        $student->load(['guardians', 'currentEnrollment']);
+        $student->load(['guardians', 'currentEnrollment.optionalSubject']);
+        $academicClasses = AcademicClass::ordered()->with('sections')->get();
+        $subjects = Subject::active()->orderBy('name')->get();
 
-        return view('admin.students.edit', compact('student'));
+        return view('admin.students.edit', compact('student', 'academicClasses', 'subjects'));
     }
 
     /**
@@ -369,5 +378,46 @@ class StudentController extends Controller
 
         return redirect()->route('admin.students.index', ['status' => $redirectStatus])
             ->with('success', $message);
+    }
+
+    /**
+     * Batch assign a 4th / optional subject across a class or section cohort.
+     */
+    public function batchAssignOptionalSubject(Request $request): RedirectResponse
+    {
+        $schoolId = app()->has('current_school_id') ? app('current_school_id') : (School::value('id') ?? 1);
+
+        $validated = $request->validate([
+            'academic_year_id' => ['required', 'integer', 'exists:academic_years,id'],
+            'academic_class_id' => ['required', 'integer', 'exists:academic_classes,id'],
+            'section_id' => ['nullable', 'integer', 'exists:sections,id'],
+            'optional_subject_id' => ['nullable', 'integer', 'exists:subjects,id'],
+            'overwrite_existing' => ['nullable', 'boolean'],
+        ]);
+
+        $query = StudentEnrollment::where('school_id', $schoolId)
+            ->where('academic_year_id', $validated['academic_year_id'])
+            ->where('academic_class_id', $validated['academic_class_id'])
+            ->where('status', 'current');
+
+        if (! empty($validated['section_id'])) {
+            $query->where('section_id', $validated['section_id']);
+        }
+
+        if (empty($validated['overwrite_existing'])) {
+            $query->whereNull('optional_subject_id');
+        }
+
+        $count = $query->update([
+            'optional_subject_id' => $validated['optional_subject_id'] ?: null,
+        ]);
+
+        $subjectName = $validated['optional_subject_id']
+            ? (Subject::find($validated['optional_subject_id'])?->name ?: 'Optional Subject')
+            : 'None (Cleared)';
+
+        ToastMagic::success("4th Subject '{$subjectName}' assigned to {$count} student(s) successfully.");
+
+        return back();
     }
 }

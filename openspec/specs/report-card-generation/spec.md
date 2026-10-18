@@ -6,7 +6,7 @@ Generates official, print-ready student mark sheets and academic transcripts for
 ## Requirements
 
 ### Requirement: Standardized Institutional Mark Sheet Layout
-The system MUST generate a high-density, printable student mark sheet matching the institutional structure (as exemplified by Joypurhat Government Girls' High School standards).
+The system MUST generate a high-density, printable student mark sheet matching the institutional structure (as exemplified by Joypurhat Government Girls' High School standards), clearly indicating the student's designated optional (4th) subject within the subject breakdown table.
 
 #### Scenario: Rendering student demographic and academic meta header
 - **WHEN** a report card is generated for an enrolled student
@@ -18,6 +18,14 @@ The system MUST generate a high-density, printable student mark sheet matching t
 #### Scenario: Rendering subject-wise dynamic marks breakdown
 - **WHEN** the subject table is rendered for a student's exam
 - **THEN** the table displays columns for Subject Code, Subject Name, dynamic component marks (Written, MCQ, CA, Practical as configured for that subject), Subject Total Marks, Class Highest Mark for that subject, Grade Point (GP), and Letter Grade.
+
+#### Scenario: Rendering optional subject label in subject table
+- **WHEN** the student mark sheet subject-wise grade table renders a subject identified as the student's optional (4th) subject
+- **THEN** the layout displays `(Optional)` directly next to or below the subject name in the SUBJECT column without introducing extra summary boxes.
+
+#### Scenario: Rendering compulsory subjects in subject table
+- **WHEN** compulsory subjects are rendered in the mark sheet subject table
+- **THEN** they display their standard subject titles without the `(Optional)` tag.
 
 #### Scenario: Rendering combined paper subject groups
 - **WHEN** subjects are configured as multi-paper pairs (e.g. Bengali 1st & 2nd Paper, English 1st & 2nd Paper)

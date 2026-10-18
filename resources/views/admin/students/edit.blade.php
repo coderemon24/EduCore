@@ -214,6 +214,30 @@
                                value="{{ old('phone', $student->phone) }}"
                                class="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs text-slate-800 transition hover:bg-white focus:bg-white focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20 shadow-2xs">
                     </div>
+
+                    <!-- 4th / Optional Subject -->
+                    <div class="sm:col-span-2">
+                        <label for="optional_subject_id" class="block text-xs font-semibold text-slate-700 mb-1.5">
+                            4th / Optional Subject
+                        </label>
+                        @php
+                            $currentOptionalId = $student->currentEnrollment?->optional_subject_id;
+                        @endphp
+                        <select id="optional_subject_id"
+                                name="optional_subject_id"
+                                class="select2 w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs text-slate-800 transition hover:bg-white focus:bg-white focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20 cursor-pointer">
+                            <option value="">-- No Optional Subject --</option>
+                            @foreach ($subjects ?? [] as $subj)
+                                <option value="{{ $subj->id }}" {{ old('optional_subject_id', $currentOptionalId) == $subj->id ? 'selected' : '' }}>
+                                    {{ $subj->name }} ({{ $subj->code }})
+                                </option>
+                            @endforeach
+                        </select>
+                        <p class="mt-1 text-[11px] text-slate-500">Optional. Leave blank to use class default.</p>
+                        @error('optional_subject_id')
+                            <p class="mt-1 text-[11px] text-rose-600 font-medium">{{ $message }}</p>
+                        @enderror
+                    </div>
                 </div>
 
                 <!-- Photo Upload with Existing Preview -->

@@ -28,6 +28,15 @@
                 <span>Bulk Promotions</span>
             </a>
 
+            <button type="button"
+                    onclick="document.getElementById('batch-optional-subject-modal').classList.remove('hidden')"
+                    class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 transition cursor-pointer">
+                <svg class="h-4 w-4 text-violet-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                <span>Batch 4th Subject</span>
+            </button>
+
             <a href="{{ route('admin.students.create') }}"
                class="inline-flex items-center gap-2 rounded-lg bg-violet-600 px-3.5 py-2 text-xs font-semibold text-white shadow-2xs hover:bg-violet-700 transition cursor-pointer">
                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -576,6 +585,88 @@
     <input type="hidden" name="action" id="bulk-action-input" value="delete">
     <div id="bulk-action-ids-container"></div>
 </form>
+
+<!-- Batch Assign 4th Subject Modal -->
+<div id="batch-optional-subject-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-xs p-4 hidden">
+    <div class="w-full max-w-md rounded-2xl bg-white shadow-xl border border-slate-200 overflow-hidden">
+        <div class="flex items-center justify-between border-b border-slate-100 px-5 py-4">
+            <div>
+                <h3 class="text-sm font-bold text-slate-900">Batch Assign 4th / Optional Subject</h3>
+                <p class="text-[11px] text-slate-500 mt-0.5">Assign an optional subject across a whole class or section cohort.</p>
+            </div>
+            <button type="button"
+                    onclick="document.getElementById('batch-optional-subject-modal').classList.add('hidden')"
+                    class="text-slate-400 hover:text-slate-600 transition cursor-pointer">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <form method="POST" action="{{ route('admin.students.batch-assign-optional-subject') }}" class="p-5 space-y-4">
+            @csrf
+            <!-- Session -->
+            <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Academic Session <span class="text-rose-500">*</span></label>
+                <select name="academic_year_id" required class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-800">
+                    @foreach ($academicYears as $year)
+                        <option value="{{ $year->id }}" {{ $year->is_current ? 'selected' : '' }}>
+                            {{ $year->name }} {{ $year->is_current ? '(Current)' : '' }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <!-- Class -->
+            <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Class / Grade <span class="text-rose-500">*</span></label>
+                <select name="academic_class_id" required data-academic-class-select class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-800">
+                    <option value="">-- Select Class --</option>
+                    @foreach ($academicClasses as $class)
+                        <option value="{{ $class->id }}">{{ $class->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <!-- Section -->
+            <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Section (Optional - leave blank for all sections)</label>
+                <select name="section_id" data-dependent-sections class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-800">
+                    <option value="">All Sections</option>
+                </select>
+            </div>
+
+            <!-- Optional Subject -->
+            <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">4th Subject to Assign</label>
+                <select name="optional_subject_id" class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-800">
+                    <option value="">-- Clear / None --</option>
+                    @foreach ($subjects as $subj)
+                        <option value="{{ $subj->id }}">{{ $subj->name }} ({{ $subj->code }})</option>
+                    @endforeach
+                </select>
+                <p class="mt-1 text-[11px] text-slate-500">Sets or clears the 4th subject for selected students in bulk.</p>
+            </div>
+
+            <!-- Overwrite Checkbox -->
+            <div class="flex items-center gap-2 pt-1">
+                <input type="checkbox" id="overwrite_existing" name="overwrite_existing" value="1" class="rounded border-slate-300 text-violet-600 focus:ring-violet-500">
+                <label for="overwrite_existing" class="text-xs text-slate-600">Overwrite existing assigned optional subjects</label>
+            </div>
+
+            <div class="flex items-center justify-end gap-2.5 pt-3 border-t border-slate-100">
+                <button type="button"
+                        onclick="document.getElementById('batch-optional-subject-modal').classList.add('hidden')"
+                        class="rounded-lg border border-slate-200 px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-50 cursor-pointer">
+                    Cancel
+                </button>
+                <button type="submit"
+                        class="rounded-lg bg-violet-600 px-4 py-2 text-xs font-semibold text-white shadow-xs hover:bg-violet-700 cursor-pointer">
+                    Assign to Cohort
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
 
 @push('scripts')
 <script>

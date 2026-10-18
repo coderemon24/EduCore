@@ -110,6 +110,7 @@ class StudentAdmissionService
                 'academic_class_id' => $data['academic_class_id'],
                 'section_id' => $data['section_id'] ?? null,
                 'academic_group_id' => $data['academic_group_id'] ?? null,
+                'optional_subject_id' => $data['optional_subject_id'] ?? null,
                 'roll_number' => $data['roll_number'] ?? null,
                 'status' => 'current',
                 'enrolled_at' => $data['admission_date'] ?? now()->format('Y-m-d'),
@@ -193,6 +194,13 @@ class StudentAdmissionService
                         ],
                     ]);
                 }
+            }
+
+            // Update enrollment optional subject if provided
+            if (array_key_exists('optional_subject_id', $data) && $student->currentEnrollment) {
+                $student->currentEnrollment->update([
+                    'optional_subject_id' => $data['optional_subject_id'] ?: null,
+                ]);
             }
 
             return $student;

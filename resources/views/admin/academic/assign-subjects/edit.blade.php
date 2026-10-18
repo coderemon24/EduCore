@@ -65,6 +65,7 @@
                 @error('type')
                     <p class="mt-1 text-xs text-rose-600 font-medium">{{ $message }}</p>
                 @enderror
+                <p class="mt-1 text-[11px] text-slate-400">Class default. Can be overridden per student during admission or batch assign.</p>
             </div>
 
             <!-- Assigned Subject Teacher (Optional) -->

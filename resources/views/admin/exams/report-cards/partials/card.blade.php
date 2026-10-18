@@ -24,6 +24,7 @@
     $guardian = $student->guardians?->first();
     $fatherName = $student->father_name ?: ($guardian && $guardian->relationship === 'father' ? $guardian->full_name : null);
     $motherName = $student->mother_name ?: ($guardian && $guardian->relationship === 'mother' ? $guardian->full_name : null);
+    $optSubjId = $optionalSubjectId ?? $enrollment?->optional_subject_id;
 
     $showHighest = !empty($setting->show_highest_marks);
     $showAttendance = !empty($setting->show_attendance_report);
@@ -101,7 +102,9 @@
 
             <!-- Student Photo Column -->
             <td style="width: 75px; text-align: right; vertical-align: middle;">
-                <div class="ms-photo-box" style="display: inline-block;">
+                <div class="ms-photo-box
+                    {{  (empty($student->photo) || !file_exists(public_path($student->photo))) ? 'ms-photo-box-border' : '' }}
+                " style="display: inline-block;">
 
                     @if(!empty($studentPhotoDataUri))
                         <img src="{{ $studentPhotoDataUri }}" alt="{{ $student->full_name }}">
@@ -208,7 +211,12 @@
                 @endphp
                 <tr>
                     <td style="font-family: monospace;">{{ $subj->subject?->code ?: '—' }}</td>
-                    <td class="subject-name-td">{{ strtoupper($subj->subject?->name ?: 'Subject') }}</td>
+                    <td class="subject-name-td">
+                        {{ strtoupper($subj->subject?->name ?: 'Subject') }}
+                        @if($optSubjId && (int)$subj->subject_id === (int)$optSubjId)
+                            <span style="font-size: 7.5px; font-weight: bold; color: #6d28d9; text-transform: uppercase; margin-left: 3px;">(Optional)</span>
+                        @endif
+                    </td>
                     <td style="font-family: monospace;">{{ $written !== null ? number_format($written, 0) : '' }}</td>
                     <td style="font-family: monospace;">{{ $mcq !== null ? number_format($mcq, 0) : '' }}</td>
                     <td style="font-family: monospace;">{{ $ca !== null ? number_format($ca, 0) : '' }}</td>
