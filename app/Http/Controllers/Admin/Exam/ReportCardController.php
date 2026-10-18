@@ -105,6 +105,7 @@ class ReportCardController extends Controller
 
         return Pdf::view('admin.exams.report-cards.marksheet-pdf', $data)
             ->format('a4')
+            ->margins(0, 0, 0, 0)
             ->name($filename);
     }
 
@@ -144,8 +145,10 @@ class ReportCardController extends Controller
         return Pdf::view('admin.exams.report-cards.bulk-pdf', [
             'studentsData' => $studentsData,
             'exam' => $exam,
+            'setting' => $studentsData[0]['setting'] ?? null,
         ])
             ->format('a4')
+            ->margins(0, 0, 0, 0)
             ->name($filename);
     }
 
@@ -196,8 +199,40 @@ class ReportCardController extends Controller
                 'show_attendance_report' => true,
                 'show_extra_activities' => true,
                 'show_gpa_grading_scale' => true,
+                'padding_top' => '10mm',
+                'padding_right' => '12mm',
+                'padding_bottom' => '10mm',
+                'padding_left' => '12mm',
             ]
         );
+
+        $bgDataUri = null;
+        if ($setting->background_image_path && file_exists(public_path($setting->background_image_path))) {
+            $path = public_path($setting->background_image_path);
+            $mime = mime_content_type($path) ?: 'image/jpeg';
+            $bgDataUri = 'data:' . $mime . ';base64,' . base64_encode(file_get_contents($path));
+        }
+
+        $logoDataUri = null;
+        if ($setting->school_logo_path && file_exists(public_path($setting->school_logo_path))) {
+            $path = public_path($setting->school_logo_path);
+            $mime = mime_content_type($path) ?: 'image/png';
+            $logoDataUri = 'data:' . $mime . ';base64,' . base64_encode(file_get_contents($path));
+        }
+
+        $sigDataUri = null;
+        if ($setting->principal_signature_path && file_exists(public_path($setting->principal_signature_path))) {
+            $path = public_path($setting->principal_signature_path);
+            $mime = mime_content_type($path) ?: 'image/png';
+            $sigDataUri = 'data:' . $mime . ';base64,' . base64_encode(file_get_contents($path));
+        }
+
+        $studentPhotoDataUri = null;
+        if ($student->photo_path && file_exists(public_path($student->photo_path))) {
+            $path = public_path($student->photo_path);
+            $mime = mime_content_type($path) ?: 'image/jpeg';
+            $studentPhotoDataUri = 'data:' . $mime . ';base64,' . base64_encode(file_get_contents($path));
+        }
 
         return [
             'exam' => $exam,
@@ -210,6 +245,10 @@ class ReportCardController extends Controller
             'highestTotalInClass' => $highestTotalInClass,
             'setting' => $setting,
             'school' => $school,
+            'bgDataUri' => $bgDataUri,
+            'logoDataUri' => $logoDataUri,
+            'sigDataUri' => $sigDataUri,
+            'studentPhotoDataUri' => $studentPhotoDataUri,
         ];
     }
 }

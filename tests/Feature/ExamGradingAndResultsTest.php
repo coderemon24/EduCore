@@ -712,4 +712,68 @@ class ExamGradingAndResultsTest extends TestCase
 
         $response->assertRedirect(route('admin.exams.subjects.index', $this->exam));
     }
+
+    /**
+     * Verify that marksheet padding settings can be updated and are rendered in the marksheet.
+     */
+    public function test_admin_can_update_marksheet_padding_settings(): void
+    {
+        $postData = [
+            'headmaster_title' => 'Head Master',
+            'header_title' => 'Test Model School',
+            'sub_header_title' => 'Annual Exam 2026',
+            'show_highest_marks' => '1',
+            'show_attendance_report' => '1',
+            'show_extra_activities' => '1',
+            'show_gpa_grading_scale' => '1',
+            'padding_top' => '25mm',
+            'padding_right' => '15mm',
+            'padding_bottom' => '20mm',
+            'padding_left' => '18mm',
+        ];
+
+        $response = $this->actingAs($this->superAdmin, 'admin')
+            ->post(route('admin.exams.settings.marksheet.update'), $postData);
+
+        $response->assertRedirect(route('admin.exams.settings.marksheet'));
+
+        $this->assertDatabaseHas('marksheet_settings', [
+            'school_id' => $this->school->id,
+            'padding_top' => '25mm',
+            'padding_right' => '15mm',
+            'padding_bottom' => '20mm',
+            'padding_left' => '18mm',
+        ]);
+
+        $marksheetResponse = $this->actingAs($this->superAdmin, 'admin')
+            ->get(route('admin.exams.report-cards.show', [$this->exam->id, $this->student1->id]));
+
+        $marksheetResponse->assertOk();
+        $marksheetResponse->assertSee('padding: 25mm 15mm 20mm 18mm;', false);
+        $marksheetResponse->assertSee('CO-CURRICULAR ACTIVITIES');
+        $marksheetResponse->assertSee('ATTENDANCE REPORT');
+        $marksheetResponse->assertSee('GPA GRADING');
+
+        // Test toggling tables off
+        $this->actingAs($this->superAdmin, 'admin')
+            ->post(route('admin.exams.settings.marksheet.update'), [
+                'headmaster_title' => 'Head Master',
+                'show_highest_marks' => '0',
+                'show_attendance_report' => '0',
+                'show_extra_activities' => '0',
+                'show_gpa_grading_scale' => '0',
+                'padding_top' => '10mm',
+                'padding_right' => '12mm',
+                'padding_bottom' => '10mm',
+                'padding_left' => '12mm',
+            ]);
+
+        $toggledResponse = $this->actingAs($this->superAdmin, 'admin')
+            ->get(route('admin.exams.report-cards.show', [$this->exam->id, $this->student1->id]));
+
+        $toggledResponse->assertDontSee('CO-CURRICULAR ACTIVITIES');
+        $toggledResponse->assertDontSee('ATTENDANCE REPORT');
+        $toggledResponse->assertDontSee('GPA GRADING');
+    }
 }
+

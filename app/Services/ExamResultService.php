@@ -26,7 +26,7 @@ class ExamResultService
         $exam->load(['gradingScale.gradeTiers', 'examSubjects.components']);
 
         // Find applicable classes
-        $classQuery = $exam->examSubjects()->select('academic_class_id')->distinct();
+        $classQuery = $exam->examSubjects()->reorder()->select('academic_class_id')->distinct();
         if ($classId) {
             $classQuery->where('academic_class_id', $classId);
         }

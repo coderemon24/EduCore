@@ -173,6 +173,77 @@
                 </div>
             </div>
 
+            <!-- Marksheet Canvas Padding -->
+            <div class="pt-4 border-t border-slate-100 space-y-4">
+                <div>
+                    <h2 class="text-sm font-bold text-slate-900">Marksheet Canvas Padding</h2>
+                    <p class="text-xs text-slate-500 mt-0.5">
+                        Inner spacing around the report card page (e.g. 10mm, 15mm, 20px). Useful for aligning content with pre-printed stationary or background templates.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Top Padding -->
+                    <div>
+                        <label for="padding_top" class="block text-xs font-semibold text-slate-700 mb-1">Top Padding</label>
+                        <input type="text"
+                               name="padding_top"
+                               id="padding_top"
+                               value="{{ old('padding_top', $setting->padding_top ?: '10mm') }}"
+                               placeholder="10mm"
+                               class="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs text-slate-800 focus:border-violet-600 focus:bg-white focus:outline-hidden transition">
+                        <p class="mt-1 text-[11px] text-slate-400">Default: 10mm</p>
+                    </div>
+
+                    <!-- Right Padding -->
+                    <div>
+                        <label for="padding_right" class="block text-xs font-semibold text-slate-700 mb-1">Right Padding</label>
+                        <input type="text"
+                               name="padding_right"
+                               id="padding_right"
+                               value="{{ old('padding_right', $setting->padding_right ?: '12mm') }}"
+                               placeholder="12mm"
+                               class="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs text-slate-800 focus:border-violet-600 focus:bg-white focus:outline-hidden transition">
+                        <p class="mt-1 text-[11px] text-slate-400">Default: 12mm</p>
+                    </div>
+
+                    <!-- Bottom Padding -->
+                    <div>
+                        <label for="padding_bottom" class="block text-xs font-semibold text-slate-700 mb-1">Bottom Padding</label>
+                        <input type="text"
+                               name="padding_bottom"
+                               id="padding_bottom"
+                               value="{{ old('padding_bottom', $setting->padding_bottom ?: '10mm') }}"
+                               placeholder="10mm"
+                               class="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs text-slate-800 focus:border-violet-600 focus:bg-white focus:outline-hidden transition">
+                        <p class="mt-1 text-[11px] text-slate-400">Default: 10mm</p>
+                    </div>
+
+                    <!-- Left Padding -->
+                    <div>
+                        <label for="padding_left" class="block text-xs font-semibold text-slate-700 mb-1">Left Padding</label>
+                        <input type="text"
+                               name="padding_left"
+                               id="padding_left"
+                               value="{{ old('padding_left', $setting->padding_left ?: '12mm') }}"
+                               placeholder="12mm"
+                               class="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs text-slate-800 focus:border-violet-600 focus:bg-white focus:outline-hidden transition">
+                        <p class="mt-1 text-[11px] text-slate-400">Default: 12mm</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Custom CSS -->
+            <div class="pt-4 border-t border-slate-100 space-y-2">
+                <label for="custom_css" class="block text-xs font-semibold text-slate-700 mb-1">Custom CSS (Optional)</label>
+                <textarea name="custom_css"
+                          id="custom_css"
+                          rows="3"
+                          placeholder="/* Optional custom styles for report card elements */"
+                          class="w-full font-mono rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs text-slate-800 focus:border-violet-600 focus:bg-white focus:outline-hidden transition">{{ old('custom_css', $setting->custom_css) }}</textarea>
+                <p class="text-[11px] text-slate-400">Additional CSS rules applied to report card templates.</p>
+            </div>
+
             <div class="flex items-center justify-end gap-3 pt-4 border-t border-slate-100">
                 <button type="submit" class="inline-flex items-center gap-2 rounded-lg bg-violet-600 px-6 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-violet-700 transition cursor-pointer">
                     <span>Save Settings</span>

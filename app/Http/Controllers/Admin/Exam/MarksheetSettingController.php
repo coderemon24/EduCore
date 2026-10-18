@@ -30,6 +30,10 @@ class MarksheetSettingController extends Controller
                 'show_attendance_report' => true,
                 'show_extra_activities' => true,
                 'show_gpa_grading_scale' => true,
+                'padding_top' => '10mm',
+                'padding_right' => '12mm',
+                'padding_bottom' => '10mm',
+                'padding_left' => '12mm',
             ]
         );
 
@@ -49,6 +53,10 @@ class MarksheetSettingController extends Controller
             'show_attendance_report' => ['nullable', 'boolean'],
             'show_extra_activities' => ['nullable', 'boolean'],
             'show_gpa_grading_scale' => ['nullable', 'boolean'],
+            'padding_top' => ['nullable', 'string', 'max:20'],
+            'padding_right' => ['nullable', 'string', 'max:20'],
+            'padding_bottom' => ['nullable', 'string', 'max:20'],
+            'padding_left' => ['nullable', 'string', 'max:20'],
             'custom_css' => ['nullable', 'string', 'max:2000'],
             'background_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:4096'],
             'school_logo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,svg', 'max:2048'],
@@ -69,6 +77,10 @@ class MarksheetSettingController extends Controller
             'show_attendance_report' => ! empty($validated['show_attendance_report']),
             'show_extra_activities' => ! empty($validated['show_extra_activities']),
             'show_gpa_grading_scale' => ! empty($validated['show_gpa_grading_scale']),
+            'padding_top' => $validated['padding_top'] ?? '10mm',
+            'padding_right' => $validated['padding_right'] ?? '12mm',
+            'padding_bottom' => $validated['padding_bottom'] ?? '10mm',
+            'padding_left' => $validated['padding_left'] ?? '12mm',
             'custom_css' => $validated['custom_css'] ?? null,
         ];
 
