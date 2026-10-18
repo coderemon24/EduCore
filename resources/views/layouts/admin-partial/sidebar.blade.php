@@ -576,21 +576,26 @@
                 @endif
 
                 <!-- Notice Board -->
+                @php
+                    $canViewNotices = !Auth::guard('web')->check() || (Auth::guard('web')->user()?->hasPermission('notices.view'));
+                    $isNoticesActive = request()->routeIs('admin.notices.*');
+                @endphp
+                @if($canViewNotices)
                 <li>
-                    <a href="javascript:void(0)"
-                       onclick="window.Swal && Swal.fire({title: 'Notice Board', text: 'Managing School Bulletins and Parent Announcements.', icon: 'info', confirmButtonColor: '#7c3aed'});"
-                       class="group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-slate-900 cursor-pointer">
-                        <svg class="h-5 w-5 shrink-0 text-slate-400 group-hover:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+                    <a href="{{ route('admin.notices.index') }}"
+                       class="group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-150 cursor-pointer {{ $isNoticesActive ? 'bg-violet-50 text-violet-700 font-semibold shadow-2xs border-l-2 border-violet-600 pl-2.5' : 'text-slate-600 hover:bg-slate-100/80 hover:text-slate-900' }}">
+                        <svg class="h-4.5 w-4.5 shrink-0 {{ $isNoticesActive ? 'text-violet-600' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
                         </svg>
-                        <span class="nav-label truncate text-sm">Notice Board</span>
+                        <span class="nav-label truncate text-xs font-semibold tracking-tight">Notice Board</span>
 
                         <span class="nav-item-tooltip absolute left-full top-1/2 -translate-y-1/2 ml-3 px-3 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md shadow-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
-                            Notice Board
+                            Notice Board &amp; Bulletins
                             <span class="absolute left-[-4px] top-1/2 -translate-y-1/2 border-y-4 border-y-transparent border-r-4 border-r-slate-900"></span>
                         </span>
                     </a>
                 </li>
+                @endif
 
                 <!-- Roles & Permissions -->
                 @php

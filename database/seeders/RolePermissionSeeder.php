@@ -81,6 +81,12 @@ class RolePermissionSeeder extends Seeder
             ['name' => 'Publish Exam Results', 'slug' => 'exams.results.publish', 'group' => 'exams', 'description' => 'Officially publish exam results and lock marks from unauthorized modifications.'],
             ['name' => 'Correct Published Marks', 'slug' => 'exams.marks.correct', 'group' => 'exams', 'description' => 'Authorize post-publication mark revisions with mandatory audit logging.'],
             ['name' => 'Generate Report Cards', 'slug' => 'exams.reports.generate', 'group' => 'exams', 'description' => 'Preview, print, and export official student mark sheets and report cards.'],
+
+            // Notice Board & Announcements
+            ['name' => 'View Notices', 'slug' => 'notices.view', 'group' => 'notices', 'description' => 'View school notices and bulletin announcements.'],
+            ['name' => 'Create Notices', 'slug' => 'notices.create', 'group' => 'notices', 'description' => 'Publish and schedule new school circulars and announcements.'],
+            ['name' => 'Edit Notices', 'slug' => 'notices.edit', 'group' => 'notices', 'description' => 'Modify existing notices, attachments, and publication status.'],
+            ['name' => 'Delete Notices', 'slug' => 'notices.delete', 'group' => 'notices', 'description' => 'Trash, restore, and permanently purge notices.'],
         ];
 
         foreach ($permissions as $permData) {
@@ -102,6 +108,7 @@ class RolePermissionSeeder extends Seeder
             'fees.discount',
             'fees.reverse',
             'fees.reports',
+            'notices.view',
         ])->pluck('id')->toArray();
         $teacherPermissionIds = Permission::whereIn('slug', [
             'students.view',
@@ -113,6 +120,7 @@ class RolePermissionSeeder extends Seeder
             'exams.view',
             'exams.marks.entry',
             'exams.reports.generate',
+            'notices.view',
         ])->pluck('id')->toArray();
 
         $schools = School::all();
@@ -161,7 +169,7 @@ class RolePermissionSeeder extends Seeder
                 ]
             );
             $staffRole->permissions()->sync(
-                Permission::whereIn('slug', ['staff.view'])->pluck('id')->toArray()
+                Permission::whereIn('slug', ['staff.view', 'notices.view'])->pluck('id')->toArray()
             );
 
             // Default School Admin User for First School

@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\Fee\FeePaymentController;
 use App\Http\Controllers\Admin\Fee\FeeReportController;
 use App\Http\Controllers\Admin\Fee\FeeStructureController;
 use App\Http\Controllers\Admin\GuardianController;
+use App\Http\Controllers\Admin\NoticeController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SchoolController;
 use App\Http\Controllers\Admin\SchoolSettingController;
@@ -190,6 +191,22 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/{role}/edit', [RoleController::class, 'edit'])->name('edit')->middleware('school.permission:roles.manage');
             Route::put('/{role}', [RoleController::class, 'update'])->name('update')->middleware('school.permission:roles.manage');
             Route::delete('/{role}', [RoleController::class, 'destroy'])->name('destroy')->middleware('school.permission:roles.manage');
+        });
+
+        // Notice Board & Bulletins
+        Route::prefix('notices')->name('notices.')->group(function () {
+            Route::post('bulk-action', [NoticeController::class, 'bulkAction'])->name('bulk-action')->middleware('school.permission:notices.delete');
+            Route::post('{id}/restore', [NoticeController::class, 'restore'])->name('restore')->withTrashed()->middleware('school.permission:notices.delete');
+            Route::delete('{id}/force-delete', [NoticeController::class, 'forceDelete'])->name('force-delete')->withTrashed()->middleware('school.permission:notices.delete');
+            Route::post('{notice}/toggle-pin', [NoticeController::class, 'togglePin'])->name('toggle-pin')->middleware('school.permission:notices.edit');
+
+            Route::get('/', [NoticeController::class, 'index'])->name('index')->middleware('school.permission:notices.view');
+            Route::get('/create', [NoticeController::class, 'create'])->name('create')->middleware('school.permission:notices.create');
+            Route::post('/', [NoticeController::class, 'store'])->name('store')->middleware('school.permission:notices.create');
+            Route::get('/{notice}', [NoticeController::class, 'show'])->name('show')->middleware('school.permission:notices.view');
+            Route::get('/{notice}/edit', [NoticeController::class, 'edit'])->name('edit')->middleware('school.permission:notices.edit');
+            Route::put('/{notice}', [NoticeController::class, 'update'])->name('update')->middleware('school.permission:notices.edit');
+            Route::delete('/{notice}', [NoticeController::class, 'destroy'])->name('destroy')->middleware('school.permission:notices.delete');
         });
 
         // Attendance Management
