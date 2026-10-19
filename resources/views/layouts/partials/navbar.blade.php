@@ -24,7 +24,7 @@
                 </div>
             </a>
 
-            {{-- Emergency Contact Quick Badge (Desktop) --}}
+            {{-- Emergency Contact Quick Badge & Login Portal (Desktop) --}}
             <div class="hidden md:flex items-center gap-3">
                 <div class="text-right">
                     <div class="text-[11px] text-slate-400 font-medium">প্রধান শিক্ষকের দপ্তর</div>
@@ -37,6 +37,14 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                     </svg>
                 </div>
+                <div class="h-8 w-px bg-slate-200 mx-0.5"></div>
+                <a href="{{ url('/admin/dashboard') }}"
+                   class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#005030] hover:bg-[#003d25] text-white text-xs font-semibold shadow-2xs transition-colors">
+                    <svg class="w-3.5 h-3.5 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                    </svg>
+                    <span>লগইন পোর্টাল</span>
+                </a>
             </div>
 
             {{-- Mobile Menu Trigger --}}

@@ -11,8 +11,6 @@
     {{-- Main Institutional Brand & Clean Navigation --}}
     @include('layouts.partials.navbar')
 
-    {{-- Running Notice Ticker --}}
-    @include('layouts.partials.notice-ticker')
 
     {{-- Page Dynamic Content Canvas --}}
     <main class="flex-1">
