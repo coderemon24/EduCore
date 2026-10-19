@@ -3,6 +3,7 @@
 use App\Http\Middleware\AdminAuthentication;
 use App\Http\Middleware\EnsureSchoolPermission;
 use App\Http\Middleware\EnsureSuperAdmin;
+use App\Http\Middleware\SetFrontendSchoolContext;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -23,6 +24,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin.auth' => AdminAuthentication::class,
             'admin.super' => EnsureSuperAdmin::class,
             'school.permission' => EnsureSchoolPermission::class,
+            'frontend.school' => SetFrontendSchoolContext::class,
         ]);
 
         $middleware->redirectGuestsTo(fn () => route('admin.login'));

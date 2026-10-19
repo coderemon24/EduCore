@@ -23,10 +23,11 @@ class ExampleTest extends TestCase
         $response->assertSee('Institutional Overview');
     }
 
-    public function test_root_redirects_to_admin_dashboard(): void
+    public function test_root_renders_frontend_portal(): void
     {
         $response = $this->get('/');
 
-        $response->assertRedirect('/admin/dashboard');
+        $response->assertStatus(200);
+        $response->assertSee('সোনাতলা উচ্চ বিদ্যালয়');
     }
 }
