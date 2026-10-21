@@ -3,7 +3,10 @@
 @section('title', 'সোনাতলা উচ্চ বিদ্যালয় | Sonatala High School')
 
 @section('content')
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
+    {{-- Full-Screen Hero Slider Directly Below Navbar --}}
+    @include('frontend.home.partials.fullscreen-slider')
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
 
     {{-- TOP SECTION: Hero Swiper Slider + Headmaster Message Box --}}
     <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">

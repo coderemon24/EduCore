@@ -143,7 +143,7 @@
 
                 {{-- Tutor Day --}}
                 <div class="snhs-nav-item">
-                    <a href="{{ route('frontend.notices.index') }}" class="snhs-nav-link">ট্যুটর দিন</a>
+                    <a href="{{ route('frontend.notices.index') }}" class="snhs-nav-link">ছুটির দিন</a>
                 </div>
 
                 {{-- Admission --}}
@@ -237,7 +237,7 @@
             <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link">সংবাদ</a>
             <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link">ইভেন্ট</a>
             <a href="{{ route('frontend.about') }}#gallery" class="snhs-mobile-link">ছবির গ্যালারি</a>
-            <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link">ট্যুটর দিন</a>
+            <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link">ছুটির দিন</a>
             <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link">ভর্তি</a>
             <a href="{{ route('frontend.contact') }}" class="snhs-mobile-link">যোগাযোগ</a>
 

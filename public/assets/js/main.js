@@ -27,7 +27,47 @@ ${r?'Expression: "'+r+`"
  * ==========================================================================
  */
 document.addEventListener('DOMContentLoaded', function () {
-    // 1. Initialize Hero Swiper Slider
+    // 1. Initialize Full-Screen Hero Slider Below Navbar
+    if (document.querySelector('.fullscreen-hero-swiper')) {
+        new Swiper('.fullscreen-hero-swiper', {
+            loop: true,
+            speed: 800,
+            grabCursor: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            },
+            pagination: {
+                el: '.fullscreen-swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.fullscreen-swiper-next',
+                prevEl: '.fullscreen-swiper-prev',
+            },
+            keyboard: {
+                enabled: true,
+                onlyInViewport: true,
+            },
+            on: {
+                slideChangeTransitionStart: function () {
+                    // Re-trigger CSS entrance animations for typography on slide transition
+                    const activeSlide = this.slides[this.activeIndex];
+                    if (activeSlide) {
+                        const animElements = activeSlide.querySelectorAll('.fullscreen-slide-badge, .fullscreen-slide-title, .fullscreen-slide-desc');
+                        animElements.forEach(function (el) {
+                            el.style.animation = 'none';
+                            void el.offsetWidth; // Force DOM reflow
+                            el.style.animation = '';
+                        });
+                    }
+                }
+            }
+        });
+    }
+
+    // 2. Initialize Existing Inner Hero Swiper Slider
     if (document.querySelector('.hero-swiper')) {
         new Swiper('.hero-swiper', {
             loop: true,

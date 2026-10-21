@@ -585,3 +585,139 @@ body {
         font-size: 13px !important;
     }
 }
+
+/* ==========================================================================
+   Full-Screen Hero Slider & Keyframe Text Entrance Animations
+   ========================================================================== */
+
+.fullscreen-hero-swiper {
+    width: 100%;
+    height: 600px !important;
+    position: relative;
+    background-color: #020617;
+}
+
+.fullscreen-hero-swiper .swiper-slide {
+    position: relative;
+    overflow: hidden;
+    height: 600px !important;
+}
+
+/* Left-Top Corner to Bottom-Right Theme Color Shadow Overlay */
+.fullscreen-slider-theme-shadow {
+    position: absolute;
+    inset: 0;
+    background:
+        /* Directional Theme Color (#005030) Gradient: Left-Top to Bottom-Right */
+        linear-gradient(135deg,
+            rgba(0, 80, 48, 0.92) 0%,
+            rgba(0, 80, 48, 0.75) 24%,
+            rgba(0, 65, 38, 0.48) 48%,
+            rgba(0, 40, 24, 0.20) 72%,
+            rgba(0, 0, 0, 0.04) 100%
+        ),
+        /* Top-Left Radial Ambient Inset Anchor */
+        radial-gradient(circle at 0% 0%,
+            rgba(0, 80, 48, 0.88) 0%,
+            rgba(0, 60, 35, 0.45) 38%,
+            transparent 68%
+        );
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Slide Typography Initial / Resting State */
+.fullscreen-hero-swiper .fullscreen-slide-badge,
+.fullscreen-hero-swiper .fullscreen-slide-title,
+.fullscreen-hero-swiper .fullscreen-slide-desc {
+    opacity: 0;
+    transform: translateX(-40px);
+    will-change: transform, opacity;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.fullscreen-slide-title{
+    font-size: 3rem;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #ffffff;
+    margin-top: 12px;
+}
+
+/* Slide In Left & Fade In Up Keyframes */
+@keyframes fullscreenSlideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fullscreenFadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Active Slide Text Staggered Animations */
+.fullscreen-hero-swiper .swiper-slide-active .fullscreen-slide-badge {
+    animation: fullscreenSlideInLeft 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+}
+
+.fullscreen-hero-swiper .swiper-slide-active .fullscreen-slide-title {
+    animation: fullscreenSlideInLeft 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.22s forwards;
+}
+
+.fullscreen-hero-swiper .swiper-slide-active .fullscreen-slide-desc {
+    animation: fullscreenFadeInUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.38s forwards;
+}
+
+/* Navigation Controls Custom Polish */
+.fullscreen-swiper-prev,
+.fullscreen-swiper-next {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    user-select: none;
+}
+
+.fullscreen-swiper-prev:hover,
+.fullscreen-swiper-next:hover {
+    background-color: rgba(255, 255, 255, 0.4) !important;
+    border-color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* Centered Pagination Indicators (Golden / Amber Highlight as in reference) */
+.fullscreen-swiper-pagination .swiper-pagination-bullet {
+    width: 9px;
+    height: 9px;
+    background: #ffffff;
+    opacity: 0.65;
+    margin: 0 4.5px !important;
+    border-radius: 9999px;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+}
+
+.fullscreen-swiper-pagination .swiper-pagination-bullet:hover {
+    opacity: 0.95;
+    transform: scale(1.15);
+}
+
+.fullscreen-swiper-pagination .swiper-pagination-bullet-active {
+    width: 28px;
+    height: 9px;
+    background: #f59e0b !important; /* Institutional Amber / Gold */
+    opacity: 1 !important;
+    border-radius: 6px !important;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.5) !important;
+}
+
