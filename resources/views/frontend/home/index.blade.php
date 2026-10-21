@@ -12,7 +12,7 @@
     <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
 
         {{-- Left: Swiper Slider (65% / 8 cols) --}}
-        <div class="lg:col-span-8 bg-white border border-slate-200 rounded overflow-hidden flex flex-col justify-between shadow-2xs">
+        <div class="lg:col-span-8 bg-white border border-slate-200/90 rounded-2xl overflow-hidden flex flex-col justify-between shadow-xs">
             {{-- Swiper Container --}}
             <div class="swiper hero-swiper relative h-64 sm:h-80 md:h-[390px] w-full bg-slate-900 overflow-hidden">
                 <div class="swiper-wrapper">
@@ -97,42 +97,8 @@
                 </a>
             </div>
         </div>
-
-        {{-- Right: Headmaster's Desk Message (35% / 4 cols) --}}
-        <div class="lg:col-span-4 bg-white border border-slate-200 rounded overflow-hidden flex flex-col shadow-2xs">
-            <div class="bg-[#005030] text-white px-4 py-2.5 flex items-center justify-between font-bold text-xs uppercase tracking-wider">
-                <span>প্রধান শিক্ষকের বাণী</span>
-                <span class="text-[10px] text-emerald-200 font-normal">Headmaster Desk</span>
-            </div>
-            <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3.5">
-                <div class="flex items-start gap-3.5">
-                    <div class="w-20 h-24 flex-shrink-0 border border-slate-200 rounded overflow-hidden bg-slate-100 shadow-2xs">
-                        <img src="{{ asset('assets/images/headmaster.jpg') }}"
-                             alt="মো: খলিলুর রহমান - প্রধান শিক্ষক"
-                             class="w-full h-full object-cover">
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-slate-900 text-sm leading-snug">
-                            মো: খলিলুর রহমান
-                        </h3>
-                        <div class="text-xs text-slate-700 font-semibold mt-0.5">প্রধান শিক্ষক</div>
-                        <div class="text-[11px] text-slate-500">এম.এ, বি.এড (১ম শ্রেণি)</div>
-                        <div class="text-[11px] text-slate-400">সোনাতলা উচ্চ বিদ্যালয়</div>
-                    </div>
-                </div>
-
-                <div class="text-xs text-slate-700 leading-relaxed border-l-2 border-[#005030] pl-3 py-1 bg-slate-50 rounded-r">
-                    "বিসমিল্লাহির রাহমানির রাহিম। সোনাতলা উচ্চ বিদ্যালয় পাবনা জেলার একটি অন্যতম ঐতিহ্যবাহী শিক্ষাপ্রতিষ্ঠান। ১৯৬৮ সাল থেকে গুণগত শিক্ষা প্রদান ও সুনাগরিক তৈরির ব্রত নিয়ে আমাদের পথচলা। নতুন কারিকুলাম ও প্রযুক্তির সমন্বয়ে আমরা শিক্ষার্থীদের আলোকিত মানুষ হিসেবে গড়ে তুলতে সচেষ্ট।"
-                </div>
-
-                <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-                    <span class="text-slate-500 font-medium">ফোন: +৮৮০ ১৭১২-৩৪৫৬৭৮</span>
-                    <a href="{{ route('frontend.about') }}" class="font-bold text-[#005030] hover:underline">
-                        সম্পূর্ণ বাণী →
-                    </a>
-                </div>
-            </div>
-        </div>
+        {{-- Right: Notice Board Widget (35% / 4 cols) --}}
+        @include('frontend.home.partials.notice-board')
     </section>
 
     {{-- MAIN 3-COLUMN EDITORIAL PORTAL FEED (Signature Institutional Tone) --}}

@@ -297,4 +297,57 @@ class NoticeBoardTest extends TestCase
         $this->assertDatabaseMissing('notices', ['id' => $notice->id]);
         Storage::disk('public')->assertMissing($storedPath);
     }
+
+    public function test_home_page_renders_notice_board_and_removes_headmaster_desk(): void
+    {
+        $response = $this->get(route('frontend.home'));
+
+        $response->assertStatus(200);
+        $response->assertSee('নোটিশ বোর্ড');
+        $response->assertSee('সকল নোটিশ');
+        $response->assertSee('দেখুন');
+        $response->assertDontSee('প্রধান শিক্ষকের বাণী');
+        $response->assertDontSee('Headmaster Desk');
+    }
+
+    public function test_notice_board_displays_notices_with_view_links(): void
+    {
+        Notice::create([
+            'school_id' => $this->school->id,
+            'created_by' => $this->adminUser->id,
+            'title' => 'নির্বাচনী পরীক্ষা ২০২৬ খ্রি. রুটিন।',
+            'slug' => 'election-exam-routine-2026-test',
+            'content' => 'পরীক্ষার বিস্তারিত রুটিন ও নির্দেশিকা।',
+            'type' => 'general',
+            'status' => Notice::STATUS_PUBLISHED,
+            'published_at' => now(),
+        ]);
+
+        $response = $this->get(route('frontend.home'));
+
+        $response->assertStatus(200);
+        $response->assertSee('নির্বাচনী পরীক্ষা ২০২৬ খ্রি. রুটিন।');
+        $response->assertSee(route('frontend.notices.show', 'election-exam-routine-2026-test'));
+        $response->assertSee('সাধারণ');
+    }
+
+    public function test_public_notice_show_page_renders_successfully(): void
+    {
+        $notice = Notice::create([
+            'school_id' => $this->school->id,
+            'created_by' => $this->adminUser->id,
+            'title' => 'নির্বাচনী পরীক্ষা- ২০২৬ খ্রি. দশম শ্রেণী ভোকেশনাল',
+            'slug' => 'election-exam-2026-class-10-vocational-test',
+            'content' => 'ভোকেশনাল শাখার নির্বাচনী পরীক্ষার নোটিশ।',
+            'type' => 'exam',
+            'status' => Notice::STATUS_PUBLISHED,
+            'published_at' => now(),
+        ]);
+
+        $response = $this->get(route('frontend.notices.show', $notice->slug));
+
+        $response->assertStatus(200);
+        $response->assertSee('নির্বাচনী পরীক্ষা- ২০২৬ খ্রি. দশম শ্রেণী ভোকেশনাল');
+        $response->assertSee('ভোকেশনাল শাখার নির্বাচনী পরীক্ষার নোটিশ।');
+    }
 }
