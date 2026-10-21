@@ -145,7 +145,7 @@ def integrate_branches(test_filter=""):
     
     # 1. Integrate backend
     print("Step 1: Merging agent/backend into main...")
-    b_res = run_cmd("git merge agent/backend -m 'feat(backend): integrate verified backend changes' --no-ff", cwd=BASE_DIR)
+    b_res = run_cmd('git merge agent/backend -m "feat(backend): integrate verified backend changes" --no-ff', cwd=BASE_DIR)
     if b_res.returncode != 0:
         print(f"[ERROR] Backend merge failed:\n{b_res.stderr or b_res.stdout}")
         return False
@@ -153,7 +153,7 @@ def integrate_branches(test_filter=""):
     
     # 2. Integrate frontend
     print("Step 2: Merging agent/frontend into main...")
-    f_res = run_cmd("git merge agent/frontend -m 'feat(frontend): integrate verified frontend changes' --no-ff", cwd=BASE_DIR)
+    f_res = run_cmd('git merge agent/frontend -m "feat(frontend): integrate verified frontend changes" --no-ff', cwd=BASE_DIR)
     if f_res.returncode != 0:
         print(f"[ERROR] Frontend merge failed:\n{f_res.stderr or f_res.stdout}")
         return False
