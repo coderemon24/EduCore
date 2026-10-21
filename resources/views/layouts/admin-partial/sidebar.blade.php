@@ -619,6 +619,53 @@
                 </li>
                 @endif
 
+                <!-- Frontend Website Collapsible Dropdown -->
+                @php
+                    $isFrontendActive = request()->routeIs('admin.frontend.*');
+                @endphp
+                <li class="relative group/dropdown" id="sidebar-frontend-dropdown-wrapper">
+                    <button type="button"
+                            id="sidebar-frontend-toggle"
+                            onclick="window.toggleFrontendSidebarDropdown(event)"
+                            aria-expanded="{{ $isFrontendActive ? 'true' : 'false' }}"
+                            class="group w-full flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-all duration-150 cursor-pointer {{ $isFrontendActive ? 'bg-violet-50 text-violet-800 font-semibold shadow-2xs border-l-2 border-violet-600 pl-2.5' : 'text-slate-600 hover:bg-slate-100/80 hover:text-slate-900' }}">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <svg class="h-4.5 w-4.5 shrink-0 {{ $isFrontendActive ? 'text-violet-600' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                            </svg>
+                            <span class="nav-label truncate text-xs font-semibold tracking-tight">Frontend</span>
+                        </div>
+                        <svg id="frontend-dropdown-chevron"
+                             class="nav-chevron h-3.5 w-3.5 shrink-0 text-slate-400 transition-transform duration-200 {{ $isFrontendActive ? 'rotate-180 text-violet-600' : 'rotate-0' }}"
+                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+
+                        <!-- Floating Tooltip for collapsed mode -->
+                        <span class="nav-item-tooltip absolute left-full top-1/2 -translate-y-1/2 ml-3 px-3 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md shadow-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
+                            Frontend Website
+                            <span class="absolute left-[-4px] top-1/2 -translate-y-1/2 border-y-4 border-y-transparent border-r-4 border-r-slate-900"></span>
+                        </span>
+                    </button>
+
+                    <!-- Submenu Accordion -->
+                    <ul id="sidebar-frontend-submenu"
+                        class="space-y-0.5 mt-1 pl-4 pr-1 {{ $isFrontendActive ? 'block' : 'hidden' }}">
+                        <!-- Pages Subgroup -->
+                        <li class="pt-1 pb-0.5 px-3">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Pages</span>
+                        </li>
+                        <!-- Pages -> About -->
+                        <li>
+                            <a href="{{ route('admin.frontend.pages.about') }}"
+                               class="group relative flex items-center gap-2.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer {{ request()->routeIs('admin.frontend.pages.about*') ? 'bg-violet-100/70 text-violet-800 font-bold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}">
+                                <span class="h-1.5 w-1.5 rounded-full {{ request()->routeIs('admin.frontend.pages.about*') ? 'bg-violet-600' : 'bg-slate-300 group-hover:bg-slate-400' }}"></span>
+                                <span class="truncate">About</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <!-- Settings -->
                 @php
                     $isSettingsActive = request()->routeIs('admin.settings.*');
@@ -900,6 +947,51 @@
             var toggle = document.getElementById('sidebar-exams-toggle');
             var submenu = document.getElementById('sidebar-exams-submenu');
             var chevron = document.getElementById('exams-dropdown-chevron');
+
+            if (!submenu) return;
+
+            if (body && body.classList.contains('sidebar-collapsed')) {
+                body.classList.remove('sidebar-collapsed');
+                if (sidebar) {
+                    sidebar.classList.remove('w-20');
+                    sidebar.classList.add('w-64');
+                }
+                try { localStorage.setItem('educore_sidebar_collapsed', 'false'); } catch (_) {}
+            }
+
+            var isHidden = submenu.classList.contains('hidden') || submenu.style.display === 'none';
+
+            if (isHidden) {
+                submenu.classList.remove('hidden');
+                submenu.classList.add('block');
+                submenu.style.display = 'block';
+                if (chevron) {
+                    chevron.classList.add('rotate-180');
+                    chevron.classList.remove('rotate-0');
+                }
+                if (toggle) toggle.setAttribute('aria-expanded', 'true');
+            } else {
+                submenu.classList.add('hidden');
+                submenu.classList.remove('block');
+                submenu.style.display = 'none';
+                if (chevron) {
+                    chevron.classList.remove('rotate-180');
+                    chevron.classList.add('rotate-0');
+                }
+                if (toggle) toggle.setAttribute('aria-expanded', 'false');
+            }
+        };
+
+        window.toggleFrontendSidebarDropdown = function(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            var body = document.getElementById('admin-body') || document.body;
+            var sidebar = document.getElementById('admin-sidebar');
+            var toggle = document.getElementById('sidebar-frontend-toggle');
+            var submenu = document.getElementById('sidebar-frontend-submenu');
+            var chevron = document.getElementById('frontend-dropdown-chevron');
 
             if (!submenu) return;
 
