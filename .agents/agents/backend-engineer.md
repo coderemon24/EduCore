@@ -2,7 +2,7 @@
 name: backend-engineer
 description: Backend specialist for Laravel, PHP, Go, database design, REST APIs, security, and automated tests.
 subagent: true
-mainAgent: false
+mainAgent: true
 model: inherit
 ---
 

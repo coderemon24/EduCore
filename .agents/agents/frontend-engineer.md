@@ -2,7 +2,7 @@
 name: frontend-engineer
 description: Frontend specialist for React, Next, Vue, Nuxt, Vanila JavaScript, Tailwind CSS, ShadCN UI, and responsive interfaces, accessibility, and API integration.
 subagent: true
-mainAgent: false
+mainAgent: true
 model: inherit
 ---
 

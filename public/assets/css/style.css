@@ -286,7 +286,7 @@ body {
     margin: 0 auto;
     padding: 0 16px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
 }
 
 .snhs-nav-list {
