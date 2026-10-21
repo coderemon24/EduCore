@@ -20,4 +20,7 @@
 <!-- Main Frontend CSS (Local Asset: public/assets/css/style.css) -->
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
+<!-- Dedicated Responsive CSS (Local Asset: public/assets/css/responsive.css) -->
+<link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
+
 @stack('styles')

@@ -1,0 +1,192 @@
+/**
+ * ==========================================================================
+ * Sonatala High School (EduCore) - Frontend Responsive Stylesheet
+ * File: public/assets/css/responsive.css
+ * ==========================================================================
+ * All media queries and responsive layout rules across breakpoints:
+ * - Mobile Devices (< 640px)
+ * - Tablet Screens (640px - 1023px)
+ * - Small Desktop / Laptop (1024px - 1099px)
+ * - Desktop Viewports (>= 1100px)
+ */
+
+/* ==========================================================================
+   1. Institutional Navigation Bar & Drawer Responsiveness
+   ========================================================================== */
+
+/* Desktop Navigation Display (>= 1100px) */
+@media (min-width: 1100px) {
+    .snhs-nav {
+        display: block;
+    }
+
+    .snhs-menu-btn {
+        display: none !important;
+    }
+
+    .snhs-mobile-only {
+        display: none !important;
+    }
+}
+
+/* Medium & Large Screen Navigation Container (>= 1024px) */
+@media (min-width: 1024px) {
+    .snhs-nav-inner {
+        padding: 0 32px;
+    }
+}
+
+/* Condensed Desktop Navigation Links (1100px - 1279px) */
+@media (min-width: 1100px) and (max-width: 1279px) {
+    .snhs-nav-link {
+        padding: 0 11px;
+        font-size: 13px !important;
+    }
+}
+
+/* ==========================================================================
+   2. Full-Screen Hero Swiper Slider Responsive Behavior
+   ========================================================================== */
+
+/* Mobile Portrait (< 480px) */
+@media (max-width: 479px) {
+    .fullscreen-hero-swiper {
+        height: 280px !important;
+    }
+
+    .fullscreen-hero-swiper .swiper-slide {
+        height: 280px !important;
+    }
+
+    .fullscreen-hero-swiper .fullscreen-slide-title {
+        font-size: 1.35rem !important;
+        line-height: 1.25 !important;
+        margin-top: 4px !important;
+    }
+
+    .fullscreen-hero-swiper .fullscreen-slide-desc {
+        font-size: 0.8rem !important;
+        line-height: 1.35 !important;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .fullscreen-swiper-prev,
+    .fullscreen-swiper-next {
+        width: 32px !important;
+        height: 32px !important;
+    }
+
+    .fullscreen-swiper-prev {
+        left: 8px !important;
+    }
+
+    .fullscreen-swiper-next {
+        right: 8px !important;
+    }
+
+    .fullscreen-swiper-pagination {
+        bottom: 8px !important;
+    }
+}
+
+/* Large Mobile (480px - 639px) */
+@media (min-width: 480px) and (max-width: 639px) {
+    .fullscreen-hero-swiper {
+        height: 340px !important;
+    }
+
+    .fullscreen-hero-swiper .swiper-slide {
+        height: 340px !important;
+    }
+
+    .fullscreen-hero-swiper .fullscreen-slide-title {
+        font-size: 1.85rem !important;
+        margin-top: 8px !important;
+    }
+
+    .fullscreen-hero-swiper .fullscreen-slide-desc {
+        font-size: 0.925rem !important;
+        line-height: 1.4 !important;
+    }
+}
+
+/* Tablet Screens (640px - 767px) */
+@media (min-width: 640px) {
+    .fullscreen-hero-swiper {
+        height: 420px;
+    }
+
+    .fullscreen-hero-swiper .swiper-slide {
+        height: 100%;
+    }
+
+    .fullscreen-hero-swiper .fullscreen-slide-title {
+        font-size: 2.4rem;
+        margin-top: 10px;
+    }
+
+    .fullscreen-hero-swiper .fullscreen-slide-desc {
+        font-size: 1.05rem;
+        line-height: 1.5;
+    }
+
+    .fullscreen-swiper-prev,
+    .fullscreen-swiper-next {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Medium Tablet / iPad Landscape (768px - 1023px) */
+@media (min-width: 768px) {
+    .fullscreen-hero-swiper {
+        height: 480px;
+    }
+
+    .fullscreen-hero-swiper .fullscreen-slide-title {
+        font-size: 2.85rem;
+    }
+}
+
+/* Desktop Viewports (>= 1024px) */
+@media (min-width: 1024px) {
+    .fullscreen-hero-swiper {
+        height: 550px !important;
+    }
+
+    .fullscreen-hero-swiper .swiper-slide {
+        height: 550px !important;
+    }
+
+    .fullscreen-hero-swiper .fullscreen-slide-title {
+        font-size: 3.5rem !important;
+        line-height: 1.12 !important;
+        margin-top: 12px !important;
+    }
+
+    .fullscreen-hero-swiper .fullscreen-slide-desc {
+        font-size: 1.2rem !important;
+        line-height: 1.6 !important;
+    }
+
+    .fullscreen-swiper-prev,
+    .fullscreen-swiper-next {
+        width: 48px !important;
+        height: 48px !important;
+    }
+
+    .fullscreen-swiper-prev {
+        left: 24px !important;
+    }
+
+    .fullscreen-swiper-next {
+        right: 24px !important;
+    }
+
+    .fullscreen-swiper-pagination {
+        bottom: 24px !important;
+    }
+}

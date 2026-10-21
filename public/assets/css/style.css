@@ -559,40 +559,13 @@ body {
     color: #ffffff !important;
 }
 
-@media (min-width: 1100px) {
-    .snhs-nav {
-        display: block;
-    }
-
-    .snhs-menu-btn {
-        display: none !important;
-    }
-
-    .snhs-mobile-only {
-        display: none !important;
-    }
-}
-
-@media (min-width: 1024px) {
-    .snhs-nav-inner {
-        padding: 0 32px;
-    }
-}
-
-@media (min-width: 1100px) and (max-width: 1279px) {
-    .snhs-nav-link {
-        padding: 0 11px;
-        font-size: 13px !important;
-    }
-}
-
 /* ==========================================================================
    Full-Screen Hero Slider & Keyframe Text Entrance Animations
+   (Responsive media queries separated into responsive.css)
    ========================================================================== */
 
 .fullscreen-hero-swiper {
     width: 100%;
-    height: 600px !important;
     position: relative;
     background-color: #020617;
 }
@@ -600,7 +573,7 @@ body {
 .fullscreen-hero-swiper .swiper-slide {
     position: relative;
     overflow: hidden;
-    height: 600px !important;
+    height: 100%;
 }
 
 /* Left-Top Corner to Bottom-Right Theme Color Shadow Overlay */
@@ -631,16 +604,20 @@ body {
 .fullscreen-hero-swiper .fullscreen-slide-title,
 .fullscreen-hero-swiper .fullscreen-slide-desc {
     opacity: 0;
-    transform: translateX(-40px);
+    transform: translateX(-30px);
     will-change: transform, opacity;
     transition: opacity 0.35s ease, transform 0.35s ease;
 }
-.fullscreen-slide-title{
-    font-size: 3rem;
-    line-height: 1.2;
+
+.fullscreen-hero-swiper .fullscreen-slide-title {
     font-weight: 700;
     color: #ffffff;
-    margin-top: 12px;
+    letter-spacing: -0.015em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.fullscreen-hero-swiper .fullscreen-slide-desc {
+    color: #f1f5f9;
 }
 
 /* Slide In Left & Fade In Up Keyframes */
