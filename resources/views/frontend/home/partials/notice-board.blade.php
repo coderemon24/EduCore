@@ -79,8 +79,8 @@
     <div class="flex items-center justify-between pb-3 sm:pb-4">
         <div class="flex items-center gap-2.5">
             {{-- Peach/Pink Circular Bell Container --}}
-            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#fde8e8] flex items-center justify-center shrink-0">
-                <svg class="w-4 h-4 sm:w-[18px] sm:h-[18px] text-slate-900" viewBox="0 0 16 16" fill="currentColor">
+            <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#005030] flex items-center justify-center shrink-0">
+                <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 text-white" viewBox="0 0 16 16" fill="currentColor">
                     <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901"/>
                 </svg>
             </div>
@@ -91,7 +91,6 @@
 
         <a href="{{ route('frontend.notices.index') }}"
            class="inline-flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-1.5 rounded-full bg-[#005030] hover:bg-[#003d24] text-white text-xs sm:text-sm font-bold shadow-xs transition-colors cursor-pointer">
-            <span class="text-white text-sm leading-none font-bold">→</span>
             <span>সকল নোটিশ</span>
         </a>
     </div>
@@ -126,7 +125,7 @@
 
                 {{-- Right Action: "দেখুন" Green Outline Pill Button --}}
                 <a href="{{ route('frontend.notices.show', $notice['slug']) }}"
-                   class="rounded-full border border-[#005030] text-[#005030] hover:bg-[#005030] hover:text-white px-3.5 sm:px-4 py-1 text-xs sm:text-[13px] font-semibold transition-all duration-150 shrink-0 text-center cursor-pointer">
+                   class="rounded-full border border-[#005030] text-[#005030] hover:!bg-[#005030]  px-3.5 sm:px-4 py-1 text-xs sm:text-[13px] font-semibold transition-all duration-150 shrink-0 text-center cursor-pointer">
                     দেখুন
                 </a>
             </div>
