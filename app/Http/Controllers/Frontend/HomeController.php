@@ -108,7 +108,8 @@ class HomeController extends Controller
     public function about(): View
     {
         $school = CurrentSchoolContext::get();
+        $about = \App\Models\AboutPageContent::forSchool($school->id);
 
-        return view('frontend.about.index', compact('school'));
+        return view('frontend.about.index', compact('school', 'about'));
     }
 }

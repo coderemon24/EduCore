@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             RolePermissionSeeder::class,
             StaffSeeder::class,
             NoticeSeeder::class,
+            AboutPageSeeder::class,
         ]);
     }
 }

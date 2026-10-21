@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\Fee\FeeInvoiceController;
 use App\Http\Controllers\Admin\Fee\FeePaymentController;
 use App\Http\Controllers\Admin\Fee\FeeReportController;
 use App\Http\Controllers\Admin\Fee\FeeStructureController;
+use App\Http\Controllers\Admin\Frontend\AboutPageController;
 use App\Http\Controllers\Admin\GuardianController;
 use App\Http\Controllers\Admin\NoticeController;
 use App\Http\Controllers\Admin\RoleController;
@@ -57,6 +58,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::redirect('/', '/admin/dashboard');
         Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
         Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
+
+        // Frontend Website & Pages Management
+        Route::prefix('frontend')->name('frontend.')->group(function () {
+            Route::prefix('pages')->name('pages.')->group(function () {
+                Route::get('/about', [AboutPageController::class, 'edit'])->name('about');
+                Route::put('/about', [AboutPageController::class, 'update'])->name('about.update');
+            });
+        });
 
         // Institution Settings
         Route::prefix('settings')->name('settings.')->group(function () {
