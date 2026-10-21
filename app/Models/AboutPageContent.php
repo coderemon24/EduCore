@@ -114,7 +114,7 @@ class AboutPageContent extends Model
             }
         }
 
-        return asset('assets/images/slider/1.jpg');
+        return asset('assets/images/slider-1.jpg');
     }
 
     /**
