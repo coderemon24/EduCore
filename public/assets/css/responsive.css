@@ -33,6 +33,7 @@
 @media (min-width: 1024px) {
     .snhs-nav-inner {
         padding: 0 32px;
+        justify-content: flex-start;
     }
 }
 
