@@ -1,5 +1,7 @@
-{{-- Institutional Header & Minimal Navigation Bar --}}
-<header x-data="{ mobileMenuOpen: false, aboutOpen: false, academicOpen: false }" class="bg-white border-b border-slate-200 sticky top-0 z-40">
+{{-- Institutional Header & Navigation Bar --}}
+<header x-data="{ mobileMenuOpen: false, mAbout: false, mStaff: false, mAcademic: false }"
+        x-effect="document.body.style.overflow = mobileMenuOpen ? 'hidden' : ''"
+        class="snhs-header bg-white border-b border-slate-200 sticky top-0 z-50">
     {{-- Institutional Brand Header --}}
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
         <div class="flex items-center justify-between gap-4">
@@ -47,8 +49,8 @@
                 </a>
             </div>
 
-            {{-- Mobile Menu Trigger --}}
-            <div class="flex items-center md:hidden">
+            {{-- Mobile / Tablet Menu Trigger --}}
+            <div class="snhs-menu-btn">
                 <button type="button"
                         @click="mobileMenuOpen = !mobileMenuOpen"
                         class="p-2 rounded border border-slate-300 text-slate-700 hover:bg-slate-100 focus:outline-none"
@@ -61,67 +63,98 @@
         </div>
     </div>
 
-    {{-- Institutional Navigation Bar (Signature Forest Emerald #005030) --}}
-    <nav class="bg-[#005030] text-white hidden md:block border-t border-[#004228] shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center text-sm font-semibold divide-x divide-[#004228]">
+    {{-- Institutional Navigation Bar (Forest Emerald #005030) --}}
+    <nav class="snhs-nav" aria-label="প্রধান নেভিগেশন">
+        <div class="snhs-nav-inner">
+            <div class="snhs-nav-list">
                 {{-- Home --}}
-                <a href="{{ route('frontend.home') }}"
-                   class="px-4 py-2.5 transition-colors hover:bg-[#004027] {{ request()->routeIs('frontend.home') ? 'bg-[#003820] text-amber-300 font-bold border-b-2 border-amber-400' : 'text-emerald-50' }}">
-                    প্রচ্ছদ
-                </a>
+                <div class="snhs-nav-item {{ request()->routeIs('frontend.home') ? 'is-active' : '' }}">
+                    <a href="{{ route('frontend.home') }}" class="snhs-nav-link">মুলপাতা</a>
+                </div>
 
-                {{-- About Us Dropdown --}}
-                <div class="relative" @click.away="aboutOpen = false">
-                    <button type="button"
-                            @click="aboutOpen = !aboutOpen"
-                            class="px-4 py-2.5 inline-flex items-center gap-1 hover:bg-[#004027] transition-colors {{ request()->routeIs('frontend.about*') ? 'bg-[#003820] text-amber-300 font-bold border-b-2 border-amber-400' : 'text-emerald-50' }}">
-                        <span>আমাদের কথা</span>
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </button>
-                    <div x-show="aboutOpen"
-                         x-cloak
-                         class="absolute left-0 mt-0 w-48 bg-white text-slate-800 border border-slate-200 shadow-xl py-1 z-50 text-xs font-medium rounded-b">
-                        <a href="{{ route('frontend.about') }}" class="block px-4 py-2 hover:bg-emerald-50 hover:text-[#005030] border-b border-slate-100">সংক্ষিপ্ত ইতিহাস</a>
-                        <a href="{{ route('frontend.about') }}#mission" class="block px-4 py-2 hover:bg-emerald-50 hover:text-[#005030] border-b border-slate-100">লক্ষ্য ও উদ্দেশ্য</a>
-                        <a href="{{ route('frontend.about') }}#committee" class="block px-4 py-2 hover:bg-emerald-50 hover:text-[#005030]">পরিচালনা পর্ষদ</a>
+                {{-- About / পরিচিতি --}}
+                <div class="snhs-nav-item {{ request()->routeIs('frontend.about*') ? 'is-active' : '' }}">
+                    <a href="{{ route('frontend.about') }}" class="snhs-nav-link" aria-haspopup="true">
+                        <span>পরিচিতি</span>
+                        <svg class="snhs-nav-caret" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.5 7.5L10 12l4.5-4.5H5.5z"/></svg>
+                    </a>
+                    <div class="snhs-dropdown">
+                        <a href="{{ route('frontend.about') }}">আমাদের কথা</a>
+                        <a href="{{ route('frontend.about') }}#mission">লক্ষ্য ও উদ্দেশ্য</a>
+                        <a href="{{ route('frontend.about') }}#committee">পরিচালনা পর্ষদ</a>
+                        <a href="{{ route('frontend.about') }}#history">ইতিহাস ও ঐতিহ্য</a>
+                        <a href="{{ route('frontend.about') }}#infrastructure">অবকাঠামো ও ক্যাম্পাস</a>
                     </div>
                 </div>
 
-                {{-- Academic Dropdown --}}
-                <div class="relative" @click.away="academicOpen = false">
-                    <button type="button"
-                            @click="academicOpen = !academicOpen"
-                            class="px-4 py-2.5 inline-flex items-center gap-1 hover:bg-[#004027] transition-colors {{ request()->routeIs('frontend.academic*') ? 'bg-[#003820] text-amber-300 font-bold border-b-2 border-amber-400' : 'text-emerald-50' }}">
+                {{-- Staff / জনবল --}}
+                <div class="snhs-nav-item {{ request()->routeIs('frontend.teachers*') ? 'is-active' : '' }}">
+                    <a href="{{ route('frontend.teachers.index') }}" class="snhs-nav-link" aria-haspopup="true">
+                        <span>জনবল</span>
+                        <svg class="snhs-nav-caret" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.5 7.5L10 12l4.5-4.5H5.5z"/></svg>
+                    </a>
+                    <div class="snhs-dropdown">
+                        <a href="{{ route('frontend.teachers.index') }}">শিক্ষকমণ্ডলী</a>
+                        <a href="{{ route('frontend.teachers.index') }}#staff">কর্মচারী তালিকা</a>
+                        <a href="{{ route('frontend.teachers.index') }}#principal">প্রধান শিক্ষক</a>
+                        <a href="{{ route('frontend.teachers.index') }}#office">অফিস ও সহায়ক স্টাফ</a>
+                    </div>
+                </div>
+
+                {{-- Students / শিক্ষার্থীদের তথ্য --}}
+                <div class="snhs-nav-item">
+                    <a href="{{ route('frontend.notices.index') }}" class="snhs-nav-link">শিক্ষার্থীদের তথ্য</a>
+                </div>
+
+                {{-- Academic / একাডেমিক --}}
+                <div class="snhs-nav-item {{ request()->routeIs('frontend.academic*') ? 'is-active' : '' }}">
+                    <a href="{{ route('frontend.academic.routine') }}" class="snhs-nav-link" aria-haspopup="true">
                         <span>একাডেমিক</span>
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </button>
-                    <div x-show="academicOpen"
-                         x-cloak
-                         class="absolute left-0 mt-0 w-48 bg-white text-slate-800 border border-slate-200 shadow-xl py-1 z-50 text-xs font-medium rounded-b">
-                        <a href="{{ route('frontend.academic.routine') }}" class="block px-4 py-2 hover:bg-emerald-50 hover:text-[#005030] border-b border-slate-100">ক্লাস রুটিন</a>
-                        <a href="{{ route('frontend.academic.routine') }}" class="block px-4 py-2 hover:bg-emerald-50 hover:text-[#005030] border-b border-slate-100">পরীক্ষার সময়সূচি</a>
-                        <a href="{{ route('frontend.notices.index') }}" class="block px-4 py-2 hover:bg-emerald-50 hover:text-[#005030]">সিলেবাস ও বইয়ের তালিকা</a>
+                        <svg class="snhs-nav-caret" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.5 7.5L10 12l4.5-4.5H5.5z"/></svg>
+                    </a>
+                    <div class="snhs-dropdown">
+                        <a href="{{ route('frontend.academic.routine') }}">ক্লাস রুটিন</a>
+                        <a href="{{ route('frontend.academic.routine') }}#exams">পরীক্ষার সময়সূচি</a>
+                        <a href="{{ route('frontend.notices.index') }}">সিলেবাস ও পাঠ্যপুস্তক</a>
+                        <a href="{{ route('frontend.notices.index') }}">ফলাফল ও নম্বরপত্র</a>
+                        <a href="{{ route('frontend.notices.index') }}">সহপাঠক্রমিক কার্যক্রম</a>
                     </div>
                 </div>
-
-                {{-- Teachers & Staff --}}
-                <a href="{{ route('frontend.teachers.index') }}"
-                   class="px-4 py-2.5 transition-colors hover:bg-[#004027] {{ request()->routeIs('frontend.teachers*') ? 'bg-[#003820] text-amber-300 font-bold border-b-2 border-amber-400' : 'text-emerald-50' }}">
-                    শিক্ষক ও কর্মচারী
-                </a>
 
                 {{-- Notice Board --}}
-                <a href="{{ route('frontend.notices.index') }}"
-                   class="px-4 py-2.5 transition-colors hover:bg-[#004027] {{ request()->routeIs('frontend.notices*') ? 'bg-[#003820] text-amber-300 font-bold border-b-2 border-amber-400' : 'text-emerald-50' }}">
-                    নোটিশ বোর্ড
-                </a>
+                <div class="snhs-nav-item {{ request()->routeIs('frontend.notices*') ? 'is-active' : '' }}">
+                    <a href="{{ route('frontend.notices.index') }}" class="snhs-nav-link">নোটিশ বোর্ড</a>
+                </div>
+
+                {{-- News --}}
+                <div class="snhs-nav-item">
+                    <a href="{{ route('frontend.notices.index') }}" class="snhs-nav-link">সংবাদ</a>
+                </div>
+
+                {{-- Events --}}
+                <div class="snhs-nav-item">
+                    <a href="{{ route('frontend.notices.index') }}" class="snhs-nav-link">ইভেন্ট</a>
+                </div>
+
+                {{-- Gallery --}}
+                <div class="snhs-nav-item">
+                    <a href="{{ route('frontend.about') }}#gallery" class="snhs-nav-link">ছবির গ্যালারি</a>
+                </div>
+
+                {{-- Tutor Day --}}
+                <div class="snhs-nav-item">
+                    <a href="{{ route('frontend.notices.index') }}" class="snhs-nav-link">ট্যুটর দিন</a>
+                </div>
+
+                {{-- Admission --}}
+                <div class="snhs-nav-item">
+                    <a href="{{ route('frontend.notices.index') }}" class="snhs-nav-link">ভর্তি</a>
+                </div>
 
                 {{-- Contact --}}
-                <a href="{{ route('frontend.contact') }}"
-                   class="px-4 py-2.5 transition-colors hover:bg-[#004027] {{ request()->routeIs('frontend.contact*') ? 'bg-[#003820] text-amber-300 font-bold border-b-2 border-amber-400' : 'text-emerald-50' }}">
-                    যোগাযোগ
-                </a>
+                <div class="snhs-nav-item {{ request()->routeIs('frontend.contact*') ? 'is-active' : '' }}">
+                    <a href="{{ route('frontend.contact') }}" class="snhs-nav-link">যোগাযোগ</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -129,26 +162,86 @@
     {{-- Mobile Drawer Navigation --}}
     <div x-show="mobileMenuOpen"
          x-cloak
-         class="md:hidden fixed inset-0 z-50 bg-black/60"
+         x-transition:enter="snhs-overlay-enter"
+         x-transition:enter-start="snhs-overlay-enter-start"
+         x-transition:enter-end="snhs-overlay-enter-end"
+         x-transition:leave="snhs-overlay-leave"
+         x-transition:leave-start="snhs-overlay-leave-start"
+         x-transition:leave-end="snhs-overlay-leave-end"
+         class="snhs-mobile-only snhs-overlay fixed inset-0 bg-black/60"
          @click="mobileMenuOpen = false"></div>
 
     <div x-show="mobileMenuOpen"
          x-cloak
-         class="md:hidden fixed inset-y-0 left-0 w-72 bg-white z-50 shadow-2xl overflow-y-auto">
+         x-transition:enter="snhs-drawer-enter"
+         x-transition:enter-start="snhs-drawer-enter-start"
+         x-transition:enter-end="snhs-drawer-enter-end"
+         x-transition:leave="snhs-drawer-leave"
+         x-transition:leave-start="snhs-drawer-leave-start"
+         x-transition:leave-end="snhs-drawer-leave-end"
+         class="snhs-mobile-only snhs-drawer fixed inset-y-0 left-0 w-72 bg-white shadow-2xl overflow-y-auto">
         <div class="p-4 bg-[#005030] text-white flex items-center justify-between">
             <span class="font-bold text-sm">মেনু নির্বাচন করুন</span>
-            <button type="button" @click="mobileMenuOpen = false" class="text-white p-1">
+            <button type="button" @click="mobileMenuOpen = false" class="text-white p-1" aria-label="Close menu">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
         </div>
+
         <div class="py-2 text-sm font-semibold divide-y divide-slate-100 text-slate-800">
-            <a href="{{ route('frontend.home') }}" class="block px-4 py-2.5 hover:bg-emerald-50 hover:text-[#005030]">প্রচ্ছদ</a>
-            <a href="{{ route('frontend.about') }}" class="block px-4 py-2.5 hover:bg-emerald-50 hover:text-[#005030]">আমাদের কথা</a>
-            <a href="{{ route('frontend.academic.routine') }}" class="block px-4 py-2.5 hover:bg-emerald-50 hover:text-[#005030]">ক্লাস ও পরীক্ষা রুটিন</a>
-            <a href="{{ route('frontend.teachers.index') }}" class="block px-4 py-2.5 hover:bg-emerald-50 hover:text-[#005030]">শিক্ষক ও কর্মচারীবৃন্দ</a>
-            <a href="{{ route('frontend.notices.index') }}" class="block px-4 py-2.5 hover:bg-emerald-50 hover:text-[#005030]">নোটিশ বোর্ড</a>
-            <a href="{{ route('frontend.contact') }}" class="block px-4 py-2.5 hover:bg-emerald-50 hover:text-[#005030]">যোগাযোগ</a>
-            <a href="{{ url('/admin/dashboard') }}" class="block px-4 py-2.5 bg-[#005030] text-white font-bold">পোর্টাল লগইন</a>
+            <a href="{{ route('frontend.home') }}" class="snhs-mobile-link">মুলপাতা</a>
+
+            {{-- About accordion --}}
+            <div>
+                <button type="button" @click="mAbout = !mAbout" class="snhs-mobile-toggle">
+                    <span>পরিচিতি</span>
+                    <svg class="snhs-mobile-caret" :class="mAbout ? 'is-open' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div x-show="mAbout" x-cloak class="snhs-mobile-sub">
+                    <a href="{{ route('frontend.about') }}">আমাদের কথা</a>
+                    <a href="{{ route('frontend.about') }}#mission">লক্ষ্য ও উদ্দেশ্য</a>
+                    <a href="{{ route('frontend.about') }}#committee">পরিচালনা পর্ষদ</a>
+                    <a href="{{ route('frontend.about') }}#history">ইতিহাস ও ঐতিহ্য</a>
+                </div>
+            </div>
+
+            {{-- Staff accordion --}}
+            <div>
+                <button type="button" @click="mStaff = !mStaff" class="snhs-mobile-toggle">
+                    <span>জনবল</span>
+                    <svg class="snhs-mobile-caret" :class="mStaff ? 'is-open' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div x-show="mStaff" x-cloak class="snhs-mobile-sub">
+                    <a href="{{ route('frontend.teachers.index') }}">শিক্ষকমণ্ডলী</a>
+                    <a href="{{ route('frontend.teachers.index') }}#staff">কর্মচারী তালিকা</a>
+                    <a href="{{ route('frontend.teachers.index') }}#principal">প্রধান শিক্ষক</a>
+                </div>
+            </div>
+
+            <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link">শিক্ষার্থীদের তথ্য</a>
+
+            {{-- Academic accordion --}}
+            <div>
+                <button type="button" @click="mAcademic = !mAcademic" class="snhs-mobile-toggle">
+                    <span>একাডেমিক</span>
+                    <svg class="snhs-mobile-caret" :class="mAcademic ? 'is-open' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div x-show="mAcademic" x-cloak class="snhs-mobile-sub">
+                    <a href="{{ route('frontend.academic.routine') }}">ক্লাস রুটিন</a>
+                    <a href="{{ route('frontend.academic.routine') }}#exams">পরীক্ষার সময়সূচি</a>
+                    <a href="{{ route('frontend.notices.index') }}">সিলেবাস ও পাঠ্যপুস্তক</a>
+                    <a href="{{ route('frontend.notices.index') }}">ফলাফল ও নম্বরপত্র</a>
+                </div>
+            </div>
+
+            <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link">নোটিশ বোর্ড</a>
+            <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link">সংবাদ</a>
+            <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link">ইভেন্ট</a>
+            <a href="{{ route('frontend.about') }}#gallery" class="snhs-mobile-link">ছবির গ্যালারি</a>
+            <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link">ট্যুটর দিন</a>
+            <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link">ভর্তি</a>
+            <a href="{{ route('frontend.contact') }}" class="snhs-mobile-link">যোগাযোগ</a>
+
+            <a href="{{ url('/admin/dashboard') }}" class="snhs-mobile-link snhs-mobile-login">পোর্টাল লগইন</a>
         </div>
     </div>
 </header>
