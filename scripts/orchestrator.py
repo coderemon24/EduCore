@@ -137,7 +137,7 @@ def run_tests(filter_pattern=None):
     return res.returncode
 
 
-def integrate_branches():
+def integrate_branches(test_filter=""):
     """Integrate worker branches into main after review."""
     print("=" * 65)
     print("  Orchestrator: Integrating Worker Branches into main")
@@ -160,7 +160,7 @@ def integrate_branches():
     print("  [OK] Frontend merged successfully.")
     
     print("\nStep 3: Running automated test suite gate...")
-    t_code = run_tests("NoticeBoardTest")
+    t_code = run_tests(test_filter or "AboutPageTest")
     if t_code == 0:
         print("[SUCCESS] All integration tests passed.")
         return True
@@ -197,7 +197,8 @@ async def main_async():
     test_p.add_argument("--filter", default="", help="Filter test case or class name")
     
     # Integrate
-    subparsers.add_parser("integrate", help="Integrate reviewed agent branches into main")
+    integrate_p = subparsers.add_parser("integrate", help="Integrate reviewed agent branches into main")
+    integrate_p.add_argument("--filter", default="", help="Filter test case or class name during gate check")
     
     args = parser.parse_args()
     
@@ -249,7 +250,7 @@ async def main_async():
         run_tests(args.filter)
         
     elif args.action == "integrate":
-        integrate_branches()
+        integrate_branches(args.filter)
 
 
 if __name__ == "__main__":
