@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\AboutPageContent;
 use App\Models\AcademicClass;
 use App\Models\Notice;
 use App\Models\Staff;
@@ -108,7 +109,7 @@ class HomeController extends Controller
     public function about(): View
     {
         $school = CurrentSchoolContext::get();
-        $about = \App\Models\AboutPageContent::forSchool($school->id);
+        $about = AboutPageContent::forSchool($school->id);
 
         return view('frontend.about.index', compact('school', 'about'));
     }
