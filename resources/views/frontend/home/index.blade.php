@@ -78,85 +78,106 @@
                 </div>
             </div>
 
-            {{-- 4 Core Capability Feature Cards --}}
+            {{-- Asymmetric Capabilities Layout: Flagship Dominant Hero (60%) + Secondary Stack (40%) --}}
             <div class="capabilities-grid">
-                {{-- Capability 1 --}}
-                <div class="bg-slate-50 border border-slate-200/90 rounded-2xl p-6 flex flex-col justify-between hover:border-[#005030] hover:shadow-sm transition-all duration-200">
+                {{-- Dominant Flagship Hero: Practical Science & Laboratory Innovation --}}
+                <div class="capability-card-hero">
                     <div>
-                        <div class="w-12 h-12 rounded-xl bg-emerald-100/80 text-[#005030] flex items-center justify-center mb-5 font-bold">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
-                            </svg>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-emerald-100/90 text-[#005030] flex items-center justify-center font-bold shadow-2xs">
+                                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                                </svg>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-[#005030] text-xs font-bold border border-emerald-200">
+                                <span>🔬</span>
+                                <span>প্রধান প্রাতিষ্ঠানিক সক্ষমতা</span>
+                            </span>
                         </div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-2 leading-snug">
-                            ব্যবহারিক বিজ্ঞান ও উদ্ভাবনী ল্যাব
+
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-3 leading-snug">
+                            হাতেকলমে ব্যবহারিক বিজ্ঞান ও আধুনিক ল্যাব পরীক্ষণ
                         </h3>
-                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
-                            পদার্থ, রসায়ন ও জীববিজ্ঞানের পৃথক ব্যবহারিক ল্যাবে হাতেকলমে পরীক্ষণ ও বিজ্ঞান উৎসবের মাধ্যমে শিক্ষার্থীদের মৌলিক চিন্তাশক্তি শাণিত করা হয়।
+                        <p class="text-sm sm:text-base text-slate-600 leading-relaxed mb-6">
+                            পুঁথিগত তত্ত্বের বাইরে গিয়ে শিক্ষার্থীরা যাতে বিজ্ঞানের প্রতিটি সূত্র বাস্তবে প্রত্যক্ষ করতে পারে, সেজন্য রয়েছে পদার্থ, রসায়ন ও জীববিজ্ঞানের পৃথক শীতাতপনিয়ন্ত্রিত ল্যাব। নিয়মিত পরীক্ষণ ও বার্ষিক বিজ্ঞান উৎসবের মাধ্যমে শিক্ষার্থীদের মৌলিক চিন্তাশক্তি শাণিত করা হয়।
                         </p>
+
+                        {{-- Structured Laboratory Proof Checklist --}}
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-slate-200/80 mb-6">
+                            <div class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800">
+                                <span class="w-5 h-5 rounded-full bg-emerald-100 text-[#005030] flex items-center justify-center shrink-0 text-xs font-bold">✓</span>
+                                <span>পদার্থ, রসায়ন ও জীববিজ্ঞানের পৃথক ল্যাব</span>
+                            </div>
+                            <div class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800">
+                                <span class="w-5 h-5 rounded-full bg-emerald-100 text-[#005030] flex items-center justify-center shrink-0 text-xs font-bold">✓</span>
+                                <span>উচ্চমানের মাইক্রোস্কোপ ও রিএজেন্ট সুবিধা</span>
+                            </div>
+                            <div class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800">
+                                <span class="w-5 h-5 rounded-full bg-emerald-100 text-[#005030] flex items-center justify-center shrink-0 text-xs font-bold">✓</span>
+                                <span>অভিজ্ঞ ল্যাব সহকারী ও শিক্ষক তত্ত্বাবধান</span>
+                            </div>
+                            <div class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800">
+                                <span class="w-5 h-5 rounded-full bg-emerald-100 text-[#005030] flex items-center justify-center shrink-0 text-xs font-bold">✓</span>
+                                <span>বার্ষিক বিজ্ঞান ও উদ্ভাবন প্রজেক্ট প্রদর্শনী</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="pt-3 border-t border-slate-200/60 text-xs font-semibold text-[#005030]">
-                        বিজ্ঞানাগার সুবিধা →
+
+                    <div class="pt-4 border-t border-slate-200/70 flex items-center justify-between">
+                        <span class="text-xs text-slate-500 font-medium">৬ষ্ঠ-১০ম শ্রেণির বাধ্যতামূলক প্র্যাকটিক্যাল সেশন</span>
+                        <a href="{{ route('frontend.about') }}" class="text-xs sm:text-sm font-bold text-[#005030] hover:underline inline-flex items-center gap-1">
+                            <span>বিজ্ঞানাগারের বিস্তারিত পরিকাঠামো</span>
+                            <span>→</span>
+                        </a>
                     </div>
                 </div>
 
-                {{-- Capability 2 --}}
-                <div class="bg-slate-50 border border-slate-200/90 rounded-2xl p-6 flex flex-col justify-between hover:border-[#005030] hover:shadow-sm transition-all duration-200">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-emerald-100/80 text-[#005030] flex items-center justify-center mb-5 font-bold">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                            </svg>
+                {{-- Secondary Stack: Compact 2 Cards in Lighter Secondary Tier --}}
+                <div class="capabilities-secondary-stack">
+                    {{-- Secondary Card 1: ICT & Digital Education --}}
+                    <div class="capability-card-secondary">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-100/70 text-[#005030] flex items-center justify-center font-bold">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                                <span class="text-[11px] font-semibold text-slate-400">ডিজিটাল সাক্ষরতা</span>
+                            </div>
+                            <h4 class="text-base sm:text-lg font-bold text-slate-900 mb-2 leading-snug">
+                                ডিজিটাল আইসিটি ও কম্পিউটার শিক্ষা
+                            </h4>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3">
+                                উচ্চগতির ইন্টারনেট ও আধুনিক কম্পিউটার সমৃদ্ধ ল্যাবে তথ্যপ্রযুক্তির মৌলিক দক্ষতা, কোডিং পরিচিতি ও ডিজিটাল শিক্ষায় শিক্ষার্থীদের যুগোপযোগী প্রস্তুতি।
+                            </p>
                         </div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-2 leading-snug">
-                            ডিজিটাল আইসিটি ও কম্পিউটার শিক্ষা
-                        </h3>
-                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
-                            উচ্চগতির ইন্টারনেট ও আধুনিক কম্পিউটার সমৃদ্ধ ল্যাবে তথ্যপ্রযুক্তির মৌলিক দক্ষতা ও ডিজিটাল সাক্ষরতায় প্রতিটি শিক্ষার্থীকে প্রস্তুত করা হয়।
-                        </p>
+                        <div class="pt-3 border-t border-slate-200/60 text-xs font-semibold text-[#005030]">
+                            কম্পিউটার ল্যাব সুবিধা →
+                        </div>
                     </div>
-                    <div class="pt-3 border-t border-slate-200/60 text-xs font-semibold text-[#005030]">
-                        আইসিটি ক্লাসরুম →
-                    </div>
-                </div>
 
-                {{-- Capability 3 --}}
-                <div class="bg-slate-50 border border-slate-200/90 rounded-2xl p-6 flex flex-col justify-between hover:border-[#005030] hover:shadow-sm transition-all duration-200">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-emerald-100/80 text-[#005030] flex items-center justify-center mb-5 font-bold">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
+                    {{-- Secondary Card 2: Co-Curricular & Sports --}}
+                    <div class="capability-card-secondary">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-100/70 text-[#005030] flex items-center justify-center font-bold">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </div>
+                                <span class="text-[11px] font-semibold text-slate-400">নেতৃত্ব ও শৃঙ্খলা</span>
+                            </div>
+                            <h4 class="text-base sm:text-lg font-bold text-slate-900 mb-2 leading-snug">
+                                স্কাউটিং, বিতর্ক ও ক্রীড়াঙ্গন
+                            </h4>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3">
+                                নিয়মিত খেলাধুলা, বিতর্ক প্রতিযোগিতা, সক্রিয় স্কাউট ট্রুপ ও সাংস্কৃতিক আয়োজনের মাধ্যমে প্রতিটি শিক্ষার্থীর মানসিক দৃঢ়তা ও দলগত নেতৃত্ব বিকাশ।
+                            </p>
                         </div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-2 leading-snug">
-                            স্বচ্ছ মূল্যায়ন ও সার্বক্ষণিক নোটিশ
-                        </h3>
-                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
-                            প্রতি প্রান্তিকের মূল্যায়ন ফলাফল প্রকাশ, দুর্বল বিষয়ে বিশেষ তত্ত্বাবধান এবং অনলাইন নোটিশ বোর্ডের মাধ্যমে অভিভাবককে রাখা হয় অবগত।
-                        </p>
-                    </div>
-                    <a href="{{ route('frontend.academic.routine') }}" class="pt-3 border-t border-slate-200/60 text-xs font-semibold text-[#005030] hover:underline inline-block">
-                        ক্লাস ও পরীক্ষার রুটিন →
-                    </a>
-                </div>
-
-                {{-- Capability 4 --}}
-                <div class="bg-slate-50 border border-slate-200/90 rounded-2xl p-6 flex flex-col justify-between hover:border-[#005030] hover:shadow-sm transition-all duration-200">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-emerald-100/80 text-[#005030] flex items-center justify-center mb-5 font-bold">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
+                        <div class="pt-3 border-t border-slate-200/60 text-xs font-semibold text-[#005030]">
+                            সহ-শিক্ষা ও ক্রীড়া কার্যক্রম →
                         </div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-2 leading-snug">
-                            স্কাউটিং, বিতর্ক ও ক্রীড়াঙ্গন
-                        </h3>
-                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
-                            নিয়মিত খেলাধুলা, বিতর্ক প্রতিযোগিতা, স্কাউট কার্যক্রম ও সাংস্কৃতিক অনুষ্ঠানের মাধ্যমে গড়ে ওঠে শিক্ষার্থীদের দলগত শৃঙ্খলা ও নেতৃত্বগুণ।
-                        </p>
-                    </div>
-                    <div class="pt-3 border-t border-slate-200/60 text-xs font-semibold text-[#005030]">
-                        সহ-শিক্ষা কার্যক্রম →
                     </div>
                 </div>
             </div>
@@ -250,7 +271,7 @@
                 </div>
             </div>
 
-            {{-- Institutional Metrics Counter Grid --}}
+            {{-- Institutional Metrics Counter: Primary Outcomes + Secondary Meta Strip --}}
             <div class="bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-xs">
                 <div class="bg-[#005030] text-white px-6 py-3.5 flex items-center justify-between">
                     <span class="text-xs font-bold uppercase tracking-wider">
@@ -258,36 +279,43 @@
                     </span>
                     <span class="text-xs text-emerald-200 font-medium">প্রতিষ্ঠানের মূল সূচকসমূহ</span>
                 </div>
-                <div class="p-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 text-center">
-                    <div class="p-3 bg-slate-50 border border-slate-200/80 rounded-xl">
-                        <div class="text-xs text-slate-500 font-medium">প্রতিষ্ঠা সন</div>
-                        <div class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-1">১৯৬৮ খ্রি.</div>
-                        <div class="text-[11px] text-slate-400 mt-0.5">গৌরবের ৫৭ বছর</div>
+
+                {{-- Primary Tier: 3 Dominant Headline Achievements --}}
+                <div class="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-center border-b border-slate-100">
+                    <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-200/70">
+                        <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide">এসএসসি ধারাবাহিক সাফল্য</div>
+                        <div class="text-3xl sm:text-4xl font-extrabold text-[#005030] mt-2">৯৮.৫%</div>
+                        <div class="text-xs text-slate-500 mt-1">বিগত ৫ বছরের ঈর্ষণীয় ফলাফল</div>
                     </div>
-                    <div class="p-3 bg-slate-50 border border-slate-200/80 rounded-xl">
-                        <div class="text-xs text-slate-500 font-medium">EIIN নম্বর</div>
-                        <div class="text-xl sm:text-2xl font-extrabold text-slate-900 font-mono mt-1">১২৫৬৯৩</div>
-                        <div class="text-[11px] text-slate-400 mt-0.5">সরকারি কোড: ৮১০৭</div>
+                    <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-200/70">
+                        <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide">বর্তমান শিক্ষার্থী পরিবার</div>
+                        <div class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">{{ $stats['total_students'] ?? '১,২৫০+' }} জন</div>
+                        <div class="text-xs text-slate-500 mt-1">সুশৃঙ্খল ও প্রাণবন্ত ক্যাম্পাস</div>
                     </div>
-                    <div class="p-3 bg-slate-50 border border-slate-200/80 rounded-xl">
-                        <div class="text-xs text-slate-500 font-medium">বর্তমান শিক্ষার্থী</div>
-                        <div class="text-xl sm:text-2xl font-extrabold text-[#005030] mt-1">{{ $stats['total_students'] ?? '১,২৫০+' }} জন</div>
-                        <div class="text-[11px] text-slate-400 mt-0.5">প্রাণবন্ত পরিবার</div>
+                    <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-200/70">
+                        <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide">গৌরবময় ঐতিহ্য ও ইতিহাস</div>
+                        <div class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">৫৭ বছর</div>
+                        <div class="text-xs text-slate-500 mt-1">প্রতিষ্ঠা সন: ১৯৬৮ খ্রি.</div>
                     </div>
-                    <div class="p-3 bg-slate-50 border border-slate-200/80 rounded-xl">
-                        <div class="text-xs text-slate-500 font-medium">শিক্ষক ও স্টাফ</div>
-                        <div class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-1">{{ $stats['total_teachers'] ?? '৪২' }} জন</div>
-                        <div class="text-[11px] text-slate-400 mt-0.5">প্রশিক্ষিত ও স্নেহশীল</div>
+                </div>
+
+                {{-- Secondary Tier: Lighter Operational & Administrative Meta Strip --}}
+                <div class="px-6 py-4 bg-slate-50/70 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-600">
+                    <div class="flex items-center gap-2">
+                        <span class="font-bold text-slate-800">👨‍🏫 শিক্ষক ও স্টাফ:</span>
+                        <span>{{ $stats['total_teachers'] ?? '৪২' }} জন প্রশিক্ষিত শিক্ষক</span>
                     </div>
-                    <div class="p-3 bg-slate-50 border border-slate-200/80 rounded-xl">
-                        <div class="text-xs text-slate-500 font-medium">ডিজিটাল ক্লাসরুম</div>
-                        <div class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-1">১৮টি</div>
-                        <div class="text-[11px] text-slate-400 mt-0.5">প্রযুক্তিবান্ধব পরিবেশ</div>
+                    <div class="flex items-center gap-2">
+                        <span class="font-bold text-slate-800">🖥️ ডিজিটাল ক্লাসরুম:</span>
+                        <span>১৮টি মাল্টিমিডিয়া রুম</span>
                     </div>
-                    <div class="p-3 bg-slate-50 border border-slate-200/80 rounded-xl">
-                        <div class="text-xs text-slate-500 font-medium">এসএসসি সাফল্য</div>
-                        <div class="text-xl sm:text-2xl font-extrabold text-emerald-600 mt-1">৯৮.৫%</div>
-                        <div class="text-[11px] text-slate-400 mt-0.5">ধারাবাহিক মেধা</div>
+                    <div class="flex items-center gap-2 font-mono">
+                        <span class="font-bold text-slate-800 font-sans">🏛️ EIIN:</span>
+                        <span>১২৫৬৯৩</span>
+                    </div>
+                    <div class="flex items-center gap-2 font-mono">
+                        <span class="font-bold text-slate-800 font-sans">📋 সরকারি কোড:</span>
+                        <span>৮১০৭</span>
                     </div>
                 </div>
             </div>
