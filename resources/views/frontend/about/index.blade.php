@@ -48,7 +48,7 @@
 @section('content')
 
 {{-- 1. Executive Breadcrumb Bar --}}
-<div class="bg-gray-100 border-b border-gray-200 py-3.5 text-xs text-gray-600">
+<div class="bg-gray-100 border-b border-gray-200 py-3.5 text-xs text-gray-600" id="overview">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <nav class="flex items-center gap-1.5 font-medium" aria-label="Breadcrumb">
             <a href="{{ route('frontend.home') }}" class="hover:text-[#005030] transition-colors flex items-center gap-1">
@@ -268,7 +268,8 @@
 <div class="home-section-divider"></div>
 
 {{-- 5. Institutional Manifesto: Vision, Mission & Values (Asymmetric 65/35 Split) --}}
-<section class="home-section bg-slate-50/60" id="manifesto">
+<section class="home-section bg-slate-50/60" id="mission">
+    <span id="manifesto" class="sr-only"></span>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {{-- Section Header: Rhythm Pattern --}}
         <div class="section-header-block">
@@ -461,7 +462,8 @@
 @endif
 
 {{-- 8. Governance & Quick Facts Editorial Grid --}}
-<section class="home-section bg-white" id="governance">
+<section class="home-section bg-white" id="committee">
+    <span id="governance" class="sr-only"></span>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {{-- Section Header: Rhythm Pattern --}}
         <div class="section-header-block">
@@ -572,7 +574,8 @@
 
 {{-- 9. Campus Facilities: Pick the Winner (Asymmetric 65/35 Split) --}}
 @if(!empty($about->facilities) && is_array($about->facilities))
-<section class="home-section bg-slate-50/60" id="facilities">
+<section class="home-section bg-slate-50/60" id="infrastructure">
+    <span id="facilities" class="sr-only"></span>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {{-- Section Header: Rhythm Pattern --}}
         <div class="section-header-block">
