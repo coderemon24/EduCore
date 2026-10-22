@@ -1,10 +1,10 @@
 {{-- Institutional Footer (Deep Forest Gradient & Unified Brand Identity) --}}
-<footer class="site-footer bg-gradient-to-b from-[#031d13] via-[#02130c] to-[#010b07] text-slate-300 border-t-2 border-[#005030] mt-16 selection:bg-[#005030] selection:text-white relative overflow-hidden" aria-label="প্রাতিষ্ঠানিক ফুটার">
+<footer class="site-footer bg-gradient-to-b from-[#031d13] via-[#02130c] to-[#010b07] text-slate-300 border-t-2 border-[#005030] mt-12 sm:mt-16 selection:bg-[#005030] selection:text-white relative overflow-hidden" aria-label="প্রাতিষ্ঠানিক ফুটার">
     {{-- Subtle Ambient Glows matching homepage CTA --}}
     <div class="absolute top-0 right-0 -mt-16 -mr-16 w-80 h-80 rounded-full bg-emerald-500/5 blur-3xl pointer-events-none"></div>
     <div class="absolute bottom-0 left-0 -mb-16 -ml-16 w-80 h-80 rounded-full bg-emerald-500/5 blur-3xl pointer-events-none"></div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 sm:pt-16 pb-10 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-12 pb-6 sm:pb-8 relative z-10">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10">
             {{-- Col 1: Institutional Identity & Contact Info (5 Cols on Desktop) --}}
             <div class="lg:col-span-5 space-y-4">
@@ -184,22 +184,32 @@
                     </li>
                 </ul>
 
-                {{-- Quick WhatsApp Hotline Pill matching homepage CTA style --}}
-                <div class="mt-4 p-3.5 rounded-xl bg-white/5 border border-emerald-500/25 hover:border-emerald-500/50 transition-colors">
-                    <span class="text-xs font-semibold text-emerald-200/90 block mb-1">
-                        ভর্তি ও তথ্যের জন্য সরাসরি কথা বলুন
-                    </span>
-                    <a href="https://wa.me/8801712345678" target="_blank" rel="noopener noreferrer"
-                       class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-white hover:text-emerald-300 transition-colors">
-                        <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i>
-                        <span>০১৭১২-৩৪৫৬৭৮</span>
-                    </a>
-                </div>
+                {{-- Quick WhatsApp Hotline Pill - Entire Card Clickable --}}
+                <a href="https://wa.me/8801712345678" target="_blank" rel="noopener noreferrer"
+                   class="group block mt-4 p-3.5 rounded-xl bg-white/5 hover:bg-emerald-950/60 border border-emerald-500/25 hover:border-emerald-400/60 transition-all duration-200 shadow-xs hover:shadow-md hover:shadow-emerald-950/40 cursor-pointer"
+                   aria-label="সরাসরি হোয়াটসঅ্যাপে কথা বলুন: ০১৭১২-৩৪৫৬৭৮">
+                    <div class="flex items-center justify-between gap-2 mb-1.5">
+                        <span class="text-xs font-semibold text-emerald-200/90 group-hover:text-emerald-100 transition-colors">
+                            ভর্তি ও তথ্যের জন্য সরাসরি কথা বলুন
+                        </span>
+                        <span class="relative flex h-2 w-2 shrink-0">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                        </span>
+                    </div>
+                    <div class="flex items-center justify-between text-xs sm:text-sm font-bold text-white group-hover:text-emerald-300 transition-colors">
+                        <span class="inline-flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-400 text-base group-hover:scale-110 transition-transform"></i>
+                            <span>০১৭১২-৩৪৫৬৭৮</span>
+                        </span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-emerald-400/60 group-hover:text-emerald-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"></i>
+                    </div>
+                </a>
             </div>
         </div>
 
         {{-- Bottom Copyright Strip --}}
-        <div class="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
+        <div class="mt-8 sm:mt-10 pt-4 sm:pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
             <p class="text-center sm:text-left">
                 © {{ date('Y') }} সোনাতলা উচ্চ বিদ্যালয়। সর্বস্বত্ব সংরক্ষিত।
             </p>
