@@ -259,4 +259,36 @@ document.addEventListener('DOMContentLoaded', function () {
             }, 1500);
         }
     }
+
+    // 5. Floating Back to Top Button
+    const backToTopBtn = document.getElementById('back-to-top');
+    if (backToTopBtn) {
+        let isTicking = false;
+        const handleScroll = () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+            isTicking = false;
+        };
+
+        window.addEventListener('scroll', () => {
+            if (!isTicking) {
+                window.requestAnimationFrame(handleScroll);
+                isTicking = true;
+            }
+        }, { passive: true });
+
+        // Run initial check on page load
+        handleScroll();
+
+        backToTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 });

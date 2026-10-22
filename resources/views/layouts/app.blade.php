@@ -20,6 +20,9 @@
     {{-- Institutional Footer (Dark Minimalist) --}}
     @include('layouts.partials.footer')
 
+    {{-- Floating Back to Top Button --}}
+    @include('layouts.partials.back-to-top')
+
     {{-- Frontend Local Assets Scripts (Swiper & Main JS) --}}
     <script src="{{ asset('assets/js/swiper-bundle.min.js') }}"></script>
     <!-- GSAP 3 & ScrollTrigger CDN -->
