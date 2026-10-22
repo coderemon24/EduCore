@@ -397,6 +397,54 @@ body {
     outline: none;
 }
 
+.snhs-dropdown a.is-active {
+    background: #eaf7f0 !important;
+    color: #005030 !important;
+    font-weight: 700 !important;
+    border-left-color: #005030 !important;
+}
+
+/* Smooth Anchor Scrolling & Offset for Sticky Header */
+html {
+    scroll-behavior: smooth;
+}
+
+.home-section[id],
+section[id],
+#overview,
+#history,
+#mission,
+#manifesto,
+#statistics,
+#milestones,
+#committee,
+#governance,
+#infrastructure,
+#facilities,
+#gallery,
+#next-step {
+    scroll-margin-top: 140px;
+}
+
+@media (max-width: 768px) {
+    .home-section[id],
+    section[id],
+    #overview,
+    #history,
+    #mission,
+    #manifesto,
+    #statistics,
+    #milestones,
+    #committee,
+    #governance,
+    #infrastructure,
+    #facilities,
+    #gallery,
+    #next-step {
+        scroll-margin-top: 85px;
+    }
+}
+
 /* Tablet / mobile trigger + drawer */
 .snhs-header {
     z-index: 100 !important;

@@ -84,12 +84,14 @@
                         <span>পরিচিতি</span>
                         <svg class="snhs-nav-caret" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.5 7.5L10 12l4.5-4.5H5.5z"/></svg>
                     </a>
-                    <div class="snhs-dropdown">
-                        <a href="{{ route('frontend.about') }}">আমাদের কথা</a>
-                        <a href="{{ route('frontend.about') }}#mission">লক্ষ্য ও উদ্দেশ্য</a>
-                        <a href="{{ route('frontend.about') }}#committee">পরিচালনা পর্ষদ</a>
-                        <a href="{{ route('frontend.about') }}#history">ইতিহাস ও ঐতিহ্য</a>
-                        <a href="{{ route('frontend.about') }}#infrastructure">অবকাঠামো ও ক্যাম্পাস</a>
+                    <div class="snhs-dropdown" data-dropdown="about">
+                        <a href="{{ route('frontend.about') }}#overview" data-section="overview" class="{{ request()->routeIs('frontend.about*') ? 'is-active' : '' }}">আমাদের কথা</a>
+                        <a href="{{ route('frontend.about') }}#history" data-section="history">ইতিহাস ও ঐতিহ্য</a>
+                        <a href="{{ route('frontend.about') }}#mission" data-section="mission">লক্ষ্য ও উদ্দেশ্য</a>
+                        <a href="{{ route('frontend.about') }}#statistics" data-section="statistics">অর্জন ও পরিসংখ্যান</a>
+                        <a href="{{ route('frontend.about') }}#milestones" data-section="milestones">অগ্রযাত্রার মাইলফলক</a>
+                        <a href="{{ route('frontend.about') }}#committee" data-section="committee">পরিচালনা পর্ষদ</a>
+                        <a href="{{ route('frontend.about') }}#infrastructure" data-section="infrastructure">অবকাঠামো ও ক্যাম্পাস</a>
                     </div>
                 </div>
 
@@ -99,8 +101,8 @@
                         <span>জনবল</span>
                         <svg class="snhs-nav-caret" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.5 7.5L10 12l4.5-4.5H5.5z"/></svg>
                     </a>
-                    <div class="snhs-dropdown">
-                        <a href="{{ route('frontend.teachers.index') }}">শিক্ষকমণ্ডলী</a>
+                    <div class="snhs-dropdown" data-dropdown="staff">
+                        <a href="{{ route('frontend.teachers.index') }}" class="{{ request()->routeIs('frontend.teachers*') ? 'is-active' : '' }}">শিক্ষকমণ্ডলী</a>
                         <a href="{{ route('frontend.teachers.index') }}#staff">কর্মচারী তালিকা</a>
                         <a href="{{ route('frontend.teachers.index') }}#principal">প্রধান শিক্ষক</a>
                         <a href="{{ route('frontend.teachers.index') }}#office">অফিস ও সহায়ক স্টাফ</a>
@@ -118,8 +120,8 @@
                         <span>একাডেমিক</span>
                         <svg class="snhs-nav-caret" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.5 7.5L10 12l4.5-4.5H5.5z"/></svg>
                     </a>
-                    <div class="snhs-dropdown">
-                        <a href="{{ route('frontend.academic.routine') }}">ক্লাস রুটিন</a>
+                    <div class="snhs-dropdown" data-dropdown="academic">
+                        <a href="{{ route('frontend.academic.routine') }}" class="{{ request()->routeIs('frontend.academic*') ? 'is-active' : '' }}">ক্লাস রুটিন</a>
                         <a href="{{ route('frontend.academic.routine') }}#exams">পরীক্ষার সময়সূচি</a>
                         <a href="{{ route('frontend.notices.index') }}">সিলেবাস ও পাঠ্যপুস্তক</a>
                         <a href="{{ route('frontend.notices.index') }}">ফলাফল ও নম্বরপত্র</a>
@@ -144,7 +146,7 @@
 
                 {{-- Gallery --}}
                 <div class="snhs-nav-item">
-                    <a href="{{ route('frontend.about') }}#gallery" class="snhs-nav-link">ছবির গ্যালারি</a>
+                    <a href="{{ route('frontend.home') }}#gallery" class="snhs-nav-link">ছবির গ্যালারি</a>
                 </div>
 
                 {{-- Tutor Day --}}
@@ -202,11 +204,14 @@
                     <span>পরিচিতি</span>
                     <svg class="snhs-mobile-caret" :class="mAbout ? 'is-open' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </button>
-                <div x-show="mAbout" x-cloak class="snhs-mobile-sub">
-                    <a href="{{ route('frontend.about') }}" class="{{ request()->routeIs('frontend.about') ? 'is-active' : '' }}">আমাদের কথা</a>
-                    <a href="{{ route('frontend.about') }}#mission">লক্ষ্য ও উদ্দেশ্য</a>
-                    <a href="{{ route('frontend.about') }}#committee">পরিচালনা পর্ষদ</a>
-                    <a href="{{ route('frontend.about') }}#history">ইতিহাস ও ঐতিহ্য</a>
+                <div x-show="mAbout" x-cloak class="snhs-mobile-sub" data-mobile-sub="about">
+                    <a href="{{ route('frontend.about') }}#overview" data-section="overview" @click="mobileMenuOpen = false" class="{{ request()->routeIs('frontend.about*') ? 'is-active' : '' }}">আমাদের কথা</a>
+                    <a href="{{ route('frontend.about') }}#history" data-section="history" @click="mobileMenuOpen = false">ইতিহাস ও ঐতিহ্য</a>
+                    <a href="{{ route('frontend.about') }}#mission" data-section="mission" @click="mobileMenuOpen = false">লক্ষ্য ও উদ্দেশ্য</a>
+                    <a href="{{ route('frontend.about') }}#statistics" data-section="statistics" @click="mobileMenuOpen = false">অর্জন ও পরিসংখ্যান</a>
+                    <a href="{{ route('frontend.about') }}#milestones" data-section="milestones" @click="mobileMenuOpen = false">অগ্রযাত্রার মাইলফলক</a>
+                    <a href="{{ route('frontend.about') }}#committee" data-section="committee" @click="mobileMenuOpen = false">পরিচালনা পর্ষদ</a>
+                    <a href="{{ route('frontend.about') }}#infrastructure" data-section="infrastructure" @click="mobileMenuOpen = false">অবকাঠামো ও ক্যাম্পাস</a>
                 </div>
             </div>
 
@@ -216,10 +221,11 @@
                     <span>জনবল</span>
                     <svg class="snhs-mobile-caret" :class="mStaff ? 'is-open' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </button>
-                <div x-show="mStaff" x-cloak class="snhs-mobile-sub">
-                    <a href="{{ route('frontend.teachers.index') }}" class="{{ request()->routeIs('frontend.teachers*') ? 'is-active' : '' }}">শিক্ষকমণ্ডলী</a>
-                    <a href="{{ route('frontend.teachers.index') }}#staff">কর্মচারী তালিকা</a>
-                    <a href="{{ route('frontend.teachers.index') }}#principal">প্রধান শিক্ষক</a>
+                <div x-show="mStaff" x-cloak class="snhs-mobile-sub" data-mobile-sub="staff">
+                    <a href="{{ route('frontend.teachers.index') }}" @click="mobileMenuOpen = false" class="{{ request()->routeIs('frontend.teachers*') ? 'is-active' : '' }}">শিক্ষকমণ্ডলী</a>
+                    <a href="{{ route('frontend.teachers.index') }}#staff" @click="mobileMenuOpen = false">কর্মচারী তালিকা</a>
+                    <a href="{{ route('frontend.teachers.index') }}#principal" @click="mobileMenuOpen = false">প্রধান শিক্ষক</a>
+                    <a href="{{ route('frontend.teachers.index') }}#office" @click="mobileMenuOpen = false">অফিস ও সহায়ক স্টাফ</a>
                 </div>
             </div>
 
@@ -231,18 +237,19 @@
                     <span>একাডেমিক</span>
                     <svg class="snhs-mobile-caret" :class="mAcademic ? 'is-open' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </button>
-                <div x-show="mAcademic" x-cloak class="snhs-mobile-sub">
-                    <a href="{{ route('frontend.academic.routine') }}" class="{{ request()->routeIs('frontend.academic*') ? 'is-active' : '' }}">ক্লাস রুটিন</a>
-                    <a href="{{ route('frontend.academic.routine') }}#exams">পরীক্ষার সময়সূচি</a>
-                    <a href="{{ route('frontend.notices.index') }}">সিলেবাস ও পাঠ্যপুস্তক</a>
-                    <a href="{{ route('frontend.notices.index') }}">ফলাফল ও নম্বরপত্র</a>
+                <div x-show="mAcademic" x-cloak class="snhs-mobile-sub" data-mobile-sub="academic">
+                    <a href="{{ route('frontend.academic.routine') }}" @click="mobileMenuOpen = false" class="{{ request()->routeIs('frontend.academic*') ? 'is-active' : '' }}">ক্লাস রুটিন</a>
+                    <a href="{{ route('frontend.academic.routine') }}#exams" @click="mobileMenuOpen = false">পরীক্ষার সময়সূচি</a>
+                    <a href="{{ route('frontend.notices.index') }}" @click="mobileMenuOpen = false">সিলেবাস ও পাঠ্যপুস্তক</a>
+                    <a href="{{ route('frontend.notices.index') }}" @click="mobileMenuOpen = false">ফলাফল ও নম্বরপত্র</a>
+                    <a href="{{ route('frontend.notices.index') }}" @click="mobileMenuOpen = false">সহপাঠক্রমিক কার্যক্রম</a>
                 </div>
             </div>
 
             <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link {{ request()->routeIs('frontend.notices*') ? 'is-active' : '' }}">নোটিশ বোর্ড</a>
             <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link">সংবাদ</a>
             <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link">ইভেন্ট</a>
-            <a href="{{ route('frontend.about') }}#gallery" class="snhs-mobile-link">ছবির গ্যালারি</a>
+            <a href="{{ route('frontend.home') }}#gallery" class="snhs-mobile-link" @click="mobileMenuOpen = false">ছবির গ্যালারি</a>
             <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link">ছুটির দিন</a>
             <a href="{{ route('frontend.contact') }}#enroll" class="snhs-mobile-link bg-amber-400 text-slate-950 font-bold hover:bg-amber-300">ভর্তি আবেদন (অনলাইন)</a>
             <a href="{{ route('frontend.contact') }}" class="snhs-mobile-link {{ request()->routeIs('frontend.contact*') ? 'is-active' : '' }}">যোগাযোগ</a>
@@ -251,3 +258,113 @@
         </div>
     </div>
 </header>
+
+{{-- Synchronized Dropdown Navigation & Smooth Scrollspy Controller --}}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    function getHeaderOffset() {
+        var header = document.querySelector('.snhs-header');
+        return (header ? header.offsetHeight : 120) + 16;
+    }
+
+    function scrollToTarget(targetId, smooth) {
+        if (!targetId) return false;
+        var el = document.getElementById(targetId) || document.querySelector('[name="' + targetId + '"]');
+        if (el) {
+            var elTop = el.getBoundingClientRect().top + window.pageYOffset;
+            var finalTop = Math.max(0, elTop - getHeaderOffset());
+            window.scrollTo({
+                top: finalTop,
+                behavior: smooth ? 'smooth' : 'auto'
+            });
+            return true;
+        }
+        return false;
+    }
+
+    // If page loaded with hash, scroll to it smoothly with sticky header offset
+    if (window.location.hash) {
+        var initialHash = window.location.hash.substring(1);
+        setTimeout(function () {
+            scrollToTarget(initialHash, true);
+            updateActiveSection(initialHash);
+        }, 180);
+    }
+
+    // Handle clicks on any link pointing to an on-page hash
+    document.addEventListener('click', function (e) {
+        var link = e.target.closest('a');
+        if (!link) return;
+
+        var href = link.getAttribute('href');
+        if (!href || href === '#' || href === '#!') return;
+
+        var hashIndex = href.indexOf('#');
+        if (hashIndex === -1) return;
+
+        var pathPart = href.substring(0, hashIndex);
+        var hashPart = href.substring(hashIndex + 1);
+
+        var currentPath = window.location.pathname;
+        var isCurrentPage = !pathPart || pathPart === currentPath || href.startsWith(window.location.origin + currentPath + '#');
+
+        if (isCurrentPage && hashPart) {
+            var targetFound = scrollToTarget(hashPart, true);
+            if (targetFound) {
+                e.preventDefault();
+                history.pushState(null, '', '#' + hashPart);
+                updateActiveSection(hashPart);
+            }
+        }
+    });
+
+    // Scrollspy for About and section-driven pages
+    var sectionIds = ['overview', 'history', 'mission', 'manifesto', 'statistics', 'milestones', 'committee', 'governance', 'infrastructure', 'facilities', 'gallery'];
+    var observedElements = [];
+    sectionIds.forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) {
+            observedElements.push({ id: id, el: el });
+        }
+    });
+
+    function updateActiveSection(activeId) {
+        var canonicalId = activeId;
+        if (activeId === 'manifesto') canonicalId = 'mission';
+        if (activeId === 'governance') canonicalId = 'committee';
+        if (activeId === 'facilities') canonicalId = 'infrastructure';
+
+        // Synchronize desktop dropdown and mobile drawer active links
+        document.querySelectorAll('[data-dropdown="about"] a, [data-mobile-sub="about"] a').forEach(function (link) {
+            var s = link.getAttribute('data-section');
+            var h = link.getAttribute('href') || '';
+            if (s === canonicalId || h.endsWith('#' + canonicalId) || (canonicalId === 'overview' && !h.includes('#'))) {
+                link.classList.add('is-active');
+            } else {
+                link.classList.remove('is-active');
+            }
+        });
+    }
+
+    if (observedElements.length > 0 && window.location.pathname.includes('/about')) {
+        var scrollTimer = null;
+        window.addEventListener('scroll', function () {
+            if (scrollTimer) return;
+            scrollTimer = requestAnimationFrame(function () {
+                var currentScroll = window.pageYOffset + getHeaderOffset() + 60;
+                var currentActive = 'overview';
+
+                for (var i = 0; i < observedElements.length; i++) {
+                    var el = observedElements[i].el;
+                    var top = el.getBoundingClientRect().top + window.pageYOffset;
+                    if (currentScroll >= top) {
+                        currentActive = observedElements[i].id;
+                    }
+                }
+                updateActiveSection(currentActive);
+                scrollTimer = null;
+            });
+        }, { passive: true });
+    }
+});
+</script>
