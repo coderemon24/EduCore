@@ -180,16 +180,22 @@
                 <div class="pt-6 border-t border-slate-100">
                     <p class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-3">প্রাতিষ্ঠানিক স্বীকৃতি ও গুণমান</p>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <div class="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 text-xs font-semibold text-slate-800 shadow-2xs">
-                            <i class="fa-solid fa-shield-check text-[#005030] text-sm shrink-0"></i>
+                        <div class="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 text-xs font-semibold text-slate-800 shadow-2xs hover:border-emerald-300 transition-colors">
+                            <span class="w-6 h-6 rounded-lg bg-emerald-100/80 text-[#005030] flex items-center justify-center shrink-0 text-xs">
+                                <i class="fa-solid fa-award"></i>
+                            </span>
                             <span>সরকারি স্বীকৃতিপ্রাপ্ত</span>
                         </div>
-                        <div class="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 text-xs font-semibold text-slate-800 shadow-2xs">
-                            <i class="fa-solid fa-circle-check text-[#005030] text-sm shrink-0"></i>
+                        <div class="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 text-xs font-semibold text-slate-800 shadow-2xs hover:border-emerald-300 transition-colors">
+                            <span class="w-6 h-6 rounded-lg bg-emerald-100/80 text-[#005030] flex items-center justify-center shrink-0 text-xs">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </span>
                             <span>শতভাগ এমপিওভুক্ত</span>
                         </div>
-                        <div class="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 text-xs font-semibold text-slate-800 shadow-2xs">
-                            <i class="fa-solid fa-microchip text-[#005030] text-sm shrink-0"></i>
+                        <div class="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 text-xs font-semibold text-slate-800 shadow-2xs hover:border-emerald-300 transition-colors">
+                            <span class="w-6 h-6 rounded-lg bg-emerald-100/80 text-[#005030] flex items-center justify-center shrink-0 text-xs">
+                                <i class="fa-solid fa-microchip"></i>
+                            </span>
                             <span>আধুনিক ডিজিটাল ল্যাব</span>
                         </div>
                     </div>
