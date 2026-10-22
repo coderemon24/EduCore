@@ -1,5 +1,4 @@
-{{-- Institutional Header & Navigation Bar --}}
-<header x-data="{ mobileMenuOpen: false, mAbout: false, mStaff: false, mAcademic: false }"
+<header x-data="{ mobileMenuOpen: false, mAbout: {{ request()->routeIs('frontend.about*') ? 'true' : 'false' }}, mStaff: {{ request()->routeIs('frontend.teachers*') ? 'true' : 'false' }}, mAcademic: {{ request()->routeIs('frontend.academic*') ? 'true' : 'false' }} }"
         x-effect="document.body.style.overflow = mobileMenuOpen ? 'hidden' : ''"
         class="snhs-header bg-white border-b border-slate-200 sticky top-0 z-50">
     {{-- Institutional Brand Header --}}
@@ -195,16 +194,16 @@
         </div>
 
         <div class="py-2 text-sm font-semibold divide-y divide-slate-100 text-slate-800">
-            <a href="{{ route('frontend.home') }}" class="snhs-mobile-link">মুলপাতা</a>
+            <a href="{{ route('frontend.home') }}" class="snhs-mobile-link {{ request()->routeIs('frontend.home') ? 'is-active' : '' }}">মুলপাতা</a>
 
             {{-- About accordion --}}
             <div>
-                <button type="button" @click="mAbout = !mAbout" class="snhs-mobile-toggle">
+                <button type="button" @click="mAbout = !mAbout" class="snhs-mobile-toggle {{ request()->routeIs('frontend.about*') ? 'is-active' : '' }}">
                     <span>পরিচিতি</span>
                     <svg class="snhs-mobile-caret" :class="mAbout ? 'is-open' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </button>
                 <div x-show="mAbout" x-cloak class="snhs-mobile-sub">
-                    <a href="{{ route('frontend.about') }}">আমাদের কথা</a>
+                    <a href="{{ route('frontend.about') }}" class="{{ request()->routeIs('frontend.about') ? 'is-active' : '' }}">আমাদের কথা</a>
                     <a href="{{ route('frontend.about') }}#mission">লক্ষ্য ও উদ্দেশ্য</a>
                     <a href="{{ route('frontend.about') }}#committee">পরিচালনা পর্ষদ</a>
                     <a href="{{ route('frontend.about') }}#history">ইতিহাস ও ঐতিহ্য</a>
@@ -213,12 +212,12 @@
 
             {{-- Staff accordion --}}
             <div>
-                <button type="button" @click="mStaff = !mStaff" class="snhs-mobile-toggle">
+                <button type="button" @click="mStaff = !mStaff" class="snhs-mobile-toggle {{ request()->routeIs('frontend.teachers*') ? 'is-active' : '' }}">
                     <span>জনবল</span>
                     <svg class="snhs-mobile-caret" :class="mStaff ? 'is-open' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </button>
                 <div x-show="mStaff" x-cloak class="snhs-mobile-sub">
-                    <a href="{{ route('frontend.teachers.index') }}">শিক্ষকমণ্ডলী</a>
+                    <a href="{{ route('frontend.teachers.index') }}" class="{{ request()->routeIs('frontend.teachers*') ? 'is-active' : '' }}">শিক্ষকমণ্ডলী</a>
                     <a href="{{ route('frontend.teachers.index') }}#staff">কর্মচারী তালিকা</a>
                     <a href="{{ route('frontend.teachers.index') }}#principal">প্রধান শিক্ষক</a>
                 </div>
@@ -228,25 +227,25 @@
 
             {{-- Academic accordion --}}
             <div>
-                <button type="button" @click="mAcademic = !mAcademic" class="snhs-mobile-toggle">
+                <button type="button" @click="mAcademic = !mAcademic" class="snhs-mobile-toggle {{ request()->routeIs('frontend.academic*') ? 'is-active' : '' }}">
                     <span>একাডেমিক</span>
                     <svg class="snhs-mobile-caret" :class="mAcademic ? 'is-open' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </button>
                 <div x-show="mAcademic" x-cloak class="snhs-mobile-sub">
-                    <a href="{{ route('frontend.academic.routine') }}">ক্লাস রুটিন</a>
+                    <a href="{{ route('frontend.academic.routine') }}" class="{{ request()->routeIs('frontend.academic*') ? 'is-active' : '' }}">ক্লাস রুটিন</a>
                     <a href="{{ route('frontend.academic.routine') }}#exams">পরীক্ষার সময়সূচি</a>
                     <a href="{{ route('frontend.notices.index') }}">সিলেবাস ও পাঠ্যপুস্তক</a>
                     <a href="{{ route('frontend.notices.index') }}">ফলাফল ও নম্বরপত্র</a>
                 </div>
             </div>
 
-            <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link">নোটিশ বোর্ড</a>
+            <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link {{ request()->routeIs('frontend.notices*') ? 'is-active' : '' }}">নোটিশ বোর্ড</a>
             <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link">সংবাদ</a>
             <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link">ইভেন্ট</a>
             <a href="{{ route('frontend.about') }}#gallery" class="snhs-mobile-link">ছবির গ্যালারি</a>
             <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link">ছুটির দিন</a>
             <a href="{{ route('frontend.contact') }}#enroll" class="snhs-mobile-link bg-amber-400 text-slate-950 font-bold hover:bg-amber-300">ভর্তি আবেদন (অনলাইন)</a>
-            <a href="{{ route('frontend.contact') }}" class="snhs-mobile-link">যোগাযোগ</a>
+            <a href="{{ route('frontend.contact') }}" class="snhs-mobile-link {{ request()->routeIs('frontend.contact*') ? 'is-active' : '' }}">যোগাযোগ</a>
 
             <a href="{{ url('/admin/dashboard') }}" class="snhs-mobile-link snhs-mobile-login">পোর্টাল লগইন</a>
         </div>

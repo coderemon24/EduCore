@@ -513,6 +513,18 @@ body {
     color: #005030 !important;
 }
 
+.snhs-mobile-link.is-active,
+.snhs-mobile-toggle.is-active {
+    background: #ecfdf5 !important;
+    color: #005030 !important;
+    font-weight: 700 !important;
+    border-left: 4px solid #005030 !important;
+}
+
+.snhs-mobile-toggle.is-active .snhs-mobile-caret {
+    color: #005030;
+}
+
 .snhs-mobile-caret {
     width: 16px;
     height: 16px;
@@ -548,6 +560,13 @@ body {
     background: #f0fdf4;
     color: #005030 !important;
     border-left-color: #0b6b4b;
+}
+
+.snhs-mobile-sub a.is-active {
+    background: #ecfdf5 !important;
+    color: #005030 !important;
+    font-weight: 700 !important;
+    border-left-color: #005030 !important;
 }
 
 .snhs-mobile-login {
