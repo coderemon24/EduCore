@@ -18,21 +18,18 @@
     }
 @endphp
 
-{{-- Top Institutional Utility Bar (Matching User Reference Image) --}}
+{{-- Top utility bar --}}
 <div class="site-topbar">
     <div class="site-topbar-inner">
 
-        {{-- Left: Update Pill Badge & Left-to-Right Infinite Scrollable Shironam --}}
+        {{-- Notice ticker --}}
         <div class="topbar-left">
-            {{-- Update Pill Badge --}}
             <span class="topbar-badge">আপডেট</span>
 
-            {{-- Left-to-Right Infinite Scrollable Shironam Container --}}
             <div class="topbar-ticker-container">
                 <div class="topbar-fade-left"></div>
 
                 <div class="shironam-marquee-track">
-                    {{-- Loop Group 1 --}}
                     <div class="shironam-marquee-group">
                         <a href="{{ route('frontend.notices.index') }}" class="shironam-link">
                             নির্বাচনী পরীক্ষা ২০২৩ খ্রি. রুটিন প্রকাশ করা হয়েছে।
@@ -62,7 +59,7 @@
                         @endif
                     </div>
 
-                    {{-- Loop Group 2 (Identical Clone for Flawless Infinite Seamless Looping) --}}
+                    {{-- Marquee loop clone --}}
                     <div class="shironam-marquee-group" aria-hidden="true">
                         <a href="{{ route('frontend.notices.index') }}" class="shironam-link">
                             নির্বাচনী পরীক্ষা ২০২৩ খ্রি. রুটিন প্রকাশ করা হয়েছে।
@@ -97,7 +94,7 @@
             </div>
         </div>
 
-        {{-- Right: Institutional Credentials (EIIN, MPO CODE, ESTD) --}}
+        {{-- Credentials --}}
         <div class="topbar-right">
             <div class="topbar-credential-item">
                 <span class="topbar-credential-label">EIIN:</span>

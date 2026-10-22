@@ -5,7 +5,7 @@
 
 @section('content')
 
-{{-- 1. Executive Breadcrumb Bar --}}
+{{-- Breadcrumb --}}
 <div class="bg-gray-100 border-b border-gray-200 py-3.5 text-xs sm:text-sm text-gray-600" id="overview">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <nav class="flex items-center gap-1.5 font-medium" aria-label="Breadcrumb">
@@ -22,7 +22,7 @@
     </div>
 </div>
 
-{{-- 2. Institutional Hero Header Banner --}}
+{{-- Hero Banner --}}
 <div class="bg-[#005030] text-white py-14 sm:py-20 border-b border-emerald-900 relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6 relative z-10">
         <div class="space-y-3.5 max-w-2xl">
@@ -50,12 +50,11 @@
         </div>
     </div>
 
-    {{-- Subtle Decorative Elements --}}
     <div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-emerald-800/20 pointer-events-none"></div>
     <div class="absolute left-1/2 -top-24 w-96 h-96 rounded-full bg-emerald-700/10 pointer-events-none"></div>
 </div>
 
-{{-- 3. Qualifying Credentials & Telemetry Strip --}}
+{{-- Credentials & Stats --}}
 <div class="telemetry-strip bg-slate-900 text-slate-200 py-4 sm:py-5 border-y border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
@@ -91,10 +90,9 @@
     </div>
 </div>
 
-{{-- 4. Leadership Spotlight (Recipe 2: Break the Symmetry & Recipe 4: Pick the Winner) --}}
+{{-- Leadership --}}
 <section class="home-section bg-white" id="leadership">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {{-- Section Header Rhythm --}}
         <div class="section-header-block">
             <div class="section-header-left">
                 <span class="section-kicker">
@@ -112,13 +110,12 @@
             </div>
         </div>
 
-        {{-- Asymmetric 65/35 Leadership Grid (Properly Balanced Proportions) --}}
+        {{-- Leadership Grid --}}
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-            {{-- Flagship Winner: Headmaster (65% width / 7 cols) --}}
+            {{-- Headmaster --}}
             <div class="leadership-card lg:col-span-7 bg-slate-50/80 border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-2xs group">
                 <div class="space-y-5">
                     <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5 pb-5 border-b border-slate-200/80">
-                        {{-- Well-proportioned portrait frame --}}
                         <div class="leadership-portrait-frame relative w-28 h-32 sm:w-32 sm:h-36 rounded-2xl overflow-hidden bg-slate-200 border-2 border-emerald-800/30 shadow-xs shrink-0">
                             <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=400&q=80"
                                  alt="মো: খলিলুর রহমান - প্রধান শিক্ষক"
@@ -143,12 +140,12 @@
                         </div>
                     </div>
 
-                    {{-- Leadership Manifesto Quote --}}
+                    {{-- Quote --}}
                     <blockquote class="text-sm sm:text-base text-slate-700 leading-relaxed italic bg-white p-4 sm:p-5 rounded-xl border-l-4 border-[#005030] shadow-2xs">
                         "আমাদের প্রথম দায়িত্ব শুধু পাঠ্যবইয়ের জ্ঞান বিতরণ নয়; বরং স্নেহ, মমতা ও উপযুক্ত শৃঙ্খলার মাধ্যমে প্রতিটি সন্তানকে একজন সৎ, আত্মবিশ্বাসী ও আদর্শ মানুষ হিসেবে সমাজে প্রতিষ্ঠিত করা।"
                     </blockquote>
 
-                    {{-- Office Hours & Schedule Strip --}}
+                    {{-- Office hours --}}
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
                         <div class="bg-white p-3.5 rounded-xl border border-slate-200/80 flex items-center gap-3 shadow-2xs hover:border-[#005030]/30 transition-colors">
                             <span class="w-8 h-8 rounded-lg bg-emerald-50 text-[#005030] flex items-center justify-center shrink-0 text-sm"><i class="fa-solid fa-clock"></i></span>
@@ -176,10 +173,9 @@
                 </div>
             </div>
 
-            {{-- Fixed Assistant Headmaster Card (35% width / 5 cols) --}}
+            {{-- Assistant Headmaster --}}
             <div class="leadership-card lg:col-span-5 bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-2xs group">
                 <div class="space-y-5">
-                    {{-- Fixed portrait header with strict shrink-0 and explicit dimensions --}}
                     <div class="flex items-center gap-4 pb-5 border-b border-slate-100">
                         <div class="leadership-portrait-frame relative w-24 h-28 sm:w-28 sm:h-32 rounded-2xl overflow-hidden bg-slate-100 border-2 border-emerald-800/25 shadow-xs shrink-0">
                             <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"
@@ -232,13 +228,11 @@
     </div>
 </section>
 
-{{-- Hairline Structural Divider --}}
 <div class="home-section-divider"></div>
 
-{{-- 5. Core Faculty & Staff Directory (The "What") --}}
+{{-- Teachers Directory --}}
 <section class="home-section bg-slate-50/60" id="faculty-directory">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {{-- Section Header Rhythm --}}
         <div class="section-header-block">
             <div class="section-header-left">
                 <span class="section-kicker">
@@ -256,9 +250,8 @@
             </div>
         </div>
 
-        {{-- Filter & Realtime Search Toolbar (No Page Reload) --}}
+        {{-- Search & Filters --}}
         <div class="bg-white border border-slate-200/90 rounded-2xl p-4 sm:p-5 shadow-2xs mb-8 space-y-4">
-            {{-- Realtime Search Bar --}}
             <div class="flex flex-col sm:flex-row items-center gap-3">
                 <div class="teacher-search-box">
                     <span class="teacher-search-icon">
@@ -292,7 +285,7 @@
                 </div>
             </div>
 
-            {{-- Realtime Department Filter Pill Tabs (No Reload) --}}
+            {{-- Department filter pills --}}
             @php
                 $standardDepts = [
                     'all' => 'সকল অনুষদ',
@@ -466,7 +459,7 @@
             </div>
         </div>
 
-        {{-- Teacher Cards Grid with Controlled Non-Elongated Photo Aspect Ratio --}}
+        {{-- Teacher cards grid --}}
         <div id="teachers-grid-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             @foreach($displayStaff as $staff)
                 <div class="teacher-card-item p-4 sm:p-5 flex flex-col justify-between group shadow-2xs"
@@ -476,28 +469,23 @@
                      data-designation="{{ $staff['designation'] }}"
                      data-qualification="{{ $staff['qualification'] }}">
                     <div>
-                        {{-- Top Accent Line --}}
                         <div class="teacher-accent-bar"></div>
 
-                        {{-- Perfectly Proportioned Compact Photo Frame (NOT Too Tall) --}}
                         <div class="teacher-photo-frame h-48 w-full bg-slate-100 relative mb-3.5 shadow-2xs">
                             <img src="{{ $staff['photo'] }}"
                                  alt="{{ $staff['name'] }}"
                                  loading="lazy"
                                  class="teacher-photo-img w-full h-full object-cover">
 
-                            {{-- Pinned Department Badge Tag --}}
                             <div class="absolute bottom-2.5 left-2.5 bg-slate-900/85 text-white backdrop-blur-xs text-xs font-bold px-2.5 py-1 rounded-md shadow-sm">
                                 {{ $staff['department'] }}
                             </div>
 
-                            {{-- Experience Badge --}}
                             <div class="absolute top-2.5 right-2.5 bg-white/95 text-slate-800 backdrop-blur-xs text-xs font-bold px-2.5 py-0.5 rounded-md border border-slate-200/90 shadow-2xs">
                                 {{ $staff['experience'] }}
                             </div>
                         </div>
 
-                        {{-- Content Block --}}
                         <div class="space-y-1.5">
                             <h3 class="teacher-name text-base sm:text-lg font-bold text-slate-900 leading-snug">
                                 {{ $staff['name'] }}
@@ -517,7 +505,7 @@
                         </div>
                     </div>
 
-                    {{-- Action Footer with Enhanced Tactile Buttons --}}
+                    {{-- Contact buttons --}}
                     <div class="pt-3 border-t border-slate-100 flex items-center justify-between mt-4 gap-2">
                         <a href="tel:{{ $staff['phone'] }}"
                            class="teacher-btn-phone flex-1">
@@ -535,7 +523,7 @@
             @endforeach
         </div>
 
-        {{-- Dynamic Realtime Empty Search State --}}
+        {{-- Empty state --}}
         <div id="no-teachers-found" class="hidden bg-white border border-slate-200/90 rounded-2xl p-10 text-center space-y-4 max-w-lg mx-auto shadow-2xs mt-4">
             <div class="w-14 h-14 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center mx-auto text-2xl">
                 <i class="fa-solid fa-user-slash"></i>
@@ -559,13 +547,11 @@
     </div>
 </section>
 
-{{-- Hairline Structural Divider --}}
 <div class="home-section-divider"></div>
 
-{{-- 6. Faculty Pedagogical Standards & Mentorship Pillars (The "Why") --}}
+{{-- Academic Standards --}}
 <section class="home-section bg-white" id="pedagogy-standards">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {{-- Section Header Rhythm --}}
         <div class="section-header-block">
             <div class="section-header-left">
                 <span class="section-kicker">
@@ -583,9 +569,7 @@
             </div>
         </div>
 
-        {{-- 3 Clean Editorial Capability Cards with Hover Lift --}}
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {{-- Pillar 1 --}}
             <div class="pedagogy-card space-y-3.5 shadow-2xs group">
                 <div class="pedagogy-icon-box w-12 h-12 rounded-xl bg-emerald-100 text-[#005030] flex items-center justify-center text-xl font-bold shadow-2xs">
                     <i class="fa-solid fa-book-open-reader"></i>
@@ -602,7 +586,6 @@
                 </div>
             </div>
 
-            {{-- Pillar 2 --}}
             <div class="pedagogy-card space-y-3.5 shadow-2xs group">
                 <div class="pedagogy-icon-box w-12 h-12 rounded-xl bg-sky-100 text-sky-800 flex items-center justify-center text-xl font-bold shadow-2xs">
                     <i class="fa-solid fa-laptop-code"></i>
@@ -619,7 +602,6 @@
                 </div>
             </div>
 
-            {{-- Pillar 3 --}}
             <div class="pedagogy-card space-y-3.5 shadow-2xs group">
                 <div class="pedagogy-icon-box w-12 h-12 rounded-xl bg-amber-100 text-amber-900 flex items-center justify-center text-xl font-bold shadow-2xs">
                     <i class="fa-solid fa-hands-holding-child"></i>
@@ -639,10 +621,9 @@
     </div>
 </section>
 
-{{-- Hairline Structural Divider --}}
 <div class="home-section-divider"></div>
 
-{{-- 7. Call to Action: Guardian Consultation & Visiting Schedule (The Next Step) --}}
+{{-- Consultation & Visit CTA --}}
 <section class="home-section bg-slate-50/80" id="consultation-cta">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="cta-banner-box cta-box rounded-3xl p-8 sm:p-12 lg:p-16 relative overflow-hidden shadow-lg border border-emerald-700/60">
@@ -658,16 +639,13 @@
                     আপনার সন্তানের ক্লাসরুমের অগ্রগতি, আচরণ কিংবা ভবিষ্যৎ পরিকল্পনা নিয়ে যেকোনো শিক্ষক বা প্রতিষ্ঠান প্রধানের সাথে কথা বলতে পারেন। প্রতি রবিবার থেকে বৃহস্পতিবার দুপুর ১২:৩০ হতে ১:৩০ পর্যন্ত শিক্ষক মিলনায়তনে সুনির্দিষ্ট অভিভাবক সাক্ষাৎ সময় নির্ধারিত রয়েছে।
                 </p>
 
-                {{-- Upgraded, High-Contrast Call to Action Buttons --}}
                 <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-                    {{-- Primary Amber CTA Button --}}
                     <a href="{{ route('frontend.contact') }}"
                        class="about-cta-btn about-cta-btn-primary text-sm sm:text-base">
                         <span>সরাসরি সাক্ষাতের জন্য সময় নির্ধারণ করুন</span>
                         <i class="fa-solid fa-arrow-right text-xs"></i>
                     </a>
 
-                    {{-- Secondary Hotline Button --}}
                     <a href="tel:+8801712345678"
                        class="about-cta-btn guardian-cta-btn-secondary text-sm sm:text-base">
                         <i class="fa-solid fa-phone text-amber-300"></i>
@@ -676,7 +654,6 @@
                 </div>
             </div>
 
-            {{-- Decorative Academic Graphic Geometry --}}
             <div class="hidden lg:block absolute -right-12 -bottom-12 w-96 h-96 rounded-full bg-emerald-800/30 border border-emerald-600/30 pointer-events-none"></div>
             
         </div>
@@ -688,9 +665,7 @@
 @push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    // =========================================================================
-    // 1. Real-time Department Tabs & Search Filter (Zero Page Reload)
-    // =========================================================================
+    // Department tabs & search filter
     const searchInput = document.getElementById('teacher-search-input');
     const clearSearchBtn = document.getElementById('clear-search-btn');
     const deptTabs = document.querySelectorAll('.dept-filter-tab');
@@ -815,9 +790,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // =========================================================================
-    // 2. Safe & Smooth Entrance Animations (Never Leaves Cards Invisible)
-    // =========================================================================
+    // Entrance animations
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (!prefersReducedMotion) {
@@ -874,7 +847,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Failsafe guarantee: ensure NO elements on this page remain at opacity: 0
+    // Visibility fallback
     const ensureTeachersPageVisible = () => {
         document.querySelectorAll(
             '.hero-anim, .telemetry-metric-item, .leadership-card, .pedagogy-card, .cta-box, .teacher-card-item, .section-header-block'

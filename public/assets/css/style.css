@@ -629,8 +629,7 @@ section[id],
 }
 
 /* ==========================================================================
-   Full-Screen Hero Slider & Keyframe Text Entrance Animations
-   (Responsive media queries separated into responsive.css)
+   Hero Slider & Animations
    ========================================================================== */
 
 .fullscreen-hero-swiper {
@@ -645,7 +644,7 @@ section[id],
     height: 100%;
 }
 
-/* Left-Top Corner to Bottom-Right Theme Color Shadow Overlay */
+/* Slider shadow overlay */
 .fullscreen-slider-theme-shadow {
     position: absolute;
     inset: 0;
@@ -668,7 +667,7 @@ section[id],
     z-index: 5;
 }
 
-/* Slide Typography Initial / Resting State */
+/* Slide typography */
 .fullscreen-hero-swiper .fullscreen-slide-badge,
 .fullscreen-hero-swiper .fullscreen-slide-title,
 .fullscreen-hero-swiper .fullscreen-slide-desc {
@@ -694,7 +693,7 @@ section[id],
     background: #005030 !important;
 }
 
-/* Slide In Left & Fade In Up Keyframes */
+/* Slide animations */
 @keyframes fullscreenSlideInLeft {
     0% {
         opacity: 0;
@@ -717,7 +716,7 @@ section[id],
     }
 }
 
-/* Active Slide Text Staggered Animations */
+/* Active slide animations */
 .fullscreen-hero-swiper .swiper-slide-active .fullscreen-slide-badge {
     animation: fullscreenSlideInLeft 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
 }
@@ -730,7 +729,7 @@ section[id],
     animation: fullscreenFadeInUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.38s forwards;
 }
 
-/* Navigation Controls Custom Polish */
+/* Slider controls */
 .fullscreen-swiper-prev,
 .fullscreen-swiper-next {
     backdrop-filter: blur(8px);
@@ -745,7 +744,7 @@ section[id],
     border-color: rgba(255, 255, 255, 0.75) !important;
 }
 
-/* Centered Pagination Indicators (Golden / Amber Highlight as in reference) */
+/* Slider pagination */
 .fullscreen-swiper-pagination {
     position: absolute;
     left: 0 !important;
@@ -781,7 +780,7 @@ section[id],
 .fullscreen-swiper-pagination .swiper-pagination-bullet-active {
     width: 28px;
     height: 9px;
-    background: #f59e0b !important; /* Institutional Amber / Gold */
+    background: #f59e0b !important;
     opacity: 1 !important;
     border-radius: 6px !important;
     box-shadow: 0 2px 8px rgba(245, 158, 11, 0.5) !important;
@@ -789,7 +788,7 @@ section[id],
 
 
 /* ==========================================================================
-   Home Landing Page Sequential Rhythm & Design Standards
+   Home Page Sections
    ========================================================================== */
 .home-section {
     padding-top: 4rem;
@@ -858,7 +857,7 @@ section[id],
 }
 
 /* ==========================================================================
-   Explicit Section Layout Standards (Fail-Safe Responsive Grid/Flex)
+   Section Layouts
    ========================================================================== */
 
 .section-header-block {
@@ -968,7 +967,7 @@ section[id],
     box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.35);
 }
 
-/* Capabilities (What It Does) - Asymmetric Bento Hierarchy */
+/* Capabilities */
 .capabilities-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -1033,7 +1032,7 @@ section[id],
     box-shadow: 0 12px 28px -6px rgba(0, 80, 48, 0.1), 0 0 0 1px rgba(0, 80, 48, 0.12);
 }
 
-/* Differentiators (Why It Is Different) */
+/* Institutional advantage */
 .differentiators-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -1056,7 +1055,7 @@ section[id],
     box-shadow: 0 14px 28px -6px rgba(0, 80, 48, 0.08);
 }
 
-/* Dispatches Hub */
+/* Dispatches & notices */
 .dispatches-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -1070,7 +1069,7 @@ section[id],
     }
 }
 
-/* Steps (How You Get Started) */
+/* Admissions process */
 .steps-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -1093,7 +1092,7 @@ section[id],
     box-shadow: 0 18px 36px -8px rgba(0, 80, 48, 0.12);
 }
 
-/* Day to Day Summaries (What It Feels Like) */
+/* Campus experience */
 .experience-frame {
     border-radius: 1rem;
     overflow: hidden;
@@ -1129,7 +1128,7 @@ section[id],
     box-shadow: 0 14px 28px -6px rgba(0, 80, 48, 0.08);
 }
 
-/* Campus Gallery */
+/* Campus gallery */
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -1153,7 +1152,7 @@ section[id],
     transform: translateY(-3px);
 }
 
-/* CTA High-Impact Banner & Guardian Box */
+/* Call to action */
 .cta-banner-box,
 .cta-box {
     background: linear-gradient(135deg, #003820 0%, #005030 55%, #012415 100%) !important;
@@ -1226,7 +1225,7 @@ section[id],
     transform: translateY(-2px) scale(1.02);
 }
 
-/* Institutional Footer */
+/* Footer */
 .site-footer {
     background: linear-gradient(180deg, #031c12 0%, #02120b 60%, #010a06 100%);
     border-top: 2px solid #005030;
@@ -1234,7 +1233,7 @@ section[id],
 }
 
 /* ==========================================================================
-   Back to Top Floating Button
+   Back to Top Button
    ========================================================================== */
 .back-to-top-btn {
     position: fixed;
@@ -1290,10 +1289,10 @@ section[id],
 }
 
 /* ==========================================================================
-   About Page & Universal Editorial Card & Section Rhythm
+   About Page Components
    ========================================================================== */
 
-/* Universal Section Spacing Helpers */
+/* Spacing helpers */
 .py-14 { padding-top: 3.5rem; padding-bottom: 3.5rem; }
 .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
 .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
@@ -1314,7 +1313,7 @@ section[id],
     .lg\:p-9 { padding: 2.25rem !important; }
 }
 
-/* Editorial Card Components */
+/* Editorial cards */
 .about-card-hero {
     background-color: #ffffff;
     border: 1px solid rgba(226, 232, 240, 0.95);
@@ -1378,7 +1377,7 @@ section[id],
     box-shadow: 0 12px 24px -4px rgba(0, 80, 48, 0.08);
 }
 
-/* Next Step CTA Action Buttons */
+/* CTA buttons */
 .about-cta-btn {
     display: inline-flex !important;
     align-items: center !important;
@@ -1420,10 +1419,10 @@ section[id],
 }
 
 /* ==========================================================================
-   Teachers Page Components & Universal Hover Physics (Matches Home Page)
+   Teachers Page Components
    ========================================================================== */
 
-/* 1. Telemetry Strip Metric Items */
+/* Metrics strip */
 .telemetry-metric-item {
     background-color: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1450,7 +1449,7 @@ section[id],
     transform: scale(1.08);
 }
 
-/* 2. Hero ESTD Widget */
+/* Established card */
 .hero-estd-card {
     transition: border-color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
 }
@@ -1461,7 +1460,7 @@ section[id],
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
 }
 
-/* 3. Leadership Spotlight Cards */
+/* Leadership cards */
 .leadership-card {
     transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -1489,7 +1488,7 @@ section[id],
     transform: scale(1.06);
 }
 
-/* 4. Core Teacher Directory Cards */
+/* Teacher cards */
 .teacher-card-item {
     background-color: #ffffff;
     border: 1px solid rgba(226, 232, 240, 0.95);
@@ -1546,7 +1545,7 @@ section[id],
     color: #005030;
 }
 
-/* 5. Teacher Card Contact Action Buttons */
+/* Contact buttons */
 .teacher-btn-phone {
     display: flex;
     align-items: center;
@@ -1588,7 +1587,7 @@ section[id],
     box-shadow: 0 4px 10px rgba(2, 132, 199, 0.25);
 }
 
-/* 6. Faculty Pedagogical Standards Cards */
+/* Standards cards */
 .pedagogy-card {
     background-color: rgba(248, 250, 252, 0.85);
     border: 1px solid rgba(226, 232, 240, 0.95);
@@ -1619,7 +1618,7 @@ section[id],
     box-shadow: 0 6px 16px rgba(0, 80, 48, 0.18);
 }
 
-/* 7. Department Filter Tab Pills */
+/* Department filter tabs */
 .dept-filter-tab {
     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
 }
@@ -1632,7 +1631,7 @@ section[id],
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
 }
 
-/* 8. Real-time Search Input & Icon Positioning */
+/* Search input */
 .teacher-search-box {
     position: relative;
     width: 100%;
@@ -1646,7 +1645,7 @@ section[id],
     border-radius: 0.75rem;
     padding-top: 0.625rem;
     padding-bottom: 0.625rem;
-    padding-left: 2.75rem !important; /* guaranteed clearance for the search icon */
+    padding-left: 2.75rem !important;
     padding-right: 2.5rem !important;
     font-size: 0.875rem;
     line-height: 1.25rem;

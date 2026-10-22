@@ -3,13 +3,12 @@
 @section('title', 'সোনাতলা উচ্চ বিদ্যালয় | Sonatala High School')
 
 @section('content')
-    {{-- 1. HERO SLIDER DIRECTLY BELOW NAVBAR --}}
+    {{-- Hero slider --}}
     @include('frontend.home.partials.fullscreen-slider')
 
-    {{-- 2. THIN QUALIFYING STRIP: WHO THIS PRODUCT / INSTITUTION IS FOR --}}
+    {{-- Audience strip --}}
     <section class="qualifying-strip-bar py-3.5 sm:py-4 px-4 sm:px-6 lg:px-8 relative z-20 shadow-xs" aria-label="কাদের জন্য সোনাতলা উচ্চ বিদ্যালয়">
         <div class="max-w-7xl mx-auto flex flex-col xl:flex-row xl:items-center justify-between gap-4">
-            {{-- Left Label & Kicker --}}
             <div class="flex items-center gap-3 shrink-0">
                 <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[11px] font-bold uppercase tracking-wider border border-emerald-400/30">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -20,7 +19,6 @@
                 </span>
             </div>
 
-            {{-- 4 Targeted Audience Segments --}}
             <div class="qualifying-cards-grid flex-1">
                 <div class="qualifying-card">
                     <span class="text-emerald-400 shrink-0 mt-0.5"><i class="fa-solid fa-circle-check"></i></span>
@@ -57,10 +55,9 @@
         </div>
     </section>
 
-    {{-- 3. WHAT IT DOES: ACADEMIC CAPABILITIES & REAL-TIME PLATFORM --}}
+    {{-- Academic capabilities --}}
     <section class="home-section bg-white" id="capabilities">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {{-- Section Header: Rhythm Pattern (Kicker, Heading Left, Supporting Paragraph Right) --}}
             <div class="section-header-block">
                 <div class="section-header-left">
                     <span class="section-kicker">
@@ -78,9 +75,8 @@
                 </div>
             </div>
 
-            {{-- Asymmetric Capabilities Layout: Flagship Dominant Hero (60%) + Secondary Stack (40%) --}}
             <div class="capabilities-grid">
-                {{-- Dominant Flagship Hero: Practical Science & Laboratory Innovation --}}
+                {{-- Science & lab hero --}}
                 <div class="capability-card-hero group">
                     <div>
                         <div class="flex items-center justify-between mb-6">
@@ -102,7 +98,6 @@
                             পুঁথিগত তত্ত্বের বাইরে গিয়ে শিক্ষার্থীরা যাতে বিজ্ঞানের প্রতিটি সূত্র বাস্তবে প্রত্যক্ষ করতে পারে, সেজন্য রয়েছে পদার্থ, রসায়ন ও জীববিজ্ঞানের পৃথক শীতাতপনিয়ন্ত্রিত ল্যাব। নিয়মিত পরীক্ষণ ও বার্ষিক বিজ্ঞান উৎসবের মাধ্যমে শিক্ষার্থীদের মৌলিক চিন্তাশক্তি শাণিত করা হয়।
                         </p>
 
-                        {{-- Structured Laboratory Proof Checklist --}}
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-slate-200/80 mb-6">
                             <div class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800">
                                 <span class="w-5 h-5 rounded-full bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center shrink-0 text-[11px] font-bold"><i class="fa-solid fa-check"></i></span>
@@ -132,9 +127,8 @@
                     </div>
                 </div>
 
-                {{-- Secondary Stack: Compact 2 Cards in Lighter Secondary Tier --}}
                 <div class="capabilities-secondary-stack">
-                    {{-- Secondary Card 1: ICT & Digital Education --}}
+                    {{-- ICT & digital --}}
                     <div class="capability-card-secondary group">
                         <div>
                             <div class="flex items-center justify-between mb-3">
@@ -158,7 +152,7 @@
                         </a>
                     </div>
 
-                    {{-- Secondary Card 2: Co-Curricular & Sports --}}
+                    {{-- Co-curricular & sports --}}
                     <div class="capability-card-secondary group">
                         <div>
                             <div class="flex items-center justify-between mb-3">
@@ -186,13 +180,11 @@
         </div>
     </section>
 
-    {{-- SECTION DIVIDER --}}
     <div class="home-section-divider"></div>
 
-    {{-- 4. WHY IT IS DIFFERENT: THE INSTITUTIONAL ADVANTAGE & METRICS --}}
+    {{-- Institutional advantage --}}
     <section class="home-section bg-slate-50/60" id="advantage">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {{-- Section Header: Rhythm Pattern --}}
             <div class="section-header-block">
                 <div class="section-header-left">
                     <span class="section-kicker">
@@ -210,9 +202,7 @@
                 </div>
             </div>
 
-            {{-- 4 Comparative Value Pillars --}}
             <div class="differentiators-grid mb-12">
-                {{-- Pillar 1 --}}
                 <div class="differentiator-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex gap-4 shadow-2xs group">
                     <div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 text-slate-800 flex items-center justify-center shrink-0 font-bold text-sm group-hover:scale-105 transition-transform duration-300">
                         ০১
@@ -227,7 +217,6 @@
                     </div>
                 </div>
 
-                {{-- Pillar 2 --}}
                 <div class="differentiator-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex gap-4 shadow-2xs group">
                     <div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 text-slate-800 flex items-center justify-center shrink-0 font-bold text-sm group-hover:scale-105 transition-transform duration-300">
                         ০২
@@ -242,7 +231,6 @@
                     </div>
                 </div>
 
-                {{-- Pillar 3 --}}
                 <div class="differentiator-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex gap-4 shadow-2xs group">
                     <div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 text-slate-800 flex items-center justify-center shrink-0 font-bold text-sm group-hover:scale-105 transition-transform duration-300">
                         ০৩
@@ -257,7 +245,6 @@
                     </div>
                 </div>
 
-                {{-- Pillar 4 --}}
                 <div class="differentiator-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex gap-4 shadow-2xs group">
                     <div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 text-slate-800 flex items-center justify-center shrink-0 font-bold text-sm group-hover:scale-105 transition-transform duration-300">
                         ০৪
@@ -273,7 +260,7 @@
                 </div>
             </div>
 
-            {{-- Institutional Metrics Counter: Primary Outcomes + Secondary Meta Strip --}}
+            {{-- Key metrics --}}
             <div class="metrics-counter-box bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-xs">
                 <div class="bg-[#005030] text-white px-6 py-3.5 flex items-center justify-between">
                     <span class="text-xs font-bold uppercase tracking-wider">
@@ -282,7 +269,6 @@
                     <span class="text-xs text-emerald-200 font-medium">প্রতিষ্ঠানের মূল সূচকসমূহ</span>
                 </div>
 
-                {{-- Primary Tier: 3 Dominant Headline Achievements --}}
                 <div class="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-center border-b border-slate-100">
                     <div class="metric-pill p-4 rounded-xl bg-slate-50/80 border border-slate-200/70 transition-all hover:bg-emerald-50/50 hover:border-emerald-200">
                         <div class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">এসএসসি ধারাবাহিক সাফল্য</div>
@@ -301,7 +287,6 @@
                     </div>
                 </div>
 
-                {{-- Secondary Tier: Lighter Operational & Administrative Meta Strip --}}
                 <div class="px-6 py-4 bg-slate-50/70 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-600">
                     <div class="flex items-center gap-2">
                         <span class="font-bold text-slate-800 flex items-center gap-1.5"><i class="fa-solid fa-chalkboard-user text-emerald-700"></i> শিক্ষক ও স্টাফ:</span>
@@ -324,13 +309,11 @@
         </div>
     </section>
 
-    {{-- SECTION DIVIDER --}}
     <div class="home-section-divider"></div>
 
-    {{-- 5. CURRENT DISPATCHES & NOTICE BOARD (REAL-TIME ACADEMIC PULSE) --}}
+    {{-- Notices & updates --}}
     <section class="home-section bg-white" id="notices">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {{-- Section Header: Rhythm Pattern --}}
             <div class="section-header-block">
                 <div class="section-header-left">
                     <span class="section-kicker">
@@ -348,16 +331,14 @@
                 </div>
             </div>
 
-            {{-- 2-Column Balanced Editorial Hub --}}
             <div class="dispatches-grid">
-                {{-- Column 1: Interactive Notice Board Widget --}}
+                {{-- Notice board --}}
                 <div class="w-full h-full">
                     @include('frontend.home.partials.notice-board')
                 </div>
 
-                {{-- Column 2: Campus Stories + Quick Services --}}
+                {{-- Stories & quick links --}}
                 <div class="space-y-6">
-                    {{-- Campus Stories Card --}}
                     <div class="bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-xs">
                         <div class="bg-[#005030] text-white px-5 py-3 flex items-center justify-between">
                             <h3 class="font-bold text-xs uppercase tracking-wider">
@@ -366,7 +347,6 @@
                             <span class="text-[11px] text-emerald-200">Campus Stories</span>
                         </div>
                         <div class="divide-y divide-slate-100">
-                            {{-- Story 1 --}}
                             <article class="p-3.5 hover:bg-slate-50 transition-colors flex gap-3.5 items-center">
                                 <div class="w-20 h-16 sm:w-24 sm:h-18 shrink-0 rounded-lg overflow-hidden bg-slate-100 border border-slate-200">
                                     <img src="{{ asset('assets/images/news-1.jpg') }}" alt="বার্ষিক ক্রীড়া" class="w-full h-full object-cover">
@@ -381,7 +361,6 @@
                                 </div>
                             </article>
 
-                            {{-- Story 2 --}}
                             <article class="p-3.5 hover:bg-slate-50 transition-colors flex gap-3.5 items-center">
                                 <div class="w-20 h-16 sm:w-24 sm:h-18 shrink-0 rounded-lg overflow-hidden bg-slate-100 border border-slate-200">
                                     <img src="{{ asset('assets/images/news-2.jpg') }}" alt="বিজ্ঞান মেলা" class="w-full h-full object-cover">
@@ -396,7 +375,6 @@
                                 </div>
                             </article>
 
-                            {{-- Story 3 --}}
                             <article class="p-3.5 hover:bg-slate-50 transition-colors flex gap-3.5 items-center">
                                 <div class="w-20 h-16 sm:w-24 sm:h-18 shrink-0 rounded-lg overflow-hidden bg-slate-100 border border-slate-200">
                                     <img src="{{ asset('assets/images/news-3.jpg') }}" alt="অভিভাবক সমাবেশ" class="w-full h-full object-cover">
@@ -419,7 +397,7 @@
                         </div>
                     </div>
 
-                    {{-- Quick Action Links --}}
+                    {{-- Quick links --}}
                     <div class="bg-slate-50 border border-slate-200/90 rounded-2xl p-4 sm:p-5 space-y-3">
                         <div class="text-xs font-bold text-slate-900 border-b border-slate-200/70 pb-2 uppercase tracking-wide">
                             অভিভাবক ও শিক্ষার্থী সেবা
@@ -447,13 +425,11 @@
         </div>
     </section>
 
-    {{-- SECTION DIVIDER --}}
     <div class="home-section-divider"></div>
 
-    {{-- 6. HOW YOU GET STARTED: ADMISSION & ENROLLMENT JOURNEY --}}
+    {{-- Admissions process --}}
     <section class="home-section bg-slate-50/60" id="admission">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {{-- Section Header: Rhythm Pattern --}}
             <div class="section-header-block">
                 <div class="section-header-left">
                     <span class="section-kicker">
@@ -471,9 +447,7 @@
                 </div>
             </div>
 
-            {{-- 3 Step Process Cards --}}
             <div class="steps-grid mb-10">
-                {{-- Step 1 --}}
                 <div class="step-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 relative flex flex-col justify-between shadow-2xs group">
                     <div>
                         <div class="flex items-center justify-between mb-5">
@@ -495,7 +469,6 @@
                     </div>
                 </div>
 
-                {{-- Step 2 --}}
                 <div class="step-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 relative flex flex-col justify-between shadow-2xs group">
                     <div>
                         <div class="flex items-center justify-between mb-5">
@@ -517,7 +490,6 @@
                     </div>
                 </div>
 
-                {{-- Step 3 --}}
                 <div class="step-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 relative flex flex-col justify-between shadow-2xs group">
                     <div>
                         <div class="flex items-center justify-between mb-5">
@@ -540,7 +512,6 @@
                 </div>
             </div>
 
-            {{-- Action Banner --}}
             <div class="p-6 sm:p-8 bg-gradient-to-r from-[#004027] via-[#005030] to-[#043420] text-white rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xs">
                 <div>
                     <h3 class="text-xl sm:text-2xl font-bold">২০২৬ শিক্ষাবর্ষে আপনার সন্তানের মেধার বিকাশে আমরা পাশে আছি</h3>
@@ -560,13 +531,11 @@
         </div>
     </section>
 
-    {{-- SECTION DIVIDER --}}
     <div class="home-section-divider"></div>
 
-    {{-- 7. WHAT IT FEELS LIKE TO USE: DAY-TO-DAY EXPERIENCE --}}
+    {{-- Campus experience --}}
     <section class="home-section bg-white" id="experience">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {{-- Section Header: Rhythm Pattern --}}
             <div class="section-header-block">
                 <div class="section-header-left">
                     <span class="section-kicker">
@@ -584,11 +553,8 @@
                 </div>
             </div>
 
-            {{-- One Large Product Visual + 3 Short Summary Lines --}}
             <div class="space-y-8">
-                {{-- One Large Product Visual Framed in Desktop Browser Frame --}}
                 <div class="experience-frame bg-slate-900 border border-slate-200">
-                    {{-- Minimalist Window Topbar --}}
                     <div class="px-4 py-3 bg-slate-900 border-b border-slate-800 flex items-center justify-between text-xs text-slate-400">
                         <div class="flex items-center gap-2">
                             <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
@@ -604,7 +570,6 @@
                         </div>
                     </div>
 
-                    {{-- Image Visual with capped max height for perfect proportions --}}
                     <div class="w-full relative bg-slate-950 aspect-video max-h-[500px] overflow-hidden">
                         <img src="{{ asset('assets/images/product-experience.jpg') }}"
                              alt="সোনাতলা উচ্চ বিদ্যালয় ডিজিটাল প্ল্যাটফর্ম ও স্মার্ট শিক্ষাঙ্গন"
@@ -612,9 +577,7 @@
                     </div>
                 </div>
 
-                {{-- Three Short Summary Lines Describing Day to Day Reality --}}
                 <div class="experience-summaries-grid pt-4">
-                    {{-- Summary Line 1 --}}
                     <div class="experience-card bg-slate-50 border border-slate-200/90 rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-2xs group transition-all">
                         <div>
                             <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-white text-[#005030] text-[11px] font-bold border border-slate-200 mb-3 shadow-2xs">
@@ -633,7 +596,6 @@
                         </div>
                     </div>
 
-                    {{-- Summary Line 2 --}}
                     <div class="experience-card bg-slate-50 border border-slate-200/90 rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-2xs group transition-all">
                         <div>
                             <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-white text-[#005030] text-[11px] font-bold border border-slate-200 mb-3 shadow-2xs">
@@ -652,7 +614,6 @@
                         </div>
                     </div>
 
-                    {{-- Summary Line 3 --}}
                     <div class="experience-card bg-slate-50 border border-slate-200/90 rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-2xs group transition-all">
                         <div>
                             <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-white text-[#005030] text-[11px] font-bold border border-slate-200 mb-3 shadow-2xs">
@@ -675,13 +636,11 @@
         </div>
     </section>
 
-    {{-- SECTION DIVIDER --}}
     <div class="home-section-divider"></div>
 
-    {{-- 8. CAMPUS LIFE & PROUD MOMENTS (PHOTO GALLERY) --}}
+    {{-- Photo gallery --}}
     <section class="home-section bg-slate-50/60" id="gallery">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {{-- Section Header: Rhythm Pattern --}}
             <div class="section-header-block">
                 <div class="section-header-left">
                     <span class="section-kicker">
@@ -699,7 +658,6 @@
                 </div>
             </div>
 
-            {{-- 4-Grid Campus Moments --}}
             <div class="gallery-grid">
                 <div class="space-y-2 group">
                     <div class="aspect-4/3 rounded-xl border border-slate-200 overflow-hidden bg-slate-100 shadow-2xs">
@@ -740,13 +698,11 @@
         </div>
     </section>
 
-    {{-- SECTION DIVIDER --}}
     <div class="home-section-divider"></div>
 
-    {{-- 9. THE ASK / FINAL CALL TO ACTION --}}
+    {{-- Admissions CTA --}}
     <section class="home-section bg-white" id="enroll">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {{-- Section Header: Rhythm Pattern --}}
             <div class="section-header-block">
                 <div class="section-header-left">
                     <span class="section-kicker">
@@ -764,7 +720,6 @@
                 </div>
             </div>
 
-            {{-- High-Conversion Closing Callout Card --}}
             <div class="cta-banner-box">
                 <div class="relative z-10 max-w-3xl">
                     <span class="inline-block px-3 py-1 rounded bg-amber-400 text-slate-950 text-xs font-bold uppercase tracking-wider mb-4">
@@ -797,7 +752,6 @@
                         </a>
                     </div>
 
-                    {{-- Trust Indicators & Meta Strip --}}
                     <div class="mt-8 pt-6 border-t border-emerald-700/60 flex flex-wrap items-center gap-4 text-xs text-emerald-200 font-medium">
                         <span class="flex items-center gap-1.5"><i class="fa-solid fa-landmark text-emerald-300"></i> প্রতিষ্ঠা: ১৯৬৮ খ্রি.</span>
                         <span>•</span>
@@ -809,7 +763,6 @@
                     </div>
                 </div>
 
-                {{-- Subtle Watermark / Architectural Emblem Graphic in background --}}
                 <div class="absolute -right-10 -bottom-10 w-96 h-96 rounded-full bg-emerald-400/5 pointer-events-none blur-3xl"></div>
             </div>
         </div>

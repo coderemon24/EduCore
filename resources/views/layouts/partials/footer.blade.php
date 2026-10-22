@@ -1,14 +1,12 @@
-{{-- Institutional Footer (Deep Forest Gradient & Unified Brand Identity) --}}
+{{-- Footer --}}
 <footer class="pt-12 site-footer bg-gradient-to-b from-[#031d13] via-[#02130c] to-[#010b07] text-slate-300 border-t-2 border-[#005030] mt-12 sm:mt-16 selection:bg-[#005030] selection:text-white relative overflow-hidden" aria-label="প্রাতিষ্ঠানিক ফুটার">
-    {{-- Subtle Ambient Glows matching homepage CTA --}}
     <div class="absolute top-0 right-0 -mt-16 -mr-16 w-80 h-80 rounded-full bg-emerald-500/5 blur-3xl pointer-events-none"></div>
     <div class="absolute bottom-0 left-0 -mb-16 -ml-16 w-80 h-80 rounded-full bg-emerald-500/5 blur-3xl pointer-events-none"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-12 pb-6 sm:pb-8 relative z-10">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10">
-            {{-- Col 1: Institutional Identity & Contact Info (5 Cols on Desktop) --}}
+            {{-- About & contact --}}
             <div class="lg:col-span-5 space-y-4">
-                {{-- Brand Header with Official Crest --}}
                 <div class="flex items-center gap-3.5">
                     <div class="w-12 h-12 rounded-full bg-white p-1 border-2 border-emerald-500/40 shadow-sm flex items-center justify-center shrink-0">
                         <img src="{{ asset('assets/images/logo.png') }}"
@@ -26,7 +24,6 @@
                     </div>
                 </div>
 
-                {{-- Credential Badges --}}
                 <div class="flex flex-wrap items-center gap-2">
                     <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-emerald-300 text-[11px] font-semibold font-mono">
                         EIIN: ১২৫৬৯৩
@@ -39,12 +36,10 @@
                     </span>
                 </div>
 
-                {{-- Mission / Motto --}}
                 <p class="text-xs sm:text-sm leading-relaxed text-slate-300/90">
                     শিক্ষাই জাতির মেরুদণ্ড। একটি মানসম্মত, আধুনিক ও প্রযুক্তিবান্ধব মানবিক সমাজ গঠনে পাবনার সাঁথিয়ার ৫৭ বছরের সমৃদ্ধ শিক্ষাধারা নিয়ে সোনাতলা উচ্চ বিদ্যালয় সদা প্রতিশ্রুতিবদ্ধ।
                 </p>
 
-                {{-- Contact Details with Font Awesome Icons --}}
                 <div class="space-y-2.5 pt-2 text-xs sm:text-sm text-slate-300">
                     <div class="flex items-start gap-2.5">
                         <i class="fa-solid fa-location-dot text-emerald-400 mt-1 shrink-0 text-xs"></i>
@@ -65,7 +60,7 @@
                 </div>
             </div>
 
-            {{-- Col 2: Quick Links (2 Cols on Desktop) --}}
+            {{-- Quick links --}}
             <div class="lg:col-span-2 space-y-4">
                 <h3 class="text-white font-bold text-sm sm:text-[15px] tracking-wide pb-2 border-b border-emerald-500/20 flex items-center gap-2">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
@@ -111,7 +106,7 @@
                 </ul>
             </div>
 
-            {{-- Col 3: Student Services (2.5 Cols on Desktop) --}}
+            {{-- Services --}}
             <div class="lg:col-span-2 space-y-4">
                 <h3 class="text-white font-bold text-sm sm:text-[15px] tracking-wide pb-2 border-b border-emerald-500/20 flex items-center gap-2">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
@@ -151,7 +146,7 @@
                 </ul>
             </div>
 
-            {{-- Col 4: Official Government Links & Hotline (3 Cols on Desktop) --}}
+            {{-- Government portals --}}
             <div class="lg:col-span-3 space-y-4">
                 <h3 class="text-white font-bold text-sm sm:text-[15px] tracking-wide pb-2 border-b border-emerald-500/20 flex items-center gap-2">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
@@ -184,7 +179,7 @@
                     </li>
                 </ul>
 
-                {{-- Quick WhatsApp Hotline Pill - Entire Card Clickable --}}
+                {{-- WhatsApp helpline --}}
                 <a href="https://wa.me/8801712345678" target="_blank" rel="noopener noreferrer"
                    class="group block mt-4 p-3.5 rounded-xl bg-white/5 hover:bg-emerald-950/60 border border-emerald-500/25 hover:border-emerald-400/60 transition-all duration-200 shadow-xs hover:shadow-md hover:shadow-emerald-950/40 cursor-pointer"
                    aria-label="সরাসরি হোয়াটসঅ্যাপে কথা বলুন: ০১৭১২-৩৪৫৬৭৮">
@@ -208,7 +203,7 @@
             </div>
         </div>
 
-        {{-- Bottom Copyright Strip --}}
+        {{-- Copyright --}}
         <div class="mt-8 sm:mt-10 pt-4 sm:pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
             <p class="text-center sm:text-left">
                 © {{ date('Y') }} সোনাতলা উচ্চ বিদ্যালয়। সর্বস্বত্ব সংরক্ষিত।

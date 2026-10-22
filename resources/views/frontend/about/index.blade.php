@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-{{-- Dynamic SEO Page Title & Description --}}
+{{-- SEO meta --}}
 @section('title', $about->meta_title ?: ($about->title . ' | ' . ($school->name ?? 'সোনাতলা উচ্চ বিদ্যালয়')))
 @section('meta_description', $about->meta_description ?: \Illuminate\Support\Str::limit(strip_tags($about->history_content), 160))
 
 @push('styles')
-    {{-- Dynamic SEO Meta Tags & OpenGraph Social Sharing --}}
+    {{-- OpenGraph tags --}}
     @if(!empty($about->meta_keywords))
         <meta name="keywords" content="{{ $about->meta_keywords }}">
     @endif
@@ -25,7 +25,7 @@
     <meta name="twitter:title" content="{{ $about->og_title ?: $about->title }}">
     <meta name="twitter:description" content="{{ $about->og_description ?: $about->meta_description }}">
 
-    {{-- Structured Data (Schema.org JSON-LD) --}}
+    {{-- Schema JSON-LD --}}
     <script type="application/ld+json">
     {!! json_encode([
       '@context' => 'https://schema.org',
@@ -47,7 +47,7 @@
 
 @section('content')
 
-{{-- 1. Executive Breadcrumb Bar --}}
+{{-- Breadcrumb --}}
 <div class="bg-gray-100 border-b border-gray-200 py-3.5 text-xs text-gray-600" id="overview">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <nav class="flex items-center gap-1.5 font-medium" aria-label="Breadcrumb">
@@ -64,7 +64,7 @@
     </div>
 </div>
 
-{{-- 2. Institutional Hero Header Banner --}}
+{{-- Hero Banner --}}
 <div class="bg-[#005030] text-white py-14 sm:py-20 border-b border-emerald-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div class="space-y-3.5">
@@ -97,7 +97,7 @@
     </div>
 </div>
 
-{{-- 3. Qualifying Credentials Meta Strip --}}
+{{-- Credentials Strip --}}
 <div class="bg-slate-900 text-slate-200 py-4 border-y border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs font-semibold">
@@ -133,10 +133,9 @@
     </div>
 </div>
 
-{{-- 4. Core Substance: Narrative & Campus Photo (Asymmetric 60/40 Split) --}}
+{{-- History & Narrative --}}
 <section class="home-section bg-white" id="history">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {{-- Section Header: Rhythm Pattern --}}
         <div class="section-header-block">
             <div class="section-header-left">
                 <span class="section-kicker">
@@ -154,9 +153,8 @@
             </div>
         </div>
 
-        {{-- Asymmetric 60/40 Grid --}}
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {{-- Left Story Column (Col 7 - 60%) --}}
+            {{-- Story --}}
             <div class="lg:col-span-7 about-card-hero space-y-6">
                 <div class="border-b border-slate-100 pb-4">
                     <span class="text-xs font-bold uppercase tracking-wider text-[#005030] block mb-1">সূচনালগ্ন থেকে বর্তমান</span>
@@ -165,7 +163,6 @@
                     </h3>
                 </div>
 
-                {{-- Story Paragraphs --}}
                 <div class="text-slate-700 leading-relaxed space-y-4 text-sm sm:text-base">
                     @foreach(explode("\n\n", $about->history_content) as $pIdx => $paragraph)
                         @if(trim($paragraph))
@@ -176,7 +173,7 @@
                     @endforeach
                 </div>
 
-                {{-- Institutional Quality Badges --}}
+                {{-- Quality badges --}}
                 <div class="pt-6 border-t border-slate-100">
                     <p class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-3">প্রাতিষ্ঠানিক স্বীকৃতি ও গুণমান</p>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -202,12 +199,10 @@
                 </div>
             </div>
 
-            {{-- Right Campus Photo Column (Col 5 - 40%) --}}
+            {{-- Campus photo & stats --}}
             <div class="lg:col-span-5 space-y-6 lg:sticky lg:top-24">
-                {{-- Campus Photo Card with Polished Inset Badge --}}
                 <div class="bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-2xs hover:shadow-md transition-all duration-300 group">
                     <div class="relative h-64 sm:h-72 w-full bg-slate-900 overflow-hidden">
-                        {{-- Polished Inset Badge (Inside the frame, clean backdrop blur) --}}
                         <div class="absolute top-4 left-4 z-20 bg-slate-950/85 backdrop-blur-md text-white border border-white/20 px-3.5 py-1.5 rounded-full text-xs font-bold shadow-lg flex items-center gap-2">
                             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                             <span>Estd. {{ $about->established_year ?? '১৯৬৮' }} • সাঁথিয়া</span>
@@ -237,7 +232,6 @@
                     </div>
                 </div>
 
-                {{-- Fast Institutional Telemetry Card --}}
                 <div class="about-card-stack space-y-4">
                     <div class="flex items-center justify-between border-b border-slate-100 pb-3.5">
                         <div class="flex items-center gap-3">
@@ -270,14 +264,12 @@
     </div>
 </section>
 
-{{-- Hairline Structural Divider --}}
 <div class="home-section-divider"></div>
 
-{{-- 5. Institutional Manifesto: Vision, Mission & Values (Asymmetric 65/35 Split) --}}
+{{-- Vision, Mission & Values --}}
 <section class="home-section bg-slate-50/60" id="mission">
     <span id="manifesto" class="sr-only"></span>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {{-- Section Header: Rhythm Pattern --}}
         <div class="section-header-block">
             <div class="section-header-left">
                 <span class="section-kicker">
@@ -295,11 +287,10 @@
             </div>
         </div>
 
-        {{-- Asymmetric 65/35 Layout --}}
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {{-- Dominant Flagship Manifesto: Vision & Mission (Col 7 - 65%) --}}
+            {{-- Vision & Mission --}}
             <div class="lg:col-span-7 about-card-hero space-y-8">
-                {{-- Vision Subsection --}}
+                {{-- Vision --}}
                 <div class="space-y-3.5">
                     <div class="flex items-center gap-3.5">
                         <div class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200/80 text-[#005030] flex items-center justify-center text-lg shadow-2xs shrink-0">
@@ -317,7 +308,7 @@
 
                 <div class="border-t border-slate-100"></div>
 
-                {{-- Mission Subsection --}}
+                {{-- Mission --}}
                 <div class="space-y-3.5">
                     <div class="flex items-center gap-3.5">
                         <div class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200/80 text-[#005030] flex items-center justify-center text-lg shadow-2xs shrink-0">
@@ -334,7 +325,7 @@
                 </div>
             </div>
 
-            {{-- Core Ethical Values Vertical Stack (Col 5 - 35%) --}}
+            {{-- Core Values --}}
             <div class="lg:col-span-5 about-card-stack space-y-6">
                 <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
                     <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200/80 text-[#005030] flex items-center justify-center text-base shadow-2xs shrink-0">
@@ -369,14 +360,12 @@
     </div>
 </section>
 
-{{-- Hairline Structural Divider --}}
 <div class="home-section-divider"></div>
 
-{{-- 6. Practical Reality: Statistics Counters (Hallmark Accomplishments) --}}
+{{-- Statistics & Milestones --}}
 @if(!empty($about->statistics) && is_array($about->statistics))
 <section class="home-section bg-white" id="statistics">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {{-- Section Header: Rhythm Pattern --}}
         <div class="section-header-block">
             <div class="section-header-left">
                 <span class="section-kicker">
@@ -394,7 +383,6 @@
             </div>
         </div>
 
-        {{-- Hallmark Accomplishments Grid --}}
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             @foreach($about->statistics as $stat)
                 <div class="about-stat-box group">
@@ -411,15 +399,13 @@
     </div>
 </section>
 
-{{-- Hairline Structural Divider --}}
 <div class="home-section-divider"></div>
 @endif
 
-{{-- 7. Chronological Milestones Timeline --}}
+{{-- History Timeline --}}
 @if(!empty($about->milestones) && is_array($about->milestones))
 <section class="home-section bg-slate-50/60" id="milestones">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {{-- Section Header: Rhythm Pattern --}}
         <div class="section-header-block">
             <div class="section-header-left">
                 <span class="section-kicker">
@@ -437,11 +423,9 @@
             </div>
         </div>
 
-        {{-- Timeline Stream --}}
         <div class="relative border-l-2 border-[#005030]/30 ml-4 sm:ml-6 pl-6 sm:pl-8 space-y-6">
             @foreach($about->milestones as $m)
                 <div class="relative group">
-                    {{-- Timeline Dot --}}
                     <div class="absolute -left-[31px] sm:-left-[39px] top-4 w-4 h-4 rounded-full border-2 border-[#005030] bg-white group-hover:bg-[#005030] group-hover:scale-125 transition-all duration-200"></div>
 
                     <div class="about-card-stack group-hover:-translate-y-0.5 group-hover:border-[#005030]/50 transition-all duration-200">
@@ -463,15 +447,13 @@
     </div>
 </section>
 
-{{-- Hairline Structural Divider --}}
 <div class="home-section-divider"></div>
 @endif
 
-{{-- 8. Governance & Quick Facts Editorial Grid --}}
+{{-- Governance & Facts --}}
 <section class="home-section bg-white" id="committee">
     <span id="governance" class="sr-only"></span>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {{-- Section Header: Rhythm Pattern --}}
         <div class="section-header-block">
             <div class="section-header-left">
                 <span class="section-kicker">
@@ -490,7 +472,7 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {{-- At a Glance (Col 5) --}}
+            {{-- At a glance --}}
             <div class="lg:col-span-5 bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-2xs">
                 <div class="bg-[#005030] text-white px-5 py-4 font-bold text-xs uppercase tracking-wider flex items-center justify-between">
                     <span class="flex items-center gap-2">
@@ -519,7 +501,7 @@
                 </dl>
             </div>
 
-            {{-- Managing Committee (Col 7) --}}
+            {{-- Managing committee --}}
             <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-2xs">
                 <div class="bg-[#005030] text-white px-5 py-4 font-bold text-xs uppercase tracking-wider flex items-center justify-between">
                     <span class="flex items-center gap-2">
@@ -575,15 +557,13 @@
     </div>
 </section>
 
-{{-- Hairline Structural Divider --}}
 <div class="home-section-divider"></div>
 
-{{-- 9. Campus Facilities: Pick the Winner (Asymmetric 65/35 Split) --}}
+{{-- Campus Facilities --}}
 @if(!empty($about->facilities) && is_array($about->facilities))
 <section class="home-section bg-slate-50/60" id="infrastructure">
     <span id="facilities" class="sr-only"></span>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {{-- Section Header: Rhythm Pattern --}}
         <div class="section-header-block">
             <div class="section-header-left">
                 <span class="section-kicker">
@@ -601,9 +581,7 @@
             </div>
         </div>
 
-        {{-- Pick the Winner Layout --}}
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {{-- Flagship Dominant Item (65% width / Col 7) --}}
             @php
                 $flagshipFacility = $about->facilities[0] ?? null;
                 $secondaryFacilities = array_slice($about->facilities, 1);
@@ -630,7 +608,6 @@
                     </p>
                 </div>
 
-                {{-- Flagship Checklist Proof Points --}}
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-5 border-t border-slate-100">
                     <div class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800">
                         <span class="w-5 h-5 rounded-full bg-emerald-100 text-[#005030] flex items-center justify-center shrink-0 text-xs font-bold"><i class="fa-solid fa-check"></i></span>
@@ -652,7 +629,6 @@
             </div>
             @endif
 
-            {{-- Secondary Stack (35% width / Col 5) --}}
             <div class="lg:col-span-5 space-y-4">
                 @foreach($secondaryFacilities as $sFac)
                     <div class="about-card-stack space-y-2">
@@ -670,11 +646,10 @@
     </div>
 </section>
 
-{{-- Hairline Structural Divider --}}
 <div class="home-section-divider"></div>
 @endif
 
-{{-- 10. The Next Step: Campus Visit & Admissions CTA Block (Recipe 3, Step 6) --}}
+{{-- Admissions CTA --}}
 <section class="home-section bg-[#005030] text-white relative overflow-hidden" id="next-step">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
         <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#003820] text-emerald-200 text-xs font-bold uppercase tracking-wider border border-emerald-700/60 mb-5">
@@ -689,14 +664,12 @@
         </p>
 
         <div class="flex flex-wrap items-center justify-center gap-4">
-            {{-- Primary Conversion Action (Strictly Reserved Warm Amber) --}}
             <a href="{{ route('frontend.contact') }}"
                class="about-cta-btn about-cta-btn-primary text-sm sm:text-base">
                 <span>যোগাযোগ ও ক্যাম্পাসে আসুন</span>
                 <i class="fa-solid fa-arrow-right text-xs"></i>
             </a>
 
-            {{-- Secondary Information Link --}}
             <a href="{{ route('frontend.academic.routine') }}"
                class="about-cta-btn about-cta-btn-secondary text-sm sm:text-base">
                 <span>ক্লাস রুটিন ও অ্যাকাডেমিক তথ্য</span>

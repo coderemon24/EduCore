@@ -1,10 +1,9 @@
 <header x-data="{ mobileMenuOpen: false, mAbout: {{ request()->routeIs('frontend.about*') ? 'true' : 'false' }}, mStaff: {{ request()->routeIs('frontend.teachers*') ? 'true' : 'false' }}, mAcademic: {{ request()->routeIs('frontend.academic*') ? 'true' : 'false' }} }"
         x-effect="document.body.style.overflow = mobileMenuOpen ? 'hidden' : ''"
         class="snhs-header bg-white border-b border-slate-200 sticky top-0 z-50">
-    {{-- Institutional Brand Header --}}
+    {{-- Brand header --}}
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
         <div class="flex items-center justify-between gap-4">
-            {{-- Brand Logo & Formal Titles --}}
             <a href="{{ route('frontend.home') }}" class="flex items-center gap-3.5 group">
                 <div class="w-13 h-13 sm:w-15 sm:h-15 flex-shrink-0 rounded-full border border-slate-300 p-1 bg-white flex items-center justify-center shadow-2xs group-hover:border-[#005030] transition-colors">
                     <img src="{{ asset('assets/images/logo.png') }}"
@@ -25,7 +24,7 @@
                 </div>
             </a>
 
-            {{-- Emergency Contact Quick Badge & Login Portal (Desktop) --}}
+            {{-- Quick contact & actions --}}
             <div class="hidden md:flex items-center gap-3">
                 <div class="text-right">
                     <div class="text-[11px] text-slate-400 font-medium">প্রধান শিক্ষকের দপ্তর</div>
@@ -55,7 +54,7 @@
                 </a>
             </div>
 
-            {{-- Mobile / Tablet Menu Trigger --}}
+            {{-- Mobile menu button --}}
             <div class="snhs-menu-btn">
                 <button type="button"
                         @click="mobileMenuOpen = !mobileMenuOpen"
@@ -69,7 +68,7 @@
         </div>
     </div>
 
-    {{-- Institutional Navigation Bar (Forest Emerald #005030) --}}
+    {{-- Main navigation --}}
     <nav class="snhs-nav" aria-label="প্রধান নেভিগেশন">
         <div class="snhs-nav-inner">
             <div class="snhs-nav-list">
@@ -167,7 +166,7 @@
         </div>
     </nav>
 
-    {{-- Mobile Drawer Navigation --}}
+    {{-- Mobile drawer --}}
     <div x-show="mobileMenuOpen"
          x-cloak
          x-transition:enter="snhs-overlay-enter"
@@ -259,7 +258,7 @@
     </div>
 </header>
 
-{{-- Synchronized Dropdown Navigation & Smooth Scrollspy Controller --}}
+{{-- Navigation & scrollspy --}}
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     function getHeaderOffset() {
@@ -282,7 +281,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return false;
     }
 
-    // If page loaded with hash, scroll to it smoothly with sticky header offset
+    // Scroll to hash on page load
     if (window.location.hash) {
         var initialHash = window.location.hash.substring(1);
         setTimeout(function () {
@@ -291,7 +290,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 180);
     }
 
-    // Handle clicks on any link pointing to an on-page hash
+    // Smooth scroll for hash links
     document.addEventListener('click', function (e) {
         var link = e.target.closest('a');
         if (!link) return;
@@ -318,7 +317,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Scrollspy for About and section-driven pages
+    // Scrollspy
     var sectionIds = ['overview', 'history', 'mission', 'manifesto', 'statistics', 'milestones', 'committee', 'governance', 'infrastructure', 'facilities', 'gallery'];
     var observedElements = [];
     sectionIds.forEach(function (id) {
@@ -334,7 +333,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (activeId === 'governance') canonicalId = 'committee';
         if (activeId === 'facilities') canonicalId = 'infrastructure';
 
-        // Synchronize desktop dropdown and mobile drawer active links
+        // Sync active links
         document.querySelectorAll('[data-dropdown="about"] a, [data-mobile-sub="about"] a').forEach(function (link) {
             var s = link.getAttribute('data-section');
             var h = link.getAttribute('href') || '';

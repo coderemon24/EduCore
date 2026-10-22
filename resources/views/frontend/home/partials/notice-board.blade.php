@@ -1,4 +1,4 @@
-{{-- Notice Board Widget (Exact match to reference design) --}}
+{{-- Notice board widget --}}
 @php
     $bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
     $enDigits = ['0','1','2','3','4','5','6','7','8','9'];
@@ -75,10 +75,9 @@
 @endphp
 
 <div class="w-full h-full bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-xs">
-    {{-- Header: Bell Icon + Heading + "সকল নোটিশ" Button --}}
+    {{-- Header --}}
     <div class="flex items-center justify-between pb-3 sm:pb-4">
         <div class="flex items-center gap-2.5">
-            {{-- Dedicated Sky Blue Circular Bell Container for Notices --}}
             <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-sky-50 border border-sky-200 flex items-center justify-center shrink-0">
                 <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 text-sky-700" viewBox="0 0 16 16" fill="currentColor">
                     <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901"/>
@@ -95,11 +94,10 @@
         </a>
     </div>
 
-    {{-- Notice Items List --}}
+    {{-- Notice items list --}}
     <div class="divide-y divide-slate-100 flex-1">
         @foreach($displayNotices as $notice)
             <div class="py-3.5 sm:py-4 flex items-center justify-between gap-3 group">
-                {{-- Left Content: Sky Blue Bullet, Title, Calendar Date & Tag --}}
                 <div class="flex-1 min-w-0 pr-2">
                     <div class="flex items-start gap-2">
                         <span class="w-2 h-2 rounded-full bg-sky-500 shrink-0 mt-1.5"></span>
@@ -109,7 +107,6 @@
                         </a>
                     </div>
                     <div class="flex items-center gap-1.5 mt-1.5 pl-4 text-xs text-slate-500 font-normal">
-                        {{-- Dot Grid Calendar Icon matching reference design --}}
                         <svg class="w-3.5 h-3.5 text-sky-600/70 shrink-0" viewBox="0 0 16 16" fill="currentColor">
                             <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"/>
                             <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>

@@ -27,7 +27,7 @@ ${r?'Expression: "'+r+`"
  * ==========================================================================
  */
 document.addEventListener('DOMContentLoaded', function () {
-    // 1. Initialize Full-Screen Hero Slider Below Navbar
+    // 1. Hero slider
     if (document.querySelector('.fullscreen-hero-swiper')) {
         new Swiper('.fullscreen-hero-swiper', {
             loop: true,
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             on: {
                 slideChangeTransitionStart: function () {
-                    // Re-trigger CSS entrance animations for typography on slide transition
+                    // Replay text animations on slide transition
                     const activeSlide = this.slides[this.activeIndex];
                     if (activeSlide) {
                         const animElements = activeSlide.querySelectorAll('.fullscreen-slide-badge, .fullscreen-slide-title, .fullscreen-slide-desc');
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // 2. Initialize Existing Inner Hero Swiper Slider
+    // 2. Inner hero slider
     if (document.querySelector('.hero-swiper')) {
         new Swiper('.hero-swiper', {
             loop: true,
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // 2. Pause Shironam Marquee on hover
+    // Pause ticker on hover
     const marqueeTrack = document.querySelector('.shironam-marquee-track');
     if (marqueeTrack) {
         marqueeTrack.addEventListener('mouseenter', function () {
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // 3. Stats Counter Animation (if present on homepage)
+    // 3. Stats counters
     const counters = document.querySelectorAll('[data-counter]');
     if (counters.length > 0 && 'IntersectionObserver' in window) {
         const counterObserver = new IntersectionObserver((entries, observer) => {
@@ -125,8 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
         counters.forEach(counter => counterObserver.observe(counter));
     }
 
-    // 4. Safe Entrance Animations (IntersectionObserver + GSAP / CSS Fallback)
-    // Bulletproof: Elements remain 100% visible by default and NEVER get stuck at opacity: 0
+    // 4. Entrance animations
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (!prefersReducedMotion && 'IntersectionObserver' in window) {
@@ -150,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     const el = entry.target;
                     observer.unobserve(el);
 
-                    // Animate smoothly only upon physical viewport entry
+                    // Animate when entering viewport
                     if (window.gsap) {
                         gsap.fromTo(el, 
                             { opacity: 0, y: 16 }, 
@@ -169,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         document.querySelectorAll(revealSelectorList).forEach(el => {
             const rect = el.getBoundingClientRect();
-            // If already in viewport on page load, reveal immediately
+            // Reveal immediately if already in viewport
             if (rect.top < window.innerHeight && rect.bottom > 0) {
                 if (window.gsap) {
                     gsap.fromTo(el, 
@@ -183,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Comprehensive visibility guarantee: ensure NO element across the application stays hidden
+    // Ensure sections remain visible if animations fail
     const ensureElementsVisible = () => {
         document.querySelectorAll(
             '.section-header-block, .qualifying-card, .capability-card-hero, .capability-card-secondary, .differentiator-card, .metrics-counter-box, .step-card, .experience-frame, .experience-card, .gallery-grid .group, .cta-banner-box, .leadership-card, .pedagogy-card, .cta-box, .telemetry-metric-item, .teacher-card-item'
@@ -198,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('load', ensureElementsVisible);
     setTimeout(ensureElementsVisible, 500);
 
-    // 5. Floating Back to Top Button
+    // 5. Back to top button
     const backToTopBtn = document.getElementById('back-to-top');
     if (backToTopBtn) {
         let isTicking = false;
@@ -218,7 +217,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }, { passive: true });
 
-        // Run initial check on page load
+        // Initial check
         handleScroll();
 
         backToTopBtn.addEventListener('click', (e) => {

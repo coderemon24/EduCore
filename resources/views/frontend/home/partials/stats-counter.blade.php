@@ -1,4 +1,4 @@
-{{-- Institutional Metrics Counter Strip --}}
+{{-- Metrics --}}
 <section class="bg-white border-y border-slate-200/90 py-8 shadow-2xs">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">

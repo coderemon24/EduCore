@@ -1,20 +1,17 @@
-{{-- Full-Screen Hero Slider Managed by Swiper.js --}}
+{{-- Hero slider --}}
 <section class="w-full relative bg-slate-950 overflow-hidden border-b border-slate-200" aria-label="প্রাতিষ্ঠানিক ফটো স্লাইডার">
-    {{-- Swiper Container (Responsive Height: 280px mobile -> 420px tablet -> 550px desktop) --}}
     <div class="swiper fullscreen-hero-swiper relative w-full h-[280px] sm:h-[420px] lg:h-[550px] overflow-hidden select-none">
         <div class="swiper-wrapper">
 
-            {{-- Slide 1: Teachers & Staff (Exact match to reference image) --}}
+            {{-- Slide 1: Teachers & staff --}}
             <div class="swiper-slide relative w-full h-full">
                 <img src="{{ asset('assets/images/banner-teachers.png') }}"
                      alt="শিক্ষক ও কর্মচারী বৃন্দ - সোনাতলা উচ্চ বিদ্যালয়"
                      class="w-full h-full object-cover object-center sm:object-[center_35%]"
                      loading="eager">
 
-                {{-- Left-Top to Bottom-Right Theme Color (#005030) Shadow Overlay --}}
                 <div class="fullscreen-slider-theme-shadow"></div>
 
-                {{-- Slide Text Content (Left-Aligned with Entrance Animation) --}}
                 <div class="absolute inset-0 flex items-center z-10">
                     <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div class="max-w-3xl text-white space-y-1 sm:space-y-3 lg:space-y-4 pr-8 sm:pr-4">
@@ -45,7 +42,7 @@
                 </div>
             </div>
 
-            {{-- Slide 2: Campus & Academic Environment --}}
+            {{-- Slide 2: Campus --}}
             <div class="swiper-slide relative w-full h-full">
                 <img src="{{ asset('assets/images/slider-1.jpg') }}"
                      alt="সোনাতলা উচ্চ বিদ্যালয় ক্যাম্পাস"
@@ -83,7 +80,7 @@
                 </div>
             </div>
 
-            {{-- Slide 3: Co-Curricular & Sports --}}
+            {{-- Slide 3: Activities --}}
             <div class="swiper-slide relative w-full h-full">
                 <img src="{{ asset('assets/images/slider-2.jpg') }}"
                      alt="বার্ষিক ক্রীড়া ও সহ-শিক্ষা"
@@ -123,7 +120,7 @@
 
         </div>
 
-        {{-- Left & Right Navigation Chevrons --}}
+        {{-- Navigation buttons --}}
         <button type="button"
                 class="fullscreen-swiper-prev absolute left-2 sm:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-white/20 hover:bg-white/40 text-white backdrop-blur-md border border-white/30 flex items-center justify-center transition-all shadow-lg hover:scale-105 active:scale-95 focus:outline-none cursor-pointer"
                 aria-label="Previous Slide">
@@ -140,7 +137,7 @@
             </svg>
         </button>
 
-        {{-- Centered Bottom Pagination Bullets --}}
+        {{-- Pagination --}}
         <div class="fullscreen-swiper-pagination absolute bottom-2 sm:bottom-4 lg:bottom-6 inset-x-0 w-full z-20 flex items-center justify-center gap-2 pointer-events-none"></div>
     </div>
 </section>
