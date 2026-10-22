@@ -1329,6 +1329,48 @@ section[id],
     box-shadow: 0 12px 24px -4px rgba(0, 80, 48, 0.08);
 }
 
+/* Next Step CTA Action Buttons */
+.about-cta-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    padding: 13px 32px !important;
+    border-radius: 9999px !important;
+    font-weight: 700 !important;
+    line-height: 1.4 !important;
+    text-decoration: none !important;
+    transition: all 0.22s ease !important;
+    cursor: pointer;
+}
+
+.about-cta-btn-primary {
+    background-color: #fbbf24 !important;
+    color: #020617 !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.about-cta-btn-primary:hover {
+    background-color: #fcd34d !important;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(251, 191, 36, 0.35);
+}
+
+.about-cta-btn-secondary {
+    background-color: #003820 !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(16, 185, 129, 0.5) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.about-cta-btn-secondary:hover {
+    background-color: #002c19 !important;
+    border-color: rgba(16, 185, 129, 0.8) !important;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 56, 32, 0.4);
+}
+
+
 
 
 
