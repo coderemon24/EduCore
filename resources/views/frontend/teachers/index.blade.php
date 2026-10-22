@@ -824,75 +824,78 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // =========================================================================
-    // 2. GSAP 3 & ScrollTrigger Animations
+    // 2. Safe & Smooth Entrance Animations (Never Leaves Cards Invisible)
     // =========================================================================
-    if (window.gsap && window.ScrollTrigger) {
-        gsap.registerPlugin(ScrollTrigger);
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        // Hero Content Animation
-        gsap.from(".hero-anim", {
-            opacity: 0,
-            y: 20,
-            duration: 0.7,
-            stagger: 0.12,
-            ease: "power2.out"
-        });
+    if (!prefersReducedMotion) {
+        // Hero Content Animation (Immediate upon page load)
+        if (window.gsap) {
+            gsap.fromTo(".hero-anim", 
+                { opacity: 0, y: 16 }, 
+                { opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: "power2.out", clearProps: "all" }
+            );
+        }
 
-        // Telemetry Strip Animation
-        gsap.from(".telemetry-metric-item", {
-            scrollTrigger: {
-                trigger: ".telemetry-strip",
-                start: "top 92%",
-                toggleActions: "play none none none"
-            },
-            opacity: 0,
-            y: 15,
-            duration: 0.5,
-            stagger: 0.08,
-            ease: "power2.out"
-        });
+        // Section & Card Elements: Reveal ONLY when physically entering viewport
+        if ('IntersectionObserver' in window) {
+            const teacherPageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        observer.unobserve(el);
 
-        // Leadership Cards Animation
-        gsap.from(".leadership-card", {
-            scrollTrigger: {
-                trigger: "#leadership",
-                start: "top 80%",
-                toggleActions: "play none none none"
-            },
-            opacity: 0,
-            y: 30,
-            duration: 0.7,
-            stagger: 0.16,
-            ease: "power2.out"
-        });
+                        if (window.gsap) {
+                            gsap.fromTo(el, 
+                                { opacity: 0, y: 18 }, 
+                                { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", clearProps: "all" }
+                            );
+                        } else {
+                            el.style.opacity = '1';
+                            el.style.transform = 'none';
+                        }
+                    }
+                });
+            }, {
+                rootMargin: '0px 0px -40px 0px',
+                threshold: 0.05
+            });
 
-        // Pedagogy Cards Animation
-        gsap.from(".pedagogy-card", {
-            scrollTrigger: {
-                trigger: "#pedagogy-standards",
-                start: "top 85%",
-                toggleActions: "play none none none"
-            },
-            opacity: 0,
-            y: 25,
-            duration: 0.6,
-            stagger: 0.12,
-            ease: "power2.out"
-        });
+            const elementsToReveal = document.querySelectorAll(
+                '.telemetry-metric-item, .leadership-card, .pedagogy-card, .cta-box'
+            );
 
-        // Call to action banner animation
-        gsap.from(".cta-box", {
-            scrollTrigger: {
-                trigger: "#consultation-cta",
-                start: "top 85%",
-                toggleActions: "play none none none"
-            },
-            opacity: 0,
-            scale: 0.97,
-            duration: 0.7,
-            ease: "power2.out"
-        });
+            elementsToReveal.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                // If already inside the visible viewport, reveal immediately
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    if (window.gsap) {
+                        gsap.fromTo(el, 
+                            { opacity: 0, y: 14 }, 
+                            { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", clearProps: "all" }
+                        );
+                    }
+                } else {
+                    teacherPageObserver.observe(el);
+                }
+            });
+        }
     }
+
+    // Failsafe guarantee: ensure NO elements on this page remain at opacity: 0
+    const ensureTeachersPageVisible = () => {
+        document.querySelectorAll(
+            '.hero-anim, .telemetry-metric-item, .leadership-card, .pedagogy-card, .cta-box, .teacher-card-item, .section-header-block'
+        ).forEach(el => {
+            if (window.getComputedStyle(el).opacity === '0') {
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+            }
+        });
+    };
+
+    window.addEventListener('load', ensureTeachersPageVisible);
+    setTimeout(ensureTeachersPageVisible, 500);
 });
 </script>
 @endpush

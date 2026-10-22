@@ -125,140 +125,78 @@ document.addEventListener('DOMContentLoaded', function () {
         counters.forEach(counter => counterObserver.observe(counter));
     }
 
-    // 4. GSAP & ScrollTrigger Entrance Animations
-    if (window.gsap && window.ScrollTrigger) {
-        gsap.registerPlugin(ScrollTrigger);
+    // 4. Safe Entrance Animations (IntersectionObserver + GSAP / CSS Fallback)
+    // Bulletproof: Elements remain 100% visible by default and NEVER get stuck at opacity: 0
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+        const revealSelectorList = [
+            '.section-header-block',
+            '.qualifying-card',
+            '.capability-card-hero',
+            '.capability-card-secondary',
+            '.differentiator-card',
+            '.metrics-counter-box',
+            '.step-card',
+            '.experience-frame',
+            '.experience-card',
+            '.gallery-grid .group',
+            '.cta-banner-box'
+        ].join(', ');
 
-        if (!prefersReducedMotion) {
-            // Helper for reliable scroll animations with clearProps so hover effects work seamlessly
-            const animateElement = (selector, fromVars, triggerOptions = {}) => {
-                const elements = gsap.utils.toArray(selector);
-                if (!elements.length) return;
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    observer.unobserve(el);
 
-                elements.forEach(el => {
-                    gsap.from(el, {
-                        ...fromVars,
-                        scrollTrigger: {
-                            trigger: el,
-                            start: 'top 92%',
-                            once: true,
-                            ...triggerOptions,
-                        },
-                        clearProps: 'all', // Clears inline styles on completion so CSS hover works flawlessly
-                    });
-                });
-            };
-
-            // Section Headers (Gentle fade-up)
-            animateElement('.section-header-block', {
-                opacity: 0,
-                y: 18,
-                duration: 0.6,
-                ease: 'power2.out',
-            }, { start: 'top 95%' });
-
-            // Qualifying Strip Cards (Immediate / near-top entrance)
-            animateElement('.qualifying-card', {
-                opacity: 0,
-                y: 14,
-                duration: 0.45,
-                ease: 'power2.out',
-            }, { start: 'top 96%' });
-
-            // Academic Capabilities Bento Cards (Individual card triggers)
-            animateElement('.capability-card-hero', {
-                opacity: 0,
-                y: 20,
-                duration: 0.6,
-                ease: 'power2.out',
-            }, { start: 'top 92%' });
-
-            animateElement('.capability-card-secondary', {
-                opacity: 0,
-                y: 18,
-                duration: 0.55,
-                ease: 'power2.out',
-            }, { start: 'top 92%' });
-
-            // Institutional Differentiators (Individual pillar cards)
-            animateElement('.differentiator-card', {
-                opacity: 0,
-                y: 18,
-                duration: 0.5,
-                ease: 'power2.out',
-            }, { start: 'top 94%' });
-
-            // Metrics Achievement Box
-            animateElement('.metrics-counter-box', {
-                opacity: 0,
-                y: 20,
-                duration: 0.6,
-                ease: 'power2.out',
-            }, { start: 'top 92%' });
-
-            // Admission Pathway Steps (Each step triggers individually)
-            animateElement('.step-card', {
-                opacity: 0,
-                y: 20,
-                duration: 0.55,
-                ease: 'power2.out',
-            }, { start: 'top 92%' });
-
-            // Experience Frame & Summaries
-            animateElement('.experience-frame', {
-                opacity: 0,
-                y: 20,
-                duration: 0.65,
-                ease: 'power2.out',
-            }, { start: 'top 92%' });
-
-            animateElement('.experience-card', {
-                opacity: 0,
-                y: 16,
-                duration: 0.5,
-                ease: 'power2.out',
-            }, { start: 'top 94%' });
-
-            // Campus Gallery Grid Items
-            animateElement('.gallery-grid .group', {
-                opacity: 0,
-                y: 18,
-                duration: 0.5,
-                ease: 'power2.out',
-            }, { start: 'top 94%' });
-
-            // Final Call To Action Banner
-            animateElement('.cta-banner-box', {
-                opacity: 0,
-                y: 24,
-                duration: 0.7,
-                ease: 'power2.out',
-            }, { start: 'top 92%' });
-
-            // Re-calculate trigger offsets after images, slider, and web fonts load
-            window.addEventListener('load', () => {
-                ScrollTrigger.refresh();
-            });
-
-            if (document.fonts) {
-                document.fonts.ready.then(() => {
-                    ScrollTrigger.refresh();
-                });
-            }
-
-            // Failsafe guarantee: ensure all cards are visible if scrollTrigger didn't fire
-            setTimeout(() => {
-                ScrollTrigger.refresh();
-                document.querySelectorAll('.capability-card-hero, .capability-card-secondary, .differentiator-card, .step-card, .experience-card, .qualifying-card').forEach(card => {
-                    if (window.getComputedStyle(card).opacity === '0') {
-                        gsap.to(card, { opacity: 1, y: 0, duration: 0.3, clearProps: 'all' });
+                    // Animate smoothly only upon physical viewport entry
+                    if (window.gsap) {
+                        gsap.fromTo(el, 
+                            { opacity: 0, y: 16 }, 
+                            { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', clearProps: 'all' }
+                        );
+                    } else {
+                        el.style.opacity = '1';
+                        el.style.transform = 'none';
                     }
-                });
-            }, 1500);
-        }
+                }
+            });
+        }, {
+            rootMargin: '0px 0px -40px 0px',
+            threshold: 0.05
+        });
+
+        document.querySelectorAll(revealSelectorList).forEach(el => {
+            const rect = el.getBoundingClientRect();
+            // If already in viewport on page load, reveal immediately
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                if (window.gsap) {
+                    gsap.fromTo(el, 
+                        { opacity: 0, y: 12 }, 
+                        { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out', clearProps: 'all' }
+                    );
+                }
+            } else {
+                revealObserver.observe(el);
+            }
+        });
     }
+
+    // Comprehensive visibility guarantee: ensure NO element across the application stays hidden
+    const ensureElementsVisible = () => {
+        document.querySelectorAll(
+            '.section-header-block, .qualifying-card, .capability-card-hero, .capability-card-secondary, .differentiator-card, .metrics-counter-box, .step-card, .experience-frame, .experience-card, .gallery-grid .group, .cta-banner-box, .leadership-card, .pedagogy-card, .cta-box, .telemetry-metric-item, .teacher-card-item'
+        ).forEach(el => {
+            if (window.getComputedStyle(el).opacity === '0') {
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+            }
+        });
+    };
+
+    window.addEventListener('load', ensureElementsVisible);
+    setTimeout(ensureElementsVisible, 500);
 
     // 5. Floating Back to Top Button
     const backToTopBtn = document.getElementById('back-to-top');
