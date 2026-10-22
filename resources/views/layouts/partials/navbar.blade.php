@@ -39,10 +39,17 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                     </svg>
                 </div>
-                <div class="h-8 w-px bg-slate-200 mx-0.5"></div>
+                <a href="{{ route('frontend.contact') }}#enroll"
+                   class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-extrabold shadow-xs transition-all hover:scale-105 active:scale-95">
+                    <svg class="w-3.5 h-3.5 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                    </svg>
+                    <span>অনলাইন ভর্তি</span>
+                </a>
+                <div class="h-6 w-px bg-slate-200 mx-0.5"></div>
                 <a href="{{ url('/admin/dashboard') }}"
-                   class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#005030] hover:bg-[#003d25] text-white text-xs font-semibold shadow-2xs transition-colors">
-                    <svg class="w-3.5 h-3.5 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                   class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold shadow-2xs transition-colors">
+                    <svg class="w-3.5 h-3.5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
                     </svg>
                     <span>লগইন পোর্টাল</span>
@@ -238,7 +245,7 @@
             <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link">ইভেন্ট</a>
             <a href="{{ route('frontend.about') }}#gallery" class="snhs-mobile-link">ছবির গ্যালারি</a>
             <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link">ছুটির দিন</a>
-            <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link">ভর্তি</a>
+            <a href="{{ route('frontend.contact') }}#enroll" class="snhs-mobile-link bg-amber-400 text-slate-950 font-bold hover:bg-amber-300">ভর্তি আবেদন (অনলাইন)</a>
             <a href="{{ route('frontend.contact') }}" class="snhs-mobile-link">যোগাযোগ</a>
 
             <a href="{{ url('/admin/dashboard') }}" class="snhs-mobile-link snhs-mobile-login">পোর্টাল লগইন</a>

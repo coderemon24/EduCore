@@ -199,15 +199,15 @@
                 <div class="pt-4 border-t border-slate-100">
                     <p class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2.5">প্রাতিষ্ঠানিক স্বীকৃতি ও গুণমান</p>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                        <div class="flex items-center gap-2 p-2 rounded bg-emerald-50/70 border border-emerald-100 text-xs font-semibold text-slate-800">
+                        <div class="flex items-center gap-2 p-2 rounded bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-800">
                             <svg class="w-4 h-4 text-[#005030] shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
                             <span>সরকারি স্বীকৃতিপ্রাপ্ত</span>
                         </div>
-                        <div class="flex items-center gap-2 p-2 rounded bg-emerald-50/70 border border-emerald-100 text-xs font-semibold text-slate-800">
+                        <div class="flex items-center gap-2 p-2 rounded bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-800">
                             <svg class="w-4 h-4 text-[#005030] shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
                             <span>শতভাগ এমপিওভুক্ত</span>
                         </div>
-                        <div class="flex items-center gap-2 p-2 rounded bg-emerald-50/70 border border-emerald-100 text-xs font-semibold text-slate-800">
+                        <div class="flex items-center gap-2 p-2 rounded bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-800">
                             <svg class="w-4 h-4 text-[#005030] shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
                             <span>আধুনিক ডিজিটাল ল্যাব</span>
                         </div>
@@ -278,7 +278,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-2">
                 {{-- Vision --}}
                 <div class="about-card p-6 space-y-3.5 border-t-4 border-t-[#005030]">
-                    <div class="w-11 h-11 rounded-lg bg-emerald-50 text-[#005030] flex items-center justify-center icon-box shadow-2xs">
+                    <div class="w-11 h-11 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center icon-box shadow-2xs">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -292,7 +292,7 @@
 
                 {{-- Mission --}}
                 <div class="about-card p-6 space-y-3.5 border-t-4 border-t-[#005030]">
-                    <div class="w-11 h-11 rounded-lg bg-emerald-50 text-[#005030] flex items-center justify-center icon-box shadow-2xs">
+                    <div class="w-11 h-11 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center icon-box shadow-2xs">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                         </svg>
@@ -305,7 +305,7 @@
 
                 {{-- Values --}}
                 <div class="about-card p-6 space-y-3.5 border-t-4 border-t-[#005030]">
-                    <div class="w-11 h-11 rounded-lg bg-emerald-50 text-[#005030] flex items-center justify-center icon-box shadow-2xs">
+                    <div class="w-11 h-11 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center icon-box shadow-2xs">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                         </svg>
@@ -373,7 +373,7 @@
                         <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-3.5 h-3.5 rounded-full border-2 border-[#005030] bg-white timeline-dot"></div>
 
                         <div class="p-4 rounded-lg bg-slate-50 border border-slate-200/80 timeline-card">
-                            <span class="inline-block px-2.5 py-0.5 rounded bg-emerald-100 text-[#005030] text-xs font-mono font-bold border border-emerald-200">
+                            <span class="inline-block px-2.5 py-0.5 rounded bg-slate-100 text-slate-800 text-xs font-mono font-bold border border-slate-200">
                                 {{ $m['year'] ?? '' }} খ্রিষ্টাব্দ
                             </span>
                             <h4 class="text-base sm:text-lg font-bold text-slate-900 mt-1.5">
@@ -457,7 +457,7 @@
                                             {{ $member['name'] ?? '' }}
                                         </td>
                                         <td class="p-2.5 border-r border-slate-200">
-                                            <span class="inline-block px-2 py-0.5 rounded text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                                            <span class="inline-block px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 text-slate-800 border border-slate-200">
                                                 {{ $member['designation'] ?? '' }}
                                             </span>
                                         </td>
@@ -490,7 +490,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
                 @foreach($about->facilities as $fac)
                     <div class="about-card p-5 space-y-2">
-                        <div class="w-9 h-9 rounded-lg bg-emerald-50 text-[#005030] flex items-center justify-center icon-box shadow-2xs">
+                        <div class="w-9 h-9 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center icon-box shadow-2xs">
                             <svg class="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                             </svg>

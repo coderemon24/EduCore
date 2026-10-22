@@ -84,12 +84,12 @@
                 <div class="capability-card-hero group">
                     <div>
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-14 h-14 rounded-2xl bg-emerald-100/90 text-[#005030] flex items-center justify-center font-bold shadow-2xs group-hover:scale-105 transition-transform duration-300">
+                            <div class="w-14 h-14 rounded-2xl bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center font-bold shadow-2xs group-hover:scale-105 transition-transform duration-300">
                                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
                                 </svg>
                             </div>
-                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-[#005030] text-xs font-bold border border-emerald-200">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-bold border border-slate-200">
                                 <span><i class="fa-solid fa-flask-vial"></i></span>
                                 <span>প্রধান প্রাতিষ্ঠানিক সক্ষমতা</span>
                             </span>
@@ -105,19 +105,19 @@
                         {{-- Structured Laboratory Proof Checklist --}}
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-slate-200/80 mb-6">
                             <div class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800">
-                                <span class="w-5 h-5 rounded-full bg-emerald-100 text-[#005030] flex items-center justify-center shrink-0 text-[11px] font-bold"><i class="fa-solid fa-check"></i></span>
+                                <span class="w-5 h-5 rounded-full bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center shrink-0 text-[11px] font-bold"><i class="fa-solid fa-check"></i></span>
                                 <span>পদার্থ, রসায়ন ও জীববিজ্ঞানের পৃথক ল্যাব</span>
                             </div>
                             <div class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800">
-                                <span class="w-5 h-5 rounded-full bg-emerald-100 text-[#005030] flex items-center justify-center shrink-0 text-[11px] font-bold"><i class="fa-solid fa-check"></i></span>
+                                <span class="w-5 h-5 rounded-full bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center shrink-0 text-[11px] font-bold"><i class="fa-solid fa-check"></i></span>
                                 <span>উচ্চমানের মাইক্রোস্কোপ ও রিএজেন্ট সুবিধা</span>
                             </div>
                             <div class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800">
-                                <span class="w-5 h-5 rounded-full bg-emerald-100 text-[#005030] flex items-center justify-center shrink-0 text-[11px] font-bold"><i class="fa-solid fa-check"></i></span>
+                                <span class="w-5 h-5 rounded-full bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center shrink-0 text-[11px] font-bold"><i class="fa-solid fa-check"></i></span>
                                 <span>অভিজ্ঞ ল্যাব সহকারী ও শিক্ষক তত্ত্বাবধান</span>
                             </div>
                             <div class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800">
-                                <span class="w-5 h-5 rounded-full bg-emerald-100 text-[#005030] flex items-center justify-center shrink-0 text-[11px] font-bold"><i class="fa-solid fa-check"></i></span>
+                                <span class="w-5 h-5 rounded-full bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center shrink-0 text-[11px] font-bold"><i class="fa-solid fa-check"></i></span>
                                 <span>বার্ষিক বিজ্ঞান ও উদ্ভাবন প্রজেক্ট প্রদর্শনী</span>
                             </div>
                         </div>
@@ -138,7 +138,7 @@
                     <div class="capability-card-secondary group">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <div class="w-10 h-10 rounded-xl bg-emerald-100/70 text-[#005030] flex items-center justify-center font-bold group-hover:scale-105 transition-transform duration-300">
+                                <div class="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center font-bold group-hover:scale-105 transition-transform duration-300">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                                     </svg>
@@ -162,7 +162,7 @@
                     <div class="capability-card-secondary group">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <div class="w-10 h-10 rounded-xl bg-emerald-100/70 text-[#005030] flex items-center justify-center font-bold group-hover:scale-105 transition-transform duration-300">
+                                <div class="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center font-bold group-hover:scale-105 transition-transform duration-300">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
@@ -214,7 +214,7 @@
             <div class="differentiators-grid mb-12">
                 {{-- Pillar 1 --}}
                 <div class="differentiator-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex gap-4 shadow-2xs group">
-                    <div class="w-10 h-10 rounded-full bg-[#005030] text-white flex items-center justify-center shrink-0 font-bold text-sm group-hover:scale-105 transition-transform duration-300">
+                    <div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 text-slate-800 flex items-center justify-center shrink-0 font-bold text-sm group-hover:scale-105 transition-transform duration-300">
                         ০১
                     </div>
                     <div>
@@ -229,7 +229,7 @@
 
                 {{-- Pillar 2 --}}
                 <div class="differentiator-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex gap-4 shadow-2xs group">
-                    <div class="w-10 h-10 rounded-full bg-[#005030] text-white flex items-center justify-center shrink-0 font-bold text-sm group-hover:scale-105 transition-transform duration-300">
+                    <div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 text-slate-800 flex items-center justify-center shrink-0 font-bold text-sm group-hover:scale-105 transition-transform duration-300">
                         ০২
                     </div>
                     <div>
@@ -244,7 +244,7 @@
 
                 {{-- Pillar 3 --}}
                 <div class="differentiator-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex gap-4 shadow-2xs group">
-                    <div class="w-10 h-10 rounded-full bg-[#005030] text-white flex items-center justify-center shrink-0 font-bold text-sm group-hover:scale-105 transition-transform duration-300">
+                    <div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 text-slate-800 flex items-center justify-center shrink-0 font-bold text-sm group-hover:scale-105 transition-transform duration-300">
                         ০৩
                     </div>
                     <div>
@@ -259,7 +259,7 @@
 
                 {{-- Pillar 4 --}}
                 <div class="differentiator-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex gap-4 shadow-2xs group">
-                    <div class="w-10 h-10 rounded-full bg-[#005030] text-white flex items-center justify-center shrink-0 font-bold text-sm group-hover:scale-105 transition-transform duration-300">
+                    <div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 text-slate-800 flex items-center justify-center shrink-0 font-bold text-sm group-hover:scale-105 transition-transform duration-300">
                         ০৪
                     </div>
                     <div>
@@ -477,8 +477,8 @@
                 <div class="step-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 relative flex flex-col justify-between shadow-2xs group">
                     <div>
                         <div class="flex items-center justify-between mb-5">
-                            <span class="text-3xl font-extrabold text-[#005030]/80 font-mono group-hover:scale-105 group-hover:text-[#005030] transition-transform duration-300">০১</span>
-                            <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-[#005030] text-[11px] font-bold border border-emerald-200">
+                            <span class="text-3xl font-extrabold text-slate-800 font-mono group-hover:scale-105 transition-transform duration-300">০১</span>
+                            <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-bold border border-slate-200">
                                 ধাপ ১
                             </span>
                         </div>
@@ -491,7 +491,7 @@
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium">
                         <span>অনলাইন / অফলাইন উভয় সুবিধা</span>
-                        <span class="text-emerald-600 font-bold flex items-center gap-1.5"><i class="fa-solid fa-check text-xs"></i> সহজ</span>
+                        <span class="text-slate-700 font-bold flex items-center gap-1.5"><i class="fa-solid fa-check text-xs"></i> সহজ</span>
                     </div>
                 </div>
 
@@ -499,8 +499,8 @@
                 <div class="step-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 relative flex flex-col justify-between shadow-2xs group">
                     <div>
                         <div class="flex items-center justify-between mb-5">
-                            <span class="text-3xl font-extrabold text-[#005030]/80 font-mono group-hover:scale-105 group-hover:text-[#005030] transition-transform duration-300">০২</span>
-                            <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-[#005030] text-[11px] font-bold border border-emerald-200">
+                            <span class="text-3xl font-extrabold text-slate-800 font-mono group-hover:scale-105 transition-transform duration-300">০২</span>
+                            <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-bold border border-slate-200">
                                 ধাপ ২
                             </span>
                         </div>
@@ -513,7 +513,7 @@
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium">
                         <span>ব্যক্তিগত পরামর্শ ও কাউন্সেলিং</span>
-                        <span class="text-emerald-600 font-bold flex items-center gap-1.5"><i class="fa-solid fa-check text-xs"></i> বন্ধুত্বপূর্ণ</span>
+                        <span class="text-slate-700 font-bold flex items-center gap-1.5"><i class="fa-solid fa-check text-xs"></i> বন্ধুত্বপূর্ণ</span>
                     </div>
                 </div>
 
@@ -521,8 +521,8 @@
                 <div class="step-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 relative flex flex-col justify-between shadow-2xs group">
                     <div>
                         <div class="flex items-center justify-between mb-5">
-                            <span class="text-3xl font-extrabold text-[#005030]/80 font-mono group-hover:scale-105 group-hover:text-[#005030] transition-transform duration-300">০৩</span>
-                            <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-[#005030] text-[11px] font-bold border border-emerald-200">
+                            <span class="text-3xl font-extrabold text-slate-800 font-mono group-hover:scale-105 transition-transform duration-300">০৩</span>
+                            <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-bold border border-slate-200">
                                 ধাপ ৩
                             </span>
                         </div>
@@ -771,7 +771,7 @@
                         ভর্তি চলছে • ২০২৬ শিক্ষাবর্ষ
                     </span>
                     <h3 class="text-2xl sm:text-4xl font-extrabold leading-tight text-white mb-4">
-                        আপনার সন্তানের সম্ভাবনাময় ভবিষ্যতের সূচনা হোক আজই
+                        আপনার সন্তানের <span class="text-amber-400">সম্ভাবনাময় ভবিষ্যতের</span> সূচনা হোক আজই
                     </h3>
                     <p class="text-sm sm:text-base text-emerald-100/90 leading-relaxed mb-8">
                         ৬ষ্ঠ থেকে ১০ম শ্রেণিতে নতুন ভর্তির জন্য আমাদের প্রশাসনিক কার্যালয় সর্বদা প্রস্তুত। যেকোনো তথ্যের জন্য সরাসরি ফোনে কথা বলতে পারেন অথবা ক্যাম্পাস পরিদর্শনের জন্য আবেদন করতে পারেন।
@@ -792,7 +792,7 @@
 
                         <a href="tel:+8801712345678"
                            class="px-6 py-3.5 rounded-full bg-slate-900/60 hover:bg-slate-900 text-white font-bold text-sm border border-slate-700 transition-all inline-flex items-center gap-2 hover:scale-105 active:scale-95">
-                            <i class="fa-solid fa-phone text-xs text-emerald-400"></i>
+                            <i class="fa-solid fa-phone text-xs text-slate-400"></i>
                             <span>০১৭১২-৩৪৫৬৭৮</span>
                         </a>
                     </div>

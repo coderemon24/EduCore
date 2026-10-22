@@ -18,7 +18,7 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
 
     {{-- Header Banner --}}
-    <div class="bg-[#005030] text-white p-6 sm:p-7 rounded-xl shadow-xs flex flex-col md:flex-row md:items-center md:justify-between gap-6 border-l-4 border-amber-400">
+    <div class="bg-[#005030] text-white p-6 sm:p-7 rounded-xl shadow-xs flex flex-col md:flex-row md:items-center md:justify-between gap-6 border-l-4 border-sky-400">
         <div>
             <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
                 প্রাতিষ্ঠানিক <span class="text-amber-400">নোটিশ বোর্ড</span>
@@ -104,17 +104,17 @@
 
             <div class="bg-white border border-gray-300 rounded-xl shadow-2xs divide-y divide-gray-200 overflow-hidden">
                 @foreach($dummyNotices as $n)
-                    <article class="p-4 sm:p-5 hover:bg-gray-50/80 transition-colors flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <article class="p-4 sm:p-5 hover:bg-sky-50/30 transition-colors flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                         <div class="flex items-start gap-3.5 flex-1">
-                            {{-- Date Square --}}
-                            <div class="w-13 h-13 rounded-lg bg-emerald-50 border border-emerald-300 text-[#005030] flex flex-col items-center justify-center flex-shrink-0 font-bold">
+                            {{-- Dedicated Sky Blue Date Square --}}
+                            <div class="w-13 h-13 rounded-lg bg-sky-50 border border-sky-200 text-sky-800 flex flex-col items-center justify-center flex-shrink-0 font-bold">
                                 <span class="text-base font-extrabold font-mono leading-none">{{ explode(' ', $n['date'])[0] }}</span>
-                                <span class="text-[11px] text-emerald-800 font-bold mt-0.5">{{ explode(' ', $n['date'])[1] }}</span>
+                                <span class="text-[11px] text-sky-700 font-bold mt-0.5">{{ explode(' ', $n['date'])[1] }}</span>
                             </div>
 
                             <div class="space-y-1">
                                 <div class="flex flex-wrap items-center gap-2">
-                                    <span class="px-2 py-0.5 rounded bg-gray-100 text-gray-700 text-[11px] font-bold">
+                                    <span class="px-2 py-0.5 rounded bg-sky-100 text-sky-800 text-[11px] font-bold border border-sky-200">
                                         {{ $n['type'] }}
                                     </span>
                                     @if($n['is_pinned'])
@@ -126,7 +126,7 @@
                                         উদ্দেশ্য: {{ $n['audience'] }}
                                     </span>
                                 </div>
-                                <h3 class="text-base sm:text-lg font-bold text-gray-900 hover:text-[#005030] leading-snug">
+                                <h3 class="text-base sm:text-lg font-bold text-gray-900 hover:text-sky-700 leading-snug">
                                     <a href="{{ route('frontend.notices.show', $n['id']) }}">
                                         {{ $n['title'] }}
                                     </a>
@@ -157,7 +157,7 @@
                     নোটিশ ক্যাটাগরি
                 </div>
                 <div class="space-y-1 text-xs sm:text-sm">
-                    <a href="{{ route('frontend.notices.index') }}" class="block px-2.5 py-1.5 rounded bg-emerald-50 text-[#005030] font-bold">
+                    <a href="{{ route('frontend.notices.index') }}" class="block px-2.5 py-1.5 rounded bg-sky-50 text-sky-800 font-bold border border-sky-200">
                         সকল নোটিশ (All Notices)
                     </a>
                     <a href="{{ route('frontend.notices.index') }}" class="block px-2.5 py-1.5 rounded text-gray-700 hover:bg-gray-100 font-medium">

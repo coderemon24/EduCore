@@ -21,7 +21,7 @@
             {{-- Header & Meta --}}
             <header class="space-y-3 pb-6 border-b border-slate-100">
                 <div class="flex flex-wrap items-center gap-2">
-                    <span class="px-2.5 py-1 rounded bg-emerald-50 text-emerald-800 text-xs font-bold uppercase tracking-wider border border-emerald-200">
+                    <span class="px-2.5 py-1 rounded bg-sky-50 text-sky-800 text-xs font-bold uppercase tracking-wider border border-sky-200">
                         {{ \App\Models\Notice::TYPES[$notice->type] ?? 'সাধারণ' }}
                     </span>
                     @if($notice->is_pinned)
@@ -59,7 +59,7 @@
             @if($notice->attachment_path)
                 <div class="mt-8 p-4 sm:p-5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-11 h-11 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center flex-shrink-0">
+                        <div class="w-11 h-11 rounded-lg bg-sky-50 border border-sky-200 text-sky-700 flex items-center justify-center flex-shrink-0">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
                         </div>
                         <div>
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                     <a href="{{ route('frontend.notices.download', $notice->slug ?: $notice->id) }}"
-                       class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-800 hover:bg-emerald-700 text-white font-semibold text-xs transition-colors shadow-xs">
+                       class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#005030] hover:bg-[#003d24] text-white font-semibold text-xs transition-colors shadow-xs">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                         <span>ফাইল ডাউনলোড করুন</span>
                     </a>
@@ -93,14 +93,14 @@
 
             {{-- Related Notices --}}
             <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-xs">
-                <div class="bg-emerald-900 text-white px-4 py-3">
-                    <h3 class="text-xs font-bold tracking-wider uppercase text-emerald-100">একই ক্যাটাগরির নোটিশ</h3>
+                <div class="bg-sky-900 text-white px-4 py-3">
+                    <h3 class="text-xs font-bold tracking-wider uppercase text-sky-100">একই ক্যাটাগরির নোটিশ</h3>
                 </div>
                 <div class="divide-y divide-slate-100">
                     @forelse($relatedNotices as $item)
                         <div class="p-3 text-xs hover:bg-slate-50 transition-colors">
                             <span class="text-[10px] text-slate-400 block mb-0.5">{{ \Carbon\Carbon::parse($item->published_at)->format('d M Y') }}</span>
-                            <a href="{{ route('frontend.notices.show', $item->slug ?: $item->id) }}" class="text-sm font-bold text-slate-800 hover:text-emerald-800 transition-colors line-clamp-2">
+                            <a href="{{ route('frontend.notices.show', $item->slug ?: $item->id) }}" class="text-sm font-bold text-slate-800 hover:text-sky-700 transition-colors line-clamp-2">
                                 {{ $item->title }}
                             </a>
                         </div>
@@ -113,7 +113,7 @@
             </div>
 
             {{-- Emergency Contact Card --}}
-            <div class="bg-emerald-900 text-white rounded-xl p-5 shadow-xs space-y-3">
+            <div class="bg-slate-900 text-white rounded-xl p-5 shadow-xs space-y-3">
                 <h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider">জরুরি যোগাযোগ</h4>
                 <p class="text-xs sm:text-sm text-emerald-100 leading-relaxed">
                     বিজ্ঞপ্তি সংক্রান্ত কোনো জিজ্ঞাসা থাকলে বিদ্যালয় অফিসে সরাসরি যোগাযোগ করুন:

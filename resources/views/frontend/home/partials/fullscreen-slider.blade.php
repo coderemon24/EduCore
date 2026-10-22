@@ -32,6 +32,14 @@
                             <p class="fullscreen-slide-desc text-sm sm:text-base font-normal leading-relaxed text-slate-100 drop-shadow-md max-w-2xl line-clamp-2 sm:line-clamp-none">
                                 শুধু পাঠ্যবই নয়; স্নেহ, সুশিক্ষা ও আধুনিক প্রযুক্তির সমন্বয়ে সোনাতলা উচ্চ বিদ্যালয় নিশ্চিত করে প্রতিটি শিক্ষার্থীর নিরাপদ ও আত্মবিশ্বাসী ভবিষ্যৎ।
                             </p>
+
+                            <div class="pt-2 sm:pt-3">
+                                <a href="{{ route('frontend.contact') }}#enroll"
+                                   class="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-xs sm:text-sm shadow-md transition-all hover:scale-105 active:scale-95">
+                                    <span>অনলাইন ভর্তি আবেদন</span>
+                                    <svg class="w-4 h-4 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -56,12 +64,20 @@
                             </div>
 
                             <h2 class="fullscreen-slide-title text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight drop-shadow-lg text-white">
-                                হাতেকলমে বিজ্ঞান ও <span class="text-emerald-300">ডিজিটাল দক্ষতায়</span> আলোকিত এক শিক্ষাঙ্গন
+                                হাতেকলমে বিজ্ঞান ও <span class="text-amber-300">ডিজিটাল দক্ষতায়</span> আলোকিত এক শিক্ষাঙ্গন
                             </h2>
 
                             <p class="fullscreen-slide-desc text-sm sm:text-base font-normal leading-relaxed text-slate-100 drop-shadow-md max-w-2xl line-clamp-2 sm:line-clamp-none">
                                 আধুনিক আইসিটি ল্যাব আর অভিজ্ঞ শিক্ষকমণ্ডলীর নিবিড় পরিচর্যায় প্রতিটি শিক্ষার্থী পায় বাস্তবমুখী শিক্ষা ও স্বপ্ন দেখার প্রেরণা।
                             </p>
+
+                            <div class="pt-2 sm:pt-3">
+                                <a href="{{ route('frontend.contact') }}#enroll"
+                                   class="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-xs sm:text-sm shadow-md transition-all hover:scale-105 active:scale-95">
+                                    <span>অনলাইন ভর্তি আবেদন</span>
+                                    <svg class="w-4 h-4 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -92,6 +108,14 @@
                             <p class="fullscreen-slide-desc text-sm sm:text-base font-normal leading-relaxed text-slate-100 drop-shadow-md max-w-2xl line-clamp-2 sm:line-clamp-none">
                                 নিয়মিত খেলাধুলা, বিতর্ক ও সাংস্কৃতিক কর্মকাণ্ডে বিকশিত হয় শিশুর নেতৃত্বগুণ, সহমর্মিতা আর দলগত শৃঙ্খলা।
                             </p>
+
+                            <div class="pt-2 sm:pt-3">
+                                <a href="{{ route('frontend.contact') }}#enroll"
+                                   class="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-xs sm:text-sm shadow-md transition-all hover:scale-105 active:scale-95">
+                                    <span>অনলাইন ভর্তি আবেদন</span>
+                                    <svg class="w-4 h-4 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
