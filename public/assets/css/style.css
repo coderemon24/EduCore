@@ -679,7 +679,22 @@ body {
 }
 
 /* Centered Pagination Indicators (Golden / Amber Highlight as in reference) */
+.fullscreen-swiper-pagination {
+    position: absolute;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transform: none !important;
+    margin: 0 auto !important;
+    z-index: 20 !important;
+    pointer-events: none;
+}
+
 .fullscreen-swiper-pagination .swiper-pagination-bullet {
+    pointer-events: auto;
     width: 9px;
     height: 9px;
     background: #ffffff;

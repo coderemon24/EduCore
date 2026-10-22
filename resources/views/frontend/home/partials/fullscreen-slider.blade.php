@@ -141,6 +141,6 @@
         </button>
 
         {{-- Centered Bottom Pagination Bullets --}}
-        <div class="fullscreen-swiper-pagination absolute bottom-2 sm:bottom-4 lg:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center gap-2"></div>
+        <div class="fullscreen-swiper-pagination absolute bottom-2 sm:bottom-4 lg:bottom-6 inset-x-0 w-full z-20 flex items-center justify-center gap-2 pointer-events-none"></div>
     </div>
 </section>
