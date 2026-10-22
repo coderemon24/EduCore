@@ -6,7 +6,7 @@
 @section('content')
 
 {{-- 1. Executive Breadcrumb Bar --}}
-<div class="bg-gray-100 border-b border-gray-200 py-3.5 text-xs text-gray-600" id="overview">
+<div class="bg-gray-100 border-b border-gray-200 py-3.5 text-xs sm:text-sm text-gray-600" id="overview">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <nav class="flex items-center gap-1.5 font-medium" aria-label="Breadcrumb">
             <a href="{{ route('frontend.home') }}" class="hover:text-[#005030] transition-colors flex items-center gap-1">
@@ -18,7 +18,7 @@
             <span class="text-gray-400">/</span>
             <span class="text-gray-900 font-bold">সম্মানিত শিক্ষক ও কর্মচারীবৃন্দ</span>
         </nav>
-        <span class="text-gray-500 text-xs font-medium hidden sm:inline-block">{{ $school->name ?? 'সোনাতলা উচ্চ বিদ্যালয়' }} • সাঁথিয়া, পাবনা</span>
+        <span class="text-gray-500 text-xs sm:text-sm font-medium hidden sm:inline-block">{{ $school->name ?? 'সোনাতলা উচ্চ বিদ্যালয়' }} • সাঁথিয়া, পাবনা</span>
     </div>
 </div>
 
@@ -38,13 +38,13 @@
             </p>
         </div>
 
-        <div class="hero-anim shrink-0 flex items-center gap-4 bg-[#003820]/90 backdrop-blur-xs border border-emerald-700/70 px-6 py-4 rounded-2xl text-white shadow-md hover:border-emerald-500/80 transition-all duration-300 hover:-translate-y-0.5">
+        <div class="hero-anim hero-estd-card shrink-0 flex items-center gap-4 bg-[#003820]/90 backdrop-blur-xs border border-emerald-700/70 px-6 py-4 rounded-2xl text-white shadow-md">
             <div class="w-13 h-13 rounded-xl bg-emerald-800/80 border border-emerald-600/50 text-emerald-200 flex flex-col items-center justify-center font-bold shrink-0 shadow-inner">
-                <span class="text-[9px] uppercase tracking-wider font-extrabold -mb-0.5">ESTD</span>
-                <span class="text-base font-extrabold font-mono text-white">{{ $school->established_year ?? '1968' }}</span>
+                <span class="text-[10px] sm:text-[11px] uppercase tracking-wider font-extrabold -mb-0.5">ESTD</span>
+                <span class="text-base sm:text-lg font-extrabold font-mono text-white">{{ $school->established_year ?? '1968' }}</span>
             </div>
-            <div class="text-xs">
-                <p class="text-emerald-300/80 font-medium text-[11px]">প্রতিষ্ঠানের অনুষদ শক্তি</p>
+            <div>
+                <p class="text-emerald-300/90 font-medium text-xs">প্রতিষ্ঠানের অনুষদ শক্তি</p>
                 <p class="text-white font-bold text-sm sm:text-base">৩২ জন অভিজ্ঞ শিক্ষক ও কর্মকর্তা</p>
             </div>
         </div>
@@ -56,35 +56,35 @@
 </div>
 
 {{-- 3. Qualifying Credentials & Telemetry Strip --}}
-<div class="telemetry-strip bg-slate-900 text-slate-200 py-4 border-y border-slate-800">
+<div class="telemetry-strip bg-slate-900 text-slate-200 py-4 sm:py-5 border-y border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs font-semibold">
-            <div class="telemetry-metric-item flex items-center gap-3 p-2 rounded-lg hover:bg-slate-800/60 transition-colors">
-                <span class="w-9 h-9 rounded-xl bg-slate-800 text-emerald-400 flex items-center justify-center text-sm shrink-0 border border-slate-700 shadow-2xs"><i class="fa-solid fa-chalkboard-user"></i></span>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            <div class="telemetry-metric-item flex items-center gap-3">
+                <span class="telemetry-icon-box w-10 h-10 rounded-xl bg-slate-800 text-emerald-400 flex items-center justify-center text-base shrink-0 border border-slate-700 shadow-2xs"><i class="fa-solid fa-chalkboard-user"></i></span>
                 <div>
-                    <span class="text-slate-400 block text-[10px]">অনুষদ সদস্য সংখ্যা</span>
-                    <span class="text-white font-bold text-xs sm:text-sm">৩২ জন শিক্ষক ও কর্মকর্তা</span>
+                    <span class="text-slate-400 block text-xs font-medium">অনুষদ সদস্য সংখ্যা</span>
+                    <span class="text-white font-bold text-sm sm:text-base">৩২ জন শিক্ষক ও কর্মকর্তা</span>
                 </div>
             </div>
-            <div class="telemetry-metric-item flex items-center gap-3 p-2 rounded-lg hover:bg-slate-800/60 transition-colors">
-                <span class="w-9 h-9 rounded-xl bg-slate-800 text-emerald-400 flex items-center justify-center text-sm shrink-0 border border-slate-700 shadow-2xs"><i class="fa-solid fa-graduation-cap"></i></span>
+            <div class="telemetry-metric-item flex items-center gap-3">
+                <span class="telemetry-icon-box w-10 h-10 rounded-xl bg-slate-800 text-emerald-400 flex items-center justify-center text-base shrink-0 border border-slate-700 shadow-2xs"><i class="fa-solid fa-graduation-cap"></i></span>
                 <div>
-                    <span class="text-slate-400 block text-[10px]">উচ্চতর প্রাতিষ্ঠানিক যোগ্যতা</span>
-                    <span class="text-white font-bold text-xs sm:text-sm">৮৫%+ স্নাতকোত্তর ও ১ম শ্রেণি</span>
+                    <span class="text-slate-400 block text-xs font-medium">উচ্চতর প্রাতিষ্ঠানিক যোগ্যতা</span>
+                    <span class="text-white font-bold text-sm sm:text-base">৮৫%+ স্নাতকোত্তর ও ১ম শ্রেণি</span>
                 </div>
             </div>
-            <div class="telemetry-metric-item flex items-center gap-3 p-2 rounded-lg hover:bg-slate-800/60 transition-colors">
-                <span class="w-9 h-9 rounded-xl bg-slate-800 text-emerald-400 flex items-center justify-center text-sm shrink-0 border border-slate-700 shadow-2xs"><i class="fa-solid fa-users-line"></i></span>
+            <div class="telemetry-metric-item flex items-center gap-3">
+                <span class="telemetry-icon-box w-10 h-10 rounded-xl bg-slate-800 text-emerald-400 flex items-center justify-center text-base shrink-0 border border-slate-700 shadow-2xs"><i class="fa-solid fa-users-line"></i></span>
                 <div>
-                    <span class="text-slate-400 block text-[10px]">শ্রেণিকক্ষে নিবিড় মনোযোগ</span>
-                    <span class="text-white font-bold text-xs sm:text-sm">১:৩০ শিক্ষক-শিক্ষার্থী অনুপাত</span>
+                    <span class="text-slate-400 block text-xs font-medium">শ্রেণিকক্ষে নিবিড় মনোযোগ</span>
+                    <span class="text-white font-bold text-sm sm:text-base">১:৩০ শিক্ষক-শিক্ষার্থী অনুপাত</span>
                 </div>
             </div>
-            <div class="telemetry-metric-item flex items-center gap-3 p-2 rounded-lg hover:bg-slate-800/60 transition-colors">
-                <span class="w-9 h-9 rounded-xl bg-slate-800 text-emerald-400 flex items-center justify-center text-sm shrink-0 border border-slate-700 shadow-2xs"><i class="fa-solid fa-certificate"></i></span>
+            <div class="telemetry-metric-item flex items-center gap-3">
+                <span class="telemetry-icon-box w-10 h-10 rounded-xl bg-slate-800 text-emerald-400 flex items-center justify-center text-base shrink-0 border border-slate-700 shadow-2xs"><i class="fa-solid fa-certificate"></i></span>
                 <div>
-                    <span class="text-slate-400 block text-[10px]">পেশাগত পাঠদান যোগ্যতা</span>
-                    <span class="text-white font-bold text-xs sm:text-sm">১০০% বি.এড ও সরকারি প্রশিক্ষিত</span>
+                    <span class="text-slate-400 block text-xs font-medium">পেশাগত পাঠদান যোগ্যতা</span>
+                    <span class="text-white font-bold text-sm sm:text-base">১০০% বি.এড ও সরকারি প্রশিক্ষিত</span>
                 </div>
             </div>
         </div>
@@ -115,62 +115,59 @@
         {{-- Asymmetric 65/35 Leadership Grid (Properly Balanced Proportions) --}}
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
             {{-- Flagship Winner: Headmaster (65% width / 7 cols) --}}
-            <div class="leadership-card lg:col-span-7 bg-slate-50/80 border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-2xs hover:shadow-md hover:border-[#005030]/40 transition-all duration-300">
+            <div class="leadership-card lg:col-span-7 bg-slate-50/80 border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-2xs group">
                 <div class="space-y-5">
                     <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5 pb-5 border-b border-slate-200/80">
                         {{-- Well-proportioned portrait frame --}}
-                        <div class="relative w-28 h-32 sm:w-32 sm:h-36 rounded-2xl overflow-hidden bg-slate-200 border-2 border-emerald-800/30 shadow-xs shrink-0 group">
+                        <div class="leadership-portrait-frame relative w-28 h-32 sm:w-32 sm:h-36 rounded-2xl overflow-hidden bg-slate-200 border-2 border-emerald-800/30 shadow-xs shrink-0">
                             <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=400&q=80"
                                  alt="মো: খলিলুর রহমান - প্রধান শিক্ষক"
-                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <div class="absolute bottom-0 inset-x-0 bg-slate-900/85 text-[10px] text-white text-center py-0.5 font-bold">
-                                প্রতিষ্ঠান প্রধান
-                            </div>
+                                 class="leadership-portrait-img w-full h-full object-cover">
                         </div>
 
                         <div class="space-y-1.5 flex-1 min-w-0">
-                            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-100 text-[#005030] text-[11px] font-bold border border-emerald-300">
-                                <i class="fa-solid fa-crown text-[10px]"></i>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-[#005030] text-xs font-bold border border-emerald-300">
+                                <i class="fa-solid fa-crown text-[11px]"></i>
                                 প্রধান শিক্ষক (Headmaster)
                             </span>
-                            <h3 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+                            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-snug">
                                 মো: খলিলুর রহমান
                             </h3>
-                            <p class="text-xs sm:text-sm text-slate-600 font-medium">
+                            <p class="text-sm sm:text-base text-slate-600 font-medium">
                                 এম.এ (ইতিহাস, ১ম শ্রেণি), বি.এড (১ম শ্রেণি, রাজশাহী বিশ্ববিদ্যালয়)
                             </p>
-                            <p class="text-xs text-emerald-800 font-semibold flex items-center gap-1.5 pt-0.5">
-                                <i class="fa-solid fa-calendar-check text-[11px]"></i>
+                            <p class="text-xs sm:text-sm text-[#005030] font-semibold flex items-center gap-1.5 pt-0.5">
+                                <i class="fa-solid fa-calendar-check text-xs"></i>
                                 শিক্ষাদান ও বিদ্যালয় প্রশাসনে ২০+ বছরের সুদীর্ঘ অভিজ্ঞতা
                             </p>
                         </div>
                     </div>
 
                     {{-- Leadership Manifesto Quote --}}
-                    <blockquote class="text-xs sm:text-sm text-slate-700 leading-relaxed italic bg-white p-4 rounded-xl border-l-3 border-[#005030] shadow-2xs">
+                    <blockquote class="text-sm sm:text-base text-slate-700 leading-relaxed italic bg-white p-4 sm:p-5 rounded-xl border-l-4 border-[#005030] shadow-2xs">
                         "আমাদের প্রথম দায়িত্ব শুধু পাঠ্যবইয়ের জ্ঞান বিতরণ নয়; বরং স্নেহ, মমতা ও উপযুক্ত শৃঙ্খলার মাধ্যমে প্রতিটি সন্তানকে একজন সৎ, আত্মবিশ্বাসী ও আদর্শ মানুষ হিসেবে সমাজে প্রতিষ্ঠিত করা।"
                     </blockquote>
 
                     {{-- Office Hours & Schedule Strip --}}
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs pt-1">
-                        <div class="bg-white p-3 rounded-xl border border-slate-200/80 flex items-center gap-2.5 shadow-2xs">
-                            <span class="w-7 h-7 rounded-lg bg-emerald-50 text-[#005030] flex items-center justify-center shrink-0"><i class="fa-solid fa-clock"></i></span>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                        <div class="bg-white p-3.5 rounded-xl border border-slate-200/80 flex items-center gap-3 shadow-2xs hover:border-[#005030]/30 transition-colors">
+                            <span class="w-8 h-8 rounded-lg bg-emerald-50 text-[#005030] flex items-center justify-center shrink-0 text-sm"><i class="fa-solid fa-clock"></i></span>
                             <div>
-                                <span class="text-slate-400 block text-[10px]">সরাসরি অভিভাবক সাক্ষাৎ</span>
-                                <span class="text-slate-800 font-bold text-[11px]">রবি - বৃহস্পতি (সকাল ১০:০০ - ১২:০০)</span>
+                                <span class="text-slate-500 block text-xs font-medium">সরাসরি অভিভাবক সাক্ষাৎ</span>
+                                <span class="text-slate-800 font-bold text-xs sm:text-sm">রবি - বৃহস্পতি (সকাল ১০:০০ - ১২:০০)</span>
                             </div>
                         </div>
-                        <div class="bg-white p-3 rounded-xl border border-slate-200/80 flex items-center gap-2.5 shadow-2xs">
-                            <span class="w-7 h-7 rounded-lg bg-sky-50 text-sky-700 flex items-center justify-center shrink-0"><i class="fa-solid fa-phone"></i></span>
+                        <div class="bg-white p-3.5 rounded-xl border border-slate-200/80 flex items-center gap-3 shadow-2xs hover:border-[#005030]/30 transition-colors">
+                            <span class="w-8 h-8 rounded-lg bg-sky-50 text-sky-700 flex items-center justify-center shrink-0 text-sm"><i class="fa-solid fa-phone"></i></span>
                             <div>
-                                <span class="text-slate-400 block text-[10px]">প্রধান শিক্ষকের ব্যক্তিগত দপ্তর</span>
-                                <a href="tel:+8801712345678" class="text-[#005030] font-bold text-[11px] hover:underline">+৮৮০ ১৭১২-৩৪৫৬৭৮</a>
+                                <span class="text-slate-500 block text-xs font-medium">প্রধান শিক্ষকের ব্যক্তিগত দপ্তর</span>
+                                <a href="tel:+8801712345678" class="text-[#005030] font-bold text-xs sm:text-sm hover:underline">+৮৮০ ১৭১২-৩৪৫৬৭৮</a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="pt-5 mt-8 border-t border-slate-200/80 flex items-center justify-between text-xs text-slate-500">
+                <div class="pt-5 mt-8 border-t border-slate-200/80 flex items-center justify-between text-xs sm:text-sm text-slate-500">
                     <span class="font-medium">কার্যালয়: প্রধান শিক্ষকের কক্ষ (১০১)</span>
                     <a href="mailto:headmaster@sonatala.edu.bd" class="text-[#005030] font-bold hover:underline flex items-center gap-1.5 transition-colors">
                         <i class="fa-solid fa-envelope"></i>
@@ -180,53 +177,50 @@
             </div>
 
             {{-- Fixed Assistant Headmaster Card (35% width / 5 cols) --}}
-            <div class="leadership-card lg:col-span-5 bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-2xs hover:shadow-md hover:border-[#005030]/40 transition-all duration-300">
+            <div class="leadership-card lg:col-span-5 bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-2xs group">
                 <div class="space-y-5">
                     {{-- Fixed portrait header with strict shrink-0 and explicit dimensions --}}
                     <div class="flex items-center gap-4 pb-5 border-b border-slate-100">
-                        <div class="relative w-24 h-28 sm:w-28 sm:h-32 rounded-2xl overflow-hidden bg-slate-100 border-2 border-emerald-800/25 shadow-xs shrink-0 group">
+                        <div class="leadership-portrait-frame relative w-24 h-28 sm:w-28 sm:h-32 rounded-2xl overflow-hidden bg-slate-100 border-2 border-emerald-800/25 shadow-xs shrink-0">
                             <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"
                                  alt="মোছা: রোকসানা পারভীন - সহকারী প্রধান শিক্ষক"
-                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <div class="absolute bottom-0 inset-x-0 bg-slate-900/85 text-[10px] text-white text-center py-0.5 font-bold">
-                                সহকারী প্রধান
-                            </div>
+                                 class="leadership-portrait-img w-full h-full object-cover">
                         </div>
                         <div class="space-y-1 flex-1 min-w-0">
-                            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[10px] font-bold border border-slate-200">
+                            <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-bold border border-slate-200">
                                 সহকারী প্রধান শিক্ষক
                             </span>
-                            <h3 class="text-lg sm:text-xl font-bold text-slate-900 tracking-tight truncate">
+                            <h3 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight truncate leading-snug">
                                 মোছা: রোকসানা পারভীন
                             </h3>
-                            <p class="text-xs text-slate-600 font-medium">
+                            <p class="text-sm text-slate-600 font-medium">
                                 এম.এসসি (পদার্থবিজ্ঞান), বি.এড
                             </p>
-                            <span class="text-[11px] text-[#005030] font-semibold block">
+                            <span class="text-xs sm:text-sm text-[#005030] font-semibold block">
                                 একাডেমিক ও পরীক্ষা নিয়ন্ত্রণ সমন্বয়ক
                             </span>
                         </div>
                     </div>
 
-                    <div class="space-y-2.5 text-xs text-slate-600 leading-relaxed">
-                        <p class="text-slate-600">
+                    <div class="space-y-3 text-sm text-slate-700 leading-relaxed">
+                        <p>
                             শ্রেণিকক্ষে শিক্ষার্থীদের নিয়মিত উপস্থিতি, পাঠদানের গুণগত মান বজায় রাখা এবং পিছিয়ে পড়া শিক্ষার্থীদের নিবিড় পর্যবেক্ষণসহ সার্বিক অভ্যন্তরীণ শৃঙ্খলা তিনি পরিচালনা করেন।
                         </p>
 
                         <div class="space-y-2 pt-1">
-                            <div class="flex items-center gap-2 text-slate-700 font-medium bg-slate-50 p-2 rounded-lg">
-                                <i class="fa-solid fa-check-circle text-emerald-600 text-xs shrink-0"></i>
-                                <span>বিজ্ঞানাগার ও আইসিটি ল্যাবের ব্যবহারিক পাঠ তদারকি</span>
+                            <div class="flex items-center gap-2.5 text-slate-700 font-medium bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                                <i class="fa-solid fa-circle-check text-emerald-600 text-sm shrink-0"></i>
+                                <span class="text-xs sm:text-sm">বিজ্ঞানাগার ও আইসিটি ল্যাবের ব্যবহারিক পাঠ তদারকি</span>
                             </div>
-                            <div class="flex items-center gap-2 text-slate-700 font-medium bg-slate-50 p-2 rounded-lg">
-                                <i class="fa-solid fa-check-circle text-emerald-600 text-xs shrink-0"></i>
-                                <span>শিক্ষার্থীদের আচরণিক মূল্যায়ন ও সহশিক্ষা ইনচার্জ</span>
+                            <div class="flex items-center gap-2.5 text-slate-700 font-medium bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                                <i class="fa-solid fa-circle-check text-emerald-600 text-sm shrink-0"></i>
+                                <span class="text-xs sm:text-sm">শিক্ষার্থীদের আচরণিক মূল্যায়ন ও সহশিক্ষা ইনচার্জ</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                <div class="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between text-xs sm:text-sm text-slate-500">
                     <span class="font-medium">কক্ষ: শিক্ষক মিলনায়তন (১০৩)</span>
                     <a href="tel:+8801713456789" class="text-[#005030] font-bold hover:underline flex items-center gap-1.5 transition-colors">
                         <i class="fa-solid fa-phone"></i>
@@ -266,33 +260,33 @@
         <div class="bg-white border border-slate-200/90 rounded-2xl p-4 sm:p-5 shadow-2xs mb-8 space-y-4">
             {{-- Realtime Search Bar --}}
             <div class="flex flex-col sm:flex-row items-center gap-3">
-                <div class="relative flex-1 w-full">
+                <div class="teacher-search-box">
+                    <span class="teacher-search-icon">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+
                     <input type="text"
                            id="teacher-search-input"
                            value="{{ request('q') }}"
                            placeholder="শিক্ষকের নাম, বিষয়, পদবি বা বিভাগ লিখে তাৎক্ষণিক খুঁজুন..."
-                           class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 pl-10 pr-10 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#005030] focus:border-transparent transition-all">
-
-                    <span class="absolute left-3.5 top-3 text-slate-400 pointer-events-none">
-                        <i class="fa-solid fa-magnifying-glass text-xs"></i>
-                    </span>
+                           autocomplete="off">
 
                     <button type="button"
                             id="clear-search-btn"
-                            class="absolute right-3 top-2.5 text-slate-400 hover:text-slate-600 p-1 rounded-full hover:bg-slate-200 transition-colors {{ request('q') ? 'flex' : 'hidden' }}"
+                            class="teacher-clear-btn {{ request('q') ? 'flex' : 'hidden' }}"
                             title="অনুসন্ধান মুছুন">
                         <i class="fa-solid fa-xmark text-xs"></i>
                     </button>
                 </div>
 
                 <div class="flex items-center gap-2 w-full sm:w-auto shrink-0 justify-between sm:justify-start">
-                    <span class="text-xs text-slate-500 font-medium">
+                    <span class="text-xs sm:text-sm text-slate-600 font-medium">
                         প্রদর্শিত শিক্ষক: <strong id="visible-teacher-count" class="text-[#005030] font-bold">--</strong> জন
                     </span>
                     <button type="button"
                             id="reset-filters-btn"
-                            class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors flex items-center gap-1 shadow-2xs">
-                        <i class="fa-solid fa-rotate-left text-[11px]"></i>
+                            class="px-3.5 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs sm:text-sm font-semibold transition-colors flex items-center gap-1.5 shadow-2xs">
+                        <i class="fa-solid fa-rotate-left text-xs"></i>
                         <span>রিসেট</span>
                     </button>
                 </div>
@@ -460,12 +454,12 @@
                 }
             @endphp
 
-            <div class="pt-3 border-t border-slate-100 flex items-center gap-2 overflow-x-auto pb-1 text-xs">
-                <span class="text-slate-400 font-medium text-[11px] shrink-0 mr-1">বিভাগসমূহ:</span>
+            <div class="pt-3 border-t border-slate-100 flex items-center gap-2 overflow-x-auto pb-1 text-xs sm:text-sm">
+                <span class="text-slate-500 font-semibold text-xs sm:text-sm shrink-0 mr-1">বিভাগসমূহ:</span>
                 @foreach($standardDepts as $slug => $label)
                     <button type="button"
                             data-department="{{ $slug }}"
-                            class="dept-filter-tab px-3.5 py-1.5 rounded-full font-semibold transition-all shrink-0 cursor-pointer {{ $loop->first ? 'bg-[#005030] text-white shadow-xs' : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200/90' }}">
+                            class="dept-filter-tab px-4 py-2 rounded-full font-semibold transition-all shrink-0 cursor-pointer {{ $loop->first ? 'bg-[#005030] text-white shadow-xs active' : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200/90' }}">
                         {{ $label }}
                     </button>
                 @endforeach
@@ -475,7 +469,7 @@
         {{-- Teacher Cards Grid with Controlled Non-Elongated Photo Aspect Ratio --}}
         <div id="teachers-grid-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             @foreach($displayStaff as $staff)
-                <div class="teacher-card-item bg-white border border-slate-200/90 rounded-2xl p-4 sm:p-5 shadow-2xs hover:shadow-xl hover:border-[#005030]/50 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between group"
+                <div class="teacher-card-item p-4 sm:p-5 flex flex-col justify-between group shadow-2xs"
                      data-department="{{ $staff['dept_slug'] }}"
                      data-department-name="{{ $staff['department'] }}"
                      data-name="{{ $staff['name'] }}"
@@ -483,40 +477,40 @@
                      data-qualification="{{ $staff['qualification'] }}">
                     <div>
                         {{-- Top Accent Line --}}
-                        <div class="h-1 w-full bg-slate-100 group-hover:bg-[#005030] transition-colors duration-300 rounded-full mb-3.5"></div>
+                        <div class="teacher-accent-bar"></div>
 
                         {{-- Perfectly Proportioned Compact Photo Frame (NOT Too Tall) --}}
-                        <div class="h-48 w-full rounded-xl overflow-hidden bg-slate-100 relative mb-3.5 border border-slate-200/70 group-hover:border-emerald-600/40 transition-colors shadow-2xs">
+                        <div class="teacher-photo-frame h-48 w-full bg-slate-100 relative mb-3.5 shadow-2xs">
                             <img src="{{ $staff['photo'] }}"
                                  alt="{{ $staff['name'] }}"
                                  loading="lazy"
-                                 class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500 ease-out">
+                                 class="teacher-photo-img w-full h-full object-cover">
 
                             {{-- Pinned Department Badge Tag --}}
-                            <div class="absolute bottom-2.5 left-2.5 bg-slate-900/85 text-white backdrop-blur-xs text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+                            <div class="absolute bottom-2.5 left-2.5 bg-slate-900/85 text-white backdrop-blur-xs text-xs font-bold px-2.5 py-1 rounded-md shadow-sm">
                                 {{ $staff['department'] }}
                             </div>
 
                             {{-- Experience Badge --}}
-                            <div class="absolute top-2.5 right-2.5 bg-white/95 text-slate-800 backdrop-blur-xs text-[10px] font-bold px-2 py-0.5 rounded-md border border-slate-200/90 shadow-2xs">
+                            <div class="absolute top-2.5 right-2.5 bg-white/95 text-slate-800 backdrop-blur-xs text-xs font-bold px-2.5 py-0.5 rounded-md border border-slate-200/90 shadow-2xs">
                                 {{ $staff['experience'] }}
                             </div>
                         </div>
 
                         {{-- Content Block --}}
-                        <div class="space-y-1">
-                            <h3 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#005030] transition-colors leading-snug">
+                        <div class="space-y-1.5">
+                            <h3 class="teacher-name text-base sm:text-lg font-bold text-slate-900 leading-snug">
                                 {{ $staff['name'] }}
                             </h3>
-                            <p class="text-xs sm:text-sm font-semibold text-emerald-800">
+                            <p class="text-xs sm:text-sm font-semibold text-[#005030]">
                                 {{ $staff['designation'] }}
                             </p>
-                            <p class="text-xs text-slate-600 leading-relaxed pt-1.5 border-t border-slate-100 line-clamp-2" title="{{ $staff['qualification'] }}">
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed pt-1.5 border-t border-slate-100 line-clamp-2" title="{{ $staff['qualification'] }}">
                                 {{ $staff['qualification'] }}
                             </p>
                             @if(!empty($staff['specialty']))
-                                <p class="text-[11px] text-slate-500 font-medium pt-1 flex items-center gap-1.5 truncate">
-                                    <i class="fa-solid fa-award text-amber-500 text-[10px] shrink-0"></i>
+                                <p class="text-xs text-slate-500 font-medium pt-1 flex items-center gap-1.5 truncate">
+                                    <i class="fa-solid fa-award text-amber-500 text-xs shrink-0"></i>
                                     <span class="truncate">{{ $staff['specialty'] }}</span>
                                 </p>
                             @endif
@@ -524,17 +518,17 @@
                     </div>
 
                     {{-- Action Footer with Enhanced Tactile Buttons --}}
-                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600 mt-4 gap-2">
+                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between mt-4 gap-2">
                         <a href="tel:{{ $staff['phone'] }}"
-                           class="flex-1 px-3 py-1.5 rounded-lg bg-emerald-50/80 hover:bg-[#005030] text-[#005030] hover:text-white font-semibold transition-colors duration-200 flex items-center justify-center gap-1.5 shadow-2xs group/btn">
-                            <i class="fa-solid fa-phone text-xs group-hover/btn:scale-110 transition-transform"></i>
-                            <span class="text-[11px] truncate">{{ $staff['phone'] }}</span>
+                           class="teacher-btn-phone flex-1">
+                            <i class="fa-solid fa-phone text-xs"></i>
+                            <span class="text-xs truncate">{{ $staff['phone'] }}</span>
                         </a>
 
                         <a href="mailto:{{ $staff['email'] }}"
-                           class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-sky-600 text-slate-600 hover:text-white flex items-center justify-center transition-colors duration-200 shadow-2xs shrink-0 group/mail"
+                           class="teacher-btn-email shrink-0"
                            title="{{ $staff['email'] }}">
-                            <i class="fa-solid fa-envelope text-xs group-hover/mail:scale-110 transition-transform"></i>
+                            <i class="fa-solid fa-envelope text-xs"></i>
                         </a>
                     </div>
                 </div>
@@ -592,52 +586,52 @@
         {{-- 3 Clean Editorial Capability Cards with Hover Lift --}}
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             {{-- Pillar 1 --}}
-            <div class="pedagogy-card bg-slate-50/70 border border-slate-200/90 rounded-2xl p-6 space-y-3.5 shadow-2xs hover:shadow-lg hover:-translate-y-1.5 transition-all duration-300">
-                <div class="w-12 h-12 rounded-xl bg-emerald-100 text-[#005030] flex items-center justify-center text-xl font-bold shadow-2xs">
+            <div class="pedagogy-card space-y-3.5 shadow-2xs group">
+                <div class="pedagogy-icon-box w-12 h-12 rounded-xl bg-emerald-100 text-[#005030] flex items-center justify-center text-xl font-bold shadow-2xs">
                     <i class="fa-solid fa-book-open-reader"></i>
                 </div>
-                <h3 class="text-lg font-bold text-slate-900 tracking-tight">
+                <h3 class="text-lg sm:text-xl font-bold text-slate-900 tracking-tight leading-snug">
                     দৈনিক সুনির্দিষ্ট পাঠ পরিকল্পনা ও শিখনফল
                 </h3>
-                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                <p class="text-sm text-slate-700 leading-relaxed font-normal">
                     প্রতিটি ক্লাসের আগেই শিক্ষকগণ জাতীয় পাঠ্যক্রম অনুযায়ী বিস্তারিত লেসন প্ল্যান তৈরি করেন। এতে প্রতিটি পিরিয়ডে নির্ধারিত শিখনফল পূর্ণাঙ্গভাবে অর্জন করা নিশ্চিত হয়।
                 </p>
-                <div class="pt-2 text-xs font-semibold text-[#005030] flex items-center gap-1.5">
-                    <i class="fa-solid fa-circle-check text-[11px]"></i>
+                <div class="pt-2 text-xs sm:text-sm font-semibold text-[#005030] flex items-center gap-1.5">
+                    <i class="fa-solid fa-circle-check text-xs"></i>
                     <span>সাপ্তাহিক শিক্ষক সমন্বয় ও অগ্রগতি পর্যালোচনা</span>
                 </div>
             </div>
 
             {{-- Pillar 2 --}}
-            <div class="pedagogy-card bg-slate-50/70 border border-slate-200/90 rounded-2xl p-6 space-y-3.5 shadow-2xs hover:shadow-lg hover:-translate-y-1.5 transition-all duration-300">
-                <div class="w-12 h-12 rounded-xl bg-sky-100 text-sky-800 flex items-center justify-center text-xl font-bold shadow-2xs">
+            <div class="pedagogy-card space-y-3.5 shadow-2xs group">
+                <div class="pedagogy-icon-box w-12 h-12 rounded-xl bg-sky-100 text-sky-800 flex items-center justify-center text-xl font-bold shadow-2xs">
                     <i class="fa-solid fa-laptop-code"></i>
                 </div>
-                <h3 class="text-lg font-bold text-slate-900 tracking-tight">
+                <h3 class="text-lg sm:text-xl font-bold text-slate-900 tracking-tight leading-snug">
                     হাতে-কলমে ল্যাব ও মাল্টিমিডিয়া ক্লাস
                 </h3>
-                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                <p class="text-sm text-slate-700 leading-relaxed font-normal">
                     তত্ত্বীয় আলোচনার পাশাপাশি শেখ রাসেল ডিজিটাল ল্যাব এবং পদার্থ, রসায়ন ও জীববিজ্ঞানের সুসজ্জিত গবেষণাগারে নিয়মিত ব্যবহারিক পরীক্ষা সম্পন্ন করানো হয়।
                 </p>
-                <div class="pt-2 text-xs font-semibold text-sky-800 flex items-center gap-1.5">
-                    <i class="fa-solid fa-circle-check text-[11px]"></i>
+                <div class="pt-2 text-xs sm:text-sm font-semibold text-sky-800 flex items-center gap-1.5">
+                    <i class="fa-solid fa-circle-check text-xs"></i>
                     <span>স্মার্ট প্রজেক্টর ও মাল্টিমিডিয়া ক্লাসরুম</span>
                 </div>
             </div>
 
             {{-- Pillar 3 --}}
-            <div class="pedagogy-card bg-slate-50/70 border border-slate-200/90 rounded-2xl p-6 space-y-3.5 shadow-2xs hover:shadow-lg hover:-translate-y-1.5 transition-all duration-300">
-                <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-900 flex items-center justify-center text-xl font-bold shadow-2xs">
+            <div class="pedagogy-card space-y-3.5 shadow-2xs group">
+                <div class="pedagogy-icon-box w-12 h-12 rounded-xl bg-amber-100 text-amber-900 flex items-center justify-center text-xl font-bold shadow-2xs">
                     <i class="fa-solid fa-hands-holding-child"></i>
                 </div>
-                <h3 class="text-lg font-bold text-slate-900 tracking-tight">
+                <h3 class="text-lg sm:text-xl font-bold text-slate-900 tracking-tight leading-snug">
                     দুর্বল শিক্ষার্থীদের জন্য নিবিড় রিমিডিয়াল কেয়ার
                 </h3>
-                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                <p class="text-sm text-slate-700 leading-relaxed font-normal">
                     পড়াশোনায় যেকোনো বিষয়ে পিছিয়ে থাকা শিক্ষার্থীদের দ্রুত শনাক্ত করে নিয়মিত ক্লাসের অতিরিক্ত সময়ে বিশেষ শিক্ষক সহায়তার মাধ্যমে এগিয়ে নেওয়া হয়।
                 </p>
-                <div class="pt-2 text-xs font-semibold text-amber-800 flex items-center gap-1.5">
-                    <i class="fa-solid fa-circle-check text-[11px]"></i>
+                <div class="pt-2 text-xs sm:text-sm font-semibold text-amber-800 flex items-center gap-1.5">
+                    <i class="fa-solid fa-circle-check text-xs"></i>
                     <span>বিনা খরচে বিশেষ টিউটোরিয়াল সাপোর্ট</span>
                 </div>
             </div>
@@ -652,7 +646,7 @@
 <section class="home-section bg-slate-50/80" id="consultation-cta">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="cta-banner-box cta-box rounded-3xl p-8 sm:p-12 lg:p-16 relative overflow-hidden shadow-lg border border-emerald-700/60">
-            <div class="relative z-10 max-w-2xl space-y-4">
+            <div class="relative z-10 max-w-4xl space-y-4">
                 <span class="guardian-kicker-pill">
                     <i class="fa-solid fa-calendar-days text-[11px] text-emerald-400"></i>
                     <span>GUARDIAN ENGAGEMENT — অভিভাবক পরামর্শ ও মতবিনিময়</span>
@@ -660,7 +654,7 @@
                 <h2 class="cta-banner-title text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
                     সন্তানের ভবিষ্যৎ ও অগ্রগতি নিয়ে <span class="text-amber-400 font-bold">শিক্ষকদের সাথে সরাসরি কথা বলুন</span>
                 </h2>
-                <p class="cta-banner-desc text-xs sm:text-sm leading-relaxed">
+                <p class="cta-banner-desc text-sm sm:text-base leading-relaxed">
                     আপনার সন্তানের ক্লাসরুমের অগ্রগতি, আচরণ কিংবা ভবিষ্যৎ পরিকল্পনা নিয়ে যেকোনো শিক্ষক বা প্রতিষ্ঠান প্রধানের সাথে কথা বলতে পারেন। প্রতি রবিবার থেকে বৃহস্পতিবার দুপুর ১২:৩০ হতে ১:৩০ পর্যন্ত শিক্ষক মিলনায়তনে সুনির্দিষ্ট অভিভাবক সাক্ষাৎ সময় নির্ধারিত রয়েছে।
                 </p>
 
@@ -684,9 +678,7 @@
 
             {{-- Decorative Academic Graphic Geometry --}}
             <div class="hidden lg:block absolute -right-12 -bottom-12 w-96 h-96 rounded-full bg-emerald-800/30 border border-emerald-600/30 pointer-events-none"></div>
-            <div class="hidden lg:block absolute right-24 bottom-12 text-emerald-800/30 text-9xl pointer-events-none">
-                <i class="fa-solid fa-chalkboard-user"></i>
-            </div>
+            
         </div>
     </div>
 </section>
@@ -766,11 +758,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Update tab styles
             deptTabs.forEach(t => {
-                t.classList.remove('bg-[#005030]', 'text-white', 'shadow-xs');
+                t.classList.remove('bg-[#005030]', 'text-white', 'shadow-xs', 'active');
                 t.classList.add('bg-white', 'text-slate-700', 'border', 'border-slate-200/90');
             });
             this.classList.remove('bg-white', 'text-slate-700', 'border', 'border-slate-200/90');
-            this.classList.add('bg-[#005030]', 'text-white', 'shadow-xs');
+            this.classList.add('bg-[#005030]', 'text-white', 'shadow-xs', 'active');
 
             filterTeachers();
         });

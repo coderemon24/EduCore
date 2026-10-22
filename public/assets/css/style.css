@@ -1419,7 +1419,293 @@ section[id],
     box-shadow: 0 8px 20px rgba(0, 56, 32, 0.4);
 }
 
+/* ==========================================================================
+   Teachers Page Components & Universal Hover Physics (Matches Home Page)
+   ========================================================================== */
 
+/* 1. Telemetry Strip Metric Items */
+.telemetry-metric-item {
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
 
+.telemetry-metric-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(52, 211, 153, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.35);
+}
 
+.telemetry-metric-item .telemetry-icon-box {
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.telemetry-metric-item:hover .telemetry-icon-box {
+    background-color: #005030;
+    color: #6ee7b7;
+    border-color: rgba(52, 211, 153, 0.5);
+    transform: scale(1.08);
+}
+
+/* 2. Hero ESTD Widget */
+.hero-estd-card {
+    transition: border-color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.hero-estd-card:hover {
+    border-color: rgba(52, 211, 153, 0.7) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* 3. Leadership Spotlight Cards */
+.leadership-card {
+    transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.leadership-card:hover {
+    border-color: #005030 !important;
+    transform: translateY(-4px);
+    box-shadow: 0 18px 38px -8px rgba(0, 80, 48, 0.12), 0 0 0 1px rgba(0, 80, 48, 0.15) !important;
+}
+
+.leadership-card .leadership-portrait-frame {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.leadership-card:hover .leadership-portrait-frame {
+    border-color: #005030;
+    box-shadow: 0 8px 20px -4px rgba(0, 80, 48, 0.2);
+}
+
+.leadership-card .leadership-portrait-img {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.leadership-card:hover .leadership-portrait-img {
+    transform: scale(1.06);
+}
+
+/* 4. Core Teacher Directory Cards */
+.teacher-card-item {
+    background-color: #ffffff;
+    border: 1px solid rgba(226, 232, 240, 0.95);
+    border-radius: 1.125rem;
+    transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.teacher-card-item:hover {
+    border-color: #005030 !important;
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px -8px rgba(0, 80, 48, 0.14), 0 0 0 1px rgba(0, 80, 48, 0.12) !important;
+}
+
+.teacher-card-item .teacher-accent-bar {
+    height: 4px;
+    width: 100%;
+    background-color: #e2e8f0;
+    border-radius: 9999px;
+    margin-bottom: 0.875rem;
+    transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.teacher-card-item:hover .teacher-accent-bar {
+    background-color: #005030;
+    transform: scaleX(1.02);
+}
+
+.teacher-card-item .teacher-photo-frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.teacher-card-item:hover .teacher-photo-frame {
+    border-color: rgba(0, 80, 48, 0.35);
+    box-shadow: 0 4px 14px rgba(0, 80, 48, 0.08);
+}
+
+.teacher-card-item .teacher-photo-img {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.teacher-card-item:hover .teacher-photo-img {
+    transform: scale(1.07);
+}
+
+.teacher-card-item .teacher-name {
+    transition: color 0.2s ease;
+}
+
+.teacher-card-item:hover .teacher-name {
+    color: #005030;
+}
+
+/* 5. Teacher Card Contact Action Buttons */
+.teacher-btn-phone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    background-color: #e6f4ea;
+    color: #005030;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.teacher-btn-phone:hover {
+    background-color: #005030;
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 80, 48, 0.2);
+}
+
+.teacher-btn-email {
+    width: 2.25rem;
+    height: 2.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    background-color: #f1f5f9;
+    color: #475569;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.teacher-btn-email:hover {
+    background-color: #0284c7;
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(2, 132, 199, 0.25);
+}
+
+/* 6. Faculty Pedagogical Standards Cards */
+.pedagogy-card {
+    background-color: rgba(248, 250, 252, 0.85);
+    border: 1px solid rgba(226, 232, 240, 0.95);
+    border-radius: 1.125rem;
+    padding: 1.5rem;
+    transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 640px) {
+    .pedagogy-card {
+        padding: 1.75rem;
+    }
+}
+
+.pedagogy-card:hover {
+    background-color: #ffffff;
+    border-color: #005030 !important;
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px -8px rgba(0, 80, 48, 0.12), 0 0 0 1px rgba(0, 80, 48, 0.15) !important;
+}
+
+.pedagogy-card .pedagogy-icon-box {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.pedagogy-card:hover .pedagogy-icon-box {
+    transform: scale(1.08) rotate(2deg);
+    box-shadow: 0 6px 16px rgba(0, 80, 48, 0.18);
+}
+
+/* 7. Department Filter Tab Pills */
+.dept-filter-tab {
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+.dept-filter-tab:hover:not(.active):not(.bg-\[\#005030\]) {
+    background-color: #f1f5f9 !important;
+    border-color: #94a3b8 !important;
+    color: #005030 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+/* 8. Real-time Search Input & Icon Positioning */
+.teacher-search-box {
+    position: relative;
+    width: 100%;
+    flex: 1 1 0%;
+}
+
+.teacher-search-box input {
+    width: 100%;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
+    padding-left: 2.75rem !important; /* guaranteed clearance for the search icon */
+    padding-right: 2.5rem !important;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: #0f172a;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.teacher-search-box input:hover {
+    border-color: #cbd5e1;
+}
+
+.teacher-search-box input:focus {
+    outline: none;
+    background-color: #ffffff;
+    border-color: #005030;
+    box-shadow: 0 0 0 3px rgba(0, 80, 48, 0.14);
+}
+
+.teacher-search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    z-index: 10;
+    transition: color 0.2s ease;
+}
+
+.teacher-search-box:focus-within .teacher-search-icon {
+    color: #005030;
+}
+
+.teacher-clear-btn {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    padding: 0.25rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.teacher-clear-btn:hover {
+    color: #475569;
+    background-color: #e2e8f0;
+}
+
+.teacher-clear-btn.hidden {
+    display: none !important;
+}
 
