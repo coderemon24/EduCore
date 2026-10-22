@@ -290,7 +290,7 @@
                 'insertdatetime', 'media', 'table', 'wordcount'
             ],
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | link table code fullscreen',
-            content_style: "body { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; font-size: 13px; color: #1e293b; line-height: 1.6; padding: 12px; }",
+            content_style: "body { font-family: 'Noto Sans Bengali', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; font-size: 13px; color: #1e293b; line-height: 1.6; padding: 12px; }",
             branding: false,
             promotion: false,
             statusbar: true,

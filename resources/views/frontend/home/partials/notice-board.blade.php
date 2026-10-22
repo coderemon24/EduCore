@@ -74,7 +74,7 @@
     }
 @endphp
 
-<div class="lg:col-span-4 bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-xs">
+<div class="w-full h-full bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-xs">
     {{-- Header: Bell Icon + Heading + "সকল নোটিশ" Button --}}
     <div class="flex items-center justify-between pb-3 sm:pb-4">
         <div class="flex items-center gap-2.5">
@@ -125,7 +125,7 @@
 
                 <a href="{{ route('frontend.notices.show', $notice['slug']) }}"
                    class="rounded-full border border-[#005030] text-[#005030] 
-                   hover:!bg-[#005030]  px-3.5 sm:px-4 py-1 text-xs sm:text-[14px] font-semibold transition-all duration-150 shrink-0 text-center cursor-pointer">
+                   notice_show  px-3.5 sm:px-4 py-1 text-xs sm:text-[14px] font-semibold transition-all duration-150 shrink-0 text-center cursor-pointer">
                     দেখুন
                 </a>
             </div>

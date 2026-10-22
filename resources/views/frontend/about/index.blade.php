@@ -47,7 +47,7 @@
     {{-- Dedicated CSS Micro-Interactions & Styling --}}
     <style>
         .about-page-wrapper {
-            font-family: 'Hind Siliguri', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            font-family: 'Noto Sans Bengali', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
         }
         .about-card {
             background-color: #ffffff;

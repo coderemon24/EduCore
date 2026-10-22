@@ -191,3 +191,50 @@
         bottom: 24px !important;
     }
 }
+
+/* ==========================================================================
+   3. Homepage Sequential Rhythm & Section Responsiveness
+   ========================================================================== */
+@media (max-width: 639px) {
+    .home-section {
+        padding-top: 3.5rem !important;
+        padding-bottom: 3.5rem !important;
+    }
+
+    .section-kicker {
+        font-size: 0.625rem !important;
+        padding: 0.2rem 0.5rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .experience-frame {
+        border-radius: 0.75rem !important;
+    }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+    .home-section {
+        padding-top: 4.5rem !important;
+        padding-bottom: 4.5rem !important;
+    }
+}
+
+@media (max-width: 1023px) {
+    .section-header-block {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0.75rem !important;
+        margin-bottom: 2rem !important;
+    }
+    .section-header-left,
+    .section-header-right {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 1 1 100% !important;
+    }
+    .dispatches-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+

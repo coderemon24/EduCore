@@ -9,10 +9,10 @@
 <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png') }}">
 <link rel="shortcut icon" href="{{ asset('assets/images/logo.png') }}">
 
-<!-- Google Fonts: Hind Siliguri (Bengali) & Plus Jakarta Sans (English) -->
+<!-- Google Fonts: Noto Sans Bengali (Bengali) & Plus Jakarta Sans (English Fallback) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- Swiper Slider CSS (Local Asset) -->
 <link rel="stylesheet" href="{{ asset('assets/css/swiper-bundle.min.css') }}">
