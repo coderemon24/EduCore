@@ -198,27 +198,36 @@
 
             {{-- Right Campus Photo Column (Col 5 - 40%) --}}
             <div class="lg:col-span-5 space-y-6 lg:sticky lg:top-24">
-                {{-- Campus Photo Card with Floating Anchor --}}
-                <div class="bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-2xs relative group">
-                    {{-- Floating Anchor: Credential Badge --}}
-                    <div class="absolute -top-3 -right-3 z-20 bg-slate-900 text-white border border-slate-700/80 px-3.5 py-1.5 rounded-full text-xs font-bold shadow-md flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                        <span>Estd. ১৯৬৮ • সাঁথিয়া</span>
-                    </div>
-
+                {{-- Campus Photo Card with Polished Inset Badge --}}
+                <div class="bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-2xs hover:shadow-md transition-all duration-300 group">
                     <div class="relative h-64 sm:h-72 w-full bg-slate-900 overflow-hidden">
+                        {{-- Polished Inset Badge (Inside the frame, clean backdrop blur) --}}
+                        <div class="absolute top-4 left-4 z-20 bg-slate-950/85 backdrop-blur-md text-white border border-white/20 px-3.5 py-1.5 rounded-full text-xs font-bold shadow-lg flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span>Estd. {{ $about->established_year ?? '১৯৬৮' }} • সাঁথিয়া</span>
+                        </div>
+
                         <img src="{{ $about->history_image_url }}"
                              alt="{{ $about->title }}"
-                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent"></div>
-                        <div class="absolute bottom-4 left-4 right-4 text-white text-xs">
-                            <p class="font-bold truncate text-white text-base">{{ $school->name ?? 'সোনাতলা উচ্চ বিদ্যালয়' }}</p>
-                            <p class="text-xs text-emerald-200/90 mt-0.5">প্রধান একাডেমিক ভবন ও সুপরিসর সবুজ ক্যাম্পাস</p>
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4 text-white">
+                            <p class="font-extrabold truncate text-white text-base sm:text-lg tracking-tight">{{ $school->name ?? 'সোনাতলা উচ্চ বিদ্যালয়' }}</p>
+                            <p class="text-xs text-emerald-200/95 mt-1 flex items-center gap-1.5">
+                                <i class="fa-solid fa-tree text-emerald-400 text-[11px]"></i>
+                                <span>প্রধান একাডেমিক ভবন ও সুপরিসর সবুজ ক্যাম্পাস</span>
+                            </p>
                         </div>
                     </div>
-                    <div class="p-4 bg-slate-50/80 border-t border-slate-100 text-xs text-slate-600 flex items-center justify-between">
-                        <span>সাঁথিয়া-বেড়া আঞ্চলিক শিক্ষাকেন্দ্র</span>
-                        <span class="text-[#005030] font-bold">স্থাপিত ১৯৬৮ খ্রি.</span>
+                    <div class="p-4 bg-slate-50/90 border-t border-slate-100 text-xs text-slate-600 flex items-center justify-between">
+                        <span class="flex items-center gap-1.5 font-medium text-slate-700">
+                            <i class="fa-solid fa-graduation-cap text-[#005030]"></i>
+                            <span>সাঁথিয়া-বেড়া আঞ্চলিক শিক্ষাকেন্দ্র</span>
+                        </span>
+                        <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-[#005030] text-[11px] font-bold border border-emerald-200/80">
+                            <i class="fa-solid fa-circle-check text-[10px]"></i>
+                            <span>মূল ক্যাম্পাস</span>
+                        </span>
                     </div>
                 </div>
 
