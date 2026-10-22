@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'সম্মানিত শিক্ষকমণ্ডলী ও অনুষদ | ' . ($school->name ?? 'সোনাতলা উচ্চ বিদ্যালয়'))
-@section('meta_description', 'সোনাতলা উচ্চ বিদ্যালয়ের নিবেদিতপ্রাণ ও প্রশিক্ষণপ্রাপ্ত শিক্ষক ও কর্মচারীবৃন্দের পূর্ণাঙ্গ বিবরণী ও অনুষদ পরিচিতি।')
+@section('title', 'অভিভাবকের আস্থায় সম্মানিত শিক্ষকমণ্ডলী | ' . ($school->name ?? 'সোনাতলা উচ্চ বিদ্যালয়'))
+@section('meta_description', 'সোনাতলা উচ্চ বিদ্যালয়ের নিবেদিতপ্রাণ ও প্রশিক্ষণপ্রাপ্ত সম্মানিত শিক্ষকমণ্ডলী—যাঁদের আন্তরিক পাঠদান ও নিবিড় পরিচর্যায় গড়ে উঠছে প্রতিটি সন্তান।')
 
 @section('content')
 
@@ -28,13 +28,13 @@
         <div class="space-y-3.5 max-w-2xl">
             <span class="hero-anim inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#003820] text-emerald-200 text-xs font-bold uppercase tracking-wider border border-emerald-700/60 shadow-xs">
                 <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>FACULTY & MENTORS — সম্মানিত শিক্ষকমণ্ডলী</span>
+                <span>FACULTY & MENTORS — সোনাতলা উচ্চ বিদ্যালয়ের শিক্ষকমণ্ডলী</span>
             </span>
             <h1 class="hero-anim text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-                জ্ঞানের আলোকবর্তিকা ও <span class="text-emerald-300 font-bold">ভবিষ্যৎ গড়ার কারিগর</span>
+                অভিভাবকের গভীর আস্থায় প্রতিটি সন্তানকে <span class="text-emerald-300 font-bold">যোগ্য ও আদর্শ মানুষ হিসেবে</span> গড়ে তোলা
             </h1>
             <p class="hero-anim text-sm sm:text-base text-emerald-100/90 leading-relaxed mt-2">
-                ১৯৬৮ খ্রিষ্টাব্দ থেকে আমাদের নিবেদিতপ্রাণ ও সরকারি প্রশিক্ষণপ্রাপ্ত শিক্ষকবৃন্দ আধুনিক তথ্যপ্রযুক্তি, মানবিক মূল্যবোধ ও নিবিড় পাঠদানের মাধ্যমে শিক্ষার্থীদের আগামী দিনের আদর্শ নাগরিক হিসেবে গড়ে তুলছেন।
+                ১৯৬৮ খ্রিষ্টাব্দ থেকে আমাদের নিবেদিতপ্রাণ ও সরকারি প্রশিক্ষণপ্রাপ্ত শিক্ষকবৃন্দ শিক্ষার্থীদের শুধু মুখস্থ পাঠ নয়; বরং মেধা, সততা, মানবিক মূল্যবোধ ও কার্যকর জ্ঞান দিয়ে প্রস্তুত করছেন।
             </p>
         </div>
 
@@ -44,8 +44,8 @@
                 <span class="text-base font-extrabold font-mono text-white">{{ $school->established_year ?? '1968' }}</span>
             </div>
             <div class="text-xs">
-                <p class="text-emerald-300/80 font-medium text-[11px]">প্রতিষ্ঠানের অনুষদ গর্ব</p>
-                <p class="text-white font-bold text-sm sm:text-base">৩২+ জন অভিজ্ঞ শিক্ষক ও কর্মকর্তা</p>
+                <p class="text-emerald-300/80 font-medium text-[11px]">প্রতিষ্ঠানের অনুষদ শক্তি</p>
+                <p class="text-white font-bold text-sm sm:text-base">৩২ জন অভিজ্ঞ শিক্ষক ও কর্মকর্তা</p>
             </div>
         </div>
     </div>
@@ -62,29 +62,29 @@
             <div class="telemetry-metric-item flex items-center gap-3 p-2 rounded-lg hover:bg-slate-800/60 transition-colors">
                 <span class="w-9 h-9 rounded-xl bg-slate-800 text-emerald-400 flex items-center justify-center text-sm shrink-0 border border-slate-700 shadow-2xs"><i class="fa-solid fa-chalkboard-user"></i></span>
                 <div>
-                    <span class="text-slate-400 block text-[10px]">মোট অনুষদ ও কর্মী</span>
-                    <span class="text-white font-bold text-xs sm:text-sm">৩২+ জন শিক্ষক ও স্টাফ</span>
+                    <span class="text-slate-400 block text-[10px]">অনুষদ সদস্য সংখ্যা</span>
+                    <span class="text-white font-bold text-xs sm:text-sm">৩২ জন শিক্ষক ও কর্মকর্তা</span>
                 </div>
             </div>
             <div class="telemetry-metric-item flex items-center gap-3 p-2 rounded-lg hover:bg-slate-800/60 transition-colors">
                 <span class="w-9 h-9 rounded-xl bg-slate-800 text-emerald-400 flex items-center justify-center text-sm shrink-0 border border-slate-700 shadow-2xs"><i class="fa-solid fa-graduation-cap"></i></span>
                 <div>
-                    <span class="text-slate-400 block text-[10px]">উচ্চতর ডিগ্রিধারী</span>
-                    <span class="text-white font-bold text-xs sm:text-sm">৮৫%+ ১ম শ্রেণি ও স্নাতকোত্তর</span>
+                    <span class="text-slate-400 block text-[10px]">উচ্চতর প্রাতিষ্ঠানিক যোগ্যতা</span>
+                    <span class="text-white font-bold text-xs sm:text-sm">৮৫%+ স্নাতকোত্তর ও ১ম শ্রেণি</span>
                 </div>
             </div>
             <div class="telemetry-metric-item flex items-center gap-3 p-2 rounded-lg hover:bg-slate-800/60 transition-colors">
                 <span class="w-9 h-9 rounded-xl bg-slate-800 text-emerald-400 flex items-center justify-center text-sm shrink-0 border border-slate-700 shadow-2xs"><i class="fa-solid fa-users-line"></i></span>
                 <div>
-                    <span class="text-slate-400 block text-[10px]">শিক্ষক-শিক্ষার্থী অনুপাত</span>
-                    <span class="text-white font-bold text-xs sm:text-sm">১:৩০ নিবিড় কেয়ার</span>
+                    <span class="text-slate-400 block text-[10px]">শ্রেণিকক্ষে নিবিড় মনোযোগ</span>
+                    <span class="text-white font-bold text-xs sm:text-sm">১:৩০ শিক্ষক-শিক্ষার্থী অনুপাত</span>
                 </div>
             </div>
             <div class="telemetry-metric-item flex items-center gap-3 p-2 rounded-lg hover:bg-slate-800/60 transition-colors">
                 <span class="w-9 h-9 rounded-xl bg-slate-800 text-emerald-400 flex items-center justify-center text-sm shrink-0 border border-slate-700 shadow-2xs"><i class="fa-solid fa-certificate"></i></span>
                 <div>
-                    <span class="text-slate-400 block text-[10px]">পেশাগত প্রশিক্ষণ</span>
-                    <span class="text-white font-bold text-xs sm:text-sm">১০০% বিএড ও আইসিটি সার্টিফাইড</span>
+                    <span class="text-slate-400 block text-[10px]">পেশাগত পাঠদান যোগ্যতা</span>
+                    <span class="text-white font-bold text-xs sm:text-sm">১০০% বি.এড ও সরকারি প্রশিক্ষিত</span>
                 </div>
             </div>
         </div>
@@ -99,15 +99,15 @@
             <div class="section-header-left">
                 <span class="section-kicker">
                     <span class="section-kicker-dot"></span>
-                    INSTITUTIONAL LEADERSHIP — প্রশাসনিক ও একাডেমিক নেতৃত্ব
+                    INSTITUTIONAL LEADERSHIP — প্রাতিষ্ঠানিক অভিভাবকত্ব ও তত্ত্বাবধান
                 </span>
                 <h2 class="section-title">
-                    প্রতিষ্ঠানের দূরদর্শী নেতৃত্ব ও <span class="text-[#005030] font-bold">দিকনির্দেশনা</span>
+                    প্রতিষ্ঠানের অভিভাবকত্ব ও <span class="text-[#005030] font-bold">সুস্পষ্ট দিকনির্দেশনা</span>
                 </h2>
             </div>
             <div class="section-header-right">
                 <p class="section-subtitle">
-                    অভিজ্ঞ প্রাতিষ্ঠানিক প্রধানগণের সুযোগ্য নেতৃত্বে সোনাতলা উচ্চ বিদ্যালয় প্রতিবছর মাধ্যমিক পরীক্ষায় কৃতিত্বপূর্ণ ফলাফল ও আদর্শিক শৃঙ্খলা বজায় রেখে চলেছে।
+                    অভিজ্ঞ শিক্ষাবিদ ও প্রশাসনিক নেতৃত্বের প্রত্যক্ষ তত্ত্বাবধানে সোনাতলা উচ্চ বিদ্যালয় প্রতিটি শিক্ষার্থীর মেধা বিকাশ, চরিত্র গঠন ও শৃঙ্খলার সর্বোচ্চ নিশ্চয়তা প্রদান করে।
                 </p>
             </div>
         </div>
@@ -141,14 +141,14 @@
                             </p>
                             <p class="text-xs text-emerald-800 font-semibold flex items-center gap-1.5 pt-0.5">
                                 <i class="fa-solid fa-calendar-check text-[11px]"></i>
-                                শিক্ষাদান ও প্রশাসনে ২০+ বছরের সুদীর্ঘ অভিজ্ঞতা
+                                শিক্ষাদান ও বিদ্যালয় প্রশাসনে ২০+ বছরের সুদীর্ঘ অভিজ্ঞতা
                             </p>
                         </div>
                     </div>
 
                     {{-- Leadership Manifesto Quote --}}
                     <blockquote class="text-xs sm:text-sm text-slate-700 leading-relaxed italic bg-white p-4 rounded-xl border-l-3 border-[#005030] shadow-2xs">
-                        "আমাদের লক্ষ্য শুধু ভালো ফলাফল অর্জন নয়; বরং প্রতিটি শিক্ষার্থীকে সৎ, নিষ্ঠাবান, বিজ্ঞানমনস্ক এবং নৈতিকতাবোধসম্পন্ন একজন আদর্শ নাগরিক হিসেবে গড়ে তোলা।"
+                        "আমাদের প্রথম দায়িত্ব শুধু পাঠ্যবইয়ের জ্ঞান বিতরণ নয়; বরং স্নেহ, মমতা ও উপযুক্ত শৃঙ্খলার মাধ্যমে প্রতিটি সন্তানকে একজন সৎ, আত্মবিশ্বাসী ও আদর্শ মানুষ হিসেবে সমাজে প্রতিষ্ঠিত করা।"
                     </blockquote>
 
                     {{-- Office Hours & Schedule Strip --}}
@@ -156,14 +156,14 @@
                         <div class="bg-white p-3 rounded-xl border border-slate-200/80 flex items-center gap-2.5 shadow-2xs">
                             <span class="w-7 h-7 rounded-lg bg-emerald-50 text-[#005030] flex items-center justify-center shrink-0"><i class="fa-solid fa-clock"></i></span>
                             <div>
-                                <span class="text-slate-400 block text-[10px]">সরাসরি সাক্ষাৎকার সময়</span>
-                                <span class="text-slate-800 font-bold text-[11px]">রবি - বৃহস্পতি (সকাল ১০টা - ১২টা)</span>
+                                <span class="text-slate-400 block text-[10px]">সরাসরি অভিভাবক সাক্ষাৎ</span>
+                                <span class="text-slate-800 font-bold text-[11px]">রবি - বৃহস্পতি (সকাল ১০:০০ - ১২:০০)</span>
                             </div>
                         </div>
                         <div class="bg-white p-3 rounded-xl border border-slate-200/80 flex items-center gap-2.5 shadow-2xs">
                             <span class="w-7 h-7 rounded-lg bg-sky-50 text-sky-700 flex items-center justify-center shrink-0"><i class="fa-solid fa-phone"></i></span>
                             <div>
-                                <span class="text-slate-400 block text-[10px]">দাপ্তরিক যোগাযোগ</span>
+                                <span class="text-slate-400 block text-[10px]">প্রধান শিক্ষকের ব্যক্তিগত দপ্তর</span>
                                 <a href="tel:+8801712345678" class="text-[#005030] font-bold text-[11px] hover:underline">+৮৮০ ১৭১২-৩৪৫৬৭৮</a>
                             </div>
                         </div>
@@ -210,17 +210,17 @@
 
                     <div class="space-y-2.5 text-xs text-slate-600 leading-relaxed">
                         <p class="text-slate-600">
-                            সহকারী প্রধান শিক্ষক বিদ্যালয়ের অভ্যন্তরীণ পরীক্ষা, শ্রেণী রুটিন প্রণয়ন, ছাত্র-ছাত্রীদের হাজিরা ও শৃঙ্খলা ব্যবস্থার সার্বিক তদারকি করে থাকেন।
+                            শ্রেণিকক্ষে শিক্ষার্থীদের নিয়মিত উপস্থিতি, পাঠদানের গুণগত মান বজায় রাখা এবং পিছিয়ে পড়া শিক্ষার্থীদের নিবিড় পর্যবেক্ষণসহ সার্বিক অভ্যন্তরীণ শৃঙ্খলা তিনি পরিচালনা করেন।
                         </p>
 
                         <div class="space-y-2 pt-1">
                             <div class="flex items-center gap-2 text-slate-700 font-medium bg-slate-50 p-2 rounded-lg">
                                 <i class="fa-solid fa-check-circle text-emerald-600 text-xs shrink-0"></i>
-                                <span>বিজ্ঞান ও আইসিটি ল্যাব তদারকি প্রধান</span>
+                                <span>বিজ্ঞানাগার ও আইসিটি ল্যাবের ব্যবহারিক পাঠ তদারকি</span>
                             </div>
                             <div class="flex items-center gap-2 text-slate-700 font-medium bg-slate-50 p-2 rounded-lg">
                                 <i class="fa-solid fa-check-circle text-emerald-600 text-xs shrink-0"></i>
-                                <span>সহশিক্ষা কার্যক্রম ও মূল্যায়ন ইনচার্জ</span>
+                                <span>শিক্ষার্থীদের আচরণিক মূল্যায়ন ও সহশিক্ষা ইনচার্জ</span>
                             </div>
                         </div>
                     </div>
@@ -249,15 +249,15 @@
             <div class="section-header-left">
                 <span class="section-kicker">
                     <span class="section-kicker-dot"></span>
-                    TEACHING FACULTY & STAFF — অনুষদ ও কর্মকর্তা-কর্মচারী
+                    ACADEMIC FACULTY — সম্মানিত শিক্ষকমণ্ডলী
                 </span>
                 <h2 class="section-title">
-                    নিবেদিতপ্রাণ অনুষদ ও <span class="text-[#005030] font-bold">বিভাগীয় শিক্ষকবৃন্দ</span>
+                    শ্রেণিকক্ষে আন্তরিক পাঠদানে <span class="text-[#005030] font-bold">অভিজ্ঞ বিষয়ভিত্তিক শিক্ষকমণ্ডলী</span>
                 </h2>
             </div>
             <div class="section-header-right">
                 <p class="section-subtitle">
-                    বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা, ভাষা ও তথ্যপ্রযুক্তি বিভাগের সম্মানিত বিষয়ভিত্তিক শিক্ষকগণের তালিকা। তাত্ক্ষণিকভাবে বিভাগ অনুযায়ী ফিল্টার করুন।
+                    বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা, ভাষা ও তথ্যপ্রযুক্তির প্রতিটি বিষয়ে দক্ষ ও যত্নশীল শিক্ষকবৃন্দ আপনার সন্তানের যেকোনো একাডেমিক প্রয়োজনে পাশে থাকতে প্রস্তুত।
                 </p>
             </div>
         </div>
@@ -270,7 +270,7 @@
                     <input type="text"
                            id="teacher-search-input"
                            value="{{ request('q') }}"
-                           placeholder="শিক্ষকের নাম, পদবি, বিষয় বা বিভাগ দিয়ে তাৎক্ষণিক খুঁজুন..."
+                           placeholder="শিক্ষকের নাম, বিষয়, পদবি বা বিভাগ লিখে তাৎক্ষণিক খুঁজুন..."
                            class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 pl-10 pr-10 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#005030] focus:border-transparent transition-all">
                     
                     <span class="absolute left-3.5 top-3 text-slate-400 pointer-events-none">
@@ -549,7 +549,7 @@
             <div class="space-y-1">
                 <h3 class="text-lg font-bold text-slate-800">কোনো শিক্ষক খুঁজে পাওয়া যায়নি</h3>
                 <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
-                    আপনার অনুসন্ধানের সাথে মিলে এমন কোনো শিক্ষকের তথ্য পাওয়া যায়নি। অনুগ্রহ করে ভিন্ন শব্দ দিয়ে চেষ্টা করুন অথবা ফিল্টার রিসেট করুন।
+                    আপনার অনুসন্ধানকৃত বিষয়ের বা নামের সাথে মিল রয়েছে এমন কোনো শিক্ষক তালিকায় পাওয়া যায়নি। অনুগ্রহ করে বানান যাচাই করুন অথবা ফিল্টার রিসেট করুন।
                 </p>
             </div>
             <div class="pt-2">
@@ -576,15 +576,15 @@
             <div class="section-header-left">
                 <span class="section-kicker">
                     <span class="section-kicker-dot"></span>
-                    TEACHING EXCELLENCE — শিক্ষাদান মানদণ্ড ও মূল্যায়ন
+                    TEACHING EXCELLENCE — পাঠদান মানদণ্ড ও শিক্ষক অঙ্গীকার
                 </span>
                 <h2 class="section-title">
-                    আধুনিক পাঠদান পদ্ধতি ও <span class="text-[#005030] font-bold">শিক্ষক অঙ্গীকার</span>
+                    মুখস্থ নির্ভরতা পরিহার করে <span class="text-[#005030] font-bold">বোঝা ও প্রয়োগের শিক্ষা</span>
                 </h2>
             </div>
             <div class="section-header-right">
                 <p class="section-subtitle">
-                    সোনাতলা উচ্চ বিদ্যালয়ের শিক্ষকমণ্ডলী শুধু প্রথাগত পাঠদানেই সীমাবদ্ধ থাকেন না; বরং মাল্টিমিডিয়া ল্যাব, নিয়মিত টিচিং ইভ্যালুয়েশন এবং নিবিড় যত্ন নিশ্চিত করেন।
+                    সোনাতলা উচ্চ বিদ্যালয়ে আমরা প্রতিটি শিক্ষার্থীর স্বাভাবিক কৌতূহলকে মূল্যায়ন করি এবং নিয়মিত ব্যবহারিক ক্লাস ও যত্নশীল মেন্টরিংয়ের মাধ্যমে বিষয়ের মূল ভিত্তি শক্ত করি।
                 </p>
             </div>
         </div>
@@ -597,14 +597,14 @@
                     <i class="fa-solid fa-book-open-reader"></i>
                 </div>
                 <h3 class="text-lg font-bold text-slate-900 tracking-tight">
-                    নিয়মিত লেসন প্ল্যানিং ও মূল্যায়ন
+                    দৈনিক সুনির্দিষ্ট পাঠ পরিকল্পনা ও শিখনফল
                 </h3>
                 <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                    প্রতিটি পাঠ্যবিষয়ের জন্য জাতীয় শিক্ষাক্রম অনুসারে দৈনিক পাঠ পরিকল্পনা (Lesson Plan) তৈরি এবং সাপ্তাহিক ক্লাস পর্যালোচনার মাধ্যমে বিষয়বস্তুর ধারাবাহিকতা নিশ্চিত করা হয়।
+                    প্রতিটি ক্লাসের আগেই শিক্ষকগণ জাতীয় পাঠ্যক্রম অনুযায়ী বিস্তারিত লেসন প্ল্যান তৈরি করেন। এতে প্রতিটি পিরিয়ডে নির্ধারিত শিখনফল পূর্ণাঙ্গভাবে অর্জন করা নিশ্চিত হয়।
                 </p>
                 <div class="pt-2 text-xs font-semibold text-[#005030] flex items-center gap-1.5">
                     <i class="fa-solid fa-circle-check text-[11px]"></i>
-                    <span>সাপ্তাহিক শিক্ষক সমন্বয় বৈঠক</span>
+                    <span>সাপ্তাহিক শিক্ষক সমন্বয় ও অগ্রগতি পর্যালোচনা</span>
                 </div>
             </div>
 
@@ -614,14 +614,14 @@
                     <i class="fa-solid fa-laptop-code"></i>
                 </div>
                 <h3 class="text-lg font-bold text-slate-900 tracking-tight">
-                    ডিজিটাল ও ল্যাবভিত্তিক ক্লাস
+                    হাতে-কলমে ল্যাব ও মাল্টিমিডিয়া ক্লাস
                 </h3>
                 <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                    বিজ্ঞান ও তথ্যপ্রযুক্তি শিক্ষায় শিক্ষার্থীদের হাতে-কলমে দক্ষ করে তুলতে শেখ রাসেল ডিজিটাল ল্যাব ও আধুনিক পদার্থ, রসায়ন ও জীব ল্যাব নিয়মিত পরিচালিত হয়।
+                    তত্ত্বীয় আলোচনার পাশাপাশি শেখ রাসেল ডিজিটাল ল্যাব এবং পদার্থ, রসায়ন ও জীববিজ্ঞানের সুসজ্জিত গবেষণাগারে নিয়মিত ব্যবহারিক পরীক্ষা সম্পন্ন করানো হয়।
                 </p>
                 <div class="pt-2 text-xs font-semibold text-sky-800 flex items-center gap-1.5">
                     <i class="fa-solid fa-circle-check text-[11px]"></i>
-                    <span>স্মার্ট প্রজেক্টর ও মাল্টিমিডিয়া ক্লাসরুম</span>
+                    <span>স্মার্ট প্রজেক্টর ও মাল্টিমিডিয়া ক্লাসরুম</span>
                 </div>
             </div>
 
@@ -631,14 +631,14 @@
                     <i class="fa-solid fa-hands-holding-child"></i>
                 </div>
                 <h3 class="text-lg font-bold text-slate-900 tracking-tight">
-                    দুর্বল শিক্ষার্থীদের নিবিড় পরিচর্যা
+                    দুর্বল শিক্ষার্থীদের জন্য নিবিড় রিমিডিয়াল কেয়ার
                 </h3>
                 <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                    পড়াশোনায় পিছিয়ে থাকা শিক্ষার্থীদের চিহ্নিত করে নিয়মিত ক্লাসের অতিরিক্ত সময়ে বিশেষ রিমিডিয়াল কেয়ার ও শিক্ষক মেন্টরশিপের ব্যবস্থা রাখা হয়েছে।
+                    পড়াশোনায় যেকোনো বিষয়ে পিছিয়ে থাকা শিক্ষার্থীদের দ্রুত শনাক্ত করে নিয়মিত ক্লাসের অতিরিক্ত সময়ে বিশেষ শিক্ষক সহায়তার মাধ্যমে এগিয়ে নেওয়া হয়।
                 </p>
                 <div class="pt-2 text-xs font-semibold text-amber-800 flex items-center gap-1.5">
                     <i class="fa-solid fa-circle-check text-[11px]"></i>
-                    <span>বিনা খরচে স্পেশাল কোচিং ও সাপোর্ট</span>
+                    <span>বিনা খরচে বিশেষ টিউটোরিয়াল সাপোর্ট</span>
                 </div>
             </div>
         </div>
@@ -655,13 +655,13 @@
             <div class="relative z-10 max-w-2xl space-y-4">
                 <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#002a18] text-emerald-200 text-xs font-bold uppercase tracking-wider border border-emerald-600/50 shadow-xs">
                     <i class="fa-solid fa-calendar-days text-[11px]"></i>
-                    <span>GUARDIAN CONSULTATION — অভিভাবক পরামর্শ ও সাক্ষাৎ</span>
+                    <span>GUARDIAN ENGAGEMENT — অভিভাবক পরামর্শ ও মতবিনিময়</span>
                 </span>
                 <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
-                    সন্তানের পড়াশোনা ও অগ্রগতি নিয়ে <span class="text-amber-400 font-bold">শিক্ষকদের সাথে কথা বলুন</span>
+                    সন্তানের ভবিষ্যৎ ও অগ্রগতি নিয়ে <span class="text-amber-400 font-bold">শিক্ষকদের সাথে সরাসরি কথা বলুন</span>
                 </h2>
                 <p class="text-xs sm:text-sm text-emerald-100/90 leading-relaxed">
-                    প্রতি সপ্তাহের রবিবার থেকে বৃহস্পতিবার দুপুর ১২:৩০ হতে ১:৩০ পর্যন্ত শিক্ষক মিলনায়তনে অভিভাবক সাক্ষাতের সুব্যবস্থা রয়েছে। সরাসরি সাক্ষাৎ অথবা জরুরি প্রয়োজনে প্রশাসনিক যোগাযোগ ফর্মের মাধ্যমে বার্তা পাঠান।
+                    আপনার সন্তানের ক্লাসরুমের অগ্রগতি, আচরণ কিংবা ভবিষ্যৎ পরিকল্পনা নিয়ে যেকোনো শিক্ষক বা প্রতিষ্ঠান প্রধানের সাথে কথা বলতে পারেন। প্রতি রবিবার থেকে বৃহস্পতিবার দুপুর ১২:৩০ হতে ১:৩০ পর্যন্ত শিক্ষক মিলনায়তনে সুনির্দিষ্ট অভিভাবক সাক্ষাৎ সময় নির্ধারিত রয়েছে।
                 </p>
 
                 {{-- Upgraded, High-Contrast Call to Action Buttons --}}
@@ -669,7 +669,7 @@
                     {{-- Primary Amber CTA Button --}}
                     <a href="{{ route('frontend.contact') }}"
                        class="px-8 py-4 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-extrabold text-sm sm:text-base shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 text-center flex items-center justify-center gap-2.5">
-                        <span>সাক্ষাৎ ও পরামর্শের জন্য যোগাযোগ করুন</span>
+                        <span>সরাসরি সাক্ষাতের জন্য সময় নির্ধারণ করুন</span>
                         <i class="fa-solid fa-arrow-right text-xs"></i>
                     </a>
 
