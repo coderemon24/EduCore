@@ -842,24 +842,6 @@ body {
     }
 }
 
-/* Signature Headline Accent Marker */
-.headline-signature-accent {
-    position: relative;
-    display: inline-block;
-    color: #020617;
-    font-weight: 800;
-    border-bottom: 3px solid #f59e0b;
-    padding-bottom: 2px;
-    line-height: 1.25;
-    text-decoration: none;
-}
-
-@media (max-width: 639px) {
-    .headline-signature-accent {
-        border-bottom-width: 2px;
-        padding-bottom: 1px;
-    }
-}
 
 .section-subtitle {
     font-size: 0.95rem;
