@@ -870,13 +870,14 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 0.625rem;
     padding: 0.75rem;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .qualifying-card:hover {
-    background-color: rgba(255, 255, 255, 0.12);
-    border-color: rgba(52, 211, 153, 0.5);
-    transform: translateY(-1px);
+    background-color: rgba(255, 255, 255, 0.14);
+    border-color: rgba(52, 211, 153, 0.6);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.35);
 }
 
 /* Capabilities (What It Does) - Asymmetric Bento Hierarchy */
@@ -902,7 +903,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @media (min-width: 640px) {
@@ -912,8 +913,10 @@ body {
 }
 
 .capability-card-hero:hover {
+    background-color: #ffffff;
     border-color: #005030;
-    box-shadow: 0 4px 14px -2px rgba(0, 80, 48, 0.08);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px -8px rgba(0, 80, 48, 0.12), 0 0 0 1px rgba(0, 80, 48, 0.15);
 }
 
 .capabilities-secondary-stack {
@@ -932,12 +935,14 @@ body {
     flex-direction: column;
     justify-content: space-between;
     flex: 1;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .capability-card-secondary:hover {
+    background-color: #ffffff;
     border-color: #005030;
-    box-shadow: 0 2px 10px -2px rgba(0, 80, 48, 0.06);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px -6px rgba(0, 80, 48, 0.1), 0 0 0 1px rgba(0, 80, 48, 0.12);
 }
 
 /* Differentiators (Why It Is Different) */
@@ -951,6 +956,16 @@ body {
     .differentiators-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+}
+
+.differentiator-card {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.differentiator-card:hover {
+    border-color: rgba(0, 80, 48, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px -6px rgba(0, 80, 48, 0.08);
 }
 
 /* Dispatches Hub */
@@ -980,7 +995,29 @@ body {
     }
 }
 
+.step-card {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.step-card:hover {
+    border-color: #005030;
+    transform: translateY(-4px);
+    box-shadow: 0 18px 36px -8px rgba(0, 80, 48, 0.12);
+}
+
 /* Day to Day Summaries (What It Feels Like) */
+.experience-frame {
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.2);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.experience-frame:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 25px 50px -12px rgba(0, 80, 48, 0.15);
+}
+
 .experience-summaries-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -991,6 +1028,17 @@ body {
     .experience-summaries-grid {
         grid-template-columns: repeat(3, 1fr);
     }
+}
+
+.experience-card {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.experience-card:hover {
+    background-color: #ffffff;
+    border-color: #005030;
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px -6px rgba(0, 80, 48, 0.08);
 }
 
 /* Campus Gallery */
@@ -1007,6 +1055,16 @@ body {
     }
 }
 
+.gallery-grid .group > div:first-child {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-grid .group:hover > div:first-child {
+    border-color: #005030;
+    box-shadow: 0 14px 28px -6px rgba(0, 80, 48, 0.15);
+    transform: translateY(-3px);
+}
+
 /* CTA High-Impact Banner */
 .cta-banner-box {
     background: linear-gradient(135deg, #003820 0%, #005030 55%, #012415 100%);
@@ -1017,6 +1075,7 @@ body {
     position: relative;
     overflow: hidden;
     box-shadow: 0 25px 50px -15px rgba(0, 50, 30, 0.35);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @media (min-width: 640px) {
@@ -1024,6 +1083,10 @@ body {
         padding: 3.5rem 3rem;
         border-radius: 2rem;
     }
+}
+
+.cta-banner-box:hover {
+    box-shadow: 0 30px 60px -15px rgba(0, 50, 30, 0.45);
 }
 
 

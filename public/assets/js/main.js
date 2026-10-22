@@ -124,4 +124,197 @@ document.addEventListener('DOMContentLoaded', function () {
 
         counters.forEach(counter => counterObserver.observe(counter));
     }
+
+    // 4. GSAP & ScrollTrigger Entrance Animations
+    if (window.gsap && window.ScrollTrigger) {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (!prefersReducedMotion) {
+            // Section Headers Entrance
+            gsap.utils.toArray('.section-header-block').forEach(header => {
+                gsap.from(header, {
+                    scrollTrigger: {
+                        trigger: header,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none',
+                    },
+                    opacity: 0,
+                    y: 28,
+                    duration: 0.8,
+                    ease: 'power2.out',
+                });
+            });
+
+            // Qualifying Strip Cards Stagger
+            if (document.querySelector('.qualifying-strip-bar')) {
+                gsap.from('.qualifying-card', {
+                    scrollTrigger: {
+                        trigger: '.qualifying-strip-bar',
+                        start: 'top 92%',
+                        toggleActions: 'play none none none',
+                    },
+                    opacity: 0,
+                    y: 20,
+                    stagger: 0.1,
+                    duration: 0.6,
+                    ease: 'power2.out',
+                });
+            }
+
+            // Academic Capabilities Bento Cards
+            if (document.querySelector('.capabilities-grid')) {
+                gsap.from('.capability-card-hero', {
+                    scrollTrigger: {
+                        trigger: '.capabilities-grid',
+                        start: 'top 82%',
+                        toggleActions: 'play none none none',
+                    },
+                    opacity: 0,
+                    y: 35,
+                    duration: 0.85,
+                    ease: 'power3.out',
+                });
+
+                gsap.from('.capability-card-secondary', {
+                    scrollTrigger: {
+                        trigger: '.capabilities-grid',
+                        start: 'top 82%',
+                        toggleActions: 'play none none none',
+                    },
+                    opacity: 0,
+                    x: 30,
+                    stagger: 0.18,
+                    duration: 0.85,
+                    ease: 'power3.out',
+                });
+            }
+
+            // Institutional Differentiators (Why We Are Different)
+            if (document.querySelector('.differentiators-grid')) {
+                gsap.from('.differentiator-card', {
+                    scrollTrigger: {
+                        trigger: '.differentiators-grid',
+                        start: 'top 82%',
+                        toggleActions: 'play none none none',
+                    },
+                    opacity: 0,
+                    y: 30,
+                    stagger: 0.12,
+                    duration: 0.75,
+                    ease: 'power2.out',
+                });
+            }
+
+            // Metrics Achievement Box
+            if (document.querySelector('.metrics-counter-box')) {
+                gsap.from('.metrics-counter-box', {
+                    scrollTrigger: {
+                        trigger: '.metrics-counter-box',
+                        start: 'top 85%',
+                        toggleActions: 'play none none none',
+                    },
+                    opacity: 0,
+                    y: 25,
+                    duration: 0.8,
+                    ease: 'power2.out',
+                });
+            }
+
+            // Dispatches Hub & Notice Board
+            if (document.querySelector('.dispatches-grid')) {
+                gsap.from('.dispatches-grid > div', {
+                    scrollTrigger: {
+                        trigger: '.dispatches-grid',
+                        start: 'top 82%',
+                        toggleActions: 'play none none none',
+                    },
+                    opacity: 0,
+                    y: 30,
+                    stagger: 0.15,
+                    duration: 0.8,
+                    ease: 'power2.out',
+                });
+            }
+
+            // Admission Pathway Steps
+            if (document.querySelector('.steps-grid')) {
+                gsap.from('.step-card', {
+                    scrollTrigger: {
+                        trigger: '.steps-grid',
+                        start: 'top 82%',
+                        toggleActions: 'play none none none',
+                    },
+                    opacity: 0,
+                    y: 35,
+                    stagger: 0.15,
+                    duration: 0.8,
+                    ease: 'power2.out',
+                });
+            }
+
+            // Experience Frame & Summaries
+            if (document.querySelector('.experience-frame')) {
+                gsap.from('.experience-frame', {
+                    scrollTrigger: {
+                        trigger: '.experience-frame',
+                        start: 'top 85%',
+                        toggleActions: 'play none none none',
+                    },
+                    opacity: 0,
+                    scale: 0.97,
+                    y: 25,
+                    duration: 0.85,
+                    ease: 'power2.out',
+                });
+            }
+
+            if (document.querySelector('.experience-summaries-grid')) {
+                gsap.from('.experience-card', {
+                    scrollTrigger: {
+                        trigger: '.experience-summaries-grid',
+                        start: 'top 85%',
+                        toggleActions: 'play none none none',
+                    },
+                    opacity: 0,
+                    y: 25,
+                    stagger: 0.12,
+                    duration: 0.7,
+                    ease: 'power2.out',
+                });
+            }
+
+            // Campus Gallery Grid
+            if (document.querySelector('.gallery-grid')) {
+                gsap.from('.gallery-grid .group', {
+                    scrollTrigger: {
+                        trigger: '.gallery-grid',
+                        start: 'top 85%',
+                        toggleActions: 'play none none none',
+                    },
+                    opacity: 0,
+                    y: 25,
+                    stagger: 0.1,
+                    duration: 0.7,
+                    ease: 'power2.out',
+                });
+            }
+
+            // Final Call To Action Banner
+            if (document.querySelector('.cta-banner-box')) {
+                gsap.from('.cta-banner-box', {
+                    scrollTrigger: {
+                        trigger: '.cta-banner-box',
+                        start: 'top 85%',
+                        toggleActions: 'play none none none',
+                    },
+                    opacity: 0,
+                    y: 35,
+                    duration: 0.9,
+                    ease: 'power3.out',
+                });
+            }
+        }
+    }
 });

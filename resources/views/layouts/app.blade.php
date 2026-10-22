@@ -22,6 +22,9 @@
 
     {{-- Frontend Local Assets Scripts (Swiper & Main JS) --}}
     <script src="{{ asset('assets/js/swiper-bundle.min.js') }}"></script>
+    <!-- GSAP 3 & ScrollTrigger CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
     @stack('scripts')

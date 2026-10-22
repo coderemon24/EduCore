@@ -23,7 +23,7 @@
             {{-- 4 Targeted Audience Segments --}}
             <div class="qualifying-cards-grid flex-1">
                 <div class="qualifying-card">
-                    <span class="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
+                    <span class="text-emerald-400 shrink-0 mt-0.5"><i class="fa-solid fa-circle-check"></i></span>
                     <div>
                         <strong class="text-white block font-semibold text-[13px]">সচেতন অভিভাবক</strong>
                         <span class="text-[11px] text-slate-300 leading-tight block">সন্তানের নৈতিক চরিত্র গঠন, শৃঙ্খলা ও নিরাপদ পরিবেশ চান যারা</span>
@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="qualifying-card">
-                    <span class="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
+                    <span class="text-emerald-400 shrink-0 mt-0.5"><i class="fa-solid fa-circle-check"></i></span>
                     <div>
                         <strong class="text-white block font-semibold text-[13px]">৬ষ্ঠ-১০ম শ্রেণির শিক্ষার্থী</strong>
                         <span class="text-[11px] text-slate-300 leading-tight block">বিজ্ঞানাগার ও কম্পিউটার ল্যাবে হাতেকলমে দক্ষতা শিখতে আগ্রহী</span>
@@ -39,7 +39,7 @@
                 </div>
 
                 <div class="qualifying-card">
-                    <span class="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
+                    <span class="text-emerald-400 shrink-0 mt-0.5"><i class="fa-solid fa-circle-check"></i></span>
                     <div>
                         <strong class="text-white block font-semibold text-[13px]">মেধাবী ও উপবৃত্তি অন্বেষী</strong>
                         <span class="text-[11px] text-slate-300 leading-tight block">আর্থিক অনটনে কোনো মেধা যেন ঝরে না পড়ে, সে নিশ্চয়তা প্রত্যাশী</span>
@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="qualifying-card">
-                    <span class="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
+                    <span class="text-emerald-400 shrink-0 mt-0.5"><i class="fa-solid fa-circle-check"></i></span>
                     <div>
                         <strong class="text-white block font-semibold text-[13px]">আদর্শ সমাজ ও অ্যালামনাই</strong>
                         <span class="text-[11px] text-slate-300 leading-tight block">পাবনার সাঁথিয়ার ৫৭ বছরের সমৃদ্ধ শিক্ষাধারাকে এগিয়ে নিতে চান</span>
@@ -81,16 +81,16 @@
             {{-- Asymmetric Capabilities Layout: Flagship Dominant Hero (60%) + Secondary Stack (40%) --}}
             <div class="capabilities-grid">
                 {{-- Dominant Flagship Hero: Practical Science & Laboratory Innovation --}}
-                <div class="capability-card-hero">
+                <div class="capability-card-hero group">
                     <div>
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-14 h-14 rounded-2xl bg-emerald-100/90 text-[#005030] flex items-center justify-center font-bold shadow-2xs">
+                            <div class="w-14 h-14 rounded-2xl bg-emerald-100/90 text-[#005030] flex items-center justify-center font-bold shadow-2xs group-hover:scale-105 transition-transform duration-300">
                                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
                                 </svg>
                             </div>
                             <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-[#005030] text-xs font-bold border border-emerald-200">
-                                <span>🔬</span>
+                                <span><i class="fa-solid fa-flask-vial"></i></span>
                                 <span>প্রধান প্রাতিষ্ঠানিক সক্ষমতা</span>
                             </span>
                         </div>
@@ -105,19 +105,19 @@
                         {{-- Structured Laboratory Proof Checklist --}}
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-slate-200/80 mb-6">
                             <div class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800">
-                                <span class="w-5 h-5 rounded-full bg-emerald-100 text-[#005030] flex items-center justify-center shrink-0 text-xs font-bold">✓</span>
+                                <span class="w-5 h-5 rounded-full bg-emerald-100 text-[#005030] flex items-center justify-center shrink-0 text-[11px] font-bold"><i class="fa-solid fa-check"></i></span>
                                 <span>পদার্থ, রসায়ন ও জীববিজ্ঞানের পৃথক ল্যাব</span>
                             </div>
                             <div class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800">
-                                <span class="w-5 h-5 rounded-full bg-emerald-100 text-[#005030] flex items-center justify-center shrink-0 text-xs font-bold">✓</span>
+                                <span class="w-5 h-5 rounded-full bg-emerald-100 text-[#005030] flex items-center justify-center shrink-0 text-[11px] font-bold"><i class="fa-solid fa-check"></i></span>
                                 <span>উচ্চমানের মাইক্রোস্কোপ ও রিএজেন্ট সুবিধা</span>
                             </div>
                             <div class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800">
-                                <span class="w-5 h-5 rounded-full bg-emerald-100 text-[#005030] flex items-center justify-center shrink-0 text-xs font-bold">✓</span>
+                                <span class="w-5 h-5 rounded-full bg-emerald-100 text-[#005030] flex items-center justify-center shrink-0 text-[11px] font-bold"><i class="fa-solid fa-check"></i></span>
                                 <span>অভিজ্ঞ ল্যাব সহকারী ও শিক্ষক তত্ত্বাবধান</span>
                             </div>
                             <div class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800">
-                                <span class="w-5 h-5 rounded-full bg-emerald-100 text-[#005030] flex items-center justify-center shrink-0 text-xs font-bold">✓</span>
+                                <span class="w-5 h-5 rounded-full bg-emerald-100 text-[#005030] flex items-center justify-center shrink-0 text-[11px] font-bold"><i class="fa-solid fa-check"></i></span>
                                 <span>বার্ষিক বিজ্ঞান ও উদ্ভাবন প্রজেক্ট প্রদর্শনী</span>
                             </div>
                         </div>
@@ -125,9 +125,9 @@
 
                     <div class="pt-4 border-t border-slate-200/70 flex items-center justify-between">
                         <span class="text-xs text-slate-500 font-medium">৬ষ্ঠ-১০ম শ্রেণির বাধ্যতামূলক প্র্যাকটিক্যাল সেশন</span>
-                        <a href="{{ route('frontend.about') }}" class="text-xs sm:text-sm font-bold text-[#005030] hover:underline inline-flex items-center gap-1">
+                        <a href="{{ route('frontend.about') }}" class="text-xs sm:text-sm font-bold text-[#005030] hover:underline inline-flex items-center gap-1.5 group/link">
                             <span>বিজ্ঞানাগারের বিস্তারিত পরিকাঠামো</span>
-                            <span>→</span>
+                            <i class="fa-solid fa-arrow-right-long text-xs transition-transform group-hover/link:translate-x-1"></i>
                         </a>
                     </div>
                 </div>
@@ -135,10 +135,10 @@
                 {{-- Secondary Stack: Compact 2 Cards in Lighter Secondary Tier --}}
                 <div class="capabilities-secondary-stack">
                     {{-- Secondary Card 1: ICT & Digital Education --}}
-                    <div class="capability-card-secondary">
+                    <div class="capability-card-secondary group">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <div class="w-10 h-10 rounded-xl bg-emerald-100/70 text-[#005030] flex items-center justify-center font-bold">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-100/70 text-[#005030] flex items-center justify-center font-bold group-hover:scale-105 transition-transform duration-300">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                                     </svg>
@@ -152,16 +152,17 @@
                                 উচ্চগতির ইন্টারনেট ও আধুনিক কম্পিউটার সমৃদ্ধ ল্যাবে তথ্যপ্রযুক্তির মৌলিক দক্ষতা, কোডিং পরিচিতি ও ডিজিটাল শিক্ষায় শিক্ষার্থীদের যুগোপযোগী প্রস্তুতি।
                             </p>
                         </div>
-                        <div class="pt-3 border-t border-slate-200/60 text-xs font-semibold text-[#005030]">
-                            কম্পিউটার ল্যাব সুবিধা →
-                        </div>
+                        <a href="{{ route('frontend.about') }}#infrastructure" class="pt-3 border-t border-slate-200/60 text-xs font-semibold text-[#005030] flex items-center justify-between group-hover:text-emerald-800">
+                            <span>কম্পিউটার ল্যাব সুবিধা</span>
+                            <i class="fa-solid fa-arrow-right-long text-xs transition-transform group-hover:translate-x-1"></i>
+                        </a>
                     </div>
 
                     {{-- Secondary Card 2: Co-Curricular & Sports --}}
-                    <div class="capability-card-secondary">
+                    <div class="capability-card-secondary group">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <div class="w-10 h-10 rounded-xl bg-emerald-100/70 text-[#005030] flex items-center justify-center font-bold">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-100/70 text-[#005030] flex items-center justify-center font-bold group-hover:scale-105 transition-transform duration-300">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
@@ -175,9 +176,10 @@
                                 নিয়মিত খেলাধুলা, বিতর্ক প্রতিযোগিতা, সক্রিয় স্কাউট ট্রুপ ও সাংস্কৃতিক আয়োজনের মাধ্যমে প্রতিটি শিক্ষার্থীর মানসিক দৃঢ়তা ও দলগত নেতৃত্ব বিকাশ।
                             </p>
                         </div>
-                        <div class="pt-3 border-t border-slate-200/60 text-xs font-semibold text-[#005030]">
-                            সহ-শিক্ষা ও ক্রীড়া কার্যক্রম →
-                        </div>
+                        <a href="{{ route('frontend.about') }}" class="pt-3 border-t border-slate-200/60 text-xs font-semibold text-[#005030] flex items-center justify-between group-hover:text-emerald-800">
+                            <span>সহ-শিক্ষা ও ক্রীড়া কার্যক্রম</span>
+                            <i class="fa-solid fa-arrow-right-long text-xs transition-transform group-hover:translate-x-1"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -211,8 +213,8 @@
             {{-- 4 Comparative Value Pillars --}}
             <div class="differentiators-grid mb-12">
                 {{-- Pillar 1 --}}
-                <div class="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex gap-4 shadow-2xs">
-                    <div class="w-10 h-10 rounded-full bg-[#005030] text-white flex items-center justify-center shrink-0 font-bold text-sm">
+                <div class="differentiator-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex gap-4 shadow-2xs group">
+                    <div class="w-10 h-10 rounded-full bg-[#005030] text-white flex items-center justify-center shrink-0 font-bold text-sm group-hover:scale-105 transition-transform duration-300">
                         ০১
                     </div>
                     <div>
@@ -226,8 +228,8 @@
                 </div>
 
                 {{-- Pillar 2 --}}
-                <div class="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex gap-4 shadow-2xs">
-                    <div class="w-10 h-10 rounded-full bg-[#005030] text-white flex items-center justify-center shrink-0 font-bold text-sm">
+                <div class="differentiator-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex gap-4 shadow-2xs group">
+                    <div class="w-10 h-10 rounded-full bg-[#005030] text-white flex items-center justify-center shrink-0 font-bold text-sm group-hover:scale-105 transition-transform duration-300">
                         ০২
                     </div>
                     <div>
@@ -241,8 +243,8 @@
                 </div>
 
                 {{-- Pillar 3 --}}
-                <div class="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex gap-4 shadow-2xs">
-                    <div class="w-10 h-10 rounded-full bg-[#005030] text-white flex items-center justify-center shrink-0 font-bold text-sm">
+                <div class="differentiator-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex gap-4 shadow-2xs group">
+                    <div class="w-10 h-10 rounded-full bg-[#005030] text-white flex items-center justify-center shrink-0 font-bold text-sm group-hover:scale-105 transition-transform duration-300">
                         ০৩
                     </div>
                     <div>
@@ -256,8 +258,8 @@
                 </div>
 
                 {{-- Pillar 4 --}}
-                <div class="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex gap-4 shadow-2xs">
-                    <div class="w-10 h-10 rounded-full bg-[#005030] text-white flex items-center justify-center shrink-0 font-bold text-sm">
+                <div class="differentiator-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex gap-4 shadow-2xs group">
+                    <div class="w-10 h-10 rounded-full bg-[#005030] text-white flex items-center justify-center shrink-0 font-bold text-sm group-hover:scale-105 transition-transform duration-300">
                         ০৪
                     </div>
                     <div>
@@ -272,7 +274,7 @@
             </div>
 
             {{-- Institutional Metrics Counter: Primary Outcomes + Secondary Meta Strip --}}
-            <div class="bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-xs">
+            <div class="metrics-counter-box bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-xs">
                 <div class="bg-[#005030] text-white px-6 py-3.5 flex items-center justify-between">
                     <span class="text-xs font-bold uppercase tracking-wider">
                         এক নজরে আমাদের প্রাতিষ্ঠানিক সক্ষমতা ও অর্জন
@@ -282,17 +284,17 @@
 
                 {{-- Primary Tier: 3 Dominant Headline Achievements --}}
                 <div class="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-center border-b border-slate-100">
-                    <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-200/70">
+                    <div class="metric-pill p-4 rounded-xl bg-slate-50/80 border border-slate-200/70 transition-all hover:bg-emerald-50/50 hover:border-emerald-200">
                         <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide">এসএসসি ধারাবাহিক সাফল্য</div>
                         <div class="text-3xl sm:text-4xl font-extrabold text-[#005030] mt-2">৯৮.৫%</div>
                         <div class="text-xs text-slate-500 mt-1">বিগত ৫ বছরের ঈর্ষণীয় ফলাফল</div>
                     </div>
-                    <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-200/70">
+                    <div class="metric-pill p-4 rounded-xl bg-slate-50/80 border border-slate-200/70 transition-all hover:bg-emerald-50/50 hover:border-emerald-200">
                         <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide">বর্তমান শিক্ষার্থী পরিবার</div>
                         <div class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">{{ $stats['total_students'] ?? '১,২৫০+' }} জন</div>
                         <div class="text-xs text-slate-500 mt-1">সুশৃঙ্খল ও প্রাণবন্ত ক্যাম্পাস</div>
                     </div>
-                    <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-200/70">
+                    <div class="metric-pill p-4 rounded-xl bg-slate-50/80 border border-slate-200/70 transition-all hover:bg-emerald-50/50 hover:border-emerald-200">
                         <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide">গৌরবময় ঐতিহ্য ও ইতিহাস</div>
                         <div class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">৫৭ বছর</div>
                         <div class="text-xs text-slate-500 mt-1">প্রতিষ্ঠা সন: ১৯৬৮ খ্রি.</div>
@@ -302,19 +304,19 @@
                 {{-- Secondary Tier: Lighter Operational & Administrative Meta Strip --}}
                 <div class="px-6 py-4 bg-slate-50/70 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-600">
                     <div class="flex items-center gap-2">
-                        <span class="font-bold text-slate-800">👨‍🏫 শিক্ষক ও স্টাফ:</span>
+                        <span class="font-bold text-slate-800 flex items-center gap-1.5"><i class="fa-solid fa-chalkboard-user text-emerald-700"></i> শিক্ষক ও স্টাফ:</span>
                         <span>{{ $stats['total_teachers'] ?? '৪২' }} জন প্রশিক্ষিত শিক্ষক</span>
                     </div>
                     <div class="flex items-center gap-2">
-                        <span class="font-bold text-slate-800">🖥️ ডিজিটাল ক্লাসরুম:</span>
+                        <span class="font-bold text-slate-800 flex items-center gap-1.5"><i class="fa-solid fa-desktop text-emerald-700"></i> ডিজিটাল ক্লাসরুম:</span>
                         <span>১৮টি মাল্টিমিডিয়া রুম</span>
                     </div>
                     <div class="flex items-center gap-2 font-mono">
-                        <span class="font-bold text-slate-800 font-sans">🏛️ EIIN:</span>
+                        <span class="font-bold text-slate-800 font-sans flex items-center gap-1.5"><i class="fa-solid fa-building-columns text-emerald-700"></i> EIIN:</span>
                         <span>১২৫৬৯৩</span>
                     </div>
                     <div class="flex items-center gap-2 font-mono">
-                        <span class="font-bold text-slate-800 font-sans">📋 সরকারি কোড:</span>
+                        <span class="font-bold text-slate-800 font-sans flex items-center gap-1.5"><i class="fa-solid fa-file-shield text-emerald-700"></i> সরকারি কোড:</span>
                         <span>৮১০৭</span>
                     </div>
                 </div>
@@ -410,8 +412,9 @@
                             </article>
                         </div>
                         <div class="p-3 bg-slate-50 border-t border-slate-100 text-center">
-                            <a href="{{ route('frontend.notices.index') }}" class="text-xs font-bold text-[#005030] hover:underline">
-                                আরও অনুপ্রেরণাদায়ী গল্প দেখুন →
+                            <a href="{{ route('frontend.notices.index') }}" class="text-xs font-bold text-[#005030] hover:underline inline-flex items-center gap-1.5 group">
+                                <span>আরও অনুপ্রেরণাদায়ী গল্প দেখুন</span>
+                                <i class="fa-solid fa-arrow-right-long text-xs transition-transform group-hover:translate-x-1"></i>
                             </a>
                         </div>
                     </div>
@@ -423,17 +426,19 @@
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                             <a href="{{ route('frontend.academic.routine') }}"
-                               class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-white hover:bg-emerald-50 hover:text-[#005030] text-slate-800 text-xs font-semibold border border-slate-200 transition-colors shadow-2xs">
-                                <span>📅 ক্লাস ও পরীক্ষার রুটিন</span>
+                               class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-white hover:bg-emerald-50 hover:text-[#005030] text-slate-800 text-xs font-semibold border border-slate-200 transition-all hover:-translate-y-0.5 shadow-2xs">
+                                <i class="fa-solid fa-calendar-days text-[#005030] text-sm"></i>
+                                <span>ক্লাস ও পরীক্ষার রুটিন</span>
                             </a>
                             <a href="{{ route('frontend.teachers.index') }}"
-                               class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-white hover:bg-emerald-50 hover:text-[#005030] text-slate-800 text-xs font-semibold border border-slate-200 transition-colors shadow-2xs">
-                                <span>👨‍🏫 আমাদের শ্রদ্ধেয় শিক্ষকগণ</span>
+                               class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-white hover:bg-emerald-50 hover:text-[#005030] text-slate-800 text-xs font-semibold border border-slate-200 transition-all hover:-translate-y-0.5 shadow-2xs">
+                                <i class="fa-solid fa-user-tie text-[#005030] text-sm"></i>
+                                <span>আমাদের শ্রদ্ধেয় শিক্ষকগণ</span>
                             </a>
                         </div>
                         <a href="https://wa.me/8801712345678" target="_blank" rel="noopener noreferrer"
-                           class="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-bold transition-colors shadow-xs">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.584 1.761.812 2.796.813 3.18 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.766-5.768-5.766zm9.969 5.766c0 5.485-4.484 9.969-9.969 9.969-1.748 0-3.376-.452-4.796-1.241l-5.235 1.371 1.397-5.105c-.888-1.488-1.366-3.21-1.366-4.994 0-5.485 4.484-9.969 9.969-9.969 5.485 0 9.969 4.484 9.969 9.969z"/></svg>
+                           class="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-bold transition-all hover:-translate-y-0.5 shadow-xs">
+                            <i class="fa-brands fa-whatsapp text-base"></i>
                             <span>WhatsApp-এ সরাসরি কথা বলুন</span>
                         </a>
                     </div>
@@ -469,10 +474,10 @@
             {{-- 3 Step Process Cards --}}
             <div class="steps-grid mb-10">
                 {{-- Step 1 --}}
-                <div class="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 relative flex flex-col justify-between shadow-2xs hover:shadow-sm transition-shadow">
+                <div class="step-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 relative flex flex-col justify-between shadow-2xs group">
                     <div>
                         <div class="flex items-center justify-between mb-5">
-                            <span class="text-3xl font-extrabold text-[#005030]/80 font-mono">০১</span>
+                            <span class="text-3xl font-extrabold text-[#005030]/80 font-mono group-hover:scale-105 group-hover:text-[#005030] transition-transform duration-300">০১</span>
                             <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-[#005030] text-[11px] font-bold border border-emerald-200">
                                 ধাপ ১
                             </span>
@@ -486,15 +491,15 @@
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium">
                         <span>অনলাইন / অফলাইন উভয় সুবিধা</span>
-                        <span class="text-emerald-600 font-bold">✓ সহজ</span>
+                        <span class="text-emerald-600 font-bold flex items-center gap-1.5"><i class="fa-solid fa-check text-xs"></i> সহজ</span>
                     </div>
                 </div>
 
                 {{-- Step 2 --}}
-                <div class="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 relative flex flex-col justify-between shadow-2xs hover:shadow-sm transition-shadow">
+                <div class="step-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 relative flex flex-col justify-between shadow-2xs group">
                     <div>
                         <div class="flex items-center justify-between mb-5">
-                            <span class="text-3xl font-extrabold text-[#005030]/80 font-mono">০২</span>
+                            <span class="text-3xl font-extrabold text-[#005030]/80 font-mono group-hover:scale-105 group-hover:text-[#005030] transition-transform duration-300">০২</span>
                             <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-[#005030] text-[11px] font-bold border border-emerald-200">
                                 ধাপ ২
                             </span>
@@ -508,15 +513,15 @@
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium">
                         <span>ব্যক্তিগত পরামর্শ ও কাউন্সেলিং</span>
-                        <span class="text-emerald-600 font-bold">✓ বন্ধুত্বপূর্ণ</span>
+                        <span class="text-emerald-600 font-bold flex items-center gap-1.5"><i class="fa-solid fa-check text-xs"></i> বন্ধুত্বপূর্ণ</span>
                     </div>
                 </div>
 
                 {{-- Step 3 --}}
-                <div class="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 relative flex flex-col justify-between shadow-2xs hover:shadow-sm transition-shadow">
+                <div class="step-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 relative flex flex-col justify-between shadow-2xs group">
                     <div>
                         <div class="flex items-center justify-between mb-5">
-                            <span class="text-3xl font-extrabold text-[#005030]/80 font-mono">০৩</span>
+                            <span class="text-3xl font-extrabold text-[#005030]/80 font-mono group-hover:scale-105 group-hover:text-[#005030] transition-transform duration-300">০৩</span>
                             <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-[#005030] text-[11px] font-bold border border-emerald-200">
                                 ধাপ ৩
                             </span>
@@ -530,7 +535,7 @@
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium">
                         <span>তাৎক্ষণিক সেশন প্রস্তুতি</span>
-                        <span class="text-emerald-600 font-bold">✓ ক্লাসে স্বাগতম</span>
+                        <span class="text-emerald-600 font-bold flex items-center gap-1.5"><i class="fa-solid fa-check text-xs"></i> ক্লাসে স্বাগতম</span>
                     </div>
                 </div>
             </div>
@@ -610,13 +615,13 @@
                 {{-- Three Short Summary Lines Describing Day to Day Reality --}}
                 <div class="experience-summaries-grid pt-4">
                     {{-- Summary Line 1 --}}
-                    <div class="bg-slate-50 border border-slate-200/90 rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-2xs hover:border-[#005030] transition-colors">
+                    <div class="experience-card bg-slate-50 border border-slate-200/90 rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-2xs group transition-all">
                         <div>
                             <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-white text-[#005030] text-[11px] font-bold border border-slate-200 mb-3 shadow-2xs">
-                                <span>🌅</span>
+                                <span><i class="fa-regular fa-sun text-amber-500"></i></span>
                                 <span>সকাল ৯:০০ টা</span>
                             </div>
-                            <h4 class="text-base font-bold text-slate-900 mb-2">
+                            <h4 class="text-base font-bold text-slate-900 mb-2 group-hover:text-[#005030] transition-colors">
                                 শৃঙ্খলা ও নৈতিক প্রার্থনায় দিন শুরু
                             </h4>
                             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -629,13 +634,13 @@
                     </div>
 
                     {{-- Summary Line 2 --}}
-                    <div class="bg-slate-50 border border-slate-200/90 rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-2xs hover:border-[#005030] transition-colors">
+                    <div class="experience-card bg-slate-50 border border-slate-200/90 rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-2xs group transition-all">
                         <div>
                             <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-white text-[#005030] text-[11px] font-bold border border-slate-200 mb-3 shadow-2xs">
-                                <span>📱</span>
+                                <span><i class="fa-solid fa-mobile-screen-button text-emerald-600"></i></span>
                                 <span>সারাদিন রিয়েল-টাইম</span>
                             </div>
-                            <h4 class="text-base font-bold text-slate-900 mb-2">
+                            <h4 class="text-base font-bold text-slate-900 mb-2 group-hover:text-[#005030] transition-colors">
                                 হাতের মুঠোয় স্বচ্ছ তথ্যপ্রবাহ
                             </h4>
                             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -648,13 +653,13 @@
                     </div>
 
                     {{-- Summary Line 3 --}}
-                    <div class="bg-slate-50 border border-slate-200/90 rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-2xs hover:border-[#005030] transition-colors">
+                    <div class="experience-card bg-slate-50 border border-slate-200/90 rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-2xs group transition-all">
                         <div>
                             <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-white text-[#005030] text-[11px] font-bold border border-slate-200 mb-3 shadow-2xs">
-                                <span>🔬</span>
+                                <span><i class="fa-solid fa-flask-vial text-emerald-600"></i></span>
                                 <span>দুপুর ১:৩০ টা</span>
                             </div>
-                            <h4 class="text-base font-bold text-slate-900 mb-2">
+                            <h4 class="text-base font-bold text-slate-900 mb-2 group-hover:text-[#005030] transition-colors">
                                 তত্ত্ব পেরিয়ে বাস্তব আবিষ্কার
                             </h4>
                             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -774,26 +779,27 @@
 
                     <div class="flex flex-wrap items-center gap-4">
                         <a href="{{ route('frontend.contact') }}"
-                           class="px-6 py-3.5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-sm transition-all shadow-md hover:scale-105 active:scale-95 inline-flex items-center gap-2">
+                           class="px-6 py-3.5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-sm transition-all shadow-md hover:scale-105 active:scale-95 inline-flex items-center gap-2 group">
                             <span>ভর্তি আবেদন ও তথ্যসহায়তা</span>
-                            <span>→</span>
+                            <i class="fa-solid fa-arrow-right-long text-xs transition-transform group-hover:translate-x-1"></i>
                         </a>
 
                         <a href="https://wa.me/8801712345678" target="_blank" rel="noopener noreferrer"
                            class="px-6 py-3.5 rounded-full bg-white/15 hover:bg-white/25 text-white font-bold text-sm border border-white/30 backdrop-blur-xs transition-all hover:scale-105 active:scale-95 inline-flex items-center gap-2">
-                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.584 1.761.812 2.796.813 3.18 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.766-5.768-5.766zm9.969 5.766c0 5.485-4.484 9.969-9.969 9.969-1.748 0-3.376-.452-4.796-1.241l-5.235 1.371 1.397-5.105c-.888-1.488-1.366-3.21-1.366-4.994 0-5.485 4.484-9.969 9.969-9.969 5.485 0 9.969 4.484 9.969 9.969z"/></svg>
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
                             <span>WhatsApp হেল্পলাইন</span>
                         </a>
 
                         <a href="tel:+8801712345678"
-                           class="px-6 py-3.5 rounded-full bg-slate-900/60 hover:bg-slate-900 text-white font-bold text-sm border border-slate-700 transition-all inline-flex items-center gap-2">
-                            <span>📞 ০১৭১২-৩৪৫৬৭৮</span>
+                           class="px-6 py-3.5 rounded-full bg-slate-900/60 hover:bg-slate-900 text-white font-bold text-sm border border-slate-700 transition-all inline-flex items-center gap-2 hover:scale-105 active:scale-95">
+                            <i class="fa-solid fa-phone text-xs text-emerald-400"></i>
+                            <span>০১৭১২-৩৪৫৬৭৮</span>
                         </a>
                     </div>
 
                     {{-- Trust Indicators & Meta Strip --}}
                     <div class="mt-8 pt-6 border-t border-emerald-700/60 flex flex-wrap items-center gap-4 text-xs text-emerald-200 font-medium">
-                        <span>🏛️ প্রতিষ্ঠা: ১৯৬৮ খ্রি.</span>
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-landmark text-emerald-300"></i> প্রতিষ্ঠা: ১৯৬৮ খ্রি.</span>
                         <span>•</span>
                         <span>EIIN: ১২৫৬৯৩</span>
                         <span>•</span>
