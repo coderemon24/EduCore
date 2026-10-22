@@ -43,152 +43,133 @@
       ],
     ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
     </script>
-
-    {{-- Dedicated CSS Micro-Interactions & Styling --}}
-    <style>
-        .about-page-wrapper {
-            font-family: 'Noto Sans Bengali', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-        }
-        .about-card {
-            background-color: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 0.75rem;
-            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
-        }
-        .about-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
-            border-color: #005030;
-        }
-        .icon-box {
-            transition: transform 0.22s ease, background-color 0.22s ease, color 0.22s ease;
-        }
-        .about-card:hover .icon-box {
-            transform: scale(1.08);
-            background-color: #005030;
-            color: #ffffff;
-        }
-        .stat-box {
-            background-color: #003820;
-            border: 1px solid rgba(16, 185, 129, 0.35);
-            border-radius: 0.75rem;
-            transition: transform 0.22s ease, background-color 0.22s ease, border-color 0.22s ease;
-        }
-        .stat-box:hover {
-            transform: translateY(-3px);
-            background-color: #004427;
-            border-color: #34d399;
-        }
-        .timeline-card {
-            transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
-        }
-        .timeline-card:hover {
-            transform: translateX(4px);
-            border-color: #005030;
-            box-shadow: 0 4px 12px -2px rgba(0, 80, 48, 0.08);
-        }
-        .timeline-dot {
-            transition: transform 0.22s ease, background-color 0.22s ease, box-shadow 0.22s ease;
-        }
-        .timeline-group:hover .timeline-dot {
-            transform: scale(1.3);
-            background-color: #005030;
-            box-shadow: 0 0 0 4px rgba(0, 80, 48, 0.22);
-        }
-        .photo-card {
-            overflow: hidden;
-            border-radius: 0.75rem;
-        }
-        .photo-frame {
-            transition: transform 0.5s ease;
-        }
-        .photo-card:hover .photo-frame {
-            transform: scale(1.05);
-        }
-        .table-row-hover {
-            transition: background-color 0.15s ease;
-        }
-        .table-row-hover:hover {
-            background-color: #f0fdf4 !important;
-        }
-    </style>
 @endpush
 
 @section('content')
 
-<div class="about-page-wrapper bg-slate-50 text-slate-800">
-
-    {{-- 1. Standard Executive Breadcrumb Bar --}}
-    <div class="bg-gray-100 border-b border-gray-200 py-3 text-xs text-gray-600">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-            <nav class="flex items-center gap-1.5 font-medium" aria-label="Breadcrumb">
-                <a href="{{ route('frontend.home') }}" class="hover:text-[#005030] transition-colors flex items-center gap-1">
-                    <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-                    <span>প্রচ্ছদ</span>
-                </a>
-                <span class="text-gray-400">/</span>
-                <span class="text-gray-500">পরিচিতি</span>
-                <span class="text-gray-400">/</span>
-                <span class="text-gray-900 font-bold">ইতিহাস ও ঐতিহ্য</span>
-            </nav>
-            <span class="text-gray-400 text-xs font-medium hidden sm:inline-block">সোনাতলা উচ্চ বিদ্যালয় • সাঁথিয়া, পাবনা</span>
-        </div>
+{{-- 1. Executive Breadcrumb Bar --}}
+<div class="bg-gray-100 border-b border-gray-200 py-3 text-xs text-gray-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <nav class="flex items-center gap-1.5 font-medium" aria-label="Breadcrumb">
+            <a href="{{ route('frontend.home') }}" class="hover:text-[#005030] transition-colors flex items-center gap-1">
+                <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                <span>প্রচ্ছদ</span>
+            </a>
+            <span class="text-gray-400">/</span>
+            <span class="text-gray-500">পরিচিতি</span>
+            <span class="text-gray-400">/</span>
+            <span class="text-gray-900 font-bold">ইতিহাস ও ঐতিহ্য</span>
+        </nav>
+        <span class="text-gray-500 text-xs font-medium hidden sm:inline-block">সোনাতলা উচ্চ বিদ্যালয় • সাঁথিয়া, পাবনা</span>
     </div>
+</div>
 
-    {{-- Main Page Container --}}
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-
-        {{-- 2. Institutional Header Banner (Signature Deep Forest Green) --}}
-        <div class="bg-[#005030] text-white p-6 sm:p-7 rounded-xl shadow-xs flex flex-col md:flex-row md:items-center md:justify-between gap-6 border-l-4 border-amber-400">
-            <div class="space-y-2">
-                <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#003820] text-emerald-200 text-xs font-bold uppercase tracking-wider border border-emerald-700/60">
-                    <span class="h-1.5 w-1.5 rounded-full bg-amber-400"></span>
-                    <span>গৌরবোজ্জ্বল ঐতিহ্য ও স্মৃতি</span>
-                </div>
-                <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
-                    {{ $about->title }}
-                </h1>
-                @if(!empty($about->subtitle))
-                    <p class="text-sm sm:text-base text-emerald-100/90 max-w-2xl leading-relaxed">
-                        {{ $about->subtitle }}
-                    </p>
-                @endif
-            </div>
-
-            @if(!empty($about->established_year))
-                <div class="shrink-0 flex items-center gap-3 bg-[#003820] border border-emerald-700/60 px-4 py-3 rounded-lg text-white shadow-xs">
-                    <div class="w-12 h-12 rounded bg-amber-400 text-slate-950 flex flex-col items-center justify-center font-bold shrink-0">
-                        <span class="text-[8px] uppercase tracking-tighter font-extrabold -mb-1">ESTD</span>
-                        <span class="text-base font-extrabold font-mono">{{ $about->established_year }}</span>
-                    </div>
-                    <div class="text-xs">
-                        <p class="text-emerald-200/80 font-medium text-[11px]">প্রতিষ্ঠাকালীন বর্ষ</p>
-                        <p class="text-white font-bold text-sm">{{ $about->established_year }} খ্রিষ্টাব্দ</p>
-                    </div>
-                </div>
+{{-- 2. Institutional Hero Header Banner --}}
+<div class="bg-[#005030] text-white py-12 sm:py-16 border-b border-emerald-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div class="space-y-3">
+            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#003820] text-emerald-200 text-xs font-bold uppercase tracking-wider border border-emerald-700/60">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                <span>গৌরবোজ্জ্বল ঐতিহ্য ও স্মৃতি</span>
+            </span>
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
+                {{ $about->title ?: 'সোনাতলা উচ্চ বিদ্যালয় — ইতিহাস ও ঐতিহ্য' }}
+            </h1>
+            @if(!empty($about->subtitle))
+                <p class="text-sm sm:text-base text-emerald-100/90 max-w-2xl leading-relaxed">
+                    {{ $about->subtitle }}
+                </p>
             @endif
         </div>
 
-        {{-- 3. Narrative & Featured Campus Photo --}}
-        <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+        @if(!empty($about->established_year))
+            <div class="shrink-0 flex items-center gap-3 bg-[#003820] border border-emerald-700/60 px-5 py-3.5 rounded-xl text-white shadow-xs">
+                <div class="w-12 h-12 rounded-lg bg-emerald-800/80 border border-emerald-600/50 text-emerald-200 flex flex-col items-center justify-center font-bold shrink-0">
+                    <span class="text-[9px] uppercase tracking-wider font-extrabold -mb-0.5">ESTD</span>
+                    <span class="text-base font-extrabold font-mono text-white">{{ $about->established_year }}</span>
+                </div>
+                <div class="text-xs">
+                    <p class="text-emerald-300/80 font-medium text-[11px]">প্রতিষ্ঠাকালীন বর্ষ</p>
+                    <p class="text-white font-bold text-sm">{{ $about->established_year }} খ্রিষ্টাব্দ</p>
+                </div>
+            </div>
+        @endif
+    </div>
+</div>
 
-            {{-- Left Story Column --}}
-            <div class="lg:col-span-7 bg-white rounded-xl border border-slate-200 p-6 sm:p-8 space-y-6 shadow-2xs about-card">
-                <div class="border-b border-slate-100 pb-3">
-                    <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#005030] mb-1">
-                        <span class="w-2 h-2 rounded-xs bg-[#005030] inline-block"></span>
-                        <span>প্রতিষ্ঠার প্রেক্ষাপট ও অগ্রযাত্রা</span>
-                    </div>
-                    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 leading-snug">
+{{-- 3. Qualifying Credentials Meta Strip --}}
+<div class="bg-slate-900 text-slate-200 py-3.5 border-y border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs font-semibold">
+            <div class="flex items-center gap-2.5">
+                <span class="w-7 h-7 rounded-lg bg-slate-800 text-emerald-400 flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-building-columns"></i></span>
+                <div>
+                    <span class="text-slate-400 block text-[10px]">EIIN নম্বর</span>
+                    <span class="text-white font-mono font-bold">১২৫৬৯৩</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-2.5">
+                <span class="w-7 h-7 rounded-lg bg-slate-800 text-emerald-400 flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-award"></i></span>
+                <div>
+                    <span class="text-slate-400 block text-[10px]">শিক্ষা বোর্ড</span>
+                    <span class="text-white font-bold">রাজশাহী বোর্ড</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-2.5">
+                <span class="w-7 h-7 rounded-lg bg-slate-800 text-emerald-400 flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-certificate"></i></span>
+                <div>
+                    <span class="text-slate-400 block text-[10px]">সরকারি স্বীকৃতি</span>
+                    <span class="text-white font-bold">শতভাগ এমপিওভুক্ত</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-2.5">
+                <span class="w-7 h-7 rounded-lg bg-slate-800 text-emerald-400 flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-calendar-check"></i></span>
+                <div>
+                    <span class="text-slate-400 block text-[10px]">ঐতিহ্য</span>
+                    <span class="text-white font-bold">১৯৬৮ খ্রি. থেকে চলমান</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- 4. Core Substance: Narrative & Campus Photo (Asymmetric 60/40 Split) --}}
+<section class="py-16 sm:py-20 lg:py-24 bg-white" id="history">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {{-- Section Header: Rhythm Pattern --}}
+        <div class="section-header-block mb-10 sm:mb-14">
+            <div class="section-header-left">
+                <span class="section-kicker">
+                    <span class="section-kicker-dot"></span>
+                    FOUNDING HERITAGE — প্রতিষ্ঠার প্রেক্ষাপট ও অগ্রযাত্রা
+                </span>
+                <h2 class="section-title">
+                    বিদ্যালয়ের গৌরবোজ্জ্বল ইতিহাস ও <span class="text-[#005030] font-bold">পটভূমি</span>
+                </h2>
+            </div>
+            <div class="section-header-right">
+                <p class="section-subtitle">
+                    পাবনার সাঁথিয়া উপজেলার শিক্ষা ও সংস্কৃতির অন্যতম পথিকৃৎ হিসেবে সোনাতলা উচ্চ বিদ্যালয় অর্ধশতাব্দীর বেশি সময় ধরে নিরলসভাবে মানসম্মত শিক্ষা ও মানবিক মূল্যবোধ ছড়িয়ে যাচ্ছে।
+                </p>
+            </div>
+        </div>
+
+        {{-- Asymmetric 60/40 Grid --}}
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {{-- Left Story Column (Col 7 - 60%) --}}
+            <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 space-y-6 shadow-2xs">
+                <div class="border-b border-slate-100 pb-4">
+                    <span class="text-xs font-bold uppercase tracking-wider text-[#005030] block mb-1">সূচনালগ্ন থেকে বর্তমান</span>
+                    <h3 class="text-xl sm:text-2xl font-bold text-slate-900 leading-snug">
                         {{ $about->history_heading ?: 'বিদ্যালয়ের গৌরবোজ্জ্বল ইতিহাস ও পটভূমি' }}
-                    </h2>
+                    </h3>
                 </div>
 
                 {{-- Story Paragraphs --}}
                 <div class="text-slate-700 leading-relaxed space-y-4 text-sm sm:text-base">
                     @foreach(explode("\n\n", $about->history_content) as $pIdx => $paragraph)
                         @if(trim($paragraph))
-                            <p class="{{ $pIdx === 0 ? 'text-slate-800 font-medium leading-relaxed border-l-2 border-[#005030] pl-3.5 bg-slate-50/70 py-2 rounded-r text-sm sm:text-base' : '' }}">
+                            <p class="{{ $pIdx === 0 ? 'text-slate-800 font-medium leading-relaxed border-l-2 border-[#005030] pl-4 bg-slate-50/80 py-3 rounded-r text-sm sm:text-base mb-4' : 'text-slate-700 leading-relaxed text-sm sm:text-base mb-4' }}">
                                 {{ trim($paragraph) }}
                             </p>
                         @endif
@@ -196,50 +177,56 @@
                 </div>
 
                 {{-- Institutional Quality Badges --}}
-                <div class="pt-4 border-t border-slate-100">
-                    <p class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2.5">প্রাতিষ্ঠানিক স্বীকৃতি ও গুণমান</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                        <div class="flex items-center gap-2 p-2 rounded bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-800">
-                            <svg class="w-4 h-4 text-[#005030] shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <div class="pt-6 border-t border-slate-100">
+                    <p class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-3">প্রাতিষ্ঠানিক স্বীকৃতি ও গুণমান</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div class="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 text-xs font-semibold text-slate-800 shadow-2xs">
+                            <i class="fa-solid fa-shield-check text-[#005030] text-sm shrink-0"></i>
                             <span>সরকারি স্বীকৃতিপ্রাপ্ত</span>
                         </div>
-                        <div class="flex items-center gap-2 p-2 rounded bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-800">
-                            <svg class="w-4 h-4 text-[#005030] shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                        <div class="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 text-xs font-semibold text-slate-800 shadow-2xs">
+                            <i class="fa-solid fa-circle-check text-[#005030] text-sm shrink-0"></i>
                             <span>শতভাগ এমপিওভুক্ত</span>
                         </div>
-                        <div class="flex items-center gap-2 p-2 rounded bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-800">
-                            <svg class="w-4 h-4 text-[#005030] shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                        <div class="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 text-xs font-semibold text-slate-800 shadow-2xs">
+                            <i class="fa-solid fa-microchip text-[#005030] text-sm shrink-0"></i>
                             <span>আধুনিক ডিজিটাল ল্যাব</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {{-- Right Campus Photo Column --}}
-            <div class="lg:col-span-5 space-y-4">
-                {{-- Campus Photo Card --}}
-                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-2xs photo-card about-card">
+            {{-- Right Campus Photo Column (Col 5 - 40%) --}}
+            <div class="lg:col-span-5 space-y-5 lg:sticky lg:top-24">
+                {{-- Campus Photo Card with Floating Anchor --}}
+                <div class="bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-2xs relative group">
+                    {{-- Floating Anchor: Credential Badge --}}
+                    <div class="absolute -top-3 -right-3 z-20 bg-slate-900 text-white border border-slate-700/80 px-3.5 py-1.5 rounded-full text-xs font-bold shadow-md flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span>Estd. ১৯৬৮ • সাঁথিয়া</span>
+                    </div>
+
                     <div class="relative h-64 sm:h-72 w-full bg-slate-900 overflow-hidden">
                         <img src="{{ $about->history_image_url }}"
                              alt="{{ $about->title }}"
-                             class="w-full h-full object-cover photo-frame">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/25 to-transparent"></div>
-                        <div class="absolute bottom-3 left-3 right-3 text-white text-xs">
-                            <p class="font-bold truncate text-white text-sm">{{ $school->name ?? 'সোনাতলা উচ্চ বিদ্যালয়' }}</p>
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4 text-white text-xs">
+                            <p class="font-bold truncate text-white text-base">{{ $school->name ?? 'সোনাতলা উচ্চ বিদ্যালয়' }}</p>
                             <p class="text-xs text-emerald-200/90 mt-0.5">প্রধান একাডেমিক ভবন ও সুপরিসর সবুজ ক্যাম্পাস</p>
                         </div>
                     </div>
-                    <div class="p-3 bg-slate-50 border-t border-slate-100 text-xs text-slate-600 flex items-center justify-between">
+                    <div class="p-3.5 bg-slate-50/80 border-t border-slate-100 text-xs text-slate-600 flex items-center justify-between">
                         <span>সাঁথিয়া-বেড়া আঞ্চলিক শিক্ষাকেন্দ্র</span>
                         <span class="text-[#005030] font-bold">স্থাপিত ১৯৬৮ খ্রি.</span>
                     </div>
                 </div>
 
-                {{-- Fast Telemetry Box --}}
-                <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-2xs space-y-3 about-card">
-                    <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
-                        <div class="flex items-center gap-2.5">
-                            <div class="w-8 h-8 rounded-lg bg-[#005030] text-white flex items-center justify-center font-bold text-xs">
+                {{-- Fast Institutional Telemetry Card --}}
+                <div class="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-2xs space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-[#005030] text-white flex items-center justify-center font-bold text-xs shadow-2xs">
                                 EIIN
                             </div>
                             <div>
@@ -247,200 +234,292 @@
                                 <p class="text-xs text-slate-500">পাবনা জেলা • স্থাপিত ১৯৬৮</p>
                             </div>
                         </div>
-                        <span class="font-mono font-bold text-emerald-900 bg-emerald-100 px-2 py-0.5 rounded text-xs border border-emerald-200">
+                        <span class="font-mono font-bold text-emerald-900 bg-emerald-100/90 px-2.5 py-1 rounded-lg text-xs border border-emerald-200">
                             ১২৫৬৯৩
                         </span>
                     </div>
 
-                    <div class="grid grid-cols-2 gap-2 text-xs">
-                        <div class="p-2 rounded bg-slate-50 border border-slate-100">
-                            <span class="text-slate-500 block text-[10px]">স্কুল কোড</span>
-                            <span class="font-bold text-slate-900 font-mono">৮১০৭</span>
+                    <div class="grid grid-cols-2 gap-3 text-xs">
+                        <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
+                            <span class="text-slate-500 block text-[11px] font-medium">স্কুল কোড</span>
+                            <span class="font-bold text-slate-900 font-mono text-sm mt-0.5 block">৮১০৭</span>
                         </div>
-                        <div class="p-2 rounded bg-slate-50 border border-slate-100">
-                            <span class="text-slate-500 block text-[10px]">এমপিও কোড</span>
-                            <span class="font-bold text-slate-900 font-mono">৮১০৭০২১৩০২</span>
+                        <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
+                            <span class="text-slate-500 block text-[11px] font-medium">এমপিও কোড</span>
+                            <span class="font-bold text-slate-900 font-mono text-sm mt-0.5 block">৮১০৭০২১৩০২</span>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
 
-        </section>
+{{-- Hairline Structural Divider --}}
+<div class="home-section-divider"></div>
 
-        {{-- 4. Vision, Mission & Core Values (3-Pillar Cards) --}}
-        <section class="space-y-4">
-            <div class="text-center max-w-xl mx-auto space-y-1">
-                <span class="text-xs font-bold uppercase tracking-wider text-[#005030]">প্রাতিষ্ঠানিক অঙ্গীকার</span>
-                <h2 class="text-xl sm:text-2xl font-bold text-slate-900">লক্ষ্য, উদ্দেশ্য ও <span class="text-[#005030]">মূল আদর্শ</span></h2>
-                <div class="w-12 h-0.5 bg-[#005030] mx-auto mt-1 rounded"></div>
+{{-- 5. Institutional Manifesto: Vision, Mission & Values (Asymmetric 65/35 Split) --}}
+<section class="py-16 sm:py-20 lg:py-24 bg-slate-50/60" id="manifesto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {{-- Section Header: Rhythm Pattern --}}
+        <div class="section-header-block mb-10 sm:mb-14">
+            <div class="section-header-left">
+                <span class="section-kicker">
+                    <span class="section-kicker-dot"></span>
+                    INSTITUTIONAL MANIFESTO — প্রাতিষ্ঠানিক অঙ্গীকার
+                </span>
+                <h2 class="section-title">
+                    লক্ষ্য, উদ্দেশ্য ও <span class="text-[#005030] font-bold">মূল আদর্শ</span>
+                </h2>
             </div>
+            <div class="section-header-right">
+                <p class="section-subtitle">
+                    শিক্ষার্থীদের শুধু পাঠ্যবইয়ের জ্ঞানে সীমাবদ্ধ না রেখে তাদেরকে সৎ, চরিত্রবান, দেশপ্রেমিক ও আধুনিক তথ্যপ্রযুক্তিমনস্ক নাগরিক হিসেবে গড়ে তোলাই আমাদের অঙ্গীকার।
+                </p>
+            </div>
+        </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-2">
-                {{-- Vision --}}
-                <div class="about-card p-6 space-y-3.5 border-t-4 border-t-[#005030]">
-                    <div class="w-11 h-11 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center icon-box shadow-2xs">
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                        </svg>
+        {{-- Asymmetric 65/35 Layout --}}
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {{-- Dominant Flagship Manifesto: Vision & Mission (Col 7 - 65%) --}}
+            <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200/90 p-7 sm:p-9 shadow-2xs space-y-8">
+                {{-- Vision Subsection --}}
+                <div class="space-y-3.5">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200/80 text-[#005030] flex items-center justify-center text-lg shadow-2xs shrink-0">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-[#005030] block">দীর্ঘমেয়াদী রূপকল্প</span>
+                            <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900">{{ $about->vision_title ?: 'আমাদের লক্ষ্য (Vision)' }}</h3>
+                        </div>
                     </div>
-                    <h3 class="text-lg sm:text-xl font-bold text-slate-900">{{ $about->vision_title ?: 'আমাদের লক্ষ্য (Vision)' }}</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed">
+                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed font-normal pt-1">
                         {{ $about->vision_text ?: 'প্রতিটি শিক্ষার্থীকে সুনাগরিক, দেশপ্রেমিক, আধুনিক বিজ্ঞানমনস্ক ও মানবিক মূল্যবোধসম্পন্ন মানুষ হিসেবে গড়ে তোলা।' }}
                     </p>
                 </div>
 
-                {{-- Mission --}}
-                <div class="about-card p-6 space-y-3.5 border-t-4 border-t-[#005030]">
-                    <div class="w-11 h-11 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center icon-box shadow-2xs">
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
+                <div class="border-t border-slate-100"></div>
+
+                {{-- Mission Subsection --}}
+                <div class="space-y-3.5">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200/80 text-[#005030] flex items-center justify-center text-lg shadow-2xs shrink-0">
+                            <i class="fa-solid fa-compass"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-[#005030] block">বাস্তবায়ন কৌশল</span>
+                            <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900">{{ $about->mission_title ?: 'আমাদের উদ্দেশ্য (Mission)' }}</h3>
+                        </div>
                     </div>
-                    <h3 class="text-lg sm:text-xl font-bold text-slate-900">{{ $about->mission_title ?: 'আমাদের উদ্দেশ্য (Mission)' }}</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed">
+                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed font-normal pt-1">
                         {{ $about->mission_text ?: 'আনন্দমুখর ও সুশৃঙ্খল পরিবেশে মানসম্মত শিক্ষা নিশ্চিত করা এবং আধুনিক তথ্যপ্রযুক্তির মাধ্যমে শিক্ষার্থীদের ভবিষ্যতের উপযোগী করে তোলা।' }}
                     </p>
                 </div>
+            </div>
 
-                {{-- Values --}}
-                <div class="about-card p-6 space-y-3.5 border-t-4 border-t-[#005030]">
-                    <div class="w-11 h-11 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center icon-box shadow-2xs">
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                        </svg>
+            {{-- Core Ethical Values Vertical Stack (Col 5 - 35%) --}}
+            <div class="lg:col-span-5 bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-7 shadow-2xs space-y-6">
+                <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200/80 text-[#005030] flex items-center justify-center text-base shadow-2xs shrink-0">
+                        <i class="fa-solid fa-hand-holding-heart"></i>
                     </div>
-                    <h3 class="text-lg sm:text-xl font-bold text-slate-900">{{ $about->values_title ?: 'আমাদের মূল আদর্শ ও মূল্যবোধ' }}</h3>
-                    <ul class="space-y-2 text-sm text-slate-600">
-                        @php
-                            $valuesList = !empty($about->values_list) ? $about->values_list : [
-                                'সততা ও নৈতিক নিষ্ঠা',
-                                'শৃঙ্খলা ও কঠোর নিয়মানুবর্তিতা',
-                                'দেশপ্রেম ও সামাজিক দায়বদ্ধতা',
-                                'আধুনিক বিজ্ঞানমনস্কতা ও মুক্তবুদ্ধি চর্চা',
-                            ];
-                        @endphp
-                        @foreach($valuesList as $vItem)
-                            <li class="flex items-center gap-2">
-                                <span class="w-1.5 h-1.5 rounded-full bg-[#005030] shrink-0"></span>
-                                <span class="font-medium text-slate-700">{{ $vItem }}</span>
-                            </li>
-                        @endforeach
-                    </ul>
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-[#005030] block">মূল নীতিসমূহ</span>
+                        <h3 class="text-lg sm:text-xl font-bold text-slate-900">{{ $about->values_title ?: 'আমাদের মূল আদর্শ ও মূল্যবোধ' }}</h3>
+                    </div>
                 </div>
-            </div>
-        </section>
 
-        {{-- 5. Statistics Counters (Solid Institutional Deep Green) --}}
-        @if(!empty($about->statistics) && is_array($about->statistics))
-        <section class="bg-[#005030] text-white rounded-xl p-6 sm:p-8 shadow-xs border border-emerald-800">
-            <div class="text-center mb-6">
-                <span class="inline-block text-[11px] uppercase tracking-wider text-emerald-300 font-bold bg-[#003820] px-3 py-0.5 rounded-full border border-emerald-700/60 mb-1.5">
-                    পরিসংখ্যান ও অর্জন
+                <ul class="space-y-3.5 text-sm sm:text-base">
+                    @php
+                        $valuesList = !empty($about->values_list) ? $about->values_list : [
+                            'সততা ও নৈতিক নিষ্ঠা',
+                            'শৃঙ্খলা ও কঠোর নিয়মানুবর্তিতা',
+                            'দেশপ্রেম ও সামাজিক দায়বদ্ধতা',
+                            'আধুনিক বিজ্ঞানমনস্কতা ও মুক্তবুদ্ধি চর্চা',
+                        ];
+                    @endphp
+                    @foreach($valuesList as $vItem)
+                        <li class="flex items-center gap-3 p-3 rounded-xl bg-slate-50/80 border border-slate-100">
+                            <span class="w-7 h-7 rounded-lg bg-[#005030] text-white flex items-center justify-center text-xs shrink-0">
+                                <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span class="font-bold text-slate-800 text-sm sm:text-base">{{ $vItem }}</span>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- Hairline Structural Divider --}}
+<div class="home-section-divider"></div>
+
+{{-- 6. Practical Reality: Statistics Counters (Hallmark Accomplishments) --}}
+@if(!empty($about->statistics) && is_array($about->statistics))
+<section class="py-16 sm:py-20 lg:py-24 bg-white" id="statistics">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {{-- Section Header: Rhythm Pattern --}}
+        <div class="section-header-block mb-10 sm:mb-14">
+            <div class="section-header-left">
+                <span class="section-kicker">
+                    <span class="section-kicker-dot"></span>
+                    KEY METRICS — অর্জন ও পরিসংখ্যান
                 </span>
-                <h3 class="text-xl sm:text-2xl font-bold text-white">এক নজরে <span class="text-amber-400">সোনাতলা উচ্চ বিদ্যালয়</span></h3>
+                <h2 class="section-title">
+                    এক নজরে বিদ্যালয়ের <span class="text-[#005030] font-bold">সাফল্যের চিত্র</span>
+                </h2>
             </div>
+            <div class="section-header-right">
+                <p class="section-subtitle">
+                    বিগত অর্ধশতকের বেশি সময়ে হাজারো শিক্ষার্থীর আলোকবর্তিকা হয়ে ওঠা সোনাতলা উচ্চ বিদ্যালয়ের বাস্তব অর্জন ও সক্ষমতার পরিসংখ্যান।
+                </p>
+            </div>
+        </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                @foreach($about->statistics as $stat)
-                    <div class="stat-box p-4">
-                        <p class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-mono tracking-tight text-white">
-                            {{ $stat['value'] ?? '' }}
-                        </p>
-                        <p class="text-xs sm:text-sm font-bold text-emerald-200 mt-1.5">{{ $stat['label'] ?? '' }}</p>
-                        @if(!empty($stat['note']))
-                            <p class="text-[11px] text-emerald-300/80 mt-0.5">{{ $stat['note'] }}</p>
+        {{-- Hallmark Accomplishments Grid --}}
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            @foreach($about->statistics as $stat)
+                <div class="p-6 rounded-2xl bg-slate-50/70 border border-slate-200/90 hover:border-[#005030]/60 transition-all duration-200 hover:-translate-y-0.5 shadow-2xs hover:shadow-xs group">
+                    <p class="text-4xl lg:text-5xl font-extrabold font-mono tracking-tight text-[#005030] group-hover:scale-105 transition-transform duration-200 origin-left">
+                        {{ $stat['value'] ?? '' }}
+                    </p>
+                    <p class="text-base font-bold text-slate-900 mt-2">{{ $stat['label'] ?? '' }}</p>
+                    @if(!empty($stat['note']))
+                        <p class="text-xs text-slate-500 mt-1 leading-relaxed">{{ $stat['note'] }}</p>
+                    @endif
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+{{-- Hairline Structural Divider --}}
+<div class="home-section-divider"></div>
+@endif
+
+{{-- 7. Chronological Milestones Timeline --}}
+@if(!empty($about->milestones) && is_array($about->milestones))
+<section class="py-16 sm:py-20 lg:py-24 bg-slate-50/60" id="milestones">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {{-- Section Header: Rhythm Pattern --}}
+        <div class="section-header-block mb-10 sm:mb-14">
+            <div class="section-header-left">
+                <span class="section-kicker">
+                    <span class="section-kicker-dot"></span>
+                    CHRONOLOGY — অগ্রযাত্রার মাইলফলক
+                </span>
+                <h2 class="section-title">
+                    আমাদের ঐতিহাসিক <span class="text-[#005030] font-bold">অগ্রযাত্রার রূপরেখা</span>
+                </h2>
+            </div>
+            <div class="section-header-right">
+                <p class="section-subtitle">
+                    ১৯৬৮ সাল থেকে বর্তমান — সোনাতলা উচ্চ বিদ্যালয়ের ধারাবাহিক উন্নয়নের সোনালী স্মৃতি ও প্রাতিষ্ঠানিক রূপান্তরের ইতিহাস।
+                </p>
+            </div>
+        </div>
+
+        {{-- Timeline Stream --}}
+        <div class="relative border-l-2 border-[#005030]/30 ml-4 sm:ml-6 pl-6 sm:pl-8 space-y-6">
+            @foreach($about->milestones as $m)
+                <div class="relative group">
+                    {{-- Timeline Dot --}}
+                    <div class="absolute -left-[31px] sm:-left-[39px] top-4 w-4 h-4 rounded-full border-2 border-[#005030] bg-white group-hover:bg-[#005030] group-hover:scale-125 transition-all duration-200"></div>
+
+                    <div class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-2xs group-hover:-translate-y-0.5 group-hover:border-[#005030]/50 transition-all duration-200">
+                        <span class="inline-block px-3 py-1 rounded-full bg-emerald-50 text-[#005030] text-xs font-mono font-bold border border-emerald-200/70">
+                            {{ $m['year'] ?? '' }} খ্রিষ্টাব্দ
+                        </span>
+                        <h4 class="text-base sm:text-lg font-bold text-slate-900 mt-2">
+                            {{ $m['title'] ?? '' }}
+                        </h4>
+                        @if(!empty($m['description']))
+                            <p class="text-sm text-slate-600 leading-relaxed mt-1">
+                                {{ $m['description'] }}
+                            </p>
                         @endif
                     </div>
-                @endforeach
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+{{-- Hairline Structural Divider --}}
+<div class="home-section-divider"></div>
+@endif
+
+{{-- 8. Governance & Quick Facts Editorial Grid --}}
+<section class="py-16 sm:py-20 lg:py-24 bg-white" id="governance">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {{-- Section Header: Rhythm Pattern --}}
+        <div class="section-header-block mb-10 sm:mb-14">
+            <div class="section-header-left">
+                <span class="section-kicker">
+                    <span class="section-kicker-dot"></span>
+                    GOVERNANCE & SPECIFICATIONS — পরিচালনা ও তথ্য
+                </span>
+                <h2 class="section-title">
+                    প্রতিষ্ঠান পরিচিতি ও <span class="text-[#005030] font-bold">পরিচালনা পর্ষদ</span>
+                </h2>
             </div>
-        </section>
-        @endif
-
-        {{-- 6. Chronological Milestones Timeline --}}
-        @if(!empty($about->milestones) && is_array($about->milestones))
-        <section class="bg-white rounded-xl border border-slate-200 p-6 sm:p-8 space-y-6 shadow-2xs about-card">
-            <div class="border-b border-slate-100 pb-3">
-                <span class="text-xs font-bold uppercase tracking-wider text-[#005030]">অগ্রযাত্রার রূপরেখা</span>
-                <h2 class="text-xl sm:text-2xl font-bold text-slate-900 mt-1">আমাদের <span class="text-[#005030]">ঐতিহাসিক মাইলফলক</span></h2>
-                <p class="text-xs sm:text-sm text-slate-500 mt-0.5">১৯৬৮ সাল থেকে বর্তমান — সোনাতলা উচ্চ বিদ্যালয়ের ধারাবাহিক উন্নয়নের সোনালী স্মৃতি</p>
+            <div class="section-header-right">
+                <p class="section-subtitle">
+                    বিদ্যালয়ের সার্বিক শিক্ষা ব্যবস্থাপনা, অবকাঠামোগত উন্নয়ন ও প্রশাসনিক স্বচ্ছতা নিশ্চিতকরণে পরিচালনা পর্ষদ নিয়মিত দিকনির্দেশনা প্রদান করে আসছে।
+                </p>
             </div>
+        </div>
 
-            <div class="relative border-l-2 border-emerald-700/30 ml-3 sm:ml-4 pl-6 sm:pl-8 space-y-6">
-                @foreach($about->milestones as $m)
-                    <div class="relative timeline-group">
-                        {{-- Dot --}}
-                        <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-3.5 h-3.5 rounded-full border-2 border-[#005030] bg-white timeline-dot"></div>
-
-                        <div class="p-4 rounded-lg bg-slate-50 border border-slate-200/80 timeline-card">
-                            <span class="inline-block px-2.5 py-0.5 rounded bg-slate-100 text-slate-800 text-xs font-mono font-bold border border-slate-200">
-                                {{ $m['year'] ?? '' }} খ্রিষ্টাব্দ
-                            </span>
-                            <h4 class="text-base sm:text-lg font-bold text-slate-900 mt-1.5">
-                                {{ $m['title'] ?? '' }}
-                            </h4>
-                            @if(!empty($m['description']))
-                                <p class="text-sm text-slate-600 leading-relaxed mt-1">
-                                    {{ $m['description'] }}
-                                </p>
-                            @endif
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </section>
-        @endif
-
-        {{-- 7. School At a Glance & Managing Committee --}}
-        <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {{-- At a Glance (Col 5) --}}
-            <div class="lg:col-span-5 bg-white rounded-xl border border-slate-200 overflow-hidden shadow-2xs about-card">
-                <div class="bg-[#005030] text-white px-4 py-3 font-bold text-xs uppercase tracking-wider flex items-center justify-between">
-                    <span class="flex items-center gap-1.5">
-                        <svg class="w-4 h-4 text-emerald-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <div class="lg:col-span-5 bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-2xs">
+                <div class="bg-[#005030] text-white px-5 py-3.5 font-bold text-xs uppercase tracking-wider flex items-center justify-between">
+                    <span class="flex items-center gap-2">
+                        <i class="fa-solid fa-clipboard-list text-emerald-300"></i>
                         <span>এক নজরে প্রতিষ্ঠান</span>
                     </span>
                     <span class="text-[10px] text-emerald-200 font-mono">Quick Facts</span>
                 </div>
 
-                <dl class="divide-y divide-slate-100 text-xs p-4 space-y-0.5">
+                <dl class="divide-y divide-slate-100 text-xs p-5 space-y-1">
                     @php
                         $glanceList = !empty($about->at_a_glance) ? $about->at_a_glance : [
                             ['key' => 'প্রতিষ্ঠানের নাম', 'value' => 'সোনাতলা উচ্চ বিদ্যালয়'],
                             ['key' => 'EIIN নম্বর', 'value' => '১২৫৬৯৩'],
                             ['key' => 'স্কুল কোড', 'value' => '৮১০৭'],
                             ['key' => 'এমপিও কোড', 'value' => '৮১০৭০২১৩০২'],
-                            ['key' => 'শিক্ষা বোর্ড', 'value' => 'রাজশাহী'],
+                            ['key' => 'শিক্ষা বোর্ড', 'value' => 'রাজশাহী শিক্ষা বোর্ড'],
                         ];
                     @endphp
                     @foreach($glanceList as $glance)
-                        <div class="py-2.5 px-2 flex justify-between items-center gap-4 table-row-hover rounded">
-                            <dt class="text-slate-500 shrink-0 font-medium">{{ $glance['key'] ?? '' }}:</dt>
-                            <dd class="font-bold text-slate-900 text-right font-mono">{{ $glance['value'] ?? '' }}</dd>
+                        <div class="py-2.5 px-3 flex justify-between items-center gap-4 hover:bg-slate-50/80 rounded-lg transition-colors">
+                            <dt class="text-slate-600 shrink-0 font-medium text-sm">{{ $glance['key'] ?? '' }}:</dt>
+                            <dd class="font-bold text-slate-900 text-right font-mono text-sm">{{ $glance['value'] ?? '' }}</dd>
                         </div>
                     @endforeach
                 </dl>
             </div>
 
             {{-- Managing Committee (Col 7) --}}
-            <div class="lg:col-span-7 bg-white rounded-xl border border-slate-200 overflow-hidden shadow-2xs about-card">
-                <div class="bg-[#005030] text-white px-4 py-3 font-bold text-xs uppercase tracking-wider flex items-center justify-between">
-                    <span class="flex items-center gap-1.5">
-                        <svg class="w-4 h-4 text-emerald-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-2xs">
+                <div class="bg-[#005030] text-white px-5 py-3.5 font-bold text-xs uppercase tracking-wider flex items-center justify-between">
+                    <span class="flex items-center gap-2">
+                        <i class="fa-solid fa-users text-emerald-300"></i>
                         <span>বিদ্যালয় পরিচালনা পর্ষদ</span>
                     </span>
                     <span class="text-[10px] text-emerald-200 font-mono">Committee</span>
                 </div>
 
-                <div class="overflow-x-auto p-4">
-                    <table class="w-full text-left text-xs border border-slate-200 rounded">
+                <div class="overflow-x-auto p-5">
+                    <table class="w-full text-left text-xs border border-slate-200/90 rounded-xl overflow-hidden">
                         <thead class="bg-slate-50 text-slate-800 font-bold border-b border-slate-200">
                             <tr>
-                                <th class="p-2.5 border-r border-slate-200 text-center w-12">ক্রমিক</th>
-                                <th class="p-2.5 border-r border-slate-200">নাম</th>
-                                <th class="p-2.5 border-r border-slate-200">পদবি</th>
-                                <th class="p-2.5">দায়িত্ব ও ভূমিকা</th>
+                                <th class="p-3 border-r border-slate-200 text-center w-14">ক্রমিক</th>
+                                <th class="p-3 border-r border-slate-200">নাম</th>
+                                <th class="p-3 border-r border-slate-200">পদবি</th>
+                                <th class="p-3">দায়িত্ব ও ভূমিকা</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-100 text-slate-800">
@@ -449,62 +528,164 @@
                             @endphp
                             @if(!empty($committeeList))
                                 @foreach($committeeList as $cIdx => $member)
-                                    <tr class="table-row-hover {{ $cIdx % 2 == 1 ? 'bg-slate-50/50' : '' }}">
-                                        <td class="p-2.5 border-r border-slate-200 text-center font-bold font-mono text-slate-500">
+                                    <tr class="hover:bg-slate-50/70 transition-colors {{ $cIdx % 2 == 1 ? 'bg-slate-50/30' : '' }}">
+                                        <td class="p-3 border-r border-slate-200 text-center font-bold font-mono text-slate-500">
                                              {{ sprintf('%02d', $cIdx + 1) }}
                                         </td>
-                                        <td class="p-2.5 border-r border-slate-200 font-bold text-sm text-[#005030]">
+                                        <td class="p-3 border-r border-slate-200 font-bold text-sm text-[#005030]">
                                             {{ $member['name'] ?? '' }}
                                         </td>
-                                        <td class="p-2.5 border-r border-slate-200">
-                                            <span class="inline-block px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 text-slate-800 border border-slate-200">
+                                        <td class="p-3 border-r border-slate-200">
+                                            <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-[#005030] border border-emerald-200/80">
                                                 {{ $member['designation'] ?? '' }}
                                             </span>
                                         </td>
-                                        <td class="p-2.5 text-xs sm:text-sm text-slate-600">
+                                        <td class="p-3 text-xs sm:text-sm text-slate-600">
                                             {{ $member['role'] ?? '' }}
                                         </td>
                                     </tr>
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="4" class="p-4 text-center text-slate-400 italic">তথ্য শীঘ্রই হালনাগাদ করা হবে।</td>
+                                    <td colspan="4" class="p-6 text-center text-slate-400 italic">তথ্য শীঘ্রই হালনাগাদ করা হবে।</td>
                                 </tr>
                             @endif
                         </tbody>
                     </table>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
 
-        </section>
+{{-- Hairline Structural Divider --}}
+<div class="home-section-divider"></div>
 
-        {{-- 8. Campus Facilities Grid --}}
-        @if(!empty($about->facilities) && is_array($about->facilities))
-        <section class="space-y-4">
-            <div class="text-center max-w-xl mx-auto space-y-1">
-                <span class="text-xs font-bold uppercase tracking-wider text-[#005030]">অবকাঠামো</span>
-                <h2 class="text-xl sm:text-2xl font-bold text-slate-900">ক্যাম্পাস ও <span class="text-[#005030]">আধুনিক সুযোগ-সুবিধা</span></h2>
-                <div class="w-12 h-0.5 bg-[#005030] mx-auto mt-1 rounded"></div>
+{{-- 9. Campus Facilities: Pick the Winner (Asymmetric 65/35 Split) --}}
+@if(!empty($about->facilities) && is_array($about->facilities))
+<section class="py-16 sm:py-20 lg:py-24 bg-slate-50/60" id="facilities">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {{-- Section Header: Rhythm Pattern --}}
+        <div class="section-header-block mb-10 sm:mb-14">
+            <div class="section-header-left">
+                <span class="section-kicker">
+                    <span class="section-kicker-dot"></span>
+                    CAMPUS INFRASTRUCTURE — আধুনিক সুযোগ-সুবিধা
+                </span>
+                <h2 class="section-title">
+                    ক্যাম্পাস ও আধুনিক <span class="text-[#005030] font-bold">অবকাঠামো</span>
+                </h2>
             </div>
+            <div class="section-header-right">
+                <p class="section-subtitle">
+                    যুগোপযোগী বিজ্ঞান ও তথ্যপ্রযুক্তি শিক্ষাদানের জন্য রয়েছে শেখ রাসেল ডিজিটাল ল্যাব, সমৃদ্ধ বিজ্ঞানাগার, লাইব্রেরি ও সুবিশাল খেলার মাঠ।
+                </p>
+            </div>
+        </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
-                @foreach($about->facilities as $fac)
-                    <div class="about-card p-5 space-y-2">
-                        <div class="w-9 h-9 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center icon-box shadow-2xs">
-                            <svg class="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                            </svg>
+        {{-- Pick the Winner Layout --}}
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {{-- Flagship Dominant Item (65% width / Col 7) --}}
+            @php
+                $flagshipFacility = $about->facilities[0] ?? null;
+                $secondaryFacilities = array_slice($about->facilities, 1);
+            @endphp
+
+            @if($flagshipFacility)
+            <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200/90 p-7 sm:p-9 shadow-2xs space-y-6 group">
+                <div class="flex items-center justify-between">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-200 text-[#005030] flex items-center justify-center text-2xl shadow-2xs group-hover:scale-105 transition-transform duration-300">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-[#005030] text-xs font-bold border border-emerald-200">
+                        <i class="fa-solid fa-star text-amber-500"></i>
+                        <span>প্রধান অবকাঠামো</span>
+                    </span>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-3 leading-snug">
+                        {{ $flagshipFacility['title'] ?? 'শেখ রাসেল ডিজিটাল কম্পিউটার ল্যাব' }}
+                    </h3>
+                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-6">
+                        {{ $flagshipFacility['description'] ?? 'উচ্চগতির ইন্টারনেট সুবিধাসহ অত্যাধুনিক কম্পিউটার ল্যাব ও সার্বক্ষণিক আইসিটি প্রশিক্ষণ ব্যবস্থা।' }}
+                    </p>
+                </div>
+
+                {{-- Flagship Checklist Proof Points --}}
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-5 border-t border-slate-100">
+                    <div class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800">
+                        <span class="w-5 h-5 rounded-full bg-emerald-100 text-[#005030] flex items-center justify-center shrink-0 text-xs font-bold"><i class="fa-solid fa-check"></i></span>
+                        <span>উচ্চগতির ব্রডব্যান্ড ইন্টারনেট সংযোগ</span>
+                    </div>
+                    <div class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800">
+                        <span class="w-5 h-5 rounded-full bg-emerald-100 text-[#005030] flex items-center justify-center shrink-0 text-xs font-bold"><i class="fa-solid fa-check"></i></span>
+                        <span>আধুনিক কম্পিউটার ও প্রজেক্টর সুবিধা</span>
+                    </div>
+                    <div class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800">
+                        <span class="w-5 h-5 rounded-full bg-emerald-100 text-[#005030] flex items-center justify-center shrink-0 text-xs font-bold"><i class="fa-solid fa-check"></i></span>
+                        <span>নিয়মিত আইসিটি ব্যবহারিক ক্লাস</span>
+                    </div>
+                    <div class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800">
+                        <span class="w-5 h-5 rounded-full bg-emerald-100 text-[#005030] flex items-center justify-center shrink-0 text-xs font-bold"><i class="fa-solid fa-check"></i></span>
+                        <span>অভিজ্ঞ কম্পিউটার শিক্ষক দ্বারা পরিচালিত</span>
+                    </div>
+                </div>
+            </div>
+            @endif
+
+            {{-- Secondary Stack (35% width / Col 5) --}}
+            <div class="lg:col-span-5 space-y-4">
+                @foreach($secondaryFacilities as $sFac)
+                    <div class="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-2xs hover:-translate-y-0.5 hover:border-[#005030]/50 transition-all duration-200 space-y-2">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center text-sm shadow-2xs shrink-0">
+                                <i class="fa-solid fa-landmark"></i>
+                            </div>
+                            <h4 class="text-base font-bold text-slate-900">{{ $sFac['title'] ?? '' }}</h4>
                         </div>
-                        <h4 class="text-sm sm:text-base font-bold text-slate-900">{{ $fac['title'] ?? '' }}</h4>
-                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">{{ $fac['description'] ?? '' }}</p>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed pl-13">{{ $sFac['description'] ?? '' }}</p>
                     </div>
                 @endforeach
             </div>
-        </section>
-        @endif
-
+        </div>
     </div>
+</section>
 
-</div>
+{{-- Hairline Structural Divider --}}
+<div class="home-section-divider"></div>
+@endif
+
+{{-- 10. The Next Step: Campus Visit & Admissions CTA Block (Recipe 3, Step 6) --}}
+<section class="py-16 sm:py-20 lg:py-24 bg-[#005030] text-white relative overflow-hidden" id="next-step">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#003820] text-emerald-200 text-xs font-bold uppercase tracking-wider border border-emerald-700/60 mb-5">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+            <span>পরবর্তী পদক্ষেপ • NEXT STEP</span>
+        </span>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight max-w-3xl">
+            ক্যাম্পাস পরিদর্শন করুন অথবা সরাসরি <span class="text-amber-400 font-bold">যোগাযোগ</span> করুন
+        </h2>
+        <p class="text-sm sm:text-base text-emerald-100/90 max-w-2xl leading-relaxed mt-4 mb-8">
+            বিদ্যালয়ের অ্যাকাডেমিক পরিবেশ ও আধুনিক অবকাঠামোগত সুযোগ-সুবিধা সরেজমিনে প্রত্যক্ষ করতে শিক্ষার্থী ও অভিভাবকদের সাদর আমন্ত্রণ জানাচ্ছি।
+        </p>
+
+        <div class="flex flex-wrap items-center justify-center gap-4">
+            {{-- Primary Conversion Action (Strictly Reserved Warm Amber) --}}
+            <a href="{{ route('frontend.contact') }}"
+               class="px-7 py-3.5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold shadow-sm transition-all hover:scale-105 active:scale-95 inline-flex items-center gap-2 text-sm sm:text-base">
+                <span>যোগাযোগ ও ক্যাম্পাসে আসুন</span>
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+
+            {{-- Secondary Information Link --}}
+            <a href="{{ route('frontend.academic.routine') }}"
+               class="px-6 py-3.5 rounded-full bg-[#003820] hover:bg-[#002e1a] text-white font-bold border border-emerald-700/60 transition-all inline-flex items-center gap-2 text-sm sm:text-base">
+                <span>ক্লাস রুটিন ও অ্যাকাডেমিক তথ্য</span>
+                <i class="fa-solid fa-chevron-right text-xs text-emerald-300"></i>
+            </a>
+        </div>
+    </div>
+</section>
 
 @endsection
