@@ -25,11 +25,11 @@
                                 </span>
                             </div>
 
-                            <h2 class="fullscreen-slide-title font-extrabold tracking-tight drop-shadow-lg text-white">
+                            <h2 class="fullscreen-slide-title text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight drop-shadow-lg text-white">
                                 প্রতিটি সন্তানকে গড়ে তুলছি <span class="text-amber-300">সততা, মেধা ও মানবিক মূল্যবোধে</span>
                             </h2>
 
-                            <p class="fullscreen-slide-desc font-medium drop-shadow-md max-w-2xl line-clamp-2 sm:line-clamp-none">
+                            <p class="fullscreen-slide-desc text-sm sm:text-base font-normal leading-relaxed text-slate-100 drop-shadow-md max-w-2xl line-clamp-2 sm:line-clamp-none">
                                 শুধু পাঠ্যবই নয়; স্নেহ, সুশিক্ষা ও আধুনিক প্রযুক্তির সমন্বয়ে সোনাতলা উচ্চ বিদ্যালয় নিশ্চিত করে প্রতিটি শিক্ষার্থীর নিরাপদ ও আত্মবিশ্বাসী ভবিষ্যৎ।
                             </p>
                         </div>
@@ -55,11 +55,11 @@
                                 </span>
                             </div>
 
-                            <h2 class="fullscreen-slide-title font-extrabold tracking-tight drop-shadow-lg text-white">
-                                হাতেকলমে বিজ্ঞান ও ডিজিটাল দক্ষতায় আলোকিত এক শিক্ষাঙ্গন
+                            <h2 class="fullscreen-slide-title text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight drop-shadow-lg text-white">
+                                হাতেকলমে বিজ্ঞান ও <span class="text-emerald-300">ডিজিটাল দক্ষতায়</span> আলোকিত এক শিক্ষাঙ্গন
                             </h2>
 
-                            <p class="fullscreen-slide-desc font-medium drop-shadow-md max-w-2xl line-clamp-2 sm:line-clamp-none">
+                            <p class="fullscreen-slide-desc text-sm sm:text-base font-normal leading-relaxed text-slate-100 drop-shadow-md max-w-2xl line-clamp-2 sm:line-clamp-none">
                                 আধুনিক আইসিটি ল্যাব আর অভিজ্ঞ শিক্ষকমণ্ডলীর নিবিড় পরিচর্যায় প্রতিটি শিক্ষার্থী পায় বাস্তবমুখী শিক্ষা ও স্বপ্ন দেখার প্রেরণা।
                             </p>
                         </div>
@@ -85,11 +85,11 @@
                                 </span>
                             </div>
 
-                            <h2 class="fullscreen-slide-title font-extrabold tracking-tight drop-shadow-lg text-white">
-                                সহ-শিক্ষা ও ক্রীড়ায় আত্মপ্রকাশের মুক্ত প্রাঙ্গণ
+                            <h2 class="fullscreen-slide-title text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight drop-shadow-lg text-white">
+                                সহ-শিক্ষা ও ক্রীড়ায় <span class="text-amber-300">আত্মপ্রকাশের মুক্ত প্রাঙ্গণ</span>
                             </h2>
 
-                            <p class="fullscreen-slide-desc font-medium drop-shadow-md max-w-2xl line-clamp-2 sm:line-clamp-none">
+                            <p class="fullscreen-slide-desc text-sm sm:text-base font-normal leading-relaxed text-slate-100 drop-shadow-md max-w-2xl line-clamp-2 sm:line-clamp-none">
                                 নিয়মিত খেলাধুলা, বিতর্ক ও সাংস্কৃতিক কর্মকাণ্ডে বিকশিত হয় শিশুর নেতৃত্বগুণ, সহমর্মিতা আর দলগত শৃঙ্খলা।
                             </p>
                         </div>

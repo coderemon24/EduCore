@@ -145,11 +145,11 @@
                     <span class="h-1.5 w-1.5 rounded-full bg-amber-400"></span>
                     <span>গৌরবোজ্জ্বল ঐতিহ্য ও স্মৃতি</span>
                 </div>
-                <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-white leading-tight">
+                <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
                     {{ $about->title }}
                 </h1>
                 @if(!empty($about->subtitle))
-                    <p class="text-xs sm:text-sm text-emerald-100/90 max-w-2xl leading-relaxed">
+                    <p class="text-sm sm:text-base text-emerald-100/90 max-w-2xl leading-relaxed">
                         {{ $about->subtitle }}
                     </p>
                 @endif
@@ -185,10 +185,10 @@
                 </div>
 
                 {{-- Story Paragraphs --}}
-                <div class="text-slate-700 leading-relaxed space-y-4 text-xs sm:text-sm">
+                <div class="text-slate-700 leading-relaxed space-y-4 text-sm sm:text-base">
                     @foreach(explode("\n\n", $about->history_content) as $pIdx => $paragraph)
                         @if(trim($paragraph))
-                            <p class="{{ $pIdx === 0 ? 'text-slate-800 font-medium leading-loose border-l-2 border-[#005030] pl-3.5 bg-slate-50/70 py-1.5 rounded-r' : '' }}">
+                            <p class="{{ $pIdx === 0 ? 'text-slate-800 font-medium leading-relaxed border-l-2 border-[#005030] pl-3.5 bg-slate-50/70 py-2 rounded-r text-sm sm:text-base' : '' }}">
                                 {{ trim($paragraph) }}
                             </p>
                         @endif
@@ -225,8 +225,8 @@
                              class="w-full h-full object-cover photo-frame">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/25 to-transparent"></div>
                         <div class="absolute bottom-3 left-3 right-3 text-white text-xs">
-                            <p class="font-bold truncate text-white">{{ $school->name ?? 'সোনাতলা উচ্চ বিদ্যালয়' }}</p>
-                            <p class="text-[11px] text-emerald-200/90 mt-0.5">প্রধান একাডেমিক ভবন ও সুপরিসর সবুজ ক্যাম্পাস</p>
+                            <p class="font-bold truncate text-white text-sm">{{ $school->name ?? 'সোনাতলা উচ্চ বিদ্যালয়' }}</p>
+                            <p class="text-xs text-emerald-200/90 mt-0.5">প্রধান একাডেমিক ভবন ও সুপরিসর সবুজ ক্যাম্পাস</p>
                         </div>
                     </div>
                     <div class="p-3 bg-slate-50 border-t border-slate-100 text-xs text-slate-600 flex items-center justify-between">
@@ -243,8 +243,8 @@
                                 EIIN
                             </div>
                             <div>
-                                <h4 class="font-bold text-slate-900 text-xs">সোনাতলা উচ্চ বিদ্যালয়</h4>
-                                <p class="text-[11px] text-slate-500">পাবনা জেলা • স্থাপিত ১৯৬৮</p>
+                                <h4 class="font-bold text-slate-900 text-sm">সোনাতলা উচ্চ বিদ্যালয়</h4>
+                                <p class="text-xs text-slate-500">পাবনা জেলা • স্থাপিত ১৯৬৮</p>
                             </div>
                         </div>
                         <span class="font-mono font-bold text-emerald-900 bg-emerald-100 px-2 py-0.5 rounded text-xs border border-emerald-200">
@@ -271,7 +271,7 @@
         <section class="space-y-4">
             <div class="text-center max-w-xl mx-auto space-y-1">
                 <span class="text-xs font-bold uppercase tracking-wider text-[#005030]">প্রাতিষ্ঠানিক অঙ্গীকার</span>
-                <h2 class="text-xl sm:text-2xl font-bold text-slate-900">লক্ষ্য, উদ্দেশ্য ও মূল আদর্শ</h2>
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-900">লক্ষ্য, উদ্দেশ্য ও <span class="text-[#005030]">মূল আদর্শ</span></h2>
                 <div class="w-12 h-0.5 bg-[#005030] mx-auto mt-1 rounded"></div>
             </div>
 
@@ -284,8 +284,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                         </svg>
                     </div>
-                    <h3 class="text-base font-bold text-slate-900">{{ $about->vision_title ?: 'আমাদের লক্ষ্য (Vision)' }}</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">
+                    <h3 class="text-lg sm:text-xl font-bold text-slate-900">{{ $about->vision_title ?: 'আমাদের লক্ষ্য (Vision)' }}</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
                         {{ $about->vision_text ?: 'প্রতিটি শিক্ষার্থীকে সুনাগরিক, দেশপ্রেমিক, আধুনিক বিজ্ঞানমনস্ক ও মানবিক মূল্যবোধসম্পন্ন মানুষ হিসেবে গড়ে তোলা।' }}
                     </p>
                 </div>
@@ -297,8 +297,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                         </svg>
                     </div>
-                    <h3 class="text-base font-bold text-slate-900">{{ $about->mission_title ?: 'আমাদের উদ্দেশ্য (Mission)' }}</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">
+                    <h3 class="text-lg sm:text-xl font-bold text-slate-900">{{ $about->mission_title ?: 'আমাদের উদ্দেশ্য (Mission)' }}</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
                         {{ $about->mission_text ?: 'আনন্দমুখর ও সুশৃঙ্খল পরিবেশে মানসম্মত শিক্ষা নিশ্চিত করা এবং আধুনিক তথ্যপ্রযুক্তির মাধ্যমে শিক্ষার্থীদের ভবিষ্যতের উপযোগী করে তোলা।' }}
                     </p>
                 </div>
@@ -310,8 +310,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                         </svg>
                     </div>
-                    <h3 class="text-base font-bold text-slate-900">{{ $about->values_title ?: 'আমাদের মূল আদর্শ ও মূল্যবোধ' }}</h3>
-                    <ul class="space-y-2 text-xs text-slate-600">
+                    <h3 class="text-lg sm:text-xl font-bold text-slate-900">{{ $about->values_title ?: 'আমাদের মূল আদর্শ ও মূল্যবোধ' }}</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
                         @php
                             $valuesList = !empty($about->values_list) ? $about->values_list : [
                                 'সততা ও নৈতিক নিষ্ঠা',
@@ -338,18 +338,18 @@
                 <span class="inline-block text-[11px] uppercase tracking-wider text-emerald-300 font-bold bg-[#003820] px-3 py-0.5 rounded-full border border-emerald-700/60 mb-1.5">
                     পরিসংখ্যান ও অর্জন
                 </span>
-                <h3 class="text-xl sm:text-2xl font-bold text-white">এক নজরে সোনাতলা উচ্চ বিদ্যালয়</h3>
+                <h3 class="text-xl sm:text-2xl font-bold text-white">এক নজরে <span class="text-amber-400">সোনাতলা উচ্চ বিদ্যালয়</span></h3>
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                 @foreach($about->statistics as $stat)
                     <div class="stat-box p-4">
-                        <p class="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-mono tracking-tight text-white">
+                        <p class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-mono tracking-tight text-white">
                             {{ $stat['value'] ?? '' }}
                         </p>
                         <p class="text-xs sm:text-sm font-bold text-emerald-200 mt-1.5">{{ $stat['label'] ?? '' }}</p>
                         @if(!empty($stat['note']))
-                            <p class="text-[10px] text-emerald-300/80 mt-0.5">{{ $stat['note'] }}</p>
+                            <p class="text-[11px] text-emerald-300/80 mt-0.5">{{ $stat['note'] }}</p>
                         @endif
                     </div>
                 @endforeach
@@ -362,8 +362,8 @@
         <section class="bg-white rounded-xl border border-slate-200 p-6 sm:p-8 space-y-6 shadow-2xs about-card">
             <div class="border-b border-slate-100 pb-3">
                 <span class="text-xs font-bold uppercase tracking-wider text-[#005030]">অগ্রযাত্রার রূপরেখা</span>
-                <h2 class="text-xl sm:text-2xl font-bold text-slate-900 mt-1">আমাদের ঐতিহাসিক মাইলফলক</h2>
-                <p class="text-xs text-slate-500 mt-0.5">১৯৬৮ সাল থেকে বর্তমান — সোনাতলা উচ্চ বিদ্যালয়ের ধারাবাহিক উন্নয়নের সোনালী স্মৃতি</p>
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-900 mt-1">আমাদের <span class="text-[#005030]">ঐতিহাসিক মাইলফলক</span></h2>
+                <p class="text-xs sm:text-sm text-slate-500 mt-0.5">১৯৬৮ সাল থেকে বর্তমান — সোনাতলা উচ্চ বিদ্যালয়ের ধারাবাহিক উন্নয়নের সোনালী স্মৃতি</p>
             </div>
 
             <div class="relative border-l-2 border-emerald-700/30 ml-3 sm:ml-4 pl-6 sm:pl-8 space-y-6">
@@ -376,11 +376,11 @@
                             <span class="inline-block px-2.5 py-0.5 rounded bg-emerald-100 text-[#005030] text-xs font-mono font-bold border border-emerald-200">
                                 {{ $m['year'] ?? '' }} খ্রিষ্টাব্দ
                             </span>
-                            <h4 class="text-sm sm:text-base font-bold text-slate-900 mt-1.5">
+                            <h4 class="text-base sm:text-lg font-bold text-slate-900 mt-1.5">
                                 {{ $m['title'] ?? '' }}
                             </h4>
                             @if(!empty($m['description']))
-                                <p class="text-xs text-slate-600 leading-relaxed mt-1">
+                                <p class="text-sm text-slate-600 leading-relaxed mt-1">
                                     {{ $m['description'] }}
                                 </p>
                             @endif
@@ -451,17 +451,17 @@
                                 @foreach($committeeList as $cIdx => $member)
                                     <tr class="table-row-hover {{ $cIdx % 2 == 1 ? 'bg-slate-50/50' : '' }}">
                                         <td class="p-2.5 border-r border-slate-200 text-center font-bold font-mono text-slate-500">
-                                            {{ sprintf('%02d', $cIdx + 1) }}
+                                             {{ sprintf('%02d', $cIdx + 1) }}
                                         </td>
-                                        <td class="p-2.5 border-r border-slate-200 font-bold text-[#005030]">
+                                        <td class="p-2.5 border-r border-slate-200 font-bold text-sm text-[#005030]">
                                             {{ $member['name'] ?? '' }}
                                         </td>
                                         <td class="p-2.5 border-r border-slate-200">
-                                            <span class="inline-block px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                                            <span class="inline-block px-2 py-0.5 rounded text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
                                                 {{ $member['designation'] ?? '' }}
                                             </span>
                                         </td>
-                                        <td class="p-2.5 text-slate-600">
+                                        <td class="p-2.5 text-xs sm:text-sm text-slate-600">
                                             {{ $member['role'] ?? '' }}
                                         </td>
                                     </tr>
@@ -483,7 +483,7 @@
         <section class="space-y-4">
             <div class="text-center max-w-xl mx-auto space-y-1">
                 <span class="text-xs font-bold uppercase tracking-wider text-[#005030]">অবকাঠামো</span>
-                <h2 class="text-xl sm:text-2xl font-bold text-slate-900">ক্যাম্পাস ও আধুনিক সুযোগ-সুবিধা</h2>
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-900">ক্যাম্পাস ও <span class="text-[#005030]">আধুনিক সুযোগ-সুবিধা</span></h2>
                 <div class="w-12 h-0.5 bg-[#005030] mx-auto mt-1 rounded"></div>
             </div>
 
@@ -495,8 +495,8 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                             </svg>
                         </div>
-                        <h4 class="text-xs sm:text-sm font-bold text-slate-900">{{ $fac['title'] ?? '' }}</h4>
-                        <p class="text-[11px] text-slate-600 leading-relaxed">{{ $fac['description'] ?? '' }}</p>
+                        <h4 class="text-sm sm:text-base font-bold text-slate-900">{{ $fac['title'] ?? '' }}</h4>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">{{ $fac['description'] ?? '' }}</p>
                     </div>
                 @endforeach
             </div>

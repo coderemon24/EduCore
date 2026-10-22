@@ -25,32 +25,32 @@
                 <div class="qualifying-card">
                     <span class="text-emerald-400 shrink-0 mt-0.5"><i class="fa-solid fa-circle-check"></i></span>
                     <div>
-                        <strong class="text-white block font-semibold text-[13px]">সচেতন অভিভাবক</strong>
-                        <span class="text-[11px] text-slate-300 leading-tight block">সন্তানের নৈতিক চরিত্র গঠন, শৃঙ্খলা ও নিরাপদ পরিবেশ চান যারা</span>
+                        <strong class="text-white block font-semibold text-sm">সচেতন অভিভাবক</strong>
+                        <span class="text-xs text-slate-300 leading-relaxed block">সন্তানের নৈতিক চরিত্র গঠন, শৃঙ্খলা ও নিরাপদ পরিবেশ চান যারা</span>
                     </div>
                 </div>
 
                 <div class="qualifying-card">
                     <span class="text-emerald-400 shrink-0 mt-0.5"><i class="fa-solid fa-circle-check"></i></span>
                     <div>
-                        <strong class="text-white block font-semibold text-[13px]">৬ষ্ঠ-১০ম শ্রেণির শিক্ষার্থী</strong>
-                        <span class="text-[11px] text-slate-300 leading-tight block">বিজ্ঞানাগার ও কম্পিউটার ল্যাবে হাতেকলমে দক্ষতা শিখতে আগ্রহী</span>
+                        <strong class="text-white block font-semibold text-sm">৬ষ্ঠ-১০ম শ্রেণির শিক্ষার্থী</strong>
+                        <span class="text-xs text-slate-300 leading-relaxed block">বিজ্ঞানাগার ও কম্পিউটার ল্যাবে হাতেকলমে দক্ষতা শিখতে আগ্রহী</span>
                     </div>
                 </div>
 
                 <div class="qualifying-card">
                     <span class="text-emerald-400 shrink-0 mt-0.5"><i class="fa-solid fa-circle-check"></i></span>
                     <div>
-                        <strong class="text-white block font-semibold text-[13px]">মেধাবী ও উপবৃত্তি অন্বেষী</strong>
-                        <span class="text-[11px] text-slate-300 leading-tight block">আর্থিক অনটনে কোনো মেধা যেন ঝরে না পড়ে, সে নিশ্চয়তা প্রত্যাশী</span>
+                        <strong class="text-white block font-semibold text-sm">মেধাবী ও উপবৃত্তি অন্বেষী</strong>
+                        <span class="text-xs text-slate-300 leading-relaxed block">আর্থিক অনটনে কোনো মেধা যেন ঝরে না পড়ে, সে নিশ্চয়তা প্রত্যাশী</span>
                     </div>
                 </div>
 
                 <div class="qualifying-card">
                     <span class="text-emerald-400 shrink-0 mt-0.5"><i class="fa-solid fa-circle-check"></i></span>
                     <div>
-                        <strong class="text-white block font-semibold text-[13px]">আদর্শ সমাজ ও অ্যালামনাই</strong>
-                        <span class="text-[11px] text-slate-300 leading-tight block">পাবনার সাঁথিয়ার ৫৭ বছরের সমৃদ্ধ শিক্ষাধারাকে এগিয়ে নিতে চান</span>
+                        <strong class="text-white block font-semibold text-sm">আদর্শ সমাজ ও অ্যালামনাই</strong>
+                        <span class="text-xs text-slate-300 leading-relaxed block">পাবনার সাঁথিয়ার ৫৭ বছরের সমৃদ্ধ শিক্ষাধারাকে এগিয়ে নিতে চান</span>
                     </div>
                 </div>
             </div>
@@ -68,7 +68,7 @@
                         WHAT WE DELIVER — ACADEMIC EXCELLENCE
                     </span>
                     <h2 class="section-title">
-                        হাতেকলমে শিক্ষা, প্রযুক্তির আলো ও মানবিক মূল্যবোধের পূর্ণাঙ্গ বিকাশ
+                        হাতেকলমে শিক্ষা, <span class="text-[#005030]">প্রযুক্তির আলো</span> ও মানবিক মূল্যবোধের পূর্ণাঙ্গ বিকাশ
                     </h2>
                 </div>
                 <div class="section-header-right">
@@ -98,7 +98,7 @@
                         <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-3 leading-snug">
                             হাতেকলমে ব্যবহারিক বিজ্ঞান ও আধুনিক ল্যাব পরীক্ষণ
                         </h3>
-                        <p class="text-sm sm:text-base text-slate-600 leading-relaxed mb-6">
+                        <p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-6">
                             পুঁথিগত তত্ত্বের বাইরে গিয়ে শিক্ষার্থীরা যাতে বিজ্ঞানের প্রতিটি সূত্র বাস্তবে প্রত্যক্ষ করতে পারে, সেজন্য রয়েছে পদার্থ, রসায়ন ও জীববিজ্ঞানের পৃথক শীতাতপনিয়ন্ত্রিত ল্যাব। নিয়মিত পরীক্ষণ ও বার্ষিক বিজ্ঞান উৎসবের মাধ্যমে শিক্ষার্থীদের মৌলিক চিন্তাশক্তি শাণিত করা হয়।
                         </p>
 
@@ -145,10 +145,10 @@
                                 </div>
                                 <span class="text-[11px] font-semibold text-slate-400">ডিজিটাল সাক্ষরতা</span>
                             </div>
-                            <h4 class="text-base sm:text-lg font-bold text-slate-900 mb-2 leading-snug">
+                            <h4 class="text-lg sm:text-xl font-bold text-slate-900 mb-2 leading-snug">
                                 ডিজিটাল আইসিটি ও কম্পিউটার শিক্ষা
                             </h4>
-                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3">
+                            <p class="text-sm text-slate-700 leading-relaxed mb-3">
                                 উচ্চগতির ইন্টারনেট ও আধুনিক কম্পিউটার সমৃদ্ধ ল্যাবে তথ্যপ্রযুক্তির মৌলিক দক্ষতা, কোডিং পরিচিতি ও ডিজিটাল শিক্ষায় শিক্ষার্থীদের যুগোপযোগী প্রস্তুতি।
                             </p>
                         </div>
@@ -169,10 +169,10 @@
                                 </div>
                                 <span class="text-[11px] font-semibold text-slate-400">নেতৃত্ব ও শৃঙ্খলা</span>
                             </div>
-                            <h4 class="text-base sm:text-lg font-bold text-slate-900 mb-2 leading-snug">
+                            <h4 class="text-lg sm:text-xl font-bold text-slate-900 mb-2 leading-snug">
                                 স্কাউটিং, বিতর্ক ও ক্রীড়াঙ্গন
                             </h4>
-                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3">
+                            <p class="text-sm text-slate-700 leading-relaxed mb-3">
                                 নিয়মিত খেলাধুলা, বিতর্ক প্রতিযোগিতা, সক্রিয় স্কাউট ট্রুপ ও সাংস্কৃতিক আয়োজনের মাধ্যমে প্রতিটি শিক্ষার্থীর মানসিক দৃঢ়তা ও দলগত নেতৃত্ব বিকাশ।
                             </p>
                         </div>
@@ -200,7 +200,7 @@
                         WHY WE ARE DIFFERENT — THE ADVANTAGE
                     </span>
                     <h2 class="section-title">
-                        সাধারণ স্কুলের চেয়ে কেন ব্যতিক্রমী আমাদের শিক্ষাপদ্ধতি ও ঐতিহ্য?
+                        সাধারণ স্কুলের চেয়ে কেন ব্যতিক্রমী <span class="text-[#005030]">আমাদের শিক্ষাপদ্ধতি ও ঐতিহ্য</span>?
                     </h2>
                 </div>
                 <div class="section-header-right">
@@ -221,7 +221,7 @@
                         <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1.5">
                             ৫৭ বছরের ধারাবাহিক ঈর্ষণীয় সাফল্য ও ঐতিহ্য
                         </h3>
-                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        <p class="text-sm text-slate-700 leading-relaxed">
                             বোর্ড পরীক্ষায় ধারাবাহিক ৯৮.৫% সাফল্য এবং শত শত প্রাক্তন কৃতি শিক্ষার্থীর দেশ-বিদেশের শীর্ষ বিশ্ববিদ্যালয় ও পেশায় দায়িত্বশীল অবস্থানই আমাদের নির্ভরযোগ্যতার জীবন্ত প্রমাণ।
                         </p>
                     </div>
@@ -236,7 +236,7 @@
                         <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1.5">
                             বিএড ও মাস্টার্স ডিগ্রিধারী নিবেদিত শিক্ষক পরিষদ
                         </h3>
-                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        <p class="text-sm text-slate-700 leading-relaxed">
                             প্রতিটি বিষয়ে অভিজ্ঞ ও প্রশিক্ষিত শিক্ষকমণ্ডলীর সরাসরি তত্ত্বাবধান। কোনো বিকল্প নয়—শ্রেণিকক্ষেই শতভাগ ধারণা পরিষ্কার করে দেওয়া হয় যাতে অতিরিক্ত প্রাইভেটের বোঝা না বাড়ে।
                         </p>
                     </div>
@@ -251,7 +251,7 @@
                         <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1.5">
                             রাজনীতিমুক্ত, বুলিংমুক্ত ও ১০০% নিরাপদ সবুজ ক্যাম্পাস
                         </h3>
-                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        <p class="text-sm text-slate-700 leading-relaxed">
                             ছাত্র-ছাত্রীদের পূর্ণ নিরাপত্তা, নিয়মিত অভিভাবক পরামর্শ এবং স্নেহশীল সুশৃঙ্খল পরিবেশ—যেখানে কোনো শিক্ষার্থী কোনো ভয় বা সংকোচ ছাড়া প্রশ্ন করতে শেখে।
                         </p>
                     </div>
@@ -266,7 +266,7 @@
                         <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1.5">
                             EduCore স্মার্ট ম্যানেজমেন্ট ও সার্বক্ষণিক অভিভাবক সংযোগ
                         </h3>
-                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        <p class="text-sm text-slate-700 leading-relaxed">
                             অনলাইন নোটিশ বোর্ড, পরীক্ষার সময়সূচি এবং জরুরি বিজ্ঞপ্তি ঘরে বসেই স্মার্টফোনে দেখার সুবিধা। যে কোনো তথ্যে সরাসরি অফিস ও শিক্ষকদের সাথে যোগাযোগের দ্রুত ব্যবস্থা।
                         </p>
                     </div>
@@ -285,18 +285,18 @@
                 {{-- Primary Tier: 3 Dominant Headline Achievements --}}
                 <div class="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-center border-b border-slate-100">
                     <div class="metric-pill p-4 rounded-xl bg-slate-50/80 border border-slate-200/70 transition-all hover:bg-emerald-50/50 hover:border-emerald-200">
-                        <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide">এসএসসি ধারাবাহিক সাফল্য</div>
-                        <div class="text-3xl sm:text-4xl font-extrabold text-[#005030] mt-2">৯৮.৫%</div>
+                        <div class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">এসএসসি ধারাবাহিক সাফল্য</div>
+                        <div class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#005030] mt-2">৯৮.৫%</div>
                         <div class="text-xs text-slate-500 mt-1">বিগত ৫ বছরের ঈর্ষণীয় ফলাফল</div>
                     </div>
                     <div class="metric-pill p-4 rounded-xl bg-slate-50/80 border border-slate-200/70 transition-all hover:bg-emerald-50/50 hover:border-emerald-200">
-                        <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide">বর্তমান শিক্ষার্থী পরিবার</div>
-                        <div class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">{{ $stats['total_students'] ?? '১,২৫০+' }} জন</div>
+                        <div class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">বর্তমান শিক্ষার্থী পরিবার</div>
+                        <div class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mt-2">{{ $stats['total_students'] ?? '১,২৫০+' }} জন</div>
                         <div class="text-xs text-slate-500 mt-1">সুশৃঙ্খল ও প্রাণবন্ত ক্যাম্পাস</div>
                     </div>
                     <div class="metric-pill p-4 rounded-xl bg-slate-50/80 border border-slate-200/70 transition-all hover:bg-emerald-50/50 hover:border-emerald-200">
-                        <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide">গৌরবময় ঐতিহ্য ও ইতিহাস</div>
-                        <div class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">৫৭ বছর</div>
+                        <div class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">গৌরবময় ঐতিহ্য ও ইতিহাস</div>
+                        <div class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mt-2">৫৭ বছর</div>
                         <div class="text-xs text-slate-500 mt-1">প্রতিষ্ঠা সন: ১৯৬৮ খ্রি.</div>
                     </div>
                 </div>
@@ -338,7 +338,7 @@
                         LIVE DISPATCHES & OFFICIAL NOTICES
                     </span>
                     <h2 class="section-title">
-                        জরুরি নোটিশ বোর্ড ও চলমান একাডেমিক পরিক্রমা
+                        জরুরি নোটিশ বোর্ড ও <span class="text-[#005030]">চলমান একাডেমিক পরিক্রমা</span>
                     </h2>
                 </div>
                 <div class="section-header-right">
@@ -372,12 +372,12 @@
                                     <img src="{{ asset('assets/images/news-1.jpg') }}" alt="বার্ষিক ক্রীড়া" class="w-full h-full object-cover">
                                 </div>
                                 <div class="flex-1 min-w-0">
-                                    <h4 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug hover:text-[#005030] line-clamp-2">
+                                    <h4 class="text-sm sm:text-base font-bold text-slate-900 leading-snug hover:text-[#005030] line-clamp-2">
                                         <a href="{{ route('frontend.notices.index') }}">
                                             দলগত সম্প্রীতি ও সুস্থ জীবনের প্রত্যয়ে বার্ষিক ক্রীড়া প্রতিযোগিতা সম্পন্ন
                                         </a>
                                     </h4>
-                                    <span class="text-[11px] text-slate-500 mt-1 block">১৯ অক্টোবর, ২০২৬</span>
+                                    <span class="text-[11px] text-slate-500 font-medium mt-1 block">১৯ অক্টোবর, ২০২৬</span>
                                 </div>
                             </article>
 
@@ -387,12 +387,12 @@
                                     <img src="{{ asset('assets/images/news-2.jpg') }}" alt="বিজ্ঞান মেলা" class="w-full h-full object-cover">
                                 </div>
                                 <div class="flex-1 min-w-0">
-                                    <h4 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug hover:text-[#005030] line-clamp-2">
+                                    <h4 class="text-sm sm:text-base font-bold text-slate-900 leading-snug hover:text-[#005030] line-clamp-2">
                                         <a href="{{ route('frontend.notices.index') }}">
                                             বিজ্ঞানের ব্যবহারিক উদ্ভাবনে মুখর ক্যাম্পাস: ক্ষুদে বিজ্ঞানীদের প্রজেক্ট প্রদর্শনী
                                         </a>
                                     </h4>
-                                    <span class="text-[11px] text-slate-500 mt-1 block">১৮ অক্টোবর, ২০২৬</span>
+                                    <span class="text-[11px] text-slate-500 font-medium mt-1 block">১৮ অক্টোবর, ২০২৬</span>
                                 </div>
                             </article>
 
@@ -402,12 +402,12 @@
                                     <img src="{{ asset('assets/images/news-3.jpg') }}" alt="অভিভাবক সমাবেশ" class="w-full h-full object-cover">
                                 </div>
                                 <div class="flex-1 min-w-0">
-                                    <h4 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug hover:text-[#005030] line-clamp-2">
+                                    <h4 class="text-sm sm:text-base font-bold text-slate-900 leading-snug hover:text-[#005030] line-clamp-2">
                                         <a href="{{ route('frontend.notices.index') }}">
                                             সন্তানের মানসিক সুস্থতা ও নতুন মূল্যায়ন নিয়ে শিক্ষক-অভিভাবক আন্তরিক সংলাপ
                                         </a>
                                     </h4>
-                                    <span class="text-[11px] text-slate-500 mt-1 block">১৫ অক্টোবর, ২০২৬</span>
+                                    <span class="text-[11px] text-slate-500 font-medium mt-1 block">১৫ অক্টোবর, ২০২৬</span>
                                 </div>
                             </article>
                         </div>
@@ -461,7 +461,7 @@
                         HOW TO GET STARTED — ENROLLMENT PATHWAY
                     </span>
                     <h2 class="section-title">
-                        মাত্র ৩টি সহজ ধাপে আপনার সন্তানের সোনাতলা যাত্রার সূচনা
+                        মাত্র ৩টি সহজ ধাপে আপনার সন্তানের <span class="text-[#005030]">সোনাতলা যাত্রার সূচনা</span>
                     </h2>
                 </div>
                 <div class="section-header-right">
@@ -485,7 +485,7 @@
                         <h3 class="text-lg font-bold text-slate-900 mb-2 leading-snug">
                             আবেদন ও প্রাথমিক তথ্য জমাদান
                         </h3>
-                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        <p class="text-sm text-slate-700 leading-relaxed">
                             ওয়েবসাইটে সহজ অনলাইন ফরম পূরণ করুন অথবা বিদ্যালয় প্রশাসনিক কার্যালয় থেকে সরাসরি ভর্তি আবেদন ফরম ও প্রসপেক্টাস সংগ্রহ করুন।
                         </p>
                     </div>
@@ -507,7 +507,7 @@
                         <h3 class="text-lg font-bold text-slate-900 mb-2 leading-snug">
                             শিক্ষক-অভিভাবক আন্তরিক কাউন্সিলিং
                         </h3>
-                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        <p class="text-sm text-slate-700 leading-relaxed">
                             নতুন শিক্ষাক্রমের আলোকে শিক্ষার্থীর আগ্রহ ও সামর্থ্য জানা এবং অভিভাবকদের সাথে ভবিষ্যৎ শিক্ষাপরিকল্পনা নিয়ে খোলামেলা মতবিনিময়।
                         </p>
                     </div>
@@ -529,7 +529,7 @@
                         <h3 class="text-lg font-bold text-slate-900 mb-2 leading-snug">
                             নথিপত্র নিশ্চিতকরণ ও স্টুডেন্ট আইডি
                         </h3>
-                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        <p class="text-sm text-slate-700 leading-relaxed">
                             জন্মনিবন্ধন ও পূর্বের ক্লাসের ট্রান্সক্রিপ্ট জমাদানের মাধ্যমে আনুষ্ঠানিক ভর্তি সম্পন্ন; সাথে সাথে আইডি কার্ড ও ক্লাস রুটিন হস্তান্তর।
                         </p>
                     </div>
@@ -543,8 +543,8 @@
             {{-- Action Banner --}}
             <div class="p-6 sm:p-8 bg-gradient-to-r from-[#004027] via-[#005030] to-[#043420] text-white rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xs">
                 <div>
-                    <h3 class="text-lg sm:text-xl font-bold">২০২৬ শিক্ষাবর্ষে আপনার সন্তানের মেধার বিকাশে আমরা পাশে আছি</h3>
-                    <p class="text-xs sm:text-sm text-emerald-200 mt-1">ভর্তি সংক্রান্ত যেকোনো জিজ্ঞাসায় আমাদের হেল্পলাইনে কথা বলুন অথবা সরাসরি যোগাযোগ করুন।</p>
+                    <h3 class="text-xl sm:text-2xl font-bold">২০২৬ শিক্ষাবর্ষে আপনার সন্তানের মেধার বিকাশে আমরা পাশে আছি</h3>
+                    <p class="text-sm sm:text-base text-emerald-100 mt-1">ভর্তি সংক্রান্ত যেকোনো জিজ্ঞাসায় আমাদের হেল্পলাইনে কথা বলুন অথবা সরাসরি যোগাযোগ করুন।</p>
                 </div>
                 <div class="flex flex-wrap items-center gap-3 shrink-0">
                     <a href="{{ route('frontend.contact') }}"
@@ -574,7 +574,7 @@
                         DAY-TO-DAY EXPERIENCE — WHAT IT FEELS LIKE
                     </span>
                     <h2 class="section-title">
-                        সোনাতলা ক্যাম্পাসে একটি সাধারণ দিনের বাস্তব অনুভূতি
+                        সোনাতলা ক্যাম্পাসে একটি সাধারণ দিনের <span class="text-[#005030]">বাস্তব অনুভূতি</span>
                     </h2>
                 </div>
                 <div class="section-header-right">
@@ -621,10 +621,10 @@
                                 <span><i class="fa-regular fa-sun text-amber-500"></i></span>
                                 <span>সকাল ৯:০০ টা</span>
                             </div>
-                            <h4 class="text-base font-bold text-slate-900 mb-2 group-hover:text-[#005030] transition-colors">
+                            <h4 class="text-base sm:text-lg font-bold text-slate-900 mb-2 group-hover:text-[#005030] transition-colors">
                                 শৃঙ্খলা ও নৈতিক প্রার্থনায় দিন শুরু
                             </h4>
-                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                            <p class="text-sm text-slate-700 leading-relaxed">
                                 প্রতিদিনের সকাল শুরু হয় সমাবেশ ও নৈতিক শৃঙ্খলা দিয়ে, শেষ হয় স্পষ্ট বাড়ির কাজ ও শিক্ষক পরামর্শে।
                             </p>
                         </div>
@@ -640,10 +640,10 @@
                                 <span><i class="fa-solid fa-mobile-screen-button text-emerald-600"></i></span>
                                 <span>সারাদিন রিয়েল-টাইম</span>
                             </div>
-                            <h4 class="text-base font-bold text-slate-900 mb-2 group-hover:text-[#005030] transition-colors">
+                            <h4 class="text-base sm:text-lg font-bold text-slate-900 mb-2 group-hover:text-[#005030] transition-colors">
                                 হাতের মুঠোয় স্বচ্ছ তথ্যপ্রবাহ
                             </h4>
-                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                            <p class="text-sm text-slate-700 leading-relaxed">
                                 স্মার্ট ডায়েরি ও অনলাইন নোটিশ বোর্ডে রুটিন ও রেজাল্ট থাকে অভিভাবকের হাতের মুঠোয়।
                             </p>
                         </div>
@@ -659,10 +659,10 @@
                                 <span><i class="fa-solid fa-flask-vial text-emerald-600"></i></span>
                                 <span>দুপুর ১:৩০ টা</span>
                             </div>
-                            <h4 class="text-base font-bold text-slate-900 mb-2 group-hover:text-[#005030] transition-colors">
+                            <h4 class="text-base sm:text-lg font-bold text-slate-900 mb-2 group-hover:text-[#005030] transition-colors">
                                 তত্ত্ব পেরিয়ে বাস্তব আবিষ্কার
                             </h4>
-                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                            <p class="text-sm text-slate-700 leading-relaxed">
                                 থিওরির পরপরই বিজ্ঞানাগার ও কম্পিউটার ল্যাবে হাতেকলমে প্রয়োগ শেখার উচ্ছ্বাস।
                             </p>
                         </div>
@@ -689,7 +689,7 @@
                         CAMPUS LIFE & PROUD MOMENTS
                     </span>
                     <h2 class="section-title">
-                        ক্যাম্পাসের সোনালী মুহূর্ত ও প্রাঙ্গণচিত্র
+                        ক্যাম্পাসের সোনালী মুহূর্ত ও <span class="text-[#005030]">প্রাঙ্গণচিত্র</span>
                     </h2>
                 </div>
                 <div class="section-header-right">
@@ -754,7 +754,7 @@
                         THE FINAL STEP — JOIN OUR FAMILY
                     </span>
                     <h2 class="section-title">
-                        ২০২৬ শিক্ষাবর্ষে আপনার সন্তানের মেধার বিকাশে আমরা প্রস্তুত
+                        ২০২৬ শিক্ষাবর্ষে আপনার সন্তানের মেধার বিকাশে <span class="text-[#005030]">আমরা প্রস্তুত</span>
                     </h2>
                 </div>
                 <div class="section-header-right">

@@ -104,7 +104,7 @@
                     <div class="flex items-start gap-2">
                         <span class="w-2 h-2 rounded-full bg-[#c53030] shrink-0 mt-1.5"></span>
                         <a href="{{ route('frontend.notices.show', $notice['slug']) }}"
-                           class="text-sm sm:text-[14px] font-semibold text-slate-800 leading-snug group-hover:text-[#005030] transition-colors line-clamp-2">
+                           class="text-sm sm:text-base font-bold text-slate-900 leading-snug group-hover:text-[#005030] transition-colors line-clamp-2">
                             {{ $notice['title'] }}
                         </a>
                     </div>
@@ -125,7 +125,7 @@
 
                 <a href="{{ route('frontend.notices.show', $notice['slug']) }}"
                    class="rounded-full border border-[#005030] text-[#005030] 
-                   notice_show  px-3.5 sm:px-4 py-1 text-xs sm:text-[14px] font-semibold transition-all duration-150 shrink-0 text-center cursor-pointer">
+                   notice_show px-3.5 sm:px-4 py-1 text-xs sm:text-sm font-semibold transition-all duration-150 shrink-0 text-center cursor-pointer">
                     দেখুন
                 </a>
             </div>

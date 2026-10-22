@@ -18,10 +18,12 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
 
     {{-- Header Banner --}}
-    <div class="bg-[#005030] text-white p-5 rounded shadow-2xs flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <div class="bg-[#005030] text-white p-6 sm:p-7 rounded-xl shadow-xs flex flex-col md:flex-row md:items-center md:justify-between gap-6 border-l-4 border-amber-400">
         <div>
-            <h1 class="text-xl sm:text-2xl font-bold">প্রাতিষ্ঠানিক নোটিশ বোর্ড</h1>
-            <p class="text-xs text-emerald-200 mt-0.5">
+            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
+                প্রাতিষ্ঠানিক <span class="text-amber-400">নোটিশ বোর্ড</span>
+            </h1>
+            <p class="text-sm sm:text-base text-emerald-100/90 mt-1 max-w-2xl leading-relaxed">
                 সোনাতলা উচ্চ বিদ্যালয়ের সকল প্রাতিষ্ঠানিক, একাডেমিক ও পরীক্ষার আনুষ্ঠানিক সার্কুলার।
             </p>
         </div>
@@ -29,8 +31,8 @@
             <div class="relative">
                 <input type="text"
                        placeholder="বিজ্ঞপ্তি খুঁজুন..."
-                       class="w-full bg-[#003820] text-white placeholder-emerald-300 text-xs rounded px-3 py-2 border border-emerald-700 focus:outline-none focus:ring-1 focus:ring-white">
-                <button type="button" class="absolute right-2.5 top-2 text-emerald-300">
+                       class="w-full bg-[#003820] text-white placeholder-emerald-300 text-xs rounded-lg px-3.5 py-2.5 border border-emerald-700/80 focus:outline-none focus:ring-1 focus:ring-white">
+                <button type="button" class="absolute right-3 top-3 text-emerald-300">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                 </button>
             </div>
@@ -100,36 +102,36 @@
                 ];
             @endphp
 
-            <div class="bg-white border border-gray-300 rounded shadow-2xs divide-y divide-gray-200">
+            <div class="bg-white border border-gray-300 rounded-xl shadow-2xs divide-y divide-gray-200 overflow-hidden">
                 @foreach($dummyNotices as $n)
                     <article class="p-4 sm:p-5 hover:bg-gray-50/80 transition-colors flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                         <div class="flex items-start gap-3.5 flex-1">
                             {{-- Date Square --}}
-                            <div class="w-13 h-13 rounded bg-emerald-50 border border-emerald-300 text-[#005030] flex flex-col items-center justify-center flex-shrink-0 font-bold">
-                                <span class="text-sm leading-none">{{ explode(' ', $n['date'])[0] }}</span>
-                                <span class="text-[10px] text-emerald-800 font-semibold">{{ explode(' ', $n['date'])[1] }}</span>
+                            <div class="w-13 h-13 rounded-lg bg-emerald-50 border border-emerald-300 text-[#005030] flex flex-col items-center justify-center flex-shrink-0 font-bold">
+                                <span class="text-base font-extrabold font-mono leading-none">{{ explode(' ', $n['date'])[0] }}</span>
+                                <span class="text-[11px] text-emerald-800 font-bold mt-0.5">{{ explode(' ', $n['date'])[1] }}</span>
                             </div>
 
                             <div class="space-y-1">
                                 <div class="flex flex-wrap items-center gap-2">
-                                    <span class="px-2 py-0.5 rounded bg-gray-100 text-gray-700 text-[10px] font-bold">
+                                    <span class="px-2 py-0.5 rounded bg-gray-100 text-gray-700 text-[11px] font-bold">
                                         {{ $n['type'] }}
                                     </span>
                                     @if($n['is_pinned'])
-                                        <span class="px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 text-[10px] font-bold border border-amber-300">
+                                        <span class="px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 text-[11px] font-bold border border-amber-300">
                                             পিন করা
                                         </span>
                                     @endif
-                                    <span class="text-[11px] text-gray-400">
+                                    <span class="text-xs text-gray-500 font-medium">
                                         উদ্দেশ্য: {{ $n['audience'] }}
                                     </span>
                                 </div>
-                                <h3 class="text-sm font-bold text-gray-900 hover:text-[#005030] leading-snug">
+                                <h3 class="text-base sm:text-lg font-bold text-gray-900 hover:text-[#005030] leading-snug">
                                     <a href="{{ route('frontend.notices.show', $n['id']) }}">
                                         {{ $n['title'] }}
                                     </a>
                                 </h3>
-                                <p class="text-xs text-gray-600 line-clamp-1">
+                                <p class="text-sm text-gray-600 line-clamp-2 leading-relaxed">
                                     {{ $n['excerpt'] }}
                                 </p>
                             </div>
@@ -138,7 +140,7 @@
                         {{-- Action Buttons --}}
                         <div class="flex items-center gap-2 flex-shrink-0 w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-0 border-gray-100 justify-end">
                             <a href="{{ route('frontend.notices.show', $n['id']) }}"
-                               class="px-3 py-1 rounded bg-[#005030] text-white text-xs font-semibold hover:bg-[#003820] transition-colors">
+                               class="px-3.5 py-1.5 rounded bg-[#005030] text-white text-xs font-semibold hover:bg-[#003820] transition-colors shadow-2xs">
                                 বিস্তারিত পড়ুন
                             </a>
                         </div>
@@ -150,11 +152,11 @@
         {{-- Sidebar (Col 4) --}}
         <div class="lg:col-span-4 space-y-5">
             {{-- Category Filter Card --}}
-            <div class="bg-white border border-gray-300 rounded shadow-2xs p-4 space-y-2">
-                <div class="text-xs font-bold text-gray-900 border-b border-gray-200 pb-1.5 uppercase tracking-wide">
+            <div class="bg-white border border-gray-300 rounded-xl shadow-2xs p-4 space-y-2">
+                <div class="text-xs font-bold text-gray-900 border-b border-gray-200 pb-2 uppercase tracking-wider">
                     নোটিশ ক্যাটাগরি
                 </div>
-                <div class="space-y-1 text-xs">
+                <div class="space-y-1 text-xs sm:text-sm">
                     <a href="{{ route('frontend.notices.index') }}" class="block px-2.5 py-1.5 rounded bg-emerald-50 text-[#005030] font-bold">
                         সকল নোটিশ (All Notices)
                     </a>
@@ -174,12 +176,12 @@
             </div>
 
             {{-- Office Help Card --}}
-            <div class="bg-[#003820] text-white border border-emerald-900 rounded p-4 shadow-2xs space-y-2">
-                <div class="text-xs font-bold text-emerald-300 uppercase tracking-wide">অফিসিয়াল তথ্য হেল্পডেস্ক</div>
-                <p class="text-xs text-emerald-100 leading-relaxed">
+            <div class="bg-[#003820] text-white border border-emerald-900 rounded-xl p-5 shadow-2xs space-y-2">
+                <div class="text-xs font-bold text-emerald-300 uppercase tracking-wider">অফিসিয়াল তথ্য হেল্পডেস্ক</div>
+                <p class="text-xs sm:text-sm text-emerald-100 leading-relaxed">
                     যেকোনো নোটিশ বা সার্কুলার সংক্রান্ত স্পষ্টীকরণের জন্য বিদ্যালয়ের প্রধান অফিস অথবা শ্রেণি শিক্ষকের সাথে যোগাযোগ করুন।
                 </p>
-                <div class="text-xs text-white font-bold pt-1">
+                <div class="text-xs sm:text-sm text-white font-bold pt-1">
                     হেল্পলাইন: +৮৮০ ১৭১২-৩৪৫৬৭৮
                 </div>
             </div>

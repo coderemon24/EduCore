@@ -34,7 +34,7 @@
                     </span>
                 </div>
 
-                <h1 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-900 leading-tight">
+                <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 leading-tight tracking-tight">
                     {{ $notice->title }}
                 </h1>
 
@@ -51,7 +51,7 @@
             </header>
 
             {{-- Notice Content Body --}}
-            <div class="text-sm sm:text-base text-slate-800 leading-relaxed space-y-4">
+            <div class="text-base sm:text-lg text-slate-800 leading-relaxed space-y-4">
                 {!! nl2br(e($notice->content)) !!}
             </div>
 
@@ -63,8 +63,8 @@
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
                         </div>
                         <div>
-                            <span class="block text-xs font-bold text-slate-900">{{ $notice->attachment_name ?: 'সার্কুলার ডকুমেন্ট ফাইল' }}</span>
-                            <span class="block text-[11px] text-slate-500">অফিসিয়াল স্বাক্ষরিত কপি</span>
+                            <span class="block text-sm font-bold text-slate-900">{{ $notice->attachment_name ?: 'সার্কুলার ডকুমেন্ট ফাইল' }}</span>
+                            <span class="block text-xs text-slate-500">অফিসিয়াল স্বাক্ষরিত কপি</span>
                         </div>
                     </div>
                     <a href="{{ route('frontend.notices.download', $notice->slug ?: $notice->id) }}"
@@ -94,13 +94,13 @@
             {{-- Related Notices --}}
             <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-xs">
                 <div class="bg-emerald-900 text-white px-4 py-3">
-                    <h3 class="text-xs font-bold tracking-tight">একই ক্যাটাগরির নোটিশ</h3>
+                    <h3 class="text-xs font-bold tracking-wider uppercase text-emerald-100">একই ক্যাটাগরির নোটিশ</h3>
                 </div>
                 <div class="divide-y divide-slate-100">
                     @forelse($relatedNotices as $item)
                         <div class="p-3 text-xs hover:bg-slate-50 transition-colors">
                             <span class="text-[10px] text-slate-400 block mb-0.5">{{ \Carbon\Carbon::parse($item->published_at)->format('d M Y') }}</span>
-                            <a href="{{ route('frontend.notices.show', $item->slug ?: $item->id) }}" class="font-semibold text-slate-800 hover:text-emerald-800 transition-colors line-clamp-2">
+                            <a href="{{ route('frontend.notices.show', $item->slug ?: $item->id) }}" class="text-sm font-bold text-slate-800 hover:text-emerald-800 transition-colors line-clamp-2">
                                 {{ $item->title }}
                             </a>
                         </div>
@@ -115,10 +115,10 @@
             {{-- Emergency Contact Card --}}
             <div class="bg-emerald-900 text-white rounded-xl p-5 shadow-xs space-y-3">
                 <h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider">জরুরি যোগাযোগ</h4>
-                <p class="text-xs text-emerald-100 leading-relaxed">
+                <p class="text-xs sm:text-sm text-emerald-100 leading-relaxed">
                     বিজ্ঞপ্তি সংক্রান্ত কোনো জিজ্ঞাসা থাকলে বিদ্যালয় অফিসে সরাসরি যোগাযোগ করুন:
                 </p>
-                <div class="text-xs font-semibold text-white space-y-1">
+                <div class="text-xs sm:text-sm font-semibold text-white space-y-1">
                     <p>ফোন: {{ $school->phone ?? '+880 1712-345678' }}</p>
                     <p>ইমেইল: {{ $school->email ?? 'info@sonatalahighschool.edu.bd' }}</p>
                 </div>
