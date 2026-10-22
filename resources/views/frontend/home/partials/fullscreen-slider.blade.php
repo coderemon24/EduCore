@@ -21,16 +21,16 @@
                             <div class="fullscreen-slide-badge">
                                 <span class="inline-flex items-center gap-1.5 px-2 py-0.5 sm:px-3 sm:py-1 rounded bg-[#005030]/90 text-emerald-200 text-[11px] sm:text-xs font-bold uppercase tracking-wider border border-emerald-500/40 backdrop-blur-xs">
                                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                                    শিক্ষক ও কর্মচারী বৃন্দ
+                                    আস্থা ও ঐতিহ্যের বিদ্যাপীঠ
                                 </span>
                             </div>
 
                             <h2 class="fullscreen-slide-title font-extrabold tracking-tight drop-shadow-lg text-white">
-                                শিক্ষক ও কর্মচারী বৃন্দ
+                                প্রতিটি সন্তানকে গড়ে তুলছি <span class="text-amber-300">সততা, মেধা ও মানবিক মূল্যবোধে</span>
                             </h2>
 
                             <p class="fullscreen-slide-desc font-medium drop-shadow-md max-w-2xl line-clamp-2 sm:line-clamp-none">
-                                মাধ্যমিক শিক্ষন হলো কোনো জাতির মেরুদণ্ড গড়ার আসল ভিত্তিপ্রস্তর
+                                শুধু পাঠ্যবই নয়; স্নেহ, সুশিক্ষা ও আধুনিক প্রযুক্তির সমন্বয়ে সোনাতলা উচ্চ বিদ্যালয় নিশ্চিত করে প্রতিটি শিক্ষার্থীর নিরাপদ ও আত্মবিশ্বাসী ভবিষ্যৎ।
                             </p>
                         </div>
                     </div>
@@ -51,16 +51,16 @@
                         <div class="max-w-3xl text-white space-y-1 sm:space-y-3 lg:space-y-4 pr-8 sm:pr-4">
                             <div class="fullscreen-slide-badge">
                                 <span class="inline-flex items-center gap-1.5 px-2 py-0.5 sm:px-3 sm:py-1 rounded bg-[#005030]/90 text-emerald-200 text-[11px] sm:text-xs font-bold uppercase tracking-wider border border-emerald-500/40 backdrop-blur-xs">
-                                    ক্যাম্পাস পরিচিতি
+                                    প্রযুক্তিবান্ধব শিক্ষা ও বিজ্ঞানাগার
                                 </span>
                             </div>
 
                             <h2 class="fullscreen-slide-title font-extrabold tracking-tight drop-shadow-lg text-white">
-                                জ্ঞানের আলোয় আলোকিত, প্রযুক্তিবান্ধব ও মানবিক বিদ্যাপীঠ
+                                হাতেকলমে বিজ্ঞান ও ডিজিটাল দক্ষতায় আলোকিত এক শিক্ষাঙ্গন
                             </h2>
 
                             <p class="fullscreen-slide-desc font-medium drop-shadow-md max-w-2xl line-clamp-2 sm:line-clamp-none">
-                                সাঁথিয়া-বেড়া অঞ্চলের ঐতিহ্যবাহী শিক্ষাপ্রতিষ্ঠান সোনাতলা উচ্চ বিদ্যালয় প্রাঙ্গণ ও মনোরম খেলার মাঠ।
+                                আধুনিক আইসিটি ল্যাব আর অভিজ্ঞ শিক্ষকমণ্ডলীর নিবিড় পরিচর্যায় প্রতিটি শিক্ষার্থী পায় বাস্তবমুখী শিক্ষা ও স্বপ্ন দেখার প্রেরণা।
                             </p>
                         </div>
                     </div>
@@ -81,16 +81,16 @@
                         <div class="max-w-3xl text-white space-y-1 sm:space-y-3 lg:space-y-4 pr-8 sm:pr-4">
                             <div class="fullscreen-slide-badge">
                                 <span class="inline-flex items-center gap-1.5 px-2 py-0.5 sm:px-3 sm:py-1 rounded bg-[#005030]/90 text-emerald-200 text-[11px] sm:text-xs font-bold uppercase tracking-wider border border-emerald-500/40 backdrop-blur-xs">
-                                    সহ-শিক্ষা ও ক্রীড়া
+                                    সুস্থ দেহ ও মানবিক মূল্যবোধ
                                 </span>
                             </div>
 
                             <h2 class="fullscreen-slide-title font-extrabold tracking-tight drop-shadow-lg text-white">
-                                বার্ষিক ক্রীড়া প্রতিযোগিতা ও সাংস্কৃতিক উৎসব
+                                সহ-শিক্ষা ও ক্রীড়ায় আত্মপ্রকাশের মুক্ত প্রাঙ্গণ
                             </h2>
 
                             <p class="fullscreen-slide-desc font-medium drop-shadow-md max-w-2xl line-clamp-2 sm:line-clamp-none">
-                                শিক্ষার্থীদের মেধা, সৃজনশীলতা ও শারীরিক সক্ষমতা বিকাশে নিয়মিত সাংস্কৃতিক ও ক্রীড়া প্রতিযোগিতা।
+                                নিয়মিত খেলাধুলা, বিতর্ক ও সাংস্কৃতিক কর্মকাণ্ডে বিকশিত হয় শিশুর নেতৃত্বগুণ, সহমর্মিতা আর দলগত শৃঙ্খলা।
                             </p>
                         </div>
                     </div>
