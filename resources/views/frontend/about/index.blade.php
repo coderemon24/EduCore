@@ -691,14 +691,14 @@
         <div class="flex flex-wrap items-center justify-center gap-4">
             {{-- Primary Conversion Action (Strictly Reserved Warm Amber) --}}
             <a href="{{ route('frontend.contact') }}"
-               class="px-8 py-4 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold shadow-sm transition-all hover:scale-105 active:scale-95 inline-flex items-center gap-2 text-sm sm:text-base">
+               class="about-cta-btn about-cta-btn-primary text-sm sm:text-base">
                 <span>যোগাযোগ ও ক্যাম্পাসে আসুন</span>
                 <i class="fa-solid fa-arrow-right text-xs"></i>
             </a>
 
             {{-- Secondary Information Link --}}
             <a href="{{ route('frontend.academic.routine') }}"
-               class="px-7 py-4 rounded-full bg-[#003820] hover:bg-[#002e1a] text-white font-bold border border-emerald-700/60 transition-all inline-flex items-center gap-2 text-sm sm:text-base">
+               class="about-cta-btn about-cta-btn-secondary text-sm sm:text-base">
                 <span>ক্লাস রুটিন ও অ্যাকাডেমিক তথ্য</span>
                 <i class="fa-solid fa-chevron-right text-xs text-emerald-300"></i>
             </a>
