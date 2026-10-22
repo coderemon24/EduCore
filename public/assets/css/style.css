@@ -1094,5 +1094,12 @@ body {
     box-shadow: 0 30px 60px -15px rgba(0, 50, 30, 0.45);
 }
 
+/* Institutional Footer */
+.site-footer {
+    background: linear-gradient(180deg, #031c12 0%, #02120b 60%, #010a06 100%);
+    border-top: 2px solid #005030;
+    box-shadow: 0 -10px 30px rgba(0, 80, 48, 0.12);
+}
+
 
 

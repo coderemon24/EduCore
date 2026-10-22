@@ -1,75 +1,218 @@
-{{-- Institutional Footer (Black Minimalist Tone) --}}
-<footer class="bg-black text-slate-400 text-xs border-t border-zinc-800 mt-12 selection:bg-zinc-800 selection:text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-12">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {{-- Col 1: Institutional Identity --}}
-            <div class="space-y-3">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-zinc-900 border border-zinc-750 text-white flex items-center justify-center font-bold text-base shadow-xs">
-                        SHS
+{{-- Institutional Footer (Deep Forest Gradient & Unified Brand Identity) --}}
+<footer class="site-footer bg-gradient-to-b from-[#031d13] via-[#02130c] to-[#010b07] text-slate-300 border-t-2 border-[#005030] mt-16 selection:bg-[#005030] selection:text-white relative overflow-hidden" aria-label="প্রাতিষ্ঠানিক ফুটার">
+    {{-- Subtle Ambient Glows matching homepage CTA --}}
+    <div class="absolute top-0 right-0 -mt-16 -mr-16 w-80 h-80 rounded-full bg-emerald-500/5 blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 -mb-16 -ml-16 w-80 h-80 rounded-full bg-emerald-500/5 blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 sm:pt-16 pb-10 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10">
+            {{-- Col 1: Institutional Identity & Contact Info (5 Cols on Desktop) --}}
+            <div class="lg:col-span-5 space-y-4">
+                {{-- Brand Header with Official Crest --}}
+                <div class="flex items-center gap-3.5">
+                    <div class="w-12 h-12 rounded-full bg-white p-1 border-2 border-emerald-500/40 shadow-sm flex items-center justify-center shrink-0">
+                        <img src="{{ asset('assets/images/logo.png') }}"
+                             alt="সোনাতলা উচ্চ বিদ্যালয়"
+                             class="max-w-full max-h-full object-contain"
+                             onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=SHS&background=005030&color=fff&size=128';">
                     </div>
                     <div>
-                        <h2 class="text-white font-bold text-sm leading-tight">সোনাতলা উচ্চ বিদ্যালয়</h2>
-                        <span class="text-[11px] text-zinc-400">EIIN: ১২৫৬৯৩ | কোড: ৮১০৭</span>
+                        <h2 class="text-white font-extrabold text-base sm:text-lg leading-tight tracking-tight">
+                            সোনাতলা উচ্চ বিদ্যালয়
+                        </h2>
+                        <div class="text-xs font-semibold text-emerald-300 uppercase tracking-wider mt-0.5">
+                            Sonatala High School
+                        </div>
                     </div>
                 </div>
-                <p class="text-[11px] leading-relaxed text-slate-400">
-                    শিক্ষাই জাতির মেরুদণ্ড। একটি মানসম্মত, আধুনিক ও প্রযুক্তিবান্ধব মানবিক সমাজ গঠনে সোনাতলা উচ্চ বিদ্যালয় সদা প্রতিশ্রুতিবদ্ধ।
+
+                {{-- Credential Badges --}}
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-emerald-300 text-[11px] font-semibold font-mono">
+                        EIIN: ১২৫৬৯৩
+                    </span>
+                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-emerald-300 text-[11px] font-semibold font-mono">
+                        স্কুল কোড: ৮১০৭
+                    </span>
+                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-[11px] font-semibold">
+                        স্থাপিত: ১৯৬৮ খ্রি.
+                    </span>
+                </div>
+
+                {{-- Mission / Motto --}}
+                <p class="text-xs sm:text-sm leading-relaxed text-slate-300/90">
+                    শিক্ষাই জাতির মেরুদণ্ড। একটি মানসম্মত, আধুনিক ও প্রযুক্তিবান্ধব মানবিক সমাজ গঠনে পাবনার সাঁথিয়ার ৫৭ বছরের সমৃদ্ধ শিক্ষাধারা নিয়ে সোনাতলা উচ্চ বিদ্যালয় সদা প্রতিশ্রুতিবদ্ধ।
                 </p>
-                <div class="text-[11px] text-slate-400 space-y-1 pt-1">
-                    <p>ঠিকানা: বেড়া-সোনাতলা, সাঁথিয়া, পাবনা</p>
-                    <p>ফোন: +৮৮০ ১৭১২-৩৪৫৬৭৮</p>
-                    <p>ইমেইল: info@sonatalahighschool.edu.bd</p>
+
+                {{-- Contact Details with Font Awesome Icons --}}
+                <div class="space-y-2.5 pt-2 text-xs sm:text-sm text-slate-300">
+                    <div class="flex items-start gap-2.5">
+                        <i class="fa-solid fa-location-dot text-emerald-400 mt-1 shrink-0 text-xs"></i>
+                        <span>বেড়া-সোনাতলা, সাঁথিয়া, পাবনা, রাজশাহী বিভাগ</span>
+                    </div>
+                    <div class="flex items-center gap-2.5">
+                        <i class="fa-solid fa-phone text-emerald-400 shrink-0 text-xs"></i>
+                        <a href="tel:+8801712345678" class="hover:text-white transition-colors font-medium">
+                            +৮৮০ ১৭১২-৩৪৫৬৭৮
+                        </a>
+                    </div>
+                    <div class="flex items-center gap-2.5">
+                        <i class="fa-solid fa-envelope text-emerald-400 shrink-0 text-xs"></i>
+                        <a href="mailto:info@sonatalahighschool.edu.bd" class="hover:text-white transition-colors font-medium">
+                            info@sonatalahighschool.edu.bd
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            {{-- Col 2: Quick Links --}}
-            <div>
-                <h3 class="text-white font-bold text-xs uppercase tracking-wider mb-3 pb-1 border-b border-slate-800">
-                    দ্রুত লিংক / Quick Links
+            {{-- Col 2: Quick Links (2 Cols on Desktop) --}}
+            <div class="lg:col-span-2 space-y-4">
+                <h3 class="text-white font-bold text-sm sm:text-[15px] tracking-wide pb-2 border-b border-emerald-500/20 flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                    <span>দ্রুত লিংক</span>
                 </h3>
-                <ul class="space-y-2 text-[11px] text-slate-400">
-                    <li><a href="{{ route('frontend.home') }}" class="hover:text-white hover:underline">প্রচ্ছদ (Home)</a></li>
-                    <li><a href="{{ route('frontend.about') }}" class="hover:text-white hover:underline">বিদ্যালয় পরিচিতি (About)</a></li>
-                    <li><a href="{{ route('frontend.academic.routine') }}" class="hover:text-white hover:underline">ক্লাস ও পরীক্ষা রুটিন (Routine)</a></li>
-                    <li><a href="{{ route('frontend.teachers.index') }}" class="hover:text-white hover:underline">শিক্ষক ও কর্মচারীবৃন্দ (Faculty)</a></li>
-                    <li><a href="{{ route('frontend.notices.index') }}" class="hover:text-white hover:underline">নোটিশ বোর্ড (Notice Board)</a></li>
-                    <li><a href="{{ route('frontend.contact') }}" class="hover:text-white hover:underline">যোগাযোগ ও লোকেশন (Contact)</a></li>
+                <ul class="space-y-2.5 text-xs sm:text-[13px]">
+                    <li>
+                        <a href="{{ route('frontend.home') }}" class="group flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
+                            <i class="fa-solid fa-chevron-right text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
+                            <span>প্রচ্ছদ (Home)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('frontend.about') }}" class="group flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
+                            <i class="fa-solid fa-chevron-right text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
+                            <span>বিদ্যালয় পরিচিতি</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('frontend.academic.routine') }}" class="group flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
+                            <i class="fa-solid fa-chevron-right text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
+                            <span>ক্লাস ও পরীক্ষা রুটিন</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('frontend.teachers.index') }}" class="group flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
+                            <i class="fa-solid fa-chevron-right text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
+                            <span>শিক্ষক ও কর্মচারীবৃন্দ</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('frontend.notices.index') }}" class="group flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
+                            <i class="fa-solid fa-chevron-right text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
+                            <span>নোটিশ বোর্ড</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('frontend.contact') }}" class="group flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
+                            <i class="fa-solid fa-chevron-right text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
+                            <span>যোগাযোগ ও অবস্থান</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
 
-            {{-- Col 3: Academic & Student Services --}}
-            <div>
-                <h3 class="text-white font-bold text-xs uppercase tracking-wider mb-3 pb-1 border-b border-slate-800">
-                    সেবাসমূহ / Student Services
+            {{-- Col 3: Student Services (2.5 Cols on Desktop) --}}
+            <div class="lg:col-span-2 space-y-4">
+                <h3 class="text-white font-bold text-sm sm:text-[15px] tracking-wide pb-2 border-b border-emerald-500/20 flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                    <span>সেবাসমূহ</span>
                 </h3>
-                <ul class="space-y-2 text-[11px] text-slate-400">
-                    <li><a href="{{ url('/admin/dashboard') }}" class="hover:text-white hover:underline">অনলাইন ভর্তি আবেদন</a></li>
-                    <li><a href="{{ route('frontend.notices.index') }}" class="hover:text-white hover:underline">পরীক্ষার ফলাফল অনুসন্ধান</a></li>
-                    <li><a href="{{ route('frontend.academic.routine') }}" class="hover:text-white hover:underline">ক্লাস রুটিন ও সিলেবাস</a></li>
-                    <li><a href="{{ url('/admin/dashboard') }}" class="hover:text-white hover:underline">শিক্ষক ও অভিভাবক পোর্টাল</a></li>
-                    <li><a href="{{ route('frontend.contact') }}" class="hover:text-white hover:underline">অভিযোগ ও মতামত বক্স</a></li>
+                <ul class="space-y-2.5 text-xs sm:text-[13px]">
+                    <li>
+                        <a href="{{ route('frontend.contact') }}" class="group flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
+                            <i class="fa-solid fa-chevron-right text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
+                            <span>অনলাইন ভর্তি আবেদন</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('frontend.notices.index') }}" class="group flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
+                            <i class="fa-solid fa-chevron-right text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
+                            <span>ফলাফল ও ট্রান্সক্রিপ্ট</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('frontend.academic.routine') }}" class="group flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
+                            <i class="fa-solid fa-chevron-right text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
+                            <span>সিলেবাস ও পরীক্ষা সূচি</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/admin/dashboard') }}" class="group flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
+                            <i class="fa-solid fa-chevron-right text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
+                            <span>শিক্ষক ও অভিভাবক পোর্টাল</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('frontend.contact') }}" class="group flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
+                            <i class="fa-solid fa-chevron-right text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
+                            <span>অভিযোগ ও মতামত বক্স</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
 
-            {{-- Col 4: Official Government Links --}}
-            <div>
-                <h3 class="text-white font-bold text-xs uppercase tracking-wider mb-3 pb-1 border-b border-slate-800">
-                    গুরুত্বপূর্ণ লিংক / Useful Links
+            {{-- Col 4: Official Government Links & Hotline (3 Cols on Desktop) --}}
+            <div class="lg:col-span-3 space-y-4">
+                <h3 class="text-white font-bold text-sm sm:text-[15px] tracking-wide pb-2 border-b border-emerald-500/20 flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                    <span>সরকারি পোর্টাল ও সহায়তা</span>
                 </h3>
-                <ul class="space-y-2 text-[11px] text-slate-400">
-                    <li><a href="https://bangladesh.gov.bd" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline">জাতীয় তথ্য বাতায়ন (Bangladesh.gov.bd)</a></li>
-                    <li><a href="https://moedu.gov.bd" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline">শিক্ষা মন্ত্রণালয় (MoEdu)</a></li>
-                    <li><a href="https://dshe.gov.bd" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline">মাধ্যমিক ও উচ্চশিক্ষা অধিদপ্তর (DSHE)</a></li>
-                    <li><a href="http://www.rajshahieducationboard.gov.bd" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline">রাজশাহী শিক্ষা বোর্ড</a></li>
+                <ul class="space-y-2.5 text-xs sm:text-[13px]">
+                    <li>
+                        <a href="https://bangladesh.gov.bd" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between text-slate-300 hover:text-white transition-colors">
+                            <span>জাতীয় তথ্য বাতায়ন</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-emerald-400 transition-colors"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://moedu.gov.bd" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between text-slate-300 hover:text-white transition-colors">
+                            <span>শিক্ষা মন্ত্রণালয় (MoEdu)</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-emerald-400 transition-colors"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://dshe.gov.bd" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between text-slate-300 hover:text-white transition-colors">
+                            <span>মাধ্যমিক ও উচ্চশিক্ষা অধিদপ্তর</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-emerald-400 transition-colors"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.rajshahieducationboard.gov.bd" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between text-slate-300 hover:text-white transition-colors">
+                            <span>রাজশাহী শিক্ষা বোর্ড</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-emerald-400 transition-colors"></i>
+                        </a>
+                    </li>
                 </ul>
+
+                {{-- Quick WhatsApp Hotline Pill matching homepage CTA style --}}
+                <div class="mt-4 p-3.5 rounded-xl bg-white/5 border border-emerald-500/25 hover:border-emerald-500/50 transition-colors">
+                    <span class="text-xs font-semibold text-emerald-200/90 block mb-1">
+                        ভর্তি ও তথ্যের জন্য সরাসরি কথা বলুন
+                    </span>
+                    <a href="https://wa.me/8801712345678" target="_blank" rel="noopener noreferrer"
+                       class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-white hover:text-emerald-300 transition-colors">
+                        <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i>
+                        <span>০১৭১২-৩৪৫৬৭৮</span>
+                    </a>
+                </div>
             </div>
         </div>
 
         {{-- Bottom Copyright Strip --}}
-        <div class="mt-8 pt-4 border-t border-slate-900 text-[11px] text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
-            <p>© {{ date('Y') }} সোনাতলা উচ্চ বিদ্যালয়। সর্বস্বত্ব সংরক্ষিত।</p>
-            <p>সাঁথিয়া, পাবনা, রাজশাহী বিভাগ, বাংলাদেশ</p>
+        <div class="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
+            <p class="text-center sm:text-left">
+                © {{ date('Y') }} সোনাতলা উচ্চ বিদ্যালয়। সর্বস্বত্ব সংরক্ষিত।
+            </p>
+            <div class="flex flex-wrap items-center justify-center gap-3 text-[11px] sm:text-xs text-slate-400">
+                <span class="inline-flex items-center gap-1.5 text-emerald-300/90 font-medium">
+                    <i class="fa-solid fa-building-columns text-[10px]"></i>
+                    রাজশাহী শিক্ষা বোর্ড অধিভুক্ত
+                </span>
+                <span class="text-slate-600">•</span>
+                <span>সাঁথিয়া, পাবনা</span>
+                <span class="text-slate-600">•</span>
+                <span class="text-slate-400 font-mono">EduCore™ School Portal</span>
+            </div>
         </div>
     </div>
 </footer>
