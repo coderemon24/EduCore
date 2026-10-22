@@ -68,7 +68,7 @@
                         WHAT WE DELIVER — ACADEMIC EXCELLENCE
                     </span>
                     <h2 class="section-title">
-                        হাতেকলমে শিক্ষা, <span class="text-[#005030]">প্রযুক্তির আলো</span> ও মানবিক মূল্যবোধের পূর্ণাঙ্গ বিকাশ
+                        হাতেকলমে শিক্ষা, <span class="headline-signature-accent">প্রযুক্তির আলো</span> ও মানবিক মূল্যবোধের পূর্ণাঙ্গ বিকাশ
                     </h2>
                 </div>
                 <div class="section-header-right">
@@ -200,7 +200,7 @@
                         WHY WE ARE DIFFERENT — THE ADVANTAGE
                     </span>
                     <h2 class="section-title">
-                        সাধারণ স্কুলের চেয়ে কেন ব্যতিক্রমী <span class="text-[#005030]">আমাদের শিক্ষাপদ্ধতি ও ঐতিহ্য</span>?
+                        সাধারণ স্কুলের চেয়ে কেন ব্যতিক্রমী <span class="headline-signature-accent">আমাদের শিক্ষাপদ্ধতি ও ঐতিহ্য</span>?
                     </h2>
                 </div>
                 <div class="section-header-right">
@@ -338,7 +338,7 @@
                         LIVE DISPATCHES & OFFICIAL NOTICES
                     </span>
                     <h2 class="section-title">
-                        জরুরি নোটিশ বোর্ড ও <span class="text-[#005030]">চলমান একাডেমিক পরিক্রমা</span>
+                        জরুরি নোটিশ বোর্ড ও <span class="headline-signature-accent">চলমান প্রাতিষ্ঠানিক পরিক্রমা</span>
                     </h2>
                 </div>
                 <div class="section-header-right">
@@ -461,7 +461,7 @@
                         HOW TO GET STARTED — ENROLLMENT PATHWAY
                     </span>
                     <h2 class="section-title">
-                        মাত্র ৩টি সহজ ধাপে আপনার সন্তানের <span class="text-[#005030]">সোনাতলা যাত্রার সূচনা</span>
+                        মাত্র ৩টি সহজ ধাপে আপনার সন্তানের <span class="headline-signature-accent">সোনাতলা যাত্রার সূচনা</span>
                     </h2>
                 </div>
                 <div class="section-header-right">
@@ -574,7 +574,7 @@
                         DAY-TO-DAY EXPERIENCE — WHAT IT FEELS LIKE
                     </span>
                     <h2 class="section-title">
-                        সোনাতলা ক্যাম্পাসে একটি সাধারণ দিনের <span class="text-[#005030]">বাস্তব অনুভূতি</span>
+                        সোনাতলা ক্যাম্পাসে একটি সাধারণ দিনের <span class="headline-signature-accent">বাস্তব অনুভূতি</span>
                     </h2>
                 </div>
                 <div class="section-header-right">
@@ -689,7 +689,7 @@
                         CAMPUS LIFE & PROUD MOMENTS
                     </span>
                     <h2 class="section-title">
-                        ক্যাম্পাসের সোনালী মুহূর্ত ও <span class="text-[#005030]">প্রাঙ্গণচিত্র</span>
+                        ক্যাম্পাসের সোনালী মুহূর্ত ও <span class="headline-signature-accent">সোনাতলা প্রাঙ্গণচিত্র</span>
                     </h2>
                 </div>
                 <div class="section-header-right">
@@ -754,7 +754,7 @@
                         THE FINAL STEP — JOIN OUR FAMILY
                     </span>
                     <h2 class="section-title">
-                        ২০২৬ শিক্ষাবর্ষে আপনার সন্তানের মেধার বিকাশে <span class="text-[#005030]">আমরা প্রস্তুত</span>
+                        ২০২৬ শিক্ষাবর্ষে আপনার সন্তানের মেধার বিকাশে <span class="headline-signature-accent">আমরা প্রস্তুত</span>
                     </h2>
                 </div>
                 <div class="section-header-right">
