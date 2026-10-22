@@ -1153,28 +1153,77 @@ section[id],
     transform: translateY(-3px);
 }
 
-/* CTA High-Impact Banner */
-.cta-banner-box {
-    background: linear-gradient(135deg, #003820 0%, #005030 55%, #012415 100%);
-    border: 1px solid #007548;
-    border-radius: 1.5rem;
-    padding: 2.25rem 1.5rem;
-    color: #ffffff;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 25px 50px -15px rgba(0, 50, 30, 0.35);
-    transition: box-shadow 0.3s ease;
+/* CTA High-Impact Banner & Guardian Box */
+.cta-banner-box,
+.cta-box {
+    background: linear-gradient(135deg, #003820 0%, #005030 55%, #012415 100%) !important;
+    border: 1px solid #007548 !important;
+    border-radius: 1.5rem !important;
+    padding: 2.25rem 1.5rem !important;
+    color: #ffffff !important;
+    position: relative !important;
+    overflow: hidden !important;
+    box-shadow: 0 25px 50px -15px rgba(0, 50, 30, 0.4) !important;
+    transition: box-shadow 0.3s ease, transform 0.3s ease !important;
 }
 
 @media (min-width: 640px) {
-    .cta-banner-box {
-        padding: 3.5rem 3rem;
-        border-radius: 2rem;
+    .cta-banner-box,
+    .cta-box {
+        padding: 3.5rem 3rem !important;
+        border-radius: 2rem !important;
     }
 }
 
-.cta-banner-box:hover {
-    box-shadow: 0 30px 60px -15px rgba(0, 50, 30, 0.45);
+.cta-banner-box:hover,
+.cta-box:hover {
+    box-shadow: 0 30px 60px -15px rgba(0, 50, 30, 0.5) !important;
+}
+
+.guardian-kicker-pill {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    padding: 0.35rem 0.85rem !important;
+    border-radius: 9999px !important;
+    background-color: #002414 !important;
+    color: #a7f3d0 !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    border: 1px solid #059669 !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.cta-banner-title {
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    line-height: 1.25 !important;
+}
+
+.cta-banner-title span {
+    color: #fbbf24 !important;
+}
+
+.cta-banner-desc {
+    color: rgba(236, 253, 245, 0.92) !important;
+    font-size: 0.875rem !important;
+    line-height: 1.65 !important;
+}
+
+.guardian-cta-btn-secondary {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    backdrop-filter: blur(4px) !important;
+}
+
+.guardian-cta-btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.22) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    transform: translateY(-2px) scale(1.02);
 }
 
 /* Institutional Footer */

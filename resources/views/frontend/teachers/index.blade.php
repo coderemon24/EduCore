@@ -651,16 +651,16 @@
 {{-- 7. Call to Action: Guardian Consultation & Visiting Schedule (The Next Step) --}}
 <section class="home-section bg-slate-50/80" id="consultation-cta">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="cta-box bg-gradient-to-br from-[#005030] to-[#003820] text-white rounded-3xl p-8 sm:p-12 lg:p-16 relative overflow-hidden shadow-lg border border-emerald-700/50">
+        <div class="cta-banner-box cta-box rounded-3xl p-8 sm:p-12 lg:p-16 relative overflow-hidden shadow-lg border border-emerald-700/60">
             <div class="relative z-10 max-w-2xl space-y-4">
-                <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#002a18] text-emerald-200 text-xs font-bold uppercase tracking-wider border border-emerald-600/50 shadow-xs">
-                    <i class="fa-solid fa-calendar-days text-[11px]"></i>
+                <span class="guardian-kicker-pill">
+                    <i class="fa-solid fa-calendar-days text-[11px] text-emerald-400"></i>
                     <span>GUARDIAN ENGAGEMENT — অভিভাবক পরামর্শ ও মতবিনিময়</span>
                 </span>
-                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
+                <h2 class="cta-banner-title text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
                     সন্তানের ভবিষ্যৎ ও অগ্রগতি নিয়ে <span class="text-amber-400 font-bold">শিক্ষকদের সাথে সরাসরি কথা বলুন</span>
                 </h2>
-                <p class="text-xs sm:text-sm text-emerald-100/90 leading-relaxed">
+                <p class="cta-banner-desc text-xs sm:text-sm leading-relaxed">
                     আপনার সন্তানের ক্লাসরুমের অগ্রগতি, আচরণ কিংবা ভবিষ্যৎ পরিকল্পনা নিয়ে যেকোনো শিক্ষক বা প্রতিষ্ঠান প্রধানের সাথে কথা বলতে পারেন। প্রতি রবিবার থেকে বৃহস্পতিবার দুপুর ১২:৩০ হতে ১:৩০ পর্যন্ত শিক্ষক মিলনায়তনে সুনির্দিষ্ট অভিভাবক সাক্ষাৎ সময় নির্ধারিত রয়েছে।
                 </p>
 
@@ -668,14 +668,14 @@
                 <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                     {{-- Primary Amber CTA Button --}}
                     <a href="{{ route('frontend.contact') }}"
-                       class="px-8 py-4 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-extrabold text-sm sm:text-base shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 text-center flex items-center justify-center gap-2.5">
+                       class="about-cta-btn about-cta-btn-primary text-sm sm:text-base">
                         <span>সরাসরি সাক্ষাতের জন্য সময় নির্ধারণ করুন</span>
                         <i class="fa-solid fa-arrow-right text-xs"></i>
                     </a>
 
                     {{-- Secondary Hotline Button --}}
                     <a href="tel:+8801712345678"
-                       class="px-7 py-4 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/25 font-bold text-sm sm:text-base backdrop-blur-xs shadow-xs hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 text-center flex items-center justify-center gap-2.5">
+                       class="about-cta-btn guardian-cta-btn-secondary text-sm sm:text-base">
                         <i class="fa-solid fa-phone text-amber-300"></i>
                         <span>হটলাইন: +৮৮০ ১৭১২-৩৪৫৬৭৮</span>
                     </a>
