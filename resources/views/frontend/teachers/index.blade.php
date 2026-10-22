@@ -170,7 +170,7 @@
                     </div>
                 </div>
 
-                <div class="pt-5 mt-5 border-t border-slate-200/80 flex items-center justify-between text-xs text-slate-500">
+                <div class="pt-5 mt-8 border-t border-slate-200/80 flex items-center justify-between text-xs text-slate-500">
                     <span class="font-medium">কার্যালয়: প্রধান শিক্ষকের কক্ষ (১০১)</span>
                     <a href="mailto:headmaster@sonatala.edu.bd" class="text-[#005030] font-bold hover:underline flex items-center gap-1.5 transition-colors">
                         <i class="fa-solid fa-envelope"></i>
@@ -272,7 +272,7 @@
                            value="{{ request('q') }}"
                            placeholder="শিক্ষকের নাম, বিষয়, পদবি বা বিভাগ লিখে তাৎক্ষণিক খুঁজুন..."
                            class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 pl-10 pr-10 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#005030] focus:border-transparent transition-all">
-                    
+
                     <span class="absolute left-3.5 top-3 text-slate-400 pointer-events-none">
                         <i class="fa-solid fa-magnifying-glass text-xs"></i>
                     </span>
@@ -289,7 +289,7 @@
                     <span class="text-xs text-slate-500 font-medium">
                         প্রদর্শিত শিক্ষক: <strong id="visible-teacher-count" class="text-[#005030] font-bold">--</strong> জন
                     </span>
-                    <button type="button" 
+                    <button type="button"
                             id="reset-filters-btn"
                             class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors flex items-center gap-1 shadow-2xs">
                         <i class="fa-solid fa-rotate-left text-[11px]"></i>
@@ -438,8 +438,8 @@
                         elseif (str_contains($dDept, 'ধর্ম')) $dSlug = 'religious';
                         elseif (str_contains($dDept, 'প্রশাসন') || str_contains($dDept, 'Library') || str_contains($dDept, 'Finance')) $dSlug = 'admin';
 
-                        $photoUrl = !empty($dbStaff->photo) 
-                            ? asset('storage/' . $dbStaff->photo) 
+                        $photoUrl = !empty($dbStaff->photo)
+                            ? asset('storage/' . $dbStaff->photo)
                             : $defaultTeacherPhotos[$idx % count($defaultTeacherPhotos)];
 
                         $displayStaff[] = [
@@ -525,13 +525,13 @@
 
                     {{-- Action Footer with Enhanced Tactile Buttons --}}
                     <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600 mt-4 gap-2">
-                        <a href="tel:{{ $staff['phone'] }}" 
+                        <a href="tel:{{ $staff['phone'] }}"
                            class="flex-1 px-3 py-1.5 rounded-lg bg-emerald-50/80 hover:bg-[#005030] text-[#005030] hover:text-white font-semibold transition-colors duration-200 flex items-center justify-center gap-1.5 shadow-2xs group/btn">
                             <i class="fa-solid fa-phone text-xs group-hover/btn:scale-110 transition-transform"></i>
                             <span class="text-[11px] truncate">{{ $staff['phone'] }}</span>
                         </a>
 
-                        <a href="mailto:{{ $staff['email'] }}" 
+                        <a href="mailto:{{ $staff['email'] }}"
                            class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-sky-600 text-slate-600 hover:text-white flex items-center justify-center transition-colors duration-200 shadow-2xs shrink-0 group/mail"
                            title="{{ $staff['email'] }}">
                             <i class="fa-solid fa-envelope text-xs group-hover/mail:scale-110 transition-transform"></i>
@@ -553,7 +553,7 @@
                 </p>
             </div>
             <div class="pt-2">
-                <button type="button" 
+                <button type="button"
                         onclick="document.getElementById('reset-filters-btn').click()"
                         class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-[#005030] text-white text-xs font-bold hover:bg-[#003820] transition-colors shadow-xs cursor-pointer">
                     <i class="fa-solid fa-rotate-left text-xs"></i>
@@ -721,8 +721,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const cardQualification = (card.getAttribute('data-qualification') || '').toLowerCase();
 
             // Check department match
-            const matchesDept = (currentDept === 'all') || 
-                                (cardDeptSlug === currentDept) || 
+            const matchesDept = (currentDept === 'all') ||
+                                (cardDeptSlug === currentDept) ||
                                 (currentDept === 'science' && cardDeptName.includes('বিজ্ঞান')) ||
                                 (currentDept === 'humanities' && cardDeptName.includes('মানবিক')) ||
                                 (currentDept === 'commerce' && cardDeptName.includes('ব্যবসা')) ||
@@ -732,9 +732,9 @@ document.addEventListener('DOMContentLoaded', function () {
                                 (currentDept === 'admin' && (cardDeptName.includes('প্রশাসন') || cardDeptName.includes('স্টাফ') || cardDeptName.includes('শারীরিক')));
 
             // Check search text match
-            const matchesSearch = !currentSearch || 
-                                  cardName.includes(currentSearch) || 
-                                  cardDesignation.includes(currentSearch) || 
+            const matchesSearch = !currentSearch ||
+                                  cardName.includes(currentSearch) ||
+                                  cardDesignation.includes(currentSearch) ||
                                   cardDeptName.includes(currentSearch) ||
                                   cardQualification.includes(currentSearch);
 
@@ -831,8 +831,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!prefersReducedMotion) {
         // Hero Content Animation (Immediate upon page load)
         if (window.gsap) {
-            gsap.fromTo(".hero-anim", 
-                { opacity: 0, y: 16 }, 
+            gsap.fromTo(".hero-anim",
+                { opacity: 0, y: 16 },
                 { opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: "power2.out", clearProps: "all" }
             );
         }
@@ -846,8 +846,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         observer.unobserve(el);
 
                         if (window.gsap) {
-                            gsap.fromTo(el, 
-                                { opacity: 0, y: 18 }, 
+                            gsap.fromTo(el,
+                                { opacity: 0, y: 18 },
                                 { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", clearProps: "all" }
                             );
                         } else {
@@ -870,8 +870,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 // If already inside the visible viewport, reveal immediately
                 if (rect.top < window.innerHeight && rect.bottom > 0) {
                     if (window.gsap) {
-                        gsap.fromTo(el, 
-                            { opacity: 0, y: 14 }, 
+                        gsap.fromTo(el,
+                            { opacity: 0, y: 14 },
                             { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", clearProps: "all" }
                         );
                     }
