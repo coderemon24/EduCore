@@ -1,5 +1,5 @@
 {{-- Institutional Footer (Deep Forest Gradient & Unified Brand Identity) --}}
-<footer class="site-footer bg-gradient-to-b from-[#031d13] via-[#02130c] to-[#010b07] text-slate-300 border-t-2 border-[#005030] mt-12 sm:mt-16 selection:bg-[#005030] selection:text-white relative overflow-hidden" aria-label="প্রাতিষ্ঠানিক ফুটার">
+<footer class="pt-12 site-footer bg-gradient-to-b from-[#031d13] via-[#02130c] to-[#010b07] text-slate-300 border-t-2 border-[#005030] mt-12 sm:mt-16 selection:bg-[#005030] selection:text-white relative overflow-hidden" aria-label="প্রাতিষ্ঠানিক ফুটার">
     {{-- Subtle Ambient Glows matching homepage CTA --}}
     <div class="absolute top-0 right-0 -mt-16 -mr-16 w-80 h-80 rounded-full bg-emerald-500/5 blur-3xl pointer-events-none"></div>
     <div class="absolute bottom-0 left-0 -mb-16 -ml-16 w-80 h-80 rounded-full bg-emerald-500/5 blur-3xl pointer-events-none"></div>
