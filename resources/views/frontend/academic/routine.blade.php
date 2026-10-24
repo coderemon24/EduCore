@@ -7,7 +7,7 @@
 
 {{-- Breadcrumb (Standard Clean Layout Matching Classes Page) --}}
 <div class="bg-gray-100 border-b border-gray-200 py-3.5 text-xs text-gray-600" id="overview">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <nav class="flex items-center gap-1.5 font-medium" aria-label="Breadcrumb">
             <a href="{{ route('frontend.home') }}" class="hover:text-[#005030] transition-colors flex items-center gap-1">
                 <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
@@ -23,21 +23,21 @@
 </div>
 
 {{-- Top Hero Banner: Matches Reference Image Clean Green Header --}}
-<div class="bg-[#005030] text-white py-8 sm:py-10 border-b border-emerald-900">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+<div class="bg-[#005030] text-white py-8 sm:py-10 border-b border-emerald-900 page-hero-banner">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {{-- Pill Badge --}}
-        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[#005030] text-xs font-bold shadow-xs">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[#005030] text-xs font-bold shadow-xs page-hero-badge">
             <i class="fa-solid fa-calendar-days text-[#005030]"></i>
             <span>একাডেমিক</span>
         </div>
 
         {{-- Page Heading --}}
-        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-3 mb-2 tracking-tight">
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-3 mb-2 tracking-tight page-hero-title">
             ক্লাস ও পরীক্ষার সময়সূচি
         </h1>
 
         {{-- Sub-narrative context --}}
-        <p class="text-xs sm:text-sm text-emerald-100/90 font-medium">
+        <p class="text-xs sm:text-sm text-emerald-100/90 font-medium page-hero-subtitle">
             সোনাতলা উচ্চ বিদ্যালয়ের ২০২৬ শিক্ষাবর্ষের নিয়মিত দৈনিক পাঠদান ও পরীক্ষার রুটিন
         </p>
     </div>
@@ -45,10 +45,10 @@
 
 {{-- Main Content Canvas --}}
 <section class="py-8 sm:py-12 bg-slate-50/60 min-h-[500px]">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
 
         {{-- Notice / Effective Date Card --}}
-        <div class="bg-[#eef7f2] border border-[#d2ecd9] rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-2xs">
+        <div class="bg-[#eef7f2] border border-[#d2ecd9] rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-2xs gsap-reveal hover-card-lift">
             <div class="flex items-center gap-3.5">
                 <div class="w-10 h-10 rounded-xl bg-[#005030] text-white flex items-center justify-center text-lg shrink-0 shadow-xs">
                     <i class="fa-solid fa-clock"></i>
@@ -62,7 +62,7 @@
                     </p>
                 </div>
             </div>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 text-[#005030] text-xs font-bold border border-emerald-300/80 self-start sm:self-auto">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 text-[#005030] text-xs font-bold border border-emerald-300/80 self-start sm:self-auto hover-pill-scale">
                 <i class="fa-solid fa-circle-check text-xs"></i>
                 <span>কার্যকর: ০১ জানুয়ারি ২০২৬ থেকে</span>
             </span>
@@ -71,7 +71,7 @@
         {{-- Routine Grid: Timetable (Left) & Circulars/Sidebar (Right) --}}
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             {{-- Main Timetable Table (Col 8) --}}
-            <div class="lg:col-span-8 bg-white border border-slate-200/90 rounded-2xl shadow-2xs overflow-hidden p-5 sm:p-6 space-y-4">
+            <div class="lg:col-span-8 bg-white border border-slate-200/90 rounded-2xl shadow-2xs overflow-hidden p-5 sm:p-6 space-y-4 gsap-reveal hover-card-lift">
                 <div class="flex items-center justify-between border-b border-slate-100 pb-3">
                     <h3 class="font-bold text-base text-slate-900 flex items-center gap-2">
                         <i class="fa-solid fa-table-list text-[#005030] text-sm"></i>
@@ -144,7 +144,7 @@
             {{-- Sidebar (Col 4) --}}
             <div class="lg:col-span-4 space-y-5">
                 {{-- Exam Routine Downloads --}}
-                <div class="bg-white border border-slate-200/90 rounded-2xl shadow-2xs overflow-hidden">
+                <div class="bg-white border border-slate-200/90 rounded-2xl shadow-2xs overflow-hidden gsap-reveal hover-card-lift">
                     <div class="bg-[#005030] text-white px-5 py-3.5 flex items-center justify-between">
                         <h3 class="font-bold text-xs uppercase tracking-wider flex items-center gap-2">
                             <i class="fa-solid fa-file-pdf text-emerald-300"></i>
@@ -178,7 +178,7 @@
                 </div>
 
                 {{-- Exam Instructions Box --}}
-                <div class="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-2xs space-y-3 text-xs">
+                <div class="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-2xs space-y-3 text-xs gsap-reveal hover-card-lift">
                     <div class="flex items-center gap-2 pb-2.5 border-b border-slate-100">
                         <div class="w-7 h-7 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center text-xs">
                             <i class="fa-solid fa-triangle-exclamation"></i>

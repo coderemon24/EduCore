@@ -7,7 +7,7 @@
 
 {{-- Breadcrumb (Standard Clean Layout Matching Classes Page) --}}
 <div class="bg-gray-100 border-b border-gray-200 py-3.5 text-xs text-gray-600" id="overview">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <nav class="flex items-center gap-1.5 font-medium" aria-label="Breadcrumb">
             <a href="{{ route('frontend.home') }}" class="hover:text-[#005030] transition-colors flex items-center gap-1">
                 <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
@@ -23,21 +23,21 @@
 </div>
 
 {{-- Top Hero Banner: Matches Reference Image Clean Green Header --}}
-<div class="bg-[#005030] text-white py-8 sm:py-10 border-b border-emerald-900">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+<div class="bg-[#005030] text-white py-8 sm:py-10 border-b border-emerald-900 page-hero-banner">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {{-- Pill Badge --}}
-        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[#005030] text-xs font-bold shadow-xs">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[#005030] text-xs font-bold shadow-xs page-hero-badge">
             <i class="fa-solid fa-chalkboard-user text-[#005030]"></i>
             <span>শিক্ষকমণ্ডলী</span>
         </div>
 
         {{-- Page Heading --}}
-        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-3 mb-2 tracking-tight">
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-3 mb-2 tracking-tight page-hero-title">
             সম্মানিত শিক্ষক ও কর্মচারীবৃন্দ
         </h1>
 
         {{-- Sub-narrative context --}}
-        <p class="text-xs sm:text-sm text-emerald-100/90 font-medium">
+        <p class="text-xs sm:text-sm text-emerald-100/90 font-medium page-hero-subtitle">
             সোনাতলা উচ্চ বিদ্যালয়ের নিবেদিতপ্রাণ ও প্রশিক্ষণপ্রাপ্ত অভিজ্ঞ অনুষদ সদস্যবৃন্দ
         </p>
     </div>
@@ -45,12 +45,12 @@
 
 {{-- Main Content Canvas --}}
 <section class="py-8 sm:py-12 bg-slate-50/60 min-h-[500px]">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
 
         {{-- Institutional Leadership Showcase --}}
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="leadership">
             {{-- Headmaster Card --}}
-            <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs flex flex-col justify-between space-y-4">
+            <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs flex flex-col justify-between space-y-4 gsap-reveal hover-card-lift">
                 <div class="flex items-start gap-4">
                     <div class="w-20 h-24 sm:w-24 sm:h-28 rounded-xl overflow-hidden bg-slate-100 border border-slate-200 shrink-0 shadow-2xs">
                         <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=400&q=80"
@@ -82,7 +82,7 @@
             </div>
 
             {{-- Assistant Headmaster Card --}}
-            <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs flex flex-col justify-between space-y-4">
+            <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs flex flex-col justify-between space-y-4 gsap-reveal hover-card-lift">
                 <div class="flex items-start gap-4">
                     <div class="w-20 h-24 sm:w-24 sm:h-28 rounded-xl overflow-hidden bg-slate-100 border border-slate-200 shrink-0 shadow-2xs">
                         <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"
@@ -115,7 +115,7 @@
         </div>
 
         {{-- Directory Filters & Search Bar --}}
-        <div class="bg-white border border-slate-200/90 rounded-2xl p-4 sm:p-5 shadow-2xs space-y-4" id="faculty-directory">
+        <div class="bg-white border border-slate-200/90 rounded-2xl p-4 sm:p-5 shadow-2xs space-y-4 gsap-reveal hover-card-lift" id="faculty-directory">
             <div class="flex flex-col sm:flex-row items-center gap-3">
                 <div class="relative flex-1 w-full">
                     <input type="text"
@@ -139,7 +139,7 @@
                     </span>
                     <button type="button"
                             id="reset-filters-btn"
-                            class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold transition-colors flex items-center gap-1.5 cursor-pointer">
+                            class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold transition-colors flex items-center gap-1.5 cursor-pointer hover-pill-scale">
                         <i class="fa-solid fa-rotate-left text-[10px]"></i>
                         <span>রিসেট</span>
                     </button>
@@ -300,7 +300,7 @@
                 @foreach($standardDepts as $slug => $label)
                     <button type="button"
                             data-department="{{ $slug }}"
-                            class="dept-filter-tab px-3.5 py-1.5 rounded-full font-semibold transition-all shrink-0 cursor-pointer {{ $loop->first ? 'bg-[#005030] text-white shadow-xs active' : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200' }}">
+                            class="dept-filter-tab px-3.5 py-1.5 rounded-full font-semibold transition-all shrink-0 cursor-pointer hover-pill-scale {{ $loop->first ? 'bg-[#005030] text-white shadow-xs active' : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200' }}">
                         {{ $label }}
                     </button>
                 @endforeach
@@ -310,7 +310,7 @@
         {{-- Teachers Grid --}}
         <div id="teachers-grid-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             @foreach($displayStaff as $staff)
-                <div class="teacher-card-item bg-white border border-slate-200/90 rounded-2xl p-4 shadow-2xs flex flex-col justify-between hover:border-slate-300 transition-colors"
+                <div class="teacher-card-item bg-white border border-slate-200/90 rounded-2xl p-4 shadow-2xs flex flex-col justify-between hover:border-slate-300 transition-colors gsap-reveal hover-card-lift"
                      data-department="{{ $staff['dept_slug'] }}"
                      data-department-name="{{ $staff['department'] }}"
                      data-name="{{ $staff['name'] }}"
@@ -369,7 +369,7 @@
             <div class="pt-2">
                 <button type="button"
                         onclick="document.getElementById('reset-filters-btn').click()"
-                        class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#005030] text-white text-xs font-bold hover:bg-[#003820] transition-colors shadow-xs cursor-pointer">
+                        class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#005030] text-white text-xs font-bold hover:bg-[#003820] transition-colors shadow-xs cursor-pointer hover-pill-scale">
                     <i class="fa-solid fa-rotate-left text-xs"></i>
                     <span>সকল শিক্ষক প্রদর্শন করুন</span>
                 </button>
@@ -378,7 +378,7 @@
 
         {{-- Pedagogical Values (3 Cards) --}}
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5" id="pedagogy-standards">
-            <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs space-y-3">
+            <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs space-y-3 gsap-reveal hover-card-lift">
                 <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 text-[#005030] flex items-center justify-center text-base shadow-2xs">
                     <i class="fa-solid fa-book-open-reader"></i>
                 </div>
@@ -388,7 +388,7 @@
                 </p>
             </div>
 
-            <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs space-y-3">
+            <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs space-y-3 gsap-reveal hover-card-lift">
                 <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 text-[#005030] flex items-center justify-center text-base shadow-2xs">
                     <i class="fa-solid fa-laptop-code"></i>
                 </div>
@@ -398,7 +398,7 @@
                 </p>
             </div>
 
-            <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs space-y-3">
+            <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs space-y-3 gsap-reveal hover-card-lift">
                 <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 text-[#005030] flex items-center justify-center text-base shadow-2xs">
                     <i class="fa-solid fa-hands-holding-child"></i>
                 </div>
@@ -410,7 +410,7 @@
         </div>
 
         {{-- Consultation / Visit CTA --}}
-        <div class="bg-[#005030] text-white rounded-2xl p-6 sm:p-8 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6" id="consultation-cta">
+        <div class="bg-[#005030] text-white rounded-2xl p-6 sm:p-8 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6 gsap-reveal hover-card-lift" id="consultation-cta">
             <div class="space-y-1 text-center md:text-left">
                 <h3 class="text-lg sm:text-xl font-extrabold text-white">শিক্ষকদের সাথে সরাসরি পরামর্শ</h3>
                 <p class="text-xs sm:text-sm text-emerald-100/90">

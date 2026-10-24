@@ -47,9 +47,9 @@
 
 @section('content')
 
-{{-- Breadcrumb (Standard Clean Layout Matching Classes Page) --}}
+{{-- Breadcrumb (Standard Clean Layout Matching Header & Footer Width) --}}
 <div class="bg-gray-100 border-b border-gray-200 py-3.5 text-xs text-gray-600" id="overview">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <nav class="flex items-center gap-1.5 font-medium" aria-label="Breadcrumb">
             <a href="{{ route('frontend.home') }}" class="hover:text-[#005030] transition-colors flex items-center gap-1">
                 <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
@@ -64,22 +64,22 @@
     </div>
 </div>
 
-{{-- Top Hero Banner: Matches Reference Clean Green Header --}}
-<div class="bg-[#005030] text-white py-8 sm:py-10 border-b border-emerald-900">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+{{-- Top Hero Banner: Matches Reference Clean Green Header with GSAP Entrance --}}
+<div class="page-hero-banner bg-[#005030] text-white py-8 sm:py-10 border-b border-emerald-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {{-- Pill Badge --}}
-        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[#005030] text-xs font-bold shadow-xs">
+        <div class="page-hero-badge inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[#005030] text-xs font-bold shadow-xs">
             <i class="fa-solid fa-landmark text-[#005030]"></i>
             <span>পরিচিতি</span>
         </div>
 
         {{-- Page Heading --}}
-        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-3 mb-2 tracking-tight">
+        <h1 class="page-hero-title text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-3 mb-2 tracking-tight">
             {{ $about->title ?: 'সোনাতলা উচ্চ বিদ্যালয় — ইতিহাস ও ঐতিহ্য' }}
         </h1>
 
         {{-- Sub-narrative context --}}
-        <p class="text-xs sm:text-sm text-emerald-100/90 font-medium">
+        <p class="page-hero-subtitle text-xs sm:text-sm text-emerald-100/90 font-medium">
             {{ $about->subtitle ?: 'পাবনার সাঁথিয়া উপজেলার ঐতিহ্যবাহী বিদ্যাপীঠ — অর্ধশতাব্দীর গৌরবোজ্জ্বল শিক্ষা ও সংস্কৃতির অগ্রযাত্রা' }}
         </p>
     </div>
@@ -87,10 +87,10 @@
 
 {{-- Main Content Canvas --}}
 <section class="py-8 sm:py-12 bg-slate-50/60 min-h-[500px]">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
 
         {{-- History Intro Card --}}
-        <div class="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-2xs" id="history">
+        <div class="gsap-reveal bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-2xs hover-card-lift" id="history">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 {{-- Left: Narrative --}}
                 <div class="{{ !empty($about->history_image_url) ? 'lg:col-span-7' : 'lg:col-span-12' }} space-y-4">
@@ -149,9 +149,9 @@
         </div>
 
         {{-- Values Band (3 Clean Cards - Matches Sonatala Reference hL) --}}
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-5" id="mission">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="mission">
             {{-- Vision Card --}}
-            <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs flex flex-col justify-between space-y-4">
+            <div class="gsap-reveal bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs flex flex-col justify-between space-y-4 hover-card-lift">
                 <div class="space-y-3">
                     <div class="w-11 h-11 rounded-xl bg-emerald-50 border border-emerald-200 text-[#005030] flex items-center justify-center text-lg shadow-2xs">
                         <i class="fa-solid fa-bullseye"></i>
@@ -170,7 +170,7 @@
             </div>
 
             {{-- Mission Card --}}
-            <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs flex flex-col justify-between space-y-4">
+            <div class="gsap-reveal bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs flex flex-col justify-between space-y-4 hover-card-lift">
                 <div class="space-y-3">
                     <div class="w-11 h-11 rounded-xl bg-emerald-50 border border-emerald-200 text-[#005030] flex items-center justify-center text-lg shadow-2xs">
                         <i class="fa-solid fa-compass"></i>
@@ -189,7 +189,7 @@
             </div>
 
             {{-- Values Card --}}
-            <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs flex flex-col justify-between space-y-4">
+            <div class="gsap-reveal bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs flex flex-col justify-between space-y-4 hover-card-lift">
                 <div class="space-y-3">
                     <div class="w-11 h-11 rounded-xl bg-emerald-50 border border-emerald-200 text-[#005030] flex items-center justify-center text-lg shadow-2xs">
                         <i class="fa-solid fa-heart"></i>
@@ -210,9 +210,9 @@
 
         {{-- Statistics Strip (If Available) --}}
         @if(!empty($about->statistics) && is_array($about->statistics))
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="statistics">
+            <div class="gsap-reveal grid grid-cols-2 md:grid-cols-4 gap-4" id="statistics">
                 @foreach($about->statistics as $stat)
-                    <div class="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-2xs text-center space-y-1">
+                    <div class="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-2xs text-center space-y-1 hover-card-lift">
                         <p class="text-2xl sm:text-3xl font-extrabold text-[#005030] font-mono">
                             {{ $stat['value'] ?? '' }}
                         </p>
@@ -228,7 +228,7 @@
         {{-- 2-Column Grid: Quick Facts & Managing Committee --}}
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start" id="committee">
             {{-- Left: At A Glance --}}
-            <div class="lg:col-span-4 bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-6 shadow-2xs space-y-4">
+            <div class="gsap-reveal lg:col-span-4 bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-6 shadow-2xs space-y-4 hover-card-lift">
                 <div class="flex items-center gap-2 pb-3 border-b border-slate-100">
                     <div class="w-8 h-8 rounded-lg bg-emerald-50 text-[#005030] flex items-center justify-center text-sm">
                         <i class="fa-solid fa-clipboard-list"></i>
@@ -257,7 +257,7 @@
             </div>
 
             {{-- Right: Managing Committee --}}
-            <div class="lg:col-span-8 bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-6 shadow-2xs space-y-4">
+            <div class="gsap-reveal lg:col-span-8 bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-6 shadow-2xs space-y-4 hover-card-lift">
                 <div class="flex items-center justify-between pb-3 border-b border-slate-100">
                     <div class="flex items-center gap-2">
                         <div class="w-8 h-8 rounded-lg bg-emerald-50 text-[#005030] flex items-center justify-center text-sm">
@@ -283,7 +283,7 @@
                                 $committeeList = !empty($about->committee_members) ? $about->committee_members : [];
                             @endphp
                             @forelse($committeeList as $cIdx => $member)
-                                <tr class="hover:bg-slate-50/70 transition-colors">
+                                <tr class="hover:bg-emerald-50/40 transition-colors">
                                     <td class="py-2.5 px-3 text-center font-mono text-slate-400">
                                         {{ sprintf('%02d', $cIdx + 1) }}
                                     </td>
@@ -314,7 +314,7 @@
 
         {{-- Facilities Grid (If Available) --}}
         @if(!empty($about->facilities) && is_array($about->facilities))
-            <div class="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-2xs space-y-6" id="facilities">
+            <div class="gsap-reveal bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-2xs space-y-6 hover-card-lift" id="facilities">
                 <div class="border-b border-slate-100 pb-3">
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-[#005030] text-xs font-bold border border-emerald-200 mb-2">
                         <i class="fa-solid fa-school text-xs"></i>
@@ -326,7 +326,7 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                     @foreach($about->facilities as $facility)
-                        <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-100 space-y-2 hover:border-slate-200 transition-colors">
+                        <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-100 space-y-2 hover:border-[#005030]/40 hover:bg-white hover:shadow-2xs transition-all duration-200">
                             <div class="flex items-center gap-2.5">
                                 <span class="w-8 h-8 rounded-lg bg-[#005030] text-white flex items-center justify-center text-xs shrink-0 shadow-2xs">
                                     <i class="fa-solid fa-check"></i>
@@ -343,7 +343,7 @@
         @endif
 
         {{-- Next Steps Action Banner --}}
-        <div class="bg-[#005030] text-white rounded-2xl p-6 sm:p-8 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="gsap-reveal bg-[#005030] text-white rounded-2xl p-6 sm:p-8 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6 hover-card-lift">
             <div class="space-y-1 text-center md:text-left">
                 <h3 class="text-lg sm:text-xl font-extrabold text-white">বিদ্যালয় ক্যাম্পাসে আপনাকে স্বাগতম</h3>
                 <p class="text-xs sm:text-sm text-emerald-100/90">
@@ -352,12 +352,12 @@
             </div>
             <div class="flex flex-wrap items-center gap-3 shrink-0">
                 <a href="{{ route('frontend.contact') }}"
-                   class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs shadow-xs transition-colors">
+                   class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs shadow-xs transition-colors hover-pill-scale">
                     <i class="fa-solid fa-envelope"></i>
                     <span>যোগাযোগ করুন</span>
                 </a>
                 <a href="{{ route('frontend.academic.classes') }}"
-                   class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/20 transition-colors">
+                   class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/20 transition-colors hover-pill-scale">
                     <i class="fa-solid fa-graduation-cap"></i>
                     <span>শ্রেণিসমূহ দেখুন</span>
                 </a>

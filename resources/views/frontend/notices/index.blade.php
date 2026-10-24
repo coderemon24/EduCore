@@ -7,7 +7,7 @@
 
 {{-- Breadcrumb (Standard Clean Layout Matching Classes Page) --}}
 <div class="bg-gray-100 border-b border-gray-200 py-3.5 text-xs text-gray-600" id="overview">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <nav class="flex items-center gap-1.5 font-medium" aria-label="Breadcrumb">
             <a href="{{ route('frontend.home') }}" class="hover:text-[#005030] transition-colors flex items-center gap-1">
                 <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
@@ -23,21 +23,21 @@
 </div>
 
 {{-- Top Hero Banner: Matches Reference Image Clean Green Header --}}
-<div class="bg-[#005030] text-white py-8 sm:py-10 border-b border-emerald-900">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+<div class="bg-[#005030] text-white py-8 sm:py-10 border-b border-emerald-900 page-hero-banner">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {{-- Pill Badge --}}
-        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[#005030] text-xs font-bold shadow-xs">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[#005030] text-xs font-bold shadow-xs page-hero-badge">
             <i class="fa-solid fa-bullhorn text-[#005030]"></i>
             <span>বিজ্ঞপ্তি</span>
         </div>
 
         {{-- Page Heading --}}
-        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-3 mb-2 tracking-tight">
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-3 mb-2 tracking-tight page-hero-title">
             প্রাতিষ্ঠানিক নোটিশ বোর্ড
         </h1>
 
         {{-- Sub-narrative context --}}
-        <p class="text-xs sm:text-sm text-emerald-100/90 font-medium">
+        <p class="text-xs sm:text-sm text-emerald-100/90 font-medium page-hero-subtitle">
             সোনাতলা উচ্চ বিদ্যালয়ের সকল প্রাতিষ্ঠানিক, একাডেমিক ও পরীক্ষার আনুষ্ঠানিক সার্কুলার ও নোটিশ
         </p>
     </div>
@@ -45,7 +45,7 @@
 
 {{-- Main Content Canvas --}}
 <section class="py-8 sm:py-12 bg-slate-50/60 min-h-[500px]">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
 
         {{-- Layout Grid: Notices List (Left) & Filter Sidebar (Right) --}}
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
@@ -141,7 +141,7 @@
                         </div>
                     </div>
                 @else
-                    <div class="bg-white border border-slate-200/90 rounded-2xl shadow-2xs divide-y divide-slate-100 overflow-hidden">
+                    <div class="bg-white border border-slate-200/90 rounded-2xl shadow-2xs divide-y divide-slate-100 overflow-hidden gsap-reveal hover-card-lift">
                         @foreach($displayNotices as $n)
                             <article class="p-5 sm:p-6 hover:bg-slate-50/80 transition-colors flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                                 <div class="flex items-start gap-4 flex-1">
@@ -153,7 +153,7 @@
 
                                     <div class="space-y-1.5 flex-1">
                                         <div class="flex flex-wrap items-center gap-2">
-                                            <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-semibold border border-slate-200">
+                                             <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-semibold border border-slate-200">
                                                 {{ $n['type'] }}
                                             </span>
                                             @if($n['is_pinned'])
@@ -202,7 +202,7 @@
             {{-- Sidebar (Col 4) --}}
             <div class="lg:col-span-4 space-y-5">
                 {{-- Search Box --}}
-                <div class="bg-white border border-slate-200/90 rounded-2xl shadow-2xs p-5 space-y-3">
+                <div class="bg-white border border-slate-200/90 rounded-2xl shadow-2xs p-5 space-y-3 gsap-reveal hover-card-lift">
                     <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider">বিজ্ঞপ্তি খুঁজুন</h3>
                     <form action="{{ route('frontend.notices.index') }}" method="GET" class="relative">
                         @if(request('type'))
@@ -220,7 +220,7 @@
                 </div>
 
                 {{-- Category Filter Card --}}
-                <div class="bg-white border border-slate-200/90 rounded-2xl shadow-2xs p-5 space-y-3">
+                <div class="bg-white border border-slate-200/90 rounded-2xl shadow-2xs p-5 space-y-3 gsap-reveal hover-card-lift">
                     <div class="text-xs font-bold text-slate-900 border-b border-slate-100 pb-2.5 uppercase tracking-wider">
                         নোটিশ ক্যাটাগরি
                     </div>
@@ -254,7 +254,7 @@
                 </div>
 
                 {{-- Helpdesk Card --}}
-                <div class="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-2xs space-y-3">
+                <div class="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-2xs space-y-3 gsap-reveal hover-card-lift">
                     <div class="flex items-center gap-2 pb-2.5 border-b border-slate-100">
                         <div class="w-7 h-7 rounded-lg bg-emerald-50 text-[#005030] flex items-center justify-center text-xs">
                             <i class="fa-solid fa-headset"></i>

@@ -125,11 +125,47 @@ document.addEventListener('DOMContentLoaded', function () {
         counters.forEach(counter => counterObserver.observe(counter));
     }
 
-    // 4. Entrance animations
+    // 4. GSAP Entrance & Scroll Animations
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+    if (!prefersReducedMotion && window.gsap) {
+        // Register ScrollTrigger if available
+        if (window.ScrollTrigger) {
+            gsap.registerPlugin(ScrollTrigger);
+        }
+
+        // A. Page Hero & Breadcrumb Entrance Animation
+        const heroBanner = document.querySelector('.page-hero-banner');
+        const breadcrumbNav = document.querySelector('#overview');
+
+        if (heroBanner) {
+            const badge = heroBanner.querySelector('.page-hero-badge');
+            const title = heroBanner.querySelector('.page-hero-title, h1');
+            const desc = heroBanner.querySelector('.page-hero-subtitle, p');
+
+            const heroTl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+
+            if (breadcrumbNav) {
+                heroTl.fromTo(breadcrumbNav, { opacity: 0, y: -8 }, { opacity: 1, y: 0, duration: 0.35, clearProps: 'transform,opacity' });
+            }
+
+            if (badge) {
+                heroTl.fromTo(badge, { opacity: 0, scale: 0.9, y: 10 }, { opacity: 1, scale: 1, y: 0, duration: 0.4, clearProps: 'transform,opacity' }, '-=0.15');
+            }
+
+            if (title) {
+                heroTl.fromTo(title, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, clearProps: 'transform,opacity' }, '-=0.2');
+            }
+
+            if (desc) {
+                heroTl.fromTo(desc, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.45, clearProps: 'transform,opacity' }, '-=0.25');
+            }
+        }
+
+        // B. Scroll Animations for Cards & Content Sections
         const revealSelectorList = [
+            '.gsap-reveal',
+            '.gsap-reveal-card',
             '.section-header-block',
             '.qualifying-card',
             '.capability-card-hero',
@@ -143,49 +179,59 @@ document.addEventListener('DOMContentLoaded', function () {
             '.cta-banner-box'
         ].join(', ');
 
-        const revealObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const el = entry.target;
-                    observer.unobserve(el);
+        const revealElements = document.querySelectorAll(revealSelectorList);
 
-                    // Animate when entering viewport
-                    if (window.gsap) {
+        if (window.ScrollTrigger && revealElements.length > 0) {
+            ScrollTrigger.batch(revealSelectorList, {
+                onEnter: (batch) => {
+                    gsap.fromTo(batch,
+                        { opacity: 0, y: 22 },
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.5,
+                            stagger: 0.08,
+                            ease: 'power2.out',
+                            clearProps: 'transform,opacity' // Ensures hover effects work seamlessly!
+                        }
+                    );
+                },
+                once: true,
+                start: 'top 88%'
+            });
+        } else if ('IntersectionObserver' in window && revealElements.length > 0) {
+            // Fallback to IntersectionObserver with GSAP
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        observer.unobserve(el);
                         gsap.fromTo(el, 
-                            { opacity: 0, y: 16 }, 
-                            { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', clearProps: 'all' }
+                            { opacity: 0, y: 18 }, 
+                            { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', clearProps: 'transform,opacity' }
                         );
-                    } else {
-                        el.style.opacity = '1';
-                        el.style.transform = 'none';
                     }
+                });
+            }, { rootMargin: '0px 0px -40px 0px', threshold: 0.05 });
+
+            revealElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    gsap.fromTo(el, 
+                        { opacity: 0, y: 14 }, 
+                        { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out', clearProps: 'transform,opacity' }
+                    );
+                } else {
+                    revealObserver.observe(el);
                 }
             });
-        }, {
-            rootMargin: '0px 0px -40px 0px',
-            threshold: 0.05
-        });
-
-        document.querySelectorAll(revealSelectorList).forEach(el => {
-            const rect = el.getBoundingClientRect();
-            // Reveal immediately if already in viewport
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                if (window.gsap) {
-                    gsap.fromTo(el, 
-                        { opacity: 0, y: 12 }, 
-                        { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out', clearProps: 'all' }
-                    );
-                }
-            } else {
-                revealObserver.observe(el);
-            }
-        });
+        }
     }
 
-    // Ensure sections remain visible if animations fail
+    // Ensure elements remain visible if animations fail
     const ensureElementsVisible = () => {
         document.querySelectorAll(
-            '.section-header-block, .qualifying-card, .capability-card-hero, .capability-card-secondary, .differentiator-card, .metrics-counter-box, .step-card, .experience-frame, .experience-card, .gallery-grid .group, .cta-banner-box, .leadership-card, .pedagogy-card, .cta-box, .telemetry-metric-item, .teacher-card-item'
+            '.gsap-reveal, .gsap-reveal-card, .section-header-block, .qualifying-card, .capability-card-hero, .capability-card-secondary, .differentiator-card, .metrics-counter-box, .step-card, .experience-frame, .experience-card, .gallery-grid .group, .cta-banner-box, .leadership-card, .pedagogy-card, .cta-box, .telemetry-metric-item, .teacher-card-item'
         ).forEach(el => {
             if (window.getComputedStyle(el).opacity === '0') {
                 el.style.opacity = '1';

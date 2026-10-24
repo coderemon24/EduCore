@@ -7,7 +7,7 @@
 
 {{-- Breadcrumb (Standard Clean Layout Matching Classes Page) --}}
 <div class="bg-gray-100 border-b border-gray-200 py-3.5 text-xs text-gray-600" id="overview">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <nav class="flex items-center gap-1.5 font-medium" aria-label="Breadcrumb">
             <a href="{{ route('frontend.home') }}" class="hover:text-[#005030] transition-colors flex items-center gap-1">
                 <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
@@ -23,21 +23,21 @@
 </div>
 
 {{-- Top Hero Banner: Matches Reference Image Clean Green Header --}}
-<div class="bg-[#005030] text-white py-8 sm:py-10 border-b border-emerald-900">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+<div class="bg-[#005030] text-white py-8 sm:py-10 border-b border-emerald-900 page-hero-banner">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {{-- Pill Badge --}}
-        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[#005030] text-xs font-bold shadow-xs">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[#005030] text-xs font-bold shadow-xs page-hero-badge">
             <i class="fa-solid fa-headset text-[#005030]"></i>
             <span>যোগাযোগ</span>
         </div>
 
         {{-- Page Heading --}}
-        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-3 mb-2 tracking-tight">
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-3 mb-2 tracking-tight page-hero-title">
             যোগাযোগ ও অনুসন্ধান
         </h1>
 
         {{-- Sub-narrative context --}}
-        <p class="text-xs sm:text-sm text-emerald-100/90 font-medium">
+        <p class="text-xs sm:text-sm text-emerald-100/90 font-medium page-hero-subtitle">
             সোনাতলা উচ্চ বিদ্যালয়, সাঁথিয়া, পাবনা — যেকোনো প্রাতিষ্ঠানিক তথ্য ও অনুসন্ধান বিষয়ে আমাদের সাথে যোগাযোগ করুন
         </p>
     </div>
@@ -45,12 +45,12 @@
 
 {{-- Main Content Canvas --}}
 <section class="py-8 sm:py-12 bg-slate-50/60 min-h-[500px]">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
 
         {{-- Top 3 Contact Cards --}}
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
             {{-- Address Card --}}
-            <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs space-y-3">
+            <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs space-y-3 gsap-reveal hover-card-lift">
                 <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 text-[#005030] flex items-center justify-center text-base shadow-2xs">
                     <i class="fa-solid fa-location-dot"></i>
                 </div>
@@ -64,7 +64,7 @@
             </div>
 
             {{-- Phone Card --}}
-            <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs space-y-3">
+            <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs space-y-3 gsap-reveal hover-card-lift">
                 <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 text-[#005030] flex items-center justify-center text-base shadow-2xs">
                     <i class="fa-solid fa-phone"></i>
                 </div>
@@ -80,7 +80,7 @@
             </div>
 
             {{-- Email Card --}}
-            <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs space-y-3">
+            <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs space-y-3 gsap-reveal hover-card-lift">
                 <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 text-[#005030] flex items-center justify-center text-base shadow-2xs">
                     <i class="fa-solid fa-envelope"></i>
                 </div>
@@ -99,7 +99,7 @@
         {{-- Contact Form & Office Hours Grid --}}
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             {{-- Contact Form (Col 7) --}}
-            <div class="lg:col-span-7 bg-white border border-slate-200/90 rounded-2xl shadow-2xs p-6 sm:p-7 space-y-5">
+            <div class="lg:col-span-7 bg-white border border-slate-200/90 rounded-2xl shadow-2xs p-6 sm:p-7 space-y-5 gsap-reveal hover-card-lift">
                 <div class="border-b border-slate-100 pb-3">
                     <h2 class="text-lg font-bold text-slate-900">আমাদের একটি বার্তা পাঠান</h2>
                     <p class="text-xs text-slate-500 mt-0.5">ভর্তি, পরীক্ষার তথ্য বা যেকোনো অনুসন্ধানের জন্য নিচের ফর্মটি পূরণ করুন।</p>
@@ -159,7 +159,7 @@
             {{-- Office Hours & Directions (Col 5) --}}
             <div class="lg:col-span-5 space-y-5">
                 {{-- Office Hours Card --}}
-                <div class="bg-white border border-slate-200/90 rounded-2xl shadow-2xs p-5 sm:p-6 space-y-4">
+                <div class="bg-white border border-slate-200/90 rounded-2xl shadow-2xs p-5 sm:p-6 space-y-4 gsap-reveal hover-card-lift">
                     <div class="flex items-center gap-2 pb-3 border-b border-slate-100">
                         <div class="w-8 h-8 rounded-lg bg-emerald-50 text-[#005030] flex items-center justify-center text-sm">
                             <i class="fa-solid fa-business-time"></i>
@@ -184,7 +184,7 @@
                 </div>
 
                 {{-- Location & Directions Card --}}
-                <div class="bg-white border border-slate-200/90 rounded-2xl shadow-2xs p-5 sm:p-6 space-y-3">
+                <div class="bg-white border border-slate-200/90 rounded-2xl shadow-2xs p-5 sm:p-6 space-y-3 gsap-reveal hover-card-lift">
                     <div class="flex items-center gap-2 pb-3 border-b border-slate-100">
                         <div class="w-8 h-8 rounded-lg bg-emerald-50 text-[#005030] flex items-center justify-center text-sm">
                             <i class="fa-solid fa-map-location-dot"></i>

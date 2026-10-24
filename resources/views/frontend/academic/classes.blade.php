@@ -5,9 +5,9 @@
 
 @section('content')
 
-{{-- Breadcrumb (As like About page) --}}
+{{-- Breadcrumb (Standard Clean Layout Matching Header & Footer Width) --}}
 <div class="bg-gray-100 border-b border-gray-200 py-3.5 text-xs text-gray-600" id="overview">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <nav class="flex items-center gap-1.5 font-medium" aria-label="Breadcrumb">
             <a href="{{ route('frontend.home') }}" class="hover:text-[#005030] transition-colors flex items-center gap-1">
                 <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
@@ -22,23 +22,23 @@
     </div>
 </div>
 
-{{-- Top Hero Banner: Matches Reference Image Clean Green Header --}}
-<div class="bg-[#005030] text-white py-8 sm:py-10 border-b border-emerald-900">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+{{-- Top Hero Banner: Matches Reference Image Clean Green Header with GSAP Entrance --}}
+<div class="page-hero-banner bg-[#005030] text-white py-8 sm:py-10 border-b border-emerald-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {{-- Academic Pill Badge --}}
-        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[#005030] text-xs font-bold shadow-xs">
+        <div class="page-hero-badge inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[#005030] text-xs font-bold shadow-xs">
             <i class="fa-solid fa-graduation-cap text-[#005030]"></i>
             <span>একাডেমিক</span>
         </div>
 
         {{-- Page Heading --}}
-        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-3 mb-2 tracking-tight">
+        <h1 class="page-hero-title text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-3 mb-2 tracking-tight">
             শ্রেণিসমূহ ও বিষয়
         </h1>
         <span class="sr-only">শ্রেণিসমূহ ও পাঠ্যসূচি</span>
 
         {{-- Sub-narrative context --}}
-        <p class="text-xs sm:text-sm text-emerald-100/90 font-medium">
+        <p class="page-hero-subtitle text-xs sm:text-sm text-emerald-100/90 font-medium">
             সোনাতলা উচ্চ বিদ্যালয়ের শ্রেণিভিত্তিক শাখা বণ্টন ও পাঠ্যক্রমের বিবরণ
         </p>
     </div>
@@ -63,11 +63,11 @@
                 }
             }
          }">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
 
         @if($classes->isEmpty())
             {{-- Clean Empty State --}}
-            <div class="bg-white border border-slate-200 rounded-2xl p-12 text-center shadow-2xs space-y-3 max-w-md mx-auto my-6">
+            <div class="gsap-reveal bg-white border border-slate-200 rounded-2xl p-12 text-center shadow-2xs space-y-3 max-w-md mx-auto my-6 hover-card-lift">
                 <div class="w-14 h-14 mx-auto rounded-xl bg-emerald-50 text-[#005030] flex items-center justify-center text-2xl border border-emerald-200">
                     <i class="fa-solid fa-school"></i>
                 </div>
@@ -76,7 +76,7 @@
                     বিদ্যালয় প্রশাসন কর্তৃক শ্রেণি তালিকা হালনাগাদ করা হচ্ছে।
                 </p>
                 <div class="pt-2">
-                    <a href="{{ route('frontend.contact') }}" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#005030] text-white text-xs font-bold hover:bg-[#003820] transition-colors">
+                    <a href="{{ route('frontend.contact') }}" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#005030] text-white text-xs font-bold hover:bg-[#003820] transition-colors shadow-xs hover-pill-scale">
                         <i class="fa-solid fa-envelope"></i>
                         <span>যোগাযোগ করুন</span>
                     </a>
@@ -84,14 +84,14 @@
             </div>
         @else
             {{-- Class Selector Tabs: Exactly Matching Reference Layout --}}
-            <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-2.5">
+            <div class="gsap-reveal grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-2.5">
                 @foreach($classes as $c)
                     <button type="button"
                             @click="setActive('{{ $c->id }}')"
                             :class="activeClass == '{{ $c->id }}'
-                                ? 'bg-[#005030] text-white border-2 border-[#005030] font-bold shadow-xs'
+                                ? 'bg-[#005030] text-white border-2 border-[#005030] font-bold shadow-xs scale-[1.02]'
                                 : 'bg-white text-slate-700 border border-slate-200 hover:border-slate-300 hover:bg-slate-50 font-semibold shadow-2xs'"
-                            class="px-2.5 py-2.5 rounded-xl text-center text-xs sm:text-sm transition-all duration-150 cursor-pointer truncate">
+                            class="px-2.5 py-2.5 rounded-xl text-center text-xs sm:text-sm transition-all duration-200 cursor-pointer truncate hover-pill-scale">
                         {{ $c->name }}
                     </button>
                 @endforeach
@@ -110,7 +110,7 @@
                      class="space-y-6">
 
                     {{-- Class Banner Card: Soft Emerald Tint with Mortarboard Icon --}}
-                    <div class="bg-[#eef7f2] border border-[#d2ecd9] rounded-2xl p-4 sm:p-5 flex items-center gap-4 shadow-2xs">
+                    <div class="gsap-reveal bg-[#eef7f2] border border-[#d2ecd9] rounded-2xl p-4 sm:p-5 flex items-center gap-4 shadow-2xs hover-card-lift">
                         <div class="w-12 h-12 rounded-xl bg-[#005030] text-white flex items-center justify-center text-xl shrink-0 shadow-xs">
                             <i class="fa-solid fa-graduation-cap"></i>
                         </div>
@@ -140,10 +140,10 @@
                     </div>
 
                     {{-- Main Detail Grid: Sections (Left) & Subjects (Right) --}}
-                    <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-start">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
 
                         {{-- Left Column: Sections (শাখাসমূহ) --}}
-                        <div class="md:col-span-4 lg:col-span-3 bg-white border border-slate-200/90 rounded-2xl p-5 shadow-2xs space-y-4">
+                        <div class="gsap-reveal md:col-span-4 lg:col-span-3 bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-6 shadow-2xs space-y-4 hover-card-lift">
                             <div class="flex items-center gap-2 text-slate-800 font-bold text-sm sm:text-base pb-3 border-b border-slate-100">
                                 <i class="fa-solid fa-tags text-slate-400 text-xs"></i>
                                 <span>শাখাসমূহ</span>
@@ -156,57 +156,60 @@
                             @else
                                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 gap-2.5">
                                     @foreach($c->sections as $section)
-                                        <div class="flex flex-col items-center justify-center p-3.5 rounded-xl bg-[#eef7f2] border border-[#d2ecd9] text-center shadow-2xs group hover:border-[#005030] transition-colors">
+                                        <div class="flex flex-col items-center justify-center p-3.5 rounded-xl bg-[#eef7f2] border border-[#d2ecd9] text-center shadow-2xs group hover:border-[#005030] hover:bg-emerald-50/80 transition-all duration-200">
                                             <span class="text-xl font-bold text-[#005030] leading-none">{{ $section->name }}</span>
-                                            <span class="text-[11px] text-slate-500 font-medium mt-1">শাখা</span>
-                                            <span class="sr-only">শাখা: {{ $section->name }}</span>
+                                            <span class="text-[10px] text-slate-500 font-medium mt-1">শাখা: {{ $section->name }}</span>
+                                            @if($section->classTeacher)
+                                                <span class="text-[11px] text-slate-600 font-medium mt-1 truncate max-w-full">
+                                                    {{ $section->classTeacher->full_name }}
+                                                </span>
+                                            @endif
                                         </div>
                                     @endforeach
                                 </div>
-
-                                {{-- Section Teacher Reassurance Line --}}
-                                @if($c->sections->whereNotNull('classTeacher')->isNotEmpty())
-                                    <div class="pt-3 border-t border-slate-100 space-y-1.5 text-xs text-slate-600">
-                                        @foreach($c->sections as $section)
-                                            @if($section->classTeacher)
-                                                <div class="flex items-center gap-1.5 truncate">
-                                                    <i class="fa-solid fa-user-check text-[#005030] text-[10px]"></i>
-                                                    <span class="truncate">শাখা {{ $section->name }}: <strong class="text-slate-900 font-semibold">{{ $section->classTeacher->full_name ?? $section->classTeacher->name }}</strong></span>
-                                                </div>
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                @endif
                             @endif
                         </div>
 
                         {{-- Right Column: Subjects (বিষয়সমূহ) --}}
-                        <div class="md:col-span-8 lg:col-span-9 bg-white border border-slate-200/90 rounded-2xl p-5 shadow-2xs space-y-4">
-                            <div class="flex items-center gap-2 text-slate-800 font-bold text-sm sm:text-base pb-3 border-b border-slate-100">
-                                <i class="fa-solid fa-book text-slate-400 text-xs"></i>
-                                <span>বিষয়সমূহ</span>
+                        <div class="gsap-reveal md:col-span-8 lg:col-span-9 bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-6 shadow-2xs space-y-4 hover-card-lift">
+                            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                                <div class="flex items-center gap-2 text-slate-800 font-bold text-sm sm:text-base">
+                                    <i class="fa-solid fa-book-open text-slate-400 text-xs"></i>
+                                    <span>বিষয়সমূহ</span>
+                                </div>
+                                <span class="text-xs text-slate-400 font-medium">মোট {{ $subjectsCount }}টি নির্ধারিত বিষয়</span>
                             </div>
 
                             @if($c->subjects->isEmpty())
-                                <div class="text-xs text-slate-400 py-6 text-center">
-                                    কোনো বিষয় যোগ করা হয়নি।
+                                <div class="text-xs text-slate-400 py-8 text-center">
+                                    কোনো পাঠ্য বিষয় তালিকাভুক্ত করা হয়নি।
                                 </div>
                             @else
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                     @foreach($c->subjects as $subject)
                                         @php
                                             $isOptional = ($subject->pivot->type ?? '') === 'optional';
                                         @endphp
-                                        <div class="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-[#fbfcfd] hover:bg-white border border-slate-200/80 hover:border-emerald-300 transition-all duration-150 shadow-2xs">
+                                        <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50/70 border border-slate-100 hover:bg-white hover:border-slate-200 hover:shadow-2xs transition-all duration-200">
                                             <div class="flex items-center gap-2.5 min-w-0">
-                                                <i class="fa-solid fa-arrow-right-to-bracket text-emerald-600 text-xs shrink-0"></i>
-                                                <span class="text-xs sm:text-sm font-semibold text-slate-800 truncate">{{ $subject->name }}</span>
+                                                <span class="w-2 h-2 rounded-full {{ $isOptional ? 'bg-amber-400' : 'bg-[#005030]' }} shrink-0"></span>
+                                                <span class="font-medium text-xs sm:text-sm text-slate-800 truncate">{{ $subject->name }}</span>
                                             </div>
-                                            @if($isOptional)
-                                                <span class="px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-[#d4a017] text-white shrink-0 ml-2">ঐচ্ছিক</span>
-                                            @else
-                                                <span class="sr-only">আবশ্যিক</span>
-                                            @endif
+
+                                            <div class="flex items-center gap-2 shrink-0">
+                                                @if(!empty($subject->code))
+                                                    <span class="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-md bg-white border border-slate-200 text-slate-500">
+                                                        {{ $subject->code }}
+                                                    </span>
+                                                @endif
+                                                @if($isOptional)
+                                                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-amber-100 text-amber-900 border border-amber-200">
+                                                        ঐচ্ছিক
+                                                    </span>
+                                                @else
+                                                    <span class="sr-only">আবশ্যিক</span>
+                                                @endif
+                                            </div>
                                         </div>
                                     @endforeach
                                 </div>
@@ -220,4 +223,5 @@
 
     </div>
 </section>
+
 @endsection
