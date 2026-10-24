@@ -22,34 +22,110 @@
     </div>
 </div>
 
-{{-- Hero Banner: Calm, Confident, Plain-Spoken Institutional Promise --}}
-<div class="bg-[#005030] text-white py-14 sm:py-20 border-b border-emerald-900 relative overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6 relative z-10">
-        <div class="space-y-3.5 max-w-2xl">
-            <span class="hero-anim inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#003820] text-emerald-200 text-xs font-bold uppercase tracking-wider border border-emerald-700/60 shadow-xs">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>STRUCTURED LEARNING & MENTORSHIP — ৬ষ্ঠ থেকে ১০ম শ্রেণি পাঠদান পরিকল্পনা</span>
-            </span>
-            <h1 class="hero-anim text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-                প্রতিটি শ্রেণিতে সুশৃঙ্খল পরিবেশ ও <span class="text-emerald-300 font-bold">শিক্ষার্থীর ব্যক্তিগত যত্নে নিয়মিত পাঠদান</span>
-            </h1>
-            <p class="hero-anim text-sm sm:text-base text-emerald-100/90 leading-relaxed mt-2">
-                অভিভাবক হিসেবে আপনার সন্তানের ক্লাসরুমের পরিবেশ, দায়িত্বপ্রাপ্ত শিক্ষক ও পাঠ্যবইয়ের সঠিক পরিধি জানা সবচেয়ে জরুরি। সোনাতলা উচ্চ বিদ্যালয়ে ৬ষ্ঠ থেকে ১০ম শ্রেণি পর্যন্ত প্রতিটি শাখায় সীমিত আসন, অভিজ্ঞ শিক্ষক এবং জাতীয় শিক্ষাক্রম (NCTB) অনুমোদিত সুস্পষ্ট পাঠ্যসূচিতে নিয়মিত পাঠদান পরিচালিত হয়।
-            </p>
-        </div>
+{{-- Hero Banner: Asymmetric Editorial Layout (Prompt 2: Break the Symmetry) --}}
+<div class="bg-[#005030] text-white pt-12 pb-16 sm:pt-16 sm:pb-24 border-b border-emerald-900 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
 
-        <div class="hero-anim shrink-0 flex items-center gap-4 bg-[#003820]/90 backdrop-blur-xs border border-emerald-700/70 px-6 py-4 rounded-2xl text-white shadow-md">
-            <div class="w-13 h-13 rounded-xl bg-emerald-800/80 border border-emerald-600/50 text-emerald-200 flex flex-col items-center justify-center font-bold shrink-0 shadow-inner">
-                <span class="text-[10px] sm:text-[11px] uppercase tracking-wider font-extrabold -mb-0.5">ESTD</span>
-                <span class="text-base sm:text-lg font-extrabold font-mono text-white">{{ $school->established_year ?? '1968' }}</span>
+            {{-- Left Column: Words, Promise & Action (7 Cols / 58% Weight) --}}
+            <div class="lg:col-span-7 space-y-5">
+                <span class="hero-anim inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#003820] text-emerald-200 text-xs font-bold uppercase tracking-wider border border-emerald-700/60 shadow-xs">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>STRUCTURED LEARNING & MENTORSHIP — ৬ষ্ঠ থেকে ১০ম শ্রেণি পাঠদান পরিকল্পনা</span>
+                </span>
+
+                <h1 class="hero-anim text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
+                    প্রতিটি শ্রেণিতে সুশৃঙ্খল পরিবেশ ও <span class="text-emerald-300 font-bold">শিক্ষার্থীর ব্যক্তিগত যত্নে নিয়মিত পাঠদান</span>
+                </h1>
+
+                <p class="hero-anim text-sm sm:text-base text-emerald-100/90 leading-relaxed max-w-2xl">
+                    অভিভাবক হিসেবে আপনার সন্তানের ক্লাসরুমের পরিবেশ, দায়িত্বপ্রাপ্ত শিক্ষক ও পাঠ্যবইয়ের সঠিক পরিধি জানা সবচেয়ে জরুরি। সোনাতলা উচ্চ বিদ্যালয়ে ৬ষ্ঠ থেকে ১০ম শ্রেণি পর্যন্ত প্রতিটি শাখায় সীমিত আসন, অভিজ্ঞ শিক্ষক এবং জাতীয় শিক্ষাক্রম (NCTB) অনুমোদিত সুস্পষ্ট পাঠ্যসূচিতে নিয়মিত পাঠদান পরিচালিত হয়।
+                </p>
+
+                {{-- Action / Quick Navigation Row --}}
+                <div class="pt-2 flex flex-wrap items-center gap-4">
+                    <a href="#classes-directory"
+                       class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-xs shadow-md transition-all duration-200 hover:scale-105 active:scale-95">
+                        <i class="fa-solid fa-layer-group text-slate-950"></i>
+                        <span>শ্রেণি তালিকা ও শাখা দেখুন</span>
+                        <i class="fa-solid fa-arrow-down text-[10px]"></i>
+                    </a>
+
+                    <a href="{{ route('frontend.academic.routine') }}"
+                       class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#003820] hover:bg-[#002816] text-emerald-200 hover:text-white font-bold text-xs border border-emerald-700/70 transition-all duration-200 shadow-xs">
+                        <i class="fa-solid fa-calendar-days text-amber-400"></i>
+                        <span>ক্লাস রুটিন</span>
+                    </a>
+                </div>
+
+                {{-- Institutional Trust Proofs --}}
+                <div class="pt-4 border-t border-emerald-800/60 flex items-center gap-6 text-xs text-emerald-200/90 flex-wrap">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-shield-halved text-amber-400"></i>
+                        <span>নিরাপদ ও সুশৃঙ্খল ক্যাম্পাস</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-chalkboard-user text-emerald-300"></i>
+                        <span>প্রশিক্ষিত শ্রেণি শিক্ষক</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-flask-vial text-emerald-300"></i>
+                        <span>ব্যবহারিক বিজ্ঞান ল্যাব</span>
+                    </div>
+                </div>
             </div>
-            <div>
-                <p class="text-emerald-300/90 font-medium text-xs">সরকারি অনুমোদিত শিক্ষাক্রম</p>
-                <p class="text-white font-bold text-sm sm:text-base">২০২৬ শিক্ষাবর্ষে শ্রেণিকক্ষ কার্যক্রম</p>
+
+            {{-- Right Column: Main Visual with Breaking Highlight Card (5 Cols / 42% Weight) --}}
+            <div class="lg:col-span-5 relative">
+                {{-- Decorative Backdrops --}}
+                <div class="absolute -inset-2 bg-gradient-to-tr from-emerald-600/30 via-emerald-400/10 to-transparent rounded-3xl blur-xl -z-10"></div>
+
+                {{-- The Visual Frame --}}
+                <div class="relative rounded-3xl overflow-hidden border-2 border-emerald-700/60 shadow-2xl bg-[#003820]">
+                    {{-- Floating Pill: Session (Breaks Top Edge) --}}
+                    <div class="absolute top-4 right-4 bg-[#002414]/90 backdrop-blur-sm text-emerald-300 px-3.5 py-1.5 rounded-full text-xs font-bold border border-emerald-600/60 shadow-md flex items-center gap-2 z-10">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                        <span>সেশন: ২০২৬ খ্রি.</span>
+                    </div>
+
+                    {{-- Image / Frame Visual --}}
+                    <div class="h-64 sm:h-72 w-full relative">
+                        <img src="{{ asset('assets/images/slider-1.jpg') }}"
+                             alt="সোনাতলা উচ্চ বিদ্যালয় শ্রেণিকক্ষ"
+                             class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#003820] via-transparent to-black/20"></div>
+
+                        {{-- Visual Bottom Caption --}}
+                        <div class="absolute bottom-4 left-4 right-4 text-white z-10">
+                            <span class="text-[10px] font-extrabold uppercase tracking-widest text-emerald-300 block">সোনাতলা উচ্চ বিদ্যালয়</span>
+                            <h3 class="text-base sm:text-lg font-bold leading-snug drop-shadow-sm">মেধা ও মনন বিকাশে আধুনিক শ্রেণিকক্ষ</h3>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Small Highlight Card Pulled Out in Front (Breaks the Grid) --}}
+                <div class="absolute -bottom-6 -left-3 sm:-left-6 bg-white text-slate-900 p-4 sm:p-4.5 rounded-2xl shadow-2xl border border-slate-100 flex items-center gap-3.5 z-20 transform hover:-translate-y-1 transition-all duration-200">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-600 to-[#005030] text-white flex items-center justify-center text-xl shrink-0 shadow-md">
+                        <i class="fa-solid fa-award text-amber-300"></i>
+                    </div>
+                    <div>
+                        <span class="block text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-emerald-800">
+                            ১০০% এনসিটিবি (NCTB) মানদণ্ড
+                        </span>
+                        <span class="block text-sm sm:text-base font-extrabold text-slate-900 leading-tight">
+                            বোর্ড পরীক্ষায় শতভাগ সাফল্য
+                        </span>
+                        <span class="block text-[11px] text-slate-500 font-medium">
+                            প্রতিষ্ঠিত: ১৯৬৮ খ্রিষ্টাব্দ • সাঁথিয়া, পাবনা
+                        </span>
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
 
+    {{-- Subtle Ambient Glows --}}
     <div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-emerald-800/20 pointer-events-none"></div>
     <div class="absolute left-1/2 -top-24 w-96 h-96 rounded-full bg-emerald-700/10 pointer-events-none"></div>
 </div>
