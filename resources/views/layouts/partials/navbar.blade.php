@@ -115,12 +115,13 @@
 
                 {{-- Academic / একাডেমিক --}}
                 <div class="snhs-nav-item {{ request()->routeIs('frontend.academic*') ? 'is-active' : '' }}">
-                    <a href="{{ route('frontend.academic.routine') }}" class="snhs-nav-link" aria-haspopup="true">
+                    <a href="{{ route('frontend.academic.classes') }}" class="snhs-nav-link" aria-haspopup="true">
                         <span>একাডেমিক</span>
                         <svg class="snhs-nav-caret" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.5 7.5L10 12l4.5-4.5H5.5z"/></svg>
                     </a>
                     <div class="snhs-dropdown" data-dropdown="academic">
-                        <a href="{{ route('frontend.academic.routine') }}" class="{{ request()->routeIs('frontend.academic*') ? 'is-active' : '' }}">ক্লাস রুটিন</a>
+                        <a href="{{ route('frontend.academic.classes') }}" class="{{ request()->routeIs('frontend.academic.classes*') ? 'is-active' : '' }}">শ্রেণিসমূহ</a>
+                        <a href="{{ route('frontend.academic.routine') }}" class="{{ request()->routeIs('frontend.academic.routine*') ? 'is-active' : '' }}">ক্লাস রুটিন</a>
                         <a href="{{ route('frontend.academic.routine') }}#exams">পরীক্ষার সময়সূচি</a>
                         <a href="{{ route('frontend.notices.index') }}">সিলেবাস ও পাঠ্যপুস্তক</a>
                         <a href="{{ route('frontend.notices.index') }}">ফলাফল ও নম্বরপত্র</a>
@@ -237,7 +238,8 @@
                     <svg class="snhs-mobile-caret" :class="mAcademic ? 'is-open' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </button>
                 <div x-show="mAcademic" x-cloak class="snhs-mobile-sub" data-mobile-sub="academic">
-                    <a href="{{ route('frontend.academic.routine') }}" @click="mobileMenuOpen = false" class="{{ request()->routeIs('frontend.academic*') ? 'is-active' : '' }}">ক্লাস রুটিন</a>
+                    <a href="{{ route('frontend.academic.classes') }}" @click="mobileMenuOpen = false" class="{{ request()->routeIs('frontend.academic.classes*') ? 'is-active' : '' }}">শ্রেণিসমূহ</a>
+                    <a href="{{ route('frontend.academic.routine') }}" @click="mobileMenuOpen = false" class="{{ request()->routeIs('frontend.academic.routine*') ? 'is-active' : '' }}">ক্লাস রুটিন</a>
                     <a href="{{ route('frontend.academic.routine') }}#exams" @click="mobileMenuOpen = false">পরীক্ষার সময়সূচি</a>
                     <a href="{{ route('frontend.notices.index') }}" @click="mobileMenuOpen = false">সিলেবাস ও পাঠ্যপুস্তক</a>
                     <a href="{{ route('frontend.notices.index') }}" @click="mobileMenuOpen = false">ফলাফল ও নম্বরপত্র</a>

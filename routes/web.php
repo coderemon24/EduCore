@@ -31,6 +31,9 @@ Route::middleware(['web', 'frontend.school'])->name('frontend.')->group(function
     // Teachers & Faculty Directory
     Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers.index');
 
+    // Academic Classes & Curriculum
+    Route::get('/academic/classes', [AcademicController::class, 'classes'])->name('academic.classes');
+
     // Academic Information & Routine
     Route::get('/academic/routine', [AcademicController::class, 'routine'])->name('academic.routine');
 

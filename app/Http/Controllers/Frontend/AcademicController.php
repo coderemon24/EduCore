@@ -63,4 +63,66 @@ class AcademicController extends Controller
             'routineNotices'
         ));
     }
+
+    /**
+     * Display public academic classes, section allocations, and curriculum subjects.
+     */
+    public function classes(Request $request): View
+    {
+        $school = CurrentSchoolContext::get();
+
+        $classes = collect();
+        $selectedClass = null;
+        $selectedClassId = null;
+        $telemetry = [
+            'total_classes' => 0,
+            'total_sections' => 0,
+            'total_subjects' => 0,
+        ];
+
+        if ($school->exists && Schema::hasTable('academic_classes')) {
+            $classes = AcademicClass::where('school_id', $school->id)
+                ->where('status', 'active')
+                ->with([
+                    'sections' => function ($query) use ($school) {
+                        $query->where('school_id', $school->id)
+                            ->where('status', 'active')
+                            ->with('classTeacher');
+                    },
+                    'subjects' => function ($query) use ($school) {
+                        $query->where('subjects.school_id', $school->id)
+                            ->where('subjects.status', 'active');
+                    },
+                ])
+                ->orderBy('order_index', 'asc')
+                ->orderBy('numeric_code', 'asc')
+                ->orderBy('name', 'asc')
+                ->get();
+
+            // Calculate telemetry metrics across active school classes
+            $telemetry['total_classes'] = $classes->count();
+            $telemetry['total_sections'] = $classes->sum(fn ($c) => $c->sections->count());
+
+            // Unique subjects across all classes
+            $uniqueSubjectIds = $classes->flatMap(fn ($c) => $c->subjects->pluck('id'))->unique();
+            $telemetry['total_subjects'] = $uniqueSubjectIds->count();
+
+            $classId = $request->get('class_id', $classes->first()?->id);
+            if ($classId) {
+                $selectedClassId = (int) $classId;
+                $selectedClass = $classes->firstWhere('id', $selectedClassId) ?? $classes->first();
+                if ($selectedClass) {
+                    $selectedClassId = $selectedClass->id;
+                }
+            }
+        }
+
+        return view('frontend.academic.classes', compact(
+            'school',
+            'classes',
+            'selectedClass',
+            'selectedClassId',
+            'telemetry'
+        ));
+    }
 }
