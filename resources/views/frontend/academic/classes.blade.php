@@ -4,184 +4,102 @@
 @section('meta_description', 'সোনাতলা উচ্চ বিদ্যালয়ের বিভিন্ন শ্রেণির শাখা বণ্টন, আসন সংখ্যা, শ্রেণি শিক্ষক ও জাতীয় শিক্ষাক্রম (NCTB) অনুমোদিত পাঠ্যক্রমের পূর্ণাঙ্গ বিবরণ।')
 
 @section('content')
-{{-- Breadcrumbs & Top Context Meta --}}
-<div class="bg-gray-100 border-b border-gray-200 py-3 text-xs text-gray-600">
+
+{{-- Breadcrumb --}}
+<div class="bg-gray-100 border-b border-gray-200 py-3.5 text-xs sm:text-sm text-gray-600" id="overview">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        <div class="flex items-center gap-1.5 font-medium">
-            <a href="{{ route('frontend.home') }}" class="hover:text-[#005030] transition-colors">প্রচ্ছদ</a>
-            <span class="text-gray-300">/</span>
-            <span class="text-gray-400">একাডেমিক</span>
-            <span class="text-gray-300">/</span>
+        <nav class="flex items-center gap-1.5 font-medium" aria-label="Breadcrumb">
+            <a href="{{ route('frontend.home') }}" class="hover:text-[#005030] transition-colors flex items-center gap-1">
+                <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                <span>প্রচ্ছদ</span>
+            </a>
+            <span class="text-gray-400">/</span>
+            <span class="text-gray-500">একাডেমিক</span>
+            <span class="text-gray-400">/</span>
             <span class="text-gray-900 font-bold">শ্রেণিসমূহ ও পাঠ্যসূচি</span>
+        </nav>
+        <span class="text-gray-500 text-xs sm:text-sm font-medium hidden sm:inline-block">{{ $school->name ?? 'সোনাতলা উচ্চ বিদ্যালয়' }} • সাঁথিয়া, পাবনা</span>
+    </div>
+</div>
+
+{{-- Hero Banner (Matches teachers/index & about/index full-width pattern) --}}
+<div class="bg-[#005030] text-white py-14 sm:py-20 border-b border-emerald-900 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6 relative z-10">
+        <div class="space-y-3.5 max-w-2xl">
+            <span class="hero-anim inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#003820] text-emerald-200 text-xs font-bold uppercase tracking-wider border border-emerald-700/60 shadow-xs">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>ACADEMIC CURRICULUM — শ্রেণিভিত্তিক শিক্ষা রূপরেখা</span>
+            </span>
+            <h1 class="hero-anim text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
+                শ্রেণিসমূহ ও পাঠ্যসূচি — <span class="text-emerald-300 font-bold">মানসম্মত শিক্ষা ও সুশৃঙ্খল পাঠদান</span>
+            </h1>
+            <p class="hero-anim text-sm sm:text-base text-emerald-100/90 leading-relaxed mt-2">
+                সোনাতলা উচ্চ বিদ্যালয়ের প্রতিটি শ্রেণির শাখা বিভাজন, দায়িত্বপ্রাপ্ত শ্রেণি শিক্ষক, শ্রেণিকক্ষ, আসন বিন্যাস ও জাতীয় শিক্ষাক্রম (NCTB) অনুমোদিত পাঠ্যক্রমের পূর্ণাঙ্গ রূপরেখা।
+            </p>
         </div>
-        <div class="hidden sm:flex items-center gap-2 text-gray-500 font-medium">
-            <i class="fa-solid fa-calendar-check text-[#005030]"></i>
-            <span>শিক্ষাবর্ষ: ২০২৬ খ্রি.</span>
+
+        <div class="hero-anim shrink-0 flex items-center gap-4 bg-[#003820]/90 backdrop-blur-xs border border-emerald-700/70 px-6 py-4 rounded-2xl text-white shadow-md">
+            <div class="w-13 h-13 rounded-xl bg-emerald-800/80 border border-emerald-600/50 text-emerald-200 flex flex-col items-center justify-center font-bold shrink-0 shadow-inner">
+                <span class="text-[10px] sm:text-[11px] uppercase tracking-wider font-extrabold -mb-0.5">ESTD</span>
+                <span class="text-base sm:text-lg font-extrabold font-mono text-white">{{ $school->established_year ?? '1968' }}</span>
+            </div>
+            <div>
+                <p class="text-emerald-300/90 font-medium text-xs">জাতীয় শিক্ষাক্রম মানদণ্ড</p>
+                <p class="text-white font-bold text-sm sm:text-base">শিক্ষাবর্ষ: ২০২৬ খ্রিষ্টাব্দ</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-emerald-800/20 pointer-events-none"></div>
+    <div class="absolute left-1/2 -top-24 w-96 h-96 rounded-full bg-emerald-700/10 pointer-events-none"></div>
+</div>
+
+{{-- Credentials & Stats Telemetry Strip --}}
+<div class="telemetry-strip bg-slate-900 text-slate-200 py-4 sm:py-5 border-y border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            <div class="telemetry-metric-item flex items-center gap-3">
+                <span class="telemetry-icon-box w-10 h-10 rounded-xl bg-slate-800 text-emerald-400 flex items-center justify-center text-base shrink-0 border border-slate-700 shadow-2xs">
+                    <i class="fa-solid fa-school"></i>
+                </span>
+                <div>
+                    <span class="text-slate-400 block text-xs font-medium">সক্রিয় শ্রেণি স্তর</span>
+                    <span class="text-white font-bold text-sm sm:text-base">{{ $telemetry['total_classes'] ?? $classes->count() }}টি শ্রেণি স্তর</span>
+                </div>
+            </div>
+            <div class="telemetry-metric-item flex items-center gap-3">
+                <span class="telemetry-icon-box w-10 h-10 rounded-xl bg-slate-800 text-emerald-400 flex items-center justify-center text-base shrink-0 border border-slate-700 shadow-2xs">
+                    <i class="fa-solid fa-layer-group"></i>
+                </span>
+                <div>
+                    <span class="text-slate-400 block text-xs font-medium">মোট শাখা বিভাজন</span>
+                    <span class="text-white font-bold text-sm sm:text-base">{{ $telemetry['total_sections'] ?? 0 }}টি প্রভাতী ও দিবা শাখা</span>
+                </div>
+            </div>
+            <div class="telemetry-metric-item flex items-center gap-3">
+                <span class="telemetry-icon-box w-10 h-10 rounded-xl bg-slate-800 text-emerald-400 flex items-center justify-center text-base shrink-0 border border-slate-700 shadow-2xs">
+                    <i class="fa-solid fa-book-open"></i>
+                </span>
+                <div>
+                    <span class="text-slate-400 block text-xs font-medium">নির্ধারিত পাঠ্য বিষয়</span>
+                    <span class="text-white font-bold text-sm sm:text-base">{{ $telemetry['total_subjects'] ?? 0 }}টি আবশ্যিক ও ঐচ্ছিক</span>
+                </div>
+            </div>
+            <div class="telemetry-metric-item flex items-center gap-3">
+                <span class="telemetry-icon-box w-10 h-10 rounded-xl bg-slate-800 text-emerald-400 flex items-center justify-center text-base shrink-0 border border-slate-700 shadow-2xs">
+                    <i class="fa-solid fa-certificate"></i>
+                </span>
+                <div>
+                    <span class="text-slate-400 block text-xs font-medium">শিক্ষা বোর্ড স্বীকৃতি</span>
+                    <span class="text-white font-bold text-sm sm:text-base">রাজশাহী বোর্ড • EIIN: ১২৫৬৯৩</span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-{{-- Top Hero / Narrative Argument Header --}}
-<section class="bg-white border-b border-slate-200/80 pt-10 pb-8 sm:pt-14 sm:pb-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {{-- Section Header Rhythm Block (Recipe 3 & Recipe 1) --}}
-        <div class="section-header-block mb-8 sm:mb-10">
-            <div class="section-header-left">
-                <span class="section-kicker">
-                    <span class="section-kicker-dot"></span>
-                    ACADEMIC ARCHITECTURE — প্রাতিষ্ঠানিক শ্রেণি কাঠামো
-                </span>
-                <h1 class="section-title">
-                    শ্রেণিসমূহ ও পাঠ্যসূচি — <span class="text-[#005030] font-bold">মানসম্মত শিক্ষাক্রম ও সুশৃঙ্খল পাঠদান</span>
-                </h1>
-            </div>
-            <div class="section-header-right">
-                <p class="section-subtitle">
-                    সোনাতলা উচ্চ বিদ্যালয়ের প্রতিটি শ্রেণির শাখা বিভাজন, দায়িত্বপ্রাপ্ত শ্রেণি শিক্ষক, শ্রেণিকক্ষ, আসন বিন্যাস ও জাতীয় শিক্ষাক্রম (NCTB) অনুমোদিত পাঠ্যক্রমের পূর্ণাঙ্গ রূপরেখা।
-                </p>
-            </div>
-        </div>
-
-        {{-- Asymmetric 65/35 Hero & Telemetry Container (Recipe 2 & Recipe 4) --}}
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-            {{-- Left Dominant Column (65% / 8 Cols) --}}
-            <div class="lg:col-span-8 bg-[#005030] text-white p-6 sm:p-8 rounded-2xl shadow-xs border border-emerald-900/40 relative overflow-hidden flex flex-col justify-between">
-                {{-- Decorative Watermark Icon --}}
-                <div class="absolute -right-6 -bottom-8 text-emerald-800/25 text-9xl pointer-events-none select-none">
-                    <i class="fa-solid fa-graduation-cap"></i>
-                </div>
-
-                <div class="relative z-10 space-y-4">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-900/80 text-emerald-200 text-xs font-semibold border border-emerald-700/60 shadow-2xs">
-                        <i class="fa-solid fa-school text-amber-400"></i>
-                        <span>জাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড (NCTB) নির্দেশিত পাঠদান</span>
-                    </div>
-
-                    <h2 class="text-xl sm:text-2xl font-extrabold text-white leading-snug">
-                        দক্ষ শিক্ষক ও সুবিন্যস্ত শ্রেণিকক্ষে মেধা বিকাশের পূর্ণাঙ্গ নিশ্চয়তা
-                    </h2>
-
-                    <p class="text-xs sm:text-sm text-emerald-100/90 leading-relaxed font-normal max-w-2xl">
-                        আমাদের বিদ্যালয়ে ৬ষ্ঠ থেকে ১০ম শ্রেণি পর্যন্ত নিয়মিত প্রভাতী ও দিবা শাখায় অভিজ্ঞ শিক্ষকমণ্ডলীর তত্ত্বাবধানে পাঠদান পরিচালিত হয়। মাধ্যমিক স্তরে (৯ম-১০ম শ্রেণি) বিজ্ঞান, মানবিক ও ব্যবসায় শিক্ষা শাখার শিক্ষার্থীদের জন্য রয়েছে অত্যাধুনিক ল্যাবরেটরি ও বিশেষায়িত প্রস্তুতি।
-                    </p>
-                </div>
-
-                <div class="relative z-10 pt-6 mt-6 border-t border-emerald-800/60 flex items-center justify-between flex-wrap gap-4 text-xs">
-                    <div class="flex items-center gap-4 text-emerald-200">
-                        <span class="inline-flex items-center gap-1.5">
-                            <i class="fa-solid fa-shield-halved text-amber-400"></i>
-                            <span>নিরাপদ ও সুশৃঙ্খল পরিবেশ</span>
-                        </span>
-                        <span class="hidden sm:inline text-emerald-600">·</span>
-                        <span class="inline-flex items-center gap-1.5">
-                            <i class="fa-solid fa-flask-vial text-emerald-300"></i>
-                            <span>ব্যবহারিক বিজ্ঞান ল্যাব</span>
-                        </span>
-                    </div>
-
-                    <a href="{{ route('frontend.academic.routine') }}" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-emerald-900 hover:bg-emerald-800 text-white font-bold text-xs border border-emerald-700 transition-colors shadow-2xs">
-                        <i class="fa-solid fa-calendar-days text-amber-400"></i>
-                        <span>শ্রেণি রুটিন দেখুন</span>
-                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                    </a>
-                </div>
-            </div>
-
-            {{-- Right Supporting Column: 3 Hallmark Telemetry Counters (35% / 4 Cols) --}}
-            <div class="lg:col-span-4 bg-slate-50/90 border border-slate-200/90 rounded-2xl p-6 flex flex-col justify-between shadow-2xs">
-                <div class="space-y-4">
-                    <div class="text-xs font-bold uppercase tracking-wider text-slate-500 pb-2 border-b border-slate-200/80 flex items-center justify-between">
-                        <span>একাডেমিক সারসংক্ষেপ</span>
-                        <span class="w-2 h-2 rounded-full bg-[#005030]"></span>
-                    </div>
-
-                    {{-- 3 Telemetry Cards --}}
-                    <div class="space-y-3">
-                        <div class="bg-white p-3.5 rounded-xl border border-slate-200/80 flex items-center justify-between shadow-2xs hover:border-[#005030]/30 transition-colors">
-                            <div class="flex items-center gap-3">
-                                <span class="w-10 h-10 rounded-xl bg-emerald-50 text-[#005030] flex items-center justify-center text-sm shrink-0 border border-emerald-200/60">
-                                    <i class="fa-solid fa-school"></i>
-                                </span>
-                                <div>
-                                    <span class="text-slate-500 block text-xs font-medium">সক্রিয় শ্রেণি স্তর</span>
-                                    <span class="text-slate-900 font-bold text-sm">৬ষ্ঠ থেকে ১০ম শ্রেণি</span>
-                                </div>
-                            </div>
-                            <span class="text-2xl font-black text-[#005030] font-mono">
-                                {{ $telemetry['total_classes'] ?? $classes->count() }}
-                            </span>
-                        </div>
-
-                        <div class="bg-white p-3.5 rounded-xl border border-slate-200/80 flex items-center justify-between shadow-2xs hover:border-[#005030]/30 transition-colors">
-                            <div class="flex items-center gap-3">
-                                <span class="w-10 h-10 rounded-xl bg-amber-50 text-amber-800 flex items-center justify-center text-sm shrink-0 border border-amber-200/60">
-                                    <i class="fa-solid fa-layer-group"></i>
-                                </span>
-                                <div>
-                                    <span class="text-slate-500 block text-xs font-medium">মোট শাখা বিভাজন</span>
-                                    <span class="text-slate-900 font-bold text-sm">প্রভাতী ও দিবা শাখা</span>
-                                </div>
-                            </div>
-                            <span class="text-2xl font-black text-amber-700 font-mono">
-                                {{ $telemetry['total_sections'] ?? 0 }}
-                            </span>
-                        </div>
-
-                        <div class="bg-white p-3.5 rounded-xl border border-slate-200/80 flex items-center justify-between shadow-2xs hover:border-[#005030]/30 transition-colors">
-                            <div class="flex items-center gap-3">
-                                <span class="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center text-sm shrink-0 border border-blue-200/60">
-                                    <i class="fa-solid fa-book-open"></i>
-                                </span>
-                                <div>
-                                    <span class="text-slate-500 block text-xs font-medium">নির্ধারিত পাঠ্য বিষয়</span>
-                                    <span class="text-slate-900 font-bold text-sm">আবশ্যিক ও ঐচ্ছিক</span>
-                                </div>
-                            </div>
-                            <span class="text-2xl font-black text-blue-700 font-mono">
-                                {{ $telemetry['total_subjects'] ?? 0 }}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Quiet bottom metadata strip --}}
-                <div class="pt-4 border-t border-slate-200/80 text-[11px] text-slate-500 flex items-center justify-between">
-                    <span>জাতীয় শিক্ষাক্রম মানদণ্ড</span>
-                    <span class="text-[#005030] font-semibold">সেশন ২০২৬</span>
-                </div>
-            </div>
-        </div>
-
-        {{-- Floating Anchor: Official Accreditation Credentials Bar (Recipe 2 & Recipe 7) --}}
-        <div class="relative -mb-6 sm:-mb-8 mt-6 max-w-5xl mx-auto z-20">
-            <div class="bg-white border border-slate-200/90 rounded-xl p-3.5 sm:p-4 shadow-sm flex items-center justify-between flex-wrap gap-4 text-xs text-slate-600">
-                <div class="flex items-center gap-3">
-                    <span class="w-8 h-8 rounded-lg bg-emerald-100 text-[#005030] flex items-center justify-center text-xs font-bold shrink-0">
-                        <i class="fa-solid fa-certificate"></i>
-                    </span>
-                    <div>
-                        <div class="font-bold text-slate-900 text-xs sm:text-sm">সরকারি স্বীকৃতি ও বোর্ড অধিভুক্তি</div>
-                        <div class="text-slate-500 text-[11px]">মাধ্যমিক ও উচ্চ মাধ্যমিক শিক্ষা বোর্ড, রাজশাহী কর্তৃক অনুমোদিত</div>
-                    </div>
-                </div>
-
-                <div class="flex items-center gap-4 text-[11px] text-slate-500 font-medium">
-                    <span>স্থাপিত: <strong class="text-slate-800">১৯৬৮ খ্রি.</strong></span>
-                    <span class="text-slate-300">|</span>
-                    <span>EIIN: <strong class="text-slate-800">১২৫৬৯৩</strong></span>
-                    <span class="text-slate-300">|</span>
-                    <span>বিদ্যালয় কোড: <strong class="text-slate-800">৮১০৭</strong></span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-{{-- Hairline Structural Divider (Recipe 7) --}}
-<div class="home-section-divider"></div>
-
-{{-- Main Interactive Classes Substance Section (Recipe 3, 4, 5) --}}
-<section class="py-12 sm:py-16 bg-slate-50/60"
+{{-- Main Interactive Classes Substance Section --}}
+<section class="home-section bg-slate-50/70"
          id="classes-directory"
          x-data="{
             activeClass: '{{ $selectedClassId ?? ($classes->first()?->id ?? '') }}',
@@ -199,58 +117,77 @@
                 }
             }
          }">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
+
+        {{-- Standard Institutional Section Header --}}
+        <div class="section-header-block">
+            <div class="section-header-left">
+                <span class="section-kicker">
+                    <span class="section-kicker-dot"></span>
+                    ACADEMIC ARCHITECTURE — প্রাতিষ্ঠানিক শ্রেণি কাঠামো
+                </span>
+                <h2 class="section-title">
+                    শ্রেণিভিত্তিক বিবরণ ও <span class="text-[#005030] font-bold">পূর্ণাঙ্গ পাঠ্যক্রম</span>
+                </h2>
+            </div>
+            <div class="section-header-right">
+                <p class="section-subtitle">
+                    নিচের তালিকা থেকে যেকোনো শ্রেণি নির্বাচন করুন। নির্বাচিত শ্রেণির শাখা বিভাজন, দায়িত্বপ্রাপ্ত শ্রেণি শিক্ষক, শ্রেণিকক্ষ, আসন সংখ্যা এবং জাতীয় শিক্ষাক্রম (NCTB) অনুমোদিত পাঠ্যসূচি তাৎক্ষণিক প্রদর্শিত হবে।
+                </p>
+            </div>
+        </div>
 
         @if($classes->isEmpty())
             {{-- Clean Educational Empty State --}}
-            <div class="bg-white border border-slate-200/90 rounded-2xl p-12 text-center shadow-2xs space-y-4 max-w-2xl mx-auto">
-                <div class="w-16 h-16 mx-auto rounded-full bg-emerald-50 text-[#005030] flex items-center justify-center text-2xl border border-emerald-200">
+            <div class="bg-white border border-slate-200/90 rounded-3xl p-12 sm:p-16 text-center shadow-2xs space-y-5 max-w-2xl mx-auto">
+                <div class="w-16 h-16 mx-auto rounded-2xl bg-emerald-50 text-[#005030] flex items-center justify-center text-3xl border border-emerald-200/80 shadow-2xs">
                     <i class="fa-solid fa-school"></i>
                 </div>
-                <div class="space-y-1">
-                    <h3 class="text-xl font-bold text-slate-900">বর্তমানে কোনো শ্রেণির তথ্য উপলব্ধ নেই</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed">
+                <div class="space-y-2">
+                    <h3 class="text-xl sm:text-2xl font-bold text-slate-900">বর্তমানে কোনো শ্রেণির তথ্য উপলব্ধ নেই</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed max-w-md mx-auto">
                         আমাদের প্রাতিষ্ঠানিক শ্রেণি ও পাঠ্যসূচি তালিকা হালনাগাদ করা হচ্ছে। বিস্তারিত তথ্যের জন্য বিদ্যালয় কার্যালয়ে সরাসরি যোগাযোগ করুন।
                     </p>
                 </div>
-                <div class="pt-2">
-                    <a href="{{ route('frontend.contact') }}" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-xs shadow-xs transition-all hover:scale-105 active:scale-95">
+                <div class="pt-3">
+                    <a href="{{ route('frontend.contact') }}" class="about-cta-btn about-cta-btn-primary text-xs sm:text-sm">
                         <i class="fa-solid fa-envelope"></i>
                         <span>কার্যালয়ে যোগাযোগ করুন</span>
+                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
                     </a>
                 </div>
             </div>
         @else
-            {{-- Tactile Class Selector Navigation Strip (Recipe 4: Winner Elevation) --}}
-            <div class="bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-6 shadow-2xs space-y-4">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+            {{-- Tactile Class Selector Navigation Strip --}}
+            <div class="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 shadow-2xs space-y-5">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
                     <div class="flex items-center gap-2.5">
-                        <span class="section-kicker !mb-0 text-[10px]">
-                            <span class="section-kicker-dot"></span>
-                            SELECT GRADE
+                        <span class="w-7 h-7 rounded-lg bg-emerald-50 text-[#005030] flex items-center justify-center text-xs border border-emerald-200/60">
+                            <i class="fa-solid fa-layer-group"></i>
                         </span>
-                        <h2 class="text-base sm:text-lg font-bold text-slate-900">শ্রেণি নির্বাচন করুন</h2>
+                        <h3 class="text-sm sm:text-base font-bold text-slate-900">শ্রেণি নির্বাচন করুন</h3>
                     </div>
-                    <div class="text-xs text-slate-500 font-medium">
-                        যেকোনো শ্রেণিতে ক্লিক করে তাৎক্ষণিক শাখা বিন্যাস ও পাঠ্যক্রম দেখুন
+                    <div class="text-xs text-slate-500 font-medium flex items-center gap-1.5">
+                        <i class="fa-solid fa-arrow-pointer text-slate-400"></i>
+                        <span>যেকোনো শ্রেণিতে ক্লিক করে শাখা বিন্যাস ও বিষয়তালিকা দেখুন</span>
                     </div>
                 </div>
 
                 {{-- Responsive Class Pills Container --}}
-                <div class="flex items-center gap-3 overflow-x-auto pb-2 sm:flex-wrap">
+                <div class="flex items-center gap-3 sm:gap-4 overflow-x-auto pb-2 sm:flex-wrap">
                     @foreach($classes as $c)
                         <button type="button"
                                 @click="setActive('{{ $c->id }}')"
                                 :class="activeClass == '{{ $c->id }}'
                                     ? 'bg-[#005030] text-white border-[#005030] shadow-sm font-bold scale-[1.02]'
-                                    : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100 hover:border-slate-300 font-medium'"
-                                class="group relative flex-shrink-0 px-4 py-3 rounded-xl border text-xs transition-all duration-200 cursor-pointer text-left hover:-translate-y-0.5">
-                            <div class="flex items-center gap-2">
+                                    : 'bg-slate-50/80 text-slate-700 border-slate-200/90 hover:bg-white hover:border-[#005030]/40 hover:text-[#005030] font-medium'"
+                                class="group relative flex-shrink-0 px-5 py-3.5 rounded-xl border text-xs transition-all duration-200 cursor-pointer text-left hover:-translate-y-0.5">
+                            <div class="flex items-center gap-2.5">
                                 <i class="fa-solid fa-graduation-cap text-xs"
-                                   :class="activeClass == '{{ $c->id }}' ? 'text-amber-400' : 'text-slate-400 group-hover:text-slate-600'"></i>
+                                   :class="activeClass == '{{ $c->id }}' ? 'text-amber-400' : 'text-slate-400 group-hover:text-[#005030]'"></i>
                                 <span class="text-sm font-bold tracking-tight">{{ $c->name }}</span>
                             </div>
-                            <div class="text-[11px] mt-1 opacity-80"
+                            <div class="text-[11px] mt-1.5 opacity-85"
                                  :class="activeClass == '{{ $c->id }}' ? 'text-emerald-100' : 'text-slate-500'">
                                 {{ $c->sections->count() }}টি শাখা · {{ $c->subjects->count() }}টি বিষয়
                             </div>
@@ -259,7 +196,7 @@
                 </div>
             </div>
 
-            {{-- Class Detail Showcase Panels (Recipe 3, 4, 5) --}}
+            {{-- Class Detail Showcase Panels --}}
             @foreach($classes as $c)
                 @php
                     $sectionsCount = $c->sections->count();
@@ -273,30 +210,30 @@
                      x-transition:enter="transition ease-out duration-200"
                      x-transition:enter-start="opacity-0 translate-y-1"
                      x-transition:enter-end="opacity-100 translate-y-0"
-                     class="space-y-6">
+                     class="space-y-8">
 
                     {{-- Flagship Class Banner Card --}}
-                    <div class="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 shadow-2xs flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+                    <div class="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-2xs flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                         <div class="flex items-start sm:items-center gap-4 sm:gap-5">
-                            <div class="w-16 h-16 rounded-2xl bg-emerald-50 text-[#005030] flex items-center justify-center text-2xl border-2 border-emerald-200/80 shadow-xs shrink-0">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-emerald-50 text-[#005030] flex items-center justify-center text-2xl border-2 border-emerald-200/80 shadow-2xs shrink-0">
                                 <i class="fa-solid fa-graduation-cap"></i>
                             </div>
-                            <div class="space-y-1">
-                                <div class="flex items-center gap-2 flex-wrap">
+                            <div class="space-y-1.5">
+                                <div class="flex items-center gap-2.5 flex-wrap">
                                     <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                                         {{ $c->name }}
                                     </h3>
                                     @if($c->numeric_code)
-                                        <span class="px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold bg-slate-100 text-slate-700 border border-slate-200">
+                                        <span class="px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold bg-slate-100 text-slate-700 border border-slate-200/80">
                                             কোড: {{ $c->numeric_code }}
                                         </span>
                                     @endif
-                                    <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                                    <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-[#005030] border border-emerald-200/80">
                                         নিয়মিত শ্রেণি
                                     </span>
                                 </div>
 
-                                <div class="flex items-center gap-3 text-xs sm:text-sm text-slate-600 flex-wrap pt-0.5">
+                                <div class="flex items-center gap-3.5 text-xs sm:text-sm text-slate-600 flex-wrap pt-0.5">
                                     <span class="inline-flex items-center gap-1.5 font-medium">
                                         <i class="fa-solid fa-layer-group text-[#005030]"></i>
                                         <strong>{{ $sectionsCount }}</strong>টি সক্রিয় শাখা
@@ -322,7 +259,7 @@
                             @if($isSecondaryClass)
                                 {{-- Secondary Streams for Secondary Classes --}}
                                 <div class="flex items-center gap-1.5 bg-slate-50 border border-slate-200/90 rounded-xl p-1.5 shadow-2xs">
-                                    <span class="text-[11px] text-slate-500 font-bold uppercase tracking-wider px-1">বিভাগ:</span>
+                                    <span class="text-[11px] text-slate-500 font-bold uppercase tracking-wider px-1.5">শাখা বিভাগ:</span>
                                     <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-blue-50 text-blue-700 border border-blue-200 inline-flex items-center gap-1">
                                         <i class="fa-solid fa-flask text-[10px]"></i> বিজ্ঞান
                                     </span>
@@ -337,55 +274,55 @@
 
                             {{-- Class Routine Shortcut --}}
                             <a href="{{ route('frontend.academic.routine') }}?class_id={{ $c->id }}"
-                               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-800 text-xs font-bold border border-sky-200 shadow-2xs transition-all hover:-translate-y-0.5">
-                                <i class="fa-solid fa-calendar-days text-sky-600"></i>
+                               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-50 hover:bg-[#005030] text-[#005030] hover:text-white text-xs font-bold border border-emerald-200 hover:border-[#005030] shadow-2xs transition-all duration-200 hover:-translate-y-0.5">
+                                <i class="fa-solid fa-calendar-days text-amber-500"></i>
                                 <span>ক্লাস রুটিন দেখুন</span>
                                 <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
                             </a>
                         </div>
                     </div>
 
-                    {{-- 60/40 Asymmetric Detail Grid (Recipe 2: Break the Symmetry) --}}
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                    {{-- Detail Grid: Sections (Left) & Subjects Table (Right) with proper gap --}}
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-                        {{-- Left Column: Sections & Appointed Teachers (40% / 5 Cols) --}}
-                        <div class="lg:col-span-5 bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs space-y-5">
-                            <div class="flex items-center justify-between border-b border-slate-100 pb-3.5">
-                                <div class="flex items-center gap-2.5">
-                                    <div class="w-8 h-8 rounded-lg bg-emerald-50 text-[#005030] flex items-center justify-center text-sm">
+                        {{-- Left Column: Sections & Appointed Teachers (5 Cols) --}}
+                        <div class="lg:col-span-5 bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 shadow-2xs space-y-5">
+                            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-9 h-9 rounded-xl bg-emerald-50 text-[#005030] flex items-center justify-center text-sm border border-emerald-200/60">
                                         <i class="fa-solid fa-layer-group"></i>
                                     </div>
                                     <div>
                                         <h4 class="font-bold text-base text-slate-900">শাখা ও শ্রেণি শিক্ষক</h4>
-                                        <div class="text-[11px] text-slate-400">Class Sections & Mentorship</div>
+                                        <div class="text-[11px] text-slate-400 font-medium">Class Sections & Mentorship</div>
                                     </div>
                                 </div>
-                                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-700">
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700 border border-slate-200/80">
                                     {{ $sectionsCount }}টি শাখা
                                 </span>
                             </div>
 
                             @if($c->sections->isEmpty())
-                                <div class="p-8 text-center text-xs text-slate-500 bg-slate-50 rounded-xl border border-dashed border-slate-200 space-y-1">
-                                    <i class="fa-solid fa-circle-info text-slate-400 text-lg block mb-1"></i>
-                                    <p class="font-medium text-slate-700">এই শ্রেণিতে বর্তমানে কোনো শাখা অন্তর্ভুক্ত করা হয়নি।</p>
-                                    <p class="text-[11px] text-slate-400">বিদ্যালয় প্রশাসন কর্তৃক শাখা বিন্যাস প্রক্রিয়াধীন রয়েছে।</p>
+                                <div class="p-8 text-center text-xs text-slate-500 bg-slate-50/80 rounded-xl border border-dashed border-slate-200 space-y-1.5">
+                                    <i class="fa-solid fa-circle-info text-slate-400 text-xl block mb-1"></i>
+                                    <p class="font-bold text-slate-700 text-sm">এই শ্রেণিতে বর্তমানে কোনো শাখা অন্তর্ভুক্ত করা হয়নি।</p>
+                                    <p class="text-[11px] text-slate-500">বিদ্যালয় প্রশাসন কর্তৃক শাখা বিন্যাস প্রক্রিয়া সম্পন্ন হচ্ছে।</p>
                                 </div>
                             @else
-                                <div class="space-y-3.5">
+                                <div class="space-y-4">
                                     @foreach($c->sections as $section)
-                                        <div class="p-4 rounded-xl border border-slate-200/80 bg-slate-50/60 hover:bg-white hover:border-emerald-300 transition-all duration-200 shadow-2xs hover:shadow-xs space-y-3.5 group">
-                                            <div class="flex items-center justify-between gap-2">
-                                                <div class="flex items-center gap-2.5">
-                                                    <span class="w-9 h-9 rounded-xl bg-[#005030] text-white flex items-center justify-center font-bold text-sm shadow-2xs group-hover:scale-105 transition-transform">
+                                        <div class="p-5 rounded-xl border border-slate-200/80 bg-slate-50/60 hover:bg-white hover:border-emerald-300 transition-all duration-200 shadow-2xs hover:shadow-xs space-y-4 group">
+                                            <div class="flex items-center justify-between gap-3">
+                                                <div class="flex items-center gap-3">
+                                                    <span class="w-10 h-10 rounded-xl bg-[#005030] text-white flex items-center justify-center font-bold text-sm shadow-2xs group-hover:scale-105 transition-transform">
                                                         {{ $section->name }}
                                                     </span>
                                                     <div>
                                                         <div class="font-bold text-sm text-slate-900">
                                                             শাখা: {{ $section->name }}
                                                         </div>
-                                                        <div class="text-[11px] text-slate-500">
-                                                            নিয়মিত শ্রেণি পাঠদান
+                                                        <div class="text-[11px] text-slate-500 font-medium">
+                                                            নিয়মিত পাঠদান ও নিবিড় পর্যবেক্ষণ
                                                         </div>
                                                     </div>
                                                 </div>
@@ -396,8 +333,8 @@
                                             </div>
 
                                             {{-- Teacher Profile Box --}}
-                                            <div class="bg-white p-3 rounded-xl border border-slate-200/70 flex items-center gap-3 shadow-2xs">
-                                                <div class="w-10 h-10 rounded-full bg-slate-100 text-[#005030] flex items-center justify-center text-sm shrink-0 border border-slate-200">
+                                            <div class="bg-white p-3.5 rounded-xl border border-slate-200/80 flex items-center gap-3.5 shadow-2xs">
+                                                <div class="w-11 h-11 rounded-full bg-slate-100 text-[#005030] flex items-center justify-center text-base shrink-0 border border-slate-200">
                                                     <i class="fa-solid fa-chalkboard-user"></i>
                                                 </div>
                                                 <div class="min-w-0 flex-1">
@@ -412,7 +349,7 @@
                                                         @endif
                                                     </div>
                                                     @if($section->classTeacher && !empty($section->classTeacher->designation))
-                                                        <div class="text-[11px] text-[#005030] font-medium truncate">
+                                                        <div class="text-[11px] text-[#005030] font-medium truncate pt-0.5">
                                                             {{ $section->classTeacher->designation }}
                                                         </div>
                                                     @endif
@@ -420,12 +357,12 @@
                                             </div>
 
                                             {{-- Section Telemetry: Room & Seat Capacity --}}
-                                            <div class="grid grid-cols-2 gap-2 text-xs text-slate-600 pt-2 border-t border-slate-200/60 font-medium">
-                                                <div class="flex items-center gap-1.5 text-[11px]">
+                                            <div class="grid grid-cols-2 gap-3 text-xs text-slate-600 pt-3 border-t border-slate-200/70 font-medium">
+                                                <div class="flex items-center gap-2 text-xs">
                                                     <i class="fa-solid fa-door-open text-slate-400"></i>
                                                     <span>কক্ষ: <strong class="text-slate-800">{{ $section->room_number ?? 'নির্ধারিত' }}</strong></span>
                                                 </div>
-                                                <div class="flex items-center gap-1.5 text-[11px] justify-end">
+                                                <div class="flex items-center gap-2 text-xs justify-end">
                                                     <i class="fa-solid fa-user-group text-slate-400"></i>
                                                     <span>আসন: <strong class="text-slate-800">{{ $section->capacity ?? '৫০' }}</strong> জন</span>
                                                 </div>
@@ -436,39 +373,39 @@
                             @endif
                         </div>
 
-                        {{-- Right Column: Curriculum & Subject Mastery (60% / 7 Cols) --}}
-                        <div class="lg:col-span-7 bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs space-y-5">
-                            <div class="flex items-center justify-between border-b border-slate-100 pb-3.5">
-                                <div class="flex items-center gap-2.5">
-                                    <div class="w-8 h-8 rounded-lg bg-emerald-50 text-[#005030] flex items-center justify-center text-sm">
+                        {{-- Right Column: Curriculum & Subject Mastery (7 Cols) --}}
+                        <div class="lg:col-span-7 bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 shadow-2xs space-y-5">
+                            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-9 h-9 rounded-xl bg-emerald-50 text-[#005030] flex items-center justify-center text-sm border border-emerald-200/60">
                                         <i class="fa-solid fa-book-open"></i>
                                     </div>
                                     <div>
                                         <h4 class="font-bold text-base text-slate-900">পাঠ্যক্রম ও নির্ধারিত বিষয়সমূহ</h4>
-                                        <div class="text-[11px] text-slate-400">NCTB Approved Curriculum & Marks Distribution</div>
+                                        <div class="text-[11px] text-slate-400 font-medium">NCTB Approved Curriculum & Marks Distribution</div>
                                     </div>
                                 </div>
-                                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-700">
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700 border border-slate-200/80">
                                     {{ $subjectsCount }}টি বিষয়
                                 </span>
                             </div>
 
                             @if($c->subjects->isEmpty())
-                                <div class="p-10 text-center text-xs text-slate-500 bg-slate-50 rounded-xl border border-dashed border-slate-200 space-y-2">
+                                <div class="p-10 text-center text-xs text-slate-500 bg-slate-50/80 rounded-xl border border-dashed border-slate-200 space-y-2">
                                     <i class="fa-solid fa-book-open text-slate-400 text-2xl block"></i>
-                                    <div class="font-medium text-slate-700 text-sm">এই শ্রেণির জন্য এখনো কোনো বিষয় বরাদ্দ করা হয়নি।</div>
-                                    <div class="text-slate-400 text-xs">জাতীয় শিক্ষাক্রম অনুযায়ী বিষয় বণ্টন প্রক্রিয়া সম্পন্ন হচ্ছে।</div>
+                                    <div class="font-bold text-slate-700 text-sm">এই শ্রেণির জন্য এখনো কোনো বিষয় বরাদ্দ করা হয়নি।</div>
+                                    <div class="text-slate-500 text-xs">জাতীয় শিক্ষাক্রম অনুযায়ী বিষয় বণ্টন প্রক্রিয়া সম্পন্ন হচ্ছে।</div>
                                 </div>
                             @else
-                                <div class="overflow-hidden border border-slate-200/90 rounded-xl shadow-2xs">
+                                <div class="overflow-x-auto border border-slate-200/90 rounded-xl shadow-2xs">
                                     <table class="w-full text-left text-xs">
                                         <thead class="bg-slate-50 text-slate-700 font-bold border-b border-slate-200/90">
                                             <tr>
-                                                <th class="p-3.5 text-slate-900 font-bold">বিষয়ের নাম ও শিরোনাম</th>
-                                                <th class="p-3.5 text-center">কোড</th>
-                                                <th class="p-3.5 text-center">পূর্ণমান</th>
-                                                <th class="p-3.5 text-center">পাস নম্বর</th>
-                                                <th class="p-3.5 text-right">ধরন</th>
+                                                <th class="px-4 py-3.5 text-slate-900 font-bold">বিষয়ের নাম ও শিরোনাম</th>
+                                                <th class="px-4 py-3.5 text-center">কোড</th>
+                                                <th class="px-4 py-3.5 text-center">পূর্ণমান</th>
+                                                <th class="px-4 py-3.5 text-center">পাস নম্বর</th>
+                                                <th class="px-4 py-3.5 text-right">ধরন</th>
                                             </tr>
                                         </thead>
                                         <tbody class="divide-y divide-slate-100 text-slate-800">
@@ -477,22 +414,22 @@
                                                     $isOptional = ($subject->pivot->type ?? '') === 'optional';
                                                 @endphp
                                                 <tr class="hover:bg-slate-50/80 transition-colors">
-                                                    <td class="p-3.5 font-medium text-slate-900">
+                                                    <td class="px-4 py-3.5 font-medium text-slate-900">
                                                         <div class="flex items-center gap-2.5">
                                                             <i class="fa-solid fa-book-bookmark text-slate-400 text-xs"></i>
                                                             <span class="font-bold text-sm tracking-tight text-slate-900">{{ $subject->name }}</span>
                                                         </div>
                                                     </td>
-                                                    <td class="p-3.5 text-center font-mono text-slate-600 text-xs">
+                                                    <td class="px-4 py-3.5 text-center font-mono text-slate-600 text-xs">
                                                         {{ $subject->code ?? '—' }}
                                                     </td>
-                                                    <td class="p-3.5 text-center font-mono font-bold text-slate-900 text-xs">
+                                                    <td class="px-4 py-3.5 text-center font-mono font-bold text-slate-900 text-xs">
                                                         {{ $subject->pivot->full_marks ?? 100 }}
                                                     </td>
-                                                    <td class="p-3.5 text-center font-mono text-slate-600 text-xs">
+                                                    <td class="px-4 py-3.5 text-center font-mono text-slate-600 text-xs">
                                                         {{ $subject->pivot->pass_marks ?? 33 }}
                                                     </td>
-                                                    <td class="p-3.5 text-right">
+                                                    <td class="px-4 py-3.5 text-right">
                                                         @if($isOptional)
                                                             <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-amber-50 text-amber-800 border border-amber-300">
                                                                 ঐচ্ছিক বিষয়
@@ -511,9 +448,9 @@
                             @endif
 
                             {{-- Academic Curriculum Notice Note --}}
-                            <div class="bg-amber-50/60 border border-amber-200/80 rounded-xl p-3.5 text-xs text-amber-900 flex items-start gap-3">
+                            <div class="bg-amber-50/70 border border-amber-200/80 rounded-xl p-4 text-xs text-amber-900 flex items-start gap-3.5 leading-relaxed">
                                 <i class="fa-solid fa-circle-info text-amber-600 mt-0.5 shrink-0 text-sm"></i>
-                                <div class="leading-relaxed">
+                                <div>
                                     জাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড (NCTB) কর্তৃক অনুমোদিত নিয়মিত সিলেবাস অনুযায়ী পরীক্ষা ও মূল্যায়ন সম্পন্ন হয়। বার্ষিক পরীক্ষার নম্বর বণ্টন বা বিস্তারিত পাঠ্যসূচির জন্য নোটিশ বোর্ড বা শ্রেণি শিক্ষকের কার্যালয়ে যোগাযোগ করুন।
                                 </div>
                             </div>
@@ -525,41 +462,42 @@
     </div>
 </section>
 
-{{-- Hairline Structural Divider (Recipe 7) --}}
+{{-- Hairline Structural Divider --}}
 <div class="home-section-divider"></div>
 
-{{-- Recipe 6: Strict Conversion Callout (Amber Button Reserved for Primary CTA) --}}
-<section class="py-12 sm:py-16 bg-white">
+{{-- Consultation & Admission CTA (Uses standardized .cta-banner-box .cta-box tokens) --}}
+<section class="home-section bg-slate-50/80" id="admission-cta">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-gradient-to-r from-slate-900 via-slate-900 to-[#003820] text-white rounded-2xl p-8 sm:p-10 shadow-sm border border-slate-800 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-            <div class="space-y-2 max-w-2xl">
-                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-900/70 text-emerald-300 text-xs font-semibold border border-emerald-700/60">
-                    <i class="fa-solid fa-user-graduate text-amber-400"></i>
-                    <span>ভর্তি ও শ্রেণিভিত্তিক তথ্য সেবা</span>
+        <div class="cta-banner-box cta-box rounded-3xl p-8 sm:p-12 lg:p-16 relative overflow-hidden shadow-lg border border-emerald-700/60">
+            <div class="relative z-10 max-w-4xl space-y-4">
+                <span class="guardian-kicker-pill">
+                    <i class="fa-solid fa-user-graduate text-[11px] text-emerald-400"></i>
+                    <span>ADMISSION & GUIDANCE — শ্রেণিভিত্তিক ভর্তি ও তথ্য সেবা</span>
                 </span>
-                <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                    সন্তানের ভর্তি অথবা শ্রেণিভিত্তিক তথ্য জানতে চান?
-                </h3>
-                <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
-                    সোনাতলা উচ্চ বিদ্যালয়ের নির্দিষ্ট শ্রেণিতে আসন প্রাপ্যতা, ভর্তি প্রক্রিয়া অথবা শ্রেণি শিক্ষকের সাথে সাক্ষাৎ সংক্রান্ত যেকোনো প্রয়োজনে সরাসরি আমাদের সাথে যোগাযোগ করুন।
+                <h2 class="cta-banner-title text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
+                    সন্তানের ভর্তি অথবা শ্রেণিভিত্তিক তথ্য নিয়ে <span class="text-amber-400 font-bold">সরাসরি কথা বলুন</span>
+                </h2>
+                <p class="cta-banner-desc text-sm sm:text-base leading-relaxed">
+                    সোনাতলা উচ্চ বিদ্যালয়ের নির্দিষ্ট শ্রেণিতে আসন প্রাপ্যতা, ভর্তি প্রক্রিয়া, পাঠ্যক্রম অথবা শ্রেণি শিক্ষকের সাথে সাক্ষাৎ সংক্রান্ত যেকোনো তথ্যের জন্য সরাসরি বিদ্যালয় কার্যালয়ে যোগাযোগ করুন।
                 </p>
+
+                <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                    <a href="{{ route('frontend.contact') }}#enroll"
+                       class="about-cta-btn about-cta-btn-primary text-sm sm:text-base">
+                        <i class="fa-solid fa-file-signature text-slate-950"></i>
+                        <span>ভর্তি আবেদন ও তথ্য অনুসন্ধান</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+
+                    <a href="{{ route('frontend.academic.routine') }}"
+                       class="about-cta-btn guardian-cta-btn-secondary text-sm sm:text-base">
+                        <i class="fa-solid fa-calendar-days text-amber-300"></i>
+                        <span>ক্লাস রুটিন দেখুন</span>
+                    </a>
+                </div>
             </div>
 
-            <div class="flex items-center gap-3 flex-wrap shrink-0">
-                <a href="{{ route('frontend.academic.routine') }}"
-                   class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/20 transition-all hover:scale-105 active:scale-95 shadow-xs">
-                    <i class="fa-solid fa-calendar-days text-amber-400"></i>
-                    <span>ক্লাস রুটিন দেখুন</span>
-                </a>
-
-                {{-- Reserved Warm Amber Primary Conversion CTA --}}
-                <a href="{{ route('frontend.contact') }}#enroll"
-                   class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-xs shadow-xs transition-all hover:scale-105 active:scale-95">
-                    <i class="fa-solid fa-file-signature text-slate-950"></i>
-                    <span>ভর্তি আবেদন ও তথ্য</span>
-                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                </a>
-            </div>
+            <div class="hidden lg:block absolute -right-12 -bottom-12 w-96 h-96 rounded-full bg-emerald-800/30 border border-emerald-600/30 pointer-events-none"></div>
         </div>
     </div>
 </section>
