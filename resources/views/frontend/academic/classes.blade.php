@@ -5,6 +5,23 @@
 
 @section('content')
 
+{{-- Breadcrumb (As like About page) --}}
+<div class="bg-gray-100 border-b border-gray-200 py-3.5 text-xs text-gray-600" id="overview">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+        <nav class="flex items-center gap-1.5 font-medium" aria-label="Breadcrumb">
+            <a href="{{ route('frontend.home') }}" class="hover:text-[#005030] transition-colors flex items-center gap-1">
+                <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                <span>প্রচ্ছদ</span>
+            </a>
+            <span class="text-gray-400">/</span>
+            <span class="text-gray-500">একাডেমিক</span>
+            <span class="text-gray-400">/</span>
+            <span class="text-gray-900 font-bold">শ্রেণিসমূহ ও পাঠ্যসূচি</span>
+        </nav>
+        <span class="text-gray-500 text-xs font-medium hidden sm:inline-block">{{ $school->name ?? 'সোনাতলা উচ্চ বিদ্যালয়' }} • সাঁথিয়া, পাবনা</span>
+    </div>
+</div>
+
 {{-- Top Hero Banner: Matches Reference Image Clean Green Header --}}
 <div class="bg-[#005030] text-white py-8 sm:py-10 border-b border-emerald-900">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
@@ -20,14 +37,10 @@
         </h1>
         <span class="sr-only">শ্রেণিসমূহ ও পাঠ্যসূচি</span>
 
-        {{-- Breadcrumb Nav --}}
-        <nav class="flex items-center gap-1.5 text-xs text-emerald-200/80 font-medium" aria-label="Breadcrumb">
-            <a href="{{ route('frontend.home') }}" class="hover:text-white transition-colors">হোম</a>
-            <span>›</span>
-            <span>একাডেমিক</span>
-            <span>›</span>
-            <span class="text-white font-bold">শ্রেণিসমূহ</span>
-        </nav>
+        {{-- Sub-narrative context --}}
+        <p class="text-xs sm:text-sm text-emerald-100/90 font-medium">
+            সোনাতলা উচ্চ বিদ্যালয়ের শ্রেণিভিত্তিক শাখা বণ্টন ও পাঠ্যক্রমের বিবরণ
+        </p>
     </div>
 </div>
 
