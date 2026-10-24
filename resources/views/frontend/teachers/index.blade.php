@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'অভিভাবকের আস্থায় সম্মানিত শিক্ষকমণ্ডলী | ' . ($school->name ?? 'সোনাতলা উচ্চ বিদ্যালয়'))
-@section('meta_description', 'সোনাতলা উচ্চ বিদ্যালয়ের নিবেদিতপ্রাণ ও প্রশিক্ষণপ্রাপ্ত সম্মানিত শিক্ষকমণ্ডলী—যাঁদের আন্তরিক পাঠদান ও নিবিড় পরিচর্যায় গড়ে উঠছে প্রতিটি সন্তান।')
+@section('title', 'সম্মানিত শিক্ষকমণ্ডলী | ' . ($school->name ?? 'সোনাতলা উচ্চ বিদ্যালয়'))
+@section('meta_description', 'সোনাতলা উচ্চ বিদ্যালয়ের নিবেদিতপ্রাণ ও প্রশিক্ষণপ্রাপ্ত সম্মানিত শিক্ষকমণ্ডলী—যাঁদের আন্তরিক পাঠদানে গড়ে উঠছে প্রতিটি সন্তান।')
 
 @section('content')
 
-{{-- Breadcrumb --}}
-<div class="bg-gray-100 border-b border-gray-200 py-3.5 text-xs sm:text-sm text-gray-600" id="overview">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+{{-- Breadcrumb (Standard Clean Layout Matching Classes Page) --}}
+<div class="bg-gray-100 border-b border-gray-200 py-3.5 text-xs text-gray-600" id="overview">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
         <nav class="flex items-center gap-1.5 font-medium" aria-label="Breadcrumb">
             <a href="{{ route('frontend.home') }}" class="hover:text-[#005030] transition-colors flex items-center gap-1">
                 <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
@@ -16,270 +16,131 @@
             <span class="text-gray-400">/</span>
             <span class="text-gray-500">পরিচিতি</span>
             <span class="text-gray-400">/</span>
-            <span class="text-gray-900 font-bold">সম্মানিত শিক্ষক ও কর্মচারীবৃন্দ</span>
+            <span class="text-gray-900 font-bold">শিক্ষকমণ্ডলী</span>
         </nav>
-        <span class="text-gray-500 text-xs sm:text-sm font-medium hidden sm:inline-block">{{ $school->name ?? 'সোনাতলা উচ্চ বিদ্যালয়' }} • সাঁথিয়া, পাবনা</span>
+        <span class="text-gray-500 text-xs font-medium hidden sm:inline-block">{{ $school->name ?? 'সোনাতলা উচ্চ বিদ্যালয়' }} • সাঁথিয়া, পাবনা</span>
     </div>
 </div>
 
-{{-- Hero Banner --}}
-<div class="bg-[#005030] text-white py-14 sm:py-20 border-b border-emerald-900 relative overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6 relative z-10">
-        <div class="space-y-3.5 max-w-2xl">
-            <span class="hero-anim inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#003820] text-emerald-200 text-xs font-bold uppercase tracking-wider border border-emerald-700/60 shadow-xs">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>FACULTY & MENTORS — সোনাতলা উচ্চ বিদ্যালয়ের শিক্ষকমণ্ডলী</span>
-            </span>
-            <h1 class="hero-anim text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-                অভিভাবকের গভীর আস্থায় প্রতিটি সন্তানকে <span class="text-emerald-300 font-bold">যোগ্য ও আদর্শ মানুষ হিসেবে</span> গড়ে তোলা
-            </h1>
-            <p class="hero-anim text-sm sm:text-base text-emerald-100/90 leading-relaxed mt-2">
-                ১৯৬৮ খ্রিষ্টাব্দ থেকে আমাদের নিবেদিতপ্রাণ ও সরকারি প্রশিক্ষণপ্রাপ্ত শিক্ষকবৃন্দ শিক্ষার্থীদের শুধু মুখস্থ পাঠ নয়; বরং মেধা, সততা, মানবিক মূল্যবোধ ও কার্যকর জ্ঞান দিয়ে প্রস্তুত করছেন।
-            </p>
+{{-- Top Hero Banner: Matches Reference Image Clean Green Header --}}
+<div class="bg-[#005030] text-white py-8 sm:py-10 border-b border-emerald-900">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        {{-- Pill Badge --}}
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[#005030] text-xs font-bold shadow-xs">
+            <i class="fa-solid fa-chalkboard-user text-[#005030]"></i>
+            <span>শিক্ষকমণ্ডলী</span>
         </div>
 
-        <div class="hero-anim hero-estd-card shrink-0 flex items-center gap-4 bg-[#003820]/90 backdrop-blur-xs border border-emerald-700/70 px-6 py-4 rounded-2xl text-white shadow-md">
-            <div class="w-13 h-13 rounded-xl bg-emerald-800/80 border border-emerald-600/50 text-emerald-200 flex flex-col items-center justify-center font-bold shrink-0 shadow-inner">
-                <span class="text-[10px] sm:text-[11px] uppercase tracking-wider font-extrabold -mb-0.5">ESTD</span>
-                <span class="text-base sm:text-lg font-extrabold font-mono text-white">{{ $school->established_year ?? '1968' }}</span>
-            </div>
-            <div>
-                <p class="text-emerald-300/90 font-medium text-xs">প্রতিষ্ঠানের অনুষদ শক্তি</p>
-                <p class="text-white font-bold text-sm sm:text-base">৩২ জন অভিজ্ঞ শিক্ষক ও কর্মকর্তা</p>
-            </div>
-        </div>
-    </div>
+        {{-- Page Heading --}}
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-3 mb-2 tracking-tight">
+            সম্মানিত শিক্ষক ও কর্মচারীবৃন্দ
+        </h1>
 
-    <div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-emerald-800/20 pointer-events-none"></div>
-    <div class="absolute left-1/2 -top-24 w-96 h-96 rounded-full bg-emerald-700/10 pointer-events-none"></div>
-</div>
-
-{{-- Credentials & Stats --}}
-<div class="telemetry-strip bg-slate-900 text-slate-200 py-4 sm:py-5 border-y border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-            <div class="telemetry-metric-item flex items-center gap-3">
-                <span class="telemetry-icon-box w-10 h-10 rounded-xl bg-slate-800 text-emerald-400 flex items-center justify-center text-base shrink-0 border border-slate-700 shadow-2xs"><i class="fa-solid fa-chalkboard-user"></i></span>
-                <div>
-                    <span class="text-slate-400 block text-xs font-medium">অনুষদ সদস্য সংখ্যা</span>
-                    <span class="text-white font-bold text-sm sm:text-base">৩২ জন শিক্ষক ও কর্মকর্তা</span>
-                </div>
-            </div>
-            <div class="telemetry-metric-item flex items-center gap-3">
-                <span class="telemetry-icon-box w-10 h-10 rounded-xl bg-slate-800 text-emerald-400 flex items-center justify-center text-base shrink-0 border border-slate-700 shadow-2xs"><i class="fa-solid fa-graduation-cap"></i></span>
-                <div>
-                    <span class="text-slate-400 block text-xs font-medium">উচ্চতর প্রাতিষ্ঠানিক যোগ্যতা</span>
-                    <span class="text-white font-bold text-sm sm:text-base">৮৫%+ স্নাতকোত্তর ও ১ম শ্রেণি</span>
-                </div>
-            </div>
-            <div class="telemetry-metric-item flex items-center gap-3">
-                <span class="telemetry-icon-box w-10 h-10 rounded-xl bg-slate-800 text-emerald-400 flex items-center justify-center text-base shrink-0 border border-slate-700 shadow-2xs"><i class="fa-solid fa-users-line"></i></span>
-                <div>
-                    <span class="text-slate-400 block text-xs font-medium">শ্রেণিকক্ষে নিবিড় মনোযোগ</span>
-                    <span class="text-white font-bold text-sm sm:text-base">১:৩০ শিক্ষক-শিক্ষার্থী অনুপাত</span>
-                </div>
-            </div>
-            <div class="telemetry-metric-item flex items-center gap-3">
-                <span class="telemetry-icon-box w-10 h-10 rounded-xl bg-slate-800 text-emerald-400 flex items-center justify-center text-base shrink-0 border border-slate-700 shadow-2xs"><i class="fa-solid fa-certificate"></i></span>
-                <div>
-                    <span class="text-slate-400 block text-xs font-medium">পেশাগত পাঠদান যোগ্যতা</span>
-                    <span class="text-white font-bold text-sm sm:text-base">১০০% বি.এড ও সরকারি প্রশিক্ষিত</span>
-                </div>
-            </div>
-        </div>
+        {{-- Sub-narrative context --}}
+        <p class="text-xs sm:text-sm text-emerald-100/90 font-medium">
+            সোনাতলা উচ্চ বিদ্যালয়ের নিবেদিতপ্রাণ ও প্রশিক্ষণপ্রাপ্ত অভিজ্ঞ অনুষদ সদস্যবৃন্দ
+        </p>
     </div>
 </div>
 
-{{-- Leadership --}}
-<section class="home-section bg-white" id="leadership">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="section-header-block">
-            <div class="section-header-left">
-                <span class="section-kicker">
-                    <span class="section-kicker-dot"></span>
-                    INSTITUTIONAL LEADERSHIP — প্রাতিষ্ঠানিক অভিভাবকত্ব ও তত্ত্বাবধান
-                </span>
-                <h2 class="section-title">
-                    প্রতিষ্ঠানের অভিভাবকত্ব ও <span class="text-[#005030] font-bold">সুস্পষ্ট দিকনির্দেশনা</span>
-                </h2>
-            </div>
-            <div class="section-header-right">
-                <p class="section-subtitle">
-                    অভিজ্ঞ শিক্ষাবিদ ও প্রশাসনিক নেতৃত্বের প্রত্যক্ষ তত্ত্বাবধানে সোনাতলা উচ্চ বিদ্যালয় প্রতিটি শিক্ষার্থীর মেধা বিকাশ, চরিত্র গঠন ও শৃঙ্খলার সর্বোচ্চ নিশ্চয়তা প্রদান করে।
-                </p>
-            </div>
-        </div>
+{{-- Main Content Canvas --}}
+<section class="py-8 sm:py-12 bg-slate-50/60 min-h-[500px]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-8">
 
-        {{-- Leadership Grid --}}
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-            {{-- Headmaster --}}
-            <div class="leadership-card lg:col-span-7 bg-slate-50/80 border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-2xs group">
-                <div class="space-y-5">
-                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5 pb-5 border-b border-slate-200/80">
-                        <div class="leadership-portrait-frame relative w-28 h-32 sm:w-32 sm:h-36 rounded-2xl overflow-hidden bg-slate-200 border-2 border-emerald-800/30 shadow-xs shrink-0">
-                            <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=400&q=80"
-                                 alt="মো: খলিলুর রহমান - প্রধান শিক্ষক"
-                                 class="leadership-portrait-img w-full h-full object-cover">
-                        </div>
-
-                        <div class="space-y-1.5 flex-1 min-w-0">
-                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-[#005030] text-xs font-bold border border-emerald-300">
-                                <i class="fa-solid fa-crown text-[11px]"></i>
-                                প্রধান শিক্ষক (Headmaster)
-                            </span>
-                            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-snug">
-                                মো: খলিলুর রহমান
-                            </h3>
-                            <p class="text-sm sm:text-base text-slate-600 font-medium">
-                                এম.এ (ইতিহাস, ১ম শ্রেণি), বি.এড (১ম শ্রেণি, রাজশাহী বিশ্ববিদ্যালয়)
-                            </p>
-                            <p class="text-xs sm:text-sm text-[#005030] font-semibold flex items-center gap-1.5 pt-0.5">
-                                <i class="fa-solid fa-calendar-check text-xs"></i>
-                                শিক্ষাদান ও বিদ্যালয় প্রশাসনে ২০+ বছরের সুদীর্ঘ অভিজ্ঞতা
-                            </p>
-                        </div>
+        {{-- Institutional Leadership Showcase --}}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="leadership">
+            {{-- Headmaster Card --}}
+            <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs flex flex-col justify-between space-y-4">
+                <div class="flex items-start gap-4">
+                    <div class="w-20 h-24 sm:w-24 sm:h-28 rounded-xl overflow-hidden bg-slate-100 border border-slate-200 shrink-0 shadow-2xs">
+                        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=400&q=80"
+                             alt="প্রধান শিক্ষক"
+                             class="w-full h-full object-cover">
                     </div>
-
-                    {{-- Quote --}}
-                    <blockquote class="text-sm sm:text-base text-slate-700 leading-relaxed italic bg-white p-4 sm:p-5 rounded-xl border-l-4 border-[#005030] shadow-2xs">
-                        "আমাদের প্রথম দায়িত্ব শুধু পাঠ্যবইয়ের জ্ঞান বিতরণ নয়; বরং স্নেহ, মমতা ও উপযুক্ত শৃঙ্খলার মাধ্যমে প্রতিটি সন্তানকে একজন সৎ, আত্মবিশ্বাসী ও আদর্শ মানুষ হিসেবে সমাজে প্রতিষ্ঠিত করা।"
-                    </blockquote>
-
-                    {{-- Office hours --}}
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                        <div class="bg-white p-3.5 rounded-xl border border-slate-200/80 flex items-center gap-3 shadow-2xs hover:border-[#005030]/30 transition-colors">
-                            <span class="w-8 h-8 rounded-lg bg-emerald-50 text-[#005030] flex items-center justify-center shrink-0 text-sm"><i class="fa-solid fa-clock"></i></span>
-                            <div>
-                                <span class="text-slate-500 block text-xs font-medium">সরাসরি অভিভাবক সাক্ষাৎ</span>
-                                <span class="text-slate-800 font-bold text-xs sm:text-sm">রবি - বৃহস্পতি (সকাল ১০:০০ - ১২:০০)</span>
-                            </div>
-                        </div>
-                        <div class="bg-white p-3.5 rounded-xl border border-slate-200/80 flex items-center gap-3 shadow-2xs hover:border-[#005030]/30 transition-colors">
-                            <span class="w-8 h-8 rounded-lg bg-sky-50 text-sky-700 flex items-center justify-center shrink-0 text-sm"><i class="fa-solid fa-phone"></i></span>
-                            <div>
-                                <span class="text-slate-500 block text-xs font-medium">প্রধান শিক্ষকের ব্যক্তিগত দপ্তর</span>
-                                <a href="tel:+8801712345678" class="text-[#005030] font-bold text-xs sm:text-sm hover:underline">+৮৮০ ১৭১২-৩৪৫৬৭৮</a>
-                            </div>
-                        </div>
+                    <div class="space-y-1 min-w-0">
+                        <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-[#005030] text-[11px] font-bold border border-emerald-200">
+                            প্রধান শিক্ষক
+                        </span>
+                        <h3 class="text-lg sm:text-xl font-bold text-slate-900 leading-snug">
+                            মো: আলতাফ হোসেন
+                        </h3>
+                        <p class="text-xs text-slate-500 font-medium">
+                            এম.এ (ইংরেজি), বি.এড (১ম শ্রেণি)
+                        </p>
+                        <p class="text-xs text-slate-600 line-clamp-2 pt-1 leading-relaxed">
+                            অর্ধশতকের শিক্ষাদান ঐতিহ্যে আমাদের অঙ্গীকার—প্রতিটি সন্তানকে মেধা, সততা ও মূল্যবোধসম্পন্ন মানুষ হিসেবে গড়ে তোলা।
+                        </p>
                     </div>
                 </div>
-
-                <div class="pt-5 mt-8 border-t border-slate-200/80 flex items-center justify-between text-xs sm:text-sm text-slate-500">
-                    <span class="font-medium">কার্যালয়: প্রধান শিক্ষকের কক্ষ (১০১)</span>
-                    <a href="mailto:headmaster@sonatala.edu.bd" class="text-[#005030] font-bold hover:underline flex items-center gap-1.5 transition-colors">
-                        <i class="fa-solid fa-envelope"></i>
-                        <span>ইমেইল বার্তা পাঠান</span>
+                <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                    <span class="font-medium">কার্যালয়: কক্ষ ১০১</span>
+                    <a href="tel:+8801712345678" class="text-[#005030] font-bold hover:underline flex items-center gap-1 font-mono">
+                        <i class="fa-solid fa-phone text-[10px]"></i>
+                        <span>+৮৮০ ১৭১২-৩৪৫৬৭৮</span>
                     </a>
                 </div>
             </div>
 
-            {{-- Assistant Headmaster --}}
-            <div class="leadership-card lg:col-span-5 bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-2xs group">
-                <div class="space-y-5">
-                    <div class="flex items-center gap-4 pb-5 border-b border-slate-100">
-                        <div class="leadership-portrait-frame relative w-24 h-28 sm:w-28 sm:h-32 rounded-2xl overflow-hidden bg-slate-100 border-2 border-emerald-800/25 shadow-xs shrink-0">
-                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"
-                                 alt="মোছা: রোকসানা পারভীন - সহকারী প্রধান শিক্ষক"
-                                 class="leadership-portrait-img w-full h-full object-cover">
-                        </div>
-                        <div class="space-y-1 flex-1 min-w-0">
-                            <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-bold border border-slate-200">
-                                সহকারী প্রধান শিক্ষক
-                            </span>
-                            <h3 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight truncate leading-snug">
-                                মোছা: রোকসানা পারভীন
-                            </h3>
-                            <p class="text-sm text-slate-600 font-medium">
-                                এম.এসসি (পদার্থবিজ্ঞান), বি.এড
-                            </p>
-                            <span class="text-xs sm:text-sm text-[#005030] font-semibold block">
-                                একাডেমিক ও পরীক্ষা নিয়ন্ত্রণ সমন্বয়ক
-                            </span>
-                        </div>
+            {{-- Assistant Headmaster Card --}}
+            <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs flex flex-col justify-between space-y-4">
+                <div class="flex items-start gap-4">
+                    <div class="w-20 h-24 sm:w-24 sm:h-28 rounded-xl overflow-hidden bg-slate-100 border border-slate-200 shrink-0 shadow-2xs">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"
+                             alt="সহকারী প্রধান শিক্ষক"
+                             class="w-full h-full object-cover">
                     </div>
-
-                    <div class="space-y-3 text-sm text-slate-700 leading-relaxed">
-                        <p>
-                            শ্রেণিকক্ষে শিক্ষার্থীদের নিয়মিত উপস্থিতি, পাঠদানের গুণগত মান বজায় রাখা এবং পিছিয়ে পড়া শিক্ষার্থীদের নিবিড় পর্যবেক্ষণসহ সার্বিক অভ্যন্তরীণ শৃঙ্খলা তিনি পরিচালনা করেন।
+                    <div class="space-y-1 min-w-0">
+                        <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-bold border border-slate-200">
+                            সহকারী প্রধান শিক্ষক
+                        </span>
+                        <h3 class="text-lg sm:text-xl font-bold text-slate-900 leading-snug">
+                            মোছা: রোকসানা পারভীন
+                        </h3>
+                        <p class="text-xs text-slate-500 font-medium">
+                            এম.এসসি (পদার্থবিজ্ঞান), বি.এড
                         </p>
-
-                        <div class="space-y-2 pt-1">
-                            <div class="flex items-center gap-2.5 text-slate-700 font-medium bg-slate-50 p-2.5 rounded-lg border border-slate-100">
-                                <i class="fa-solid fa-circle-check text-emerald-600 text-sm shrink-0"></i>
-                                <span class="text-xs sm:text-sm">বিজ্ঞানাগার ও আইসিটি ল্যাবের ব্যবহারিক পাঠ তদারকি</span>
-                            </div>
-                            <div class="flex items-center gap-2.5 text-slate-700 font-medium bg-slate-50 p-2.5 rounded-lg border border-slate-100">
-                                <i class="fa-solid fa-circle-check text-emerald-600 text-sm shrink-0"></i>
-                                <span class="text-xs sm:text-sm">শিক্ষার্থীদের আচরণিক মূল্যায়ন ও সহশিক্ষা ইনচার্জ</span>
-                            </div>
-                        </div>
+                        <p class="text-xs text-slate-600 line-clamp-2 pt-1 leading-relaxed">
+                            শ্রেণিকক্ষে পাঠদানের গুণগত মান তদারকি এবং বিজ্ঞান ও তথ্যপ্রযুক্তি ল্যাবের সার্বিক ব্যবহারিক শিক্ষা পরিচালনা।
+                        </p>
                     </div>
                 </div>
-
-                <div class="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between text-xs sm:text-sm text-slate-500">
-                    <span class="font-medium">কক্ষ: শিক্ষক মিলনায়তন (১০৩)</span>
-                    <a href="tel:+8801713456789" class="text-[#005030] font-bold hover:underline flex items-center gap-1.5 transition-colors">
-                        <i class="fa-solid fa-phone"></i>
+                <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                    <span class="font-medium">শিক্ষক মিলনায়তন: কক্ষ ১০৩</span>
+                    <a href="tel:+8801713456789" class="text-[#005030] font-bold hover:underline flex items-center gap-1 font-mono">
+                        <i class="fa-solid fa-phone text-[10px]"></i>
                         <span>+৮৮০ ১৭১৩-৪৫৬৭৮৯</span>
                     </a>
                 </div>
             </div>
         </div>
-    </div>
-</section>
 
-<div class="home-section-divider"></div>
-
-{{-- Teachers Directory --}}
-<section class="home-section bg-slate-50/60" id="faculty-directory">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="section-header-block">
-            <div class="section-header-left">
-                <span class="section-kicker">
-                    <span class="section-kicker-dot"></span>
-                    ACADEMIC FACULTY — সম্মানিত শিক্ষকমণ্ডলী
-                </span>
-                <h2 class="section-title">
-                    শ্রেণিকক্ষে আন্তরিক পাঠদানে <span class="text-[#005030] font-bold">অভিজ্ঞ বিষয়ভিত্তিক শিক্ষকমণ্ডলী</span>
-                </h2>
-            </div>
-            <div class="section-header-right">
-                <p class="section-subtitle">
-                    বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা, ভাষা ও তথ্যপ্রযুক্তির প্রতিটি বিষয়ে দক্ষ ও যত্নশীল শিক্ষকবৃন্দ আপনার সন্তানের যেকোনো একাডেমিক প্রয়োজনে পাশে থাকতে প্রস্তুত।
-                </p>
-            </div>
-        </div>
-
-        {{-- Search & Filters --}}
-        <div class="bg-white border border-slate-200/90 rounded-2xl p-4 sm:p-5 shadow-2xs mb-8 space-y-4">
+        {{-- Directory Filters & Search Bar --}}
+        <div class="bg-white border border-slate-200/90 rounded-2xl p-4 sm:p-5 shadow-2xs space-y-4" id="faculty-directory">
             <div class="flex flex-col sm:flex-row items-center gap-3">
-                <div class="teacher-search-box">
-                    <span class="teacher-search-icon">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </span>
-
+                <div class="relative flex-1 w-full">
                     <input type="text"
                            id="teacher-search-input"
                            value="{{ request('q') }}"
-                           placeholder="শিক্ষকের নাম, বিষয়, পদবি বা বিভাগ লিখে তাৎক্ষণিক খুঁজুন..."
-                           autocomplete="off">
-
+                           placeholder="শিক্ষকের নাম, বিষয়, পদবি বা বিভাগ লিখে খুঁজুন..."
+                           class="w-full px-3.5 py-2.5 pl-9 text-xs bg-slate-50 border border-slate-200 rounded-xl text-slate-900 focus:outline-none focus:border-[#005030] focus:bg-white transition-colors">
+                    <span class="absolute left-3 top-3 text-slate-400">
+                        <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                    </span>
                     <button type="button"
                             id="clear-search-btn"
-                            class="teacher-clear-btn {{ request('q') ? 'flex' : 'hidden' }}"
-                            title="অনুসন্ধান মুছুন">
+                            class="absolute right-3 top-2.5 text-slate-400 hover:text-slate-600 {{ request('q') ? 'block' : 'hidden' }}">
                         <i class="fa-solid fa-xmark text-xs"></i>
                     </button>
                 </div>
 
-                <div class="flex items-center gap-2 w-full sm:w-auto shrink-0 justify-between sm:justify-start">
-                    <span class="text-xs sm:text-sm text-slate-600 font-medium">
-                        প্রদর্শিত শিক্ষক: <strong id="visible-teacher-count" class="text-[#005030] font-bold">--</strong> জন
+                <div class="flex items-center gap-2 w-full sm:w-auto shrink-0 justify-between sm:justify-start text-xs">
+                    <span class="text-slate-500 font-medium">
+                        প্রদর্শিত: <strong id="visible-teacher-count" class="text-[#005030] font-bold">--</strong> জন
                     </span>
                     <button type="button"
                             id="reset-filters-btn"
-                            class="px-3.5 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs sm:text-sm font-semibold transition-colors flex items-center gap-1.5 shadow-2xs">
-                        <i class="fa-solid fa-rotate-left text-xs"></i>
+                            class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold transition-colors flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-rotate-left text-[10px]"></i>
                         <span>রিসেট</span>
                     </button>
                 </div>
@@ -298,7 +159,6 @@
                     'admin' => 'প্রশাসন ও স্টাফ',
                 ];
 
-                // Curated high quality teacher portraits so that no photo is ever blank
                 $defaultTeacherPhotos = [
                     'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
                     'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80',
@@ -308,8 +168,6 @@
                     'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80',
                     'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
                     'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=400&q=80',
-                    'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80',
-                    'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=400&q=80',
                 ];
 
                 $fallbackTeachers = [
@@ -323,7 +181,6 @@
                         'phone' => '+৮৮০ ১৭১৪-৫৬৭৮৯০',
                         'email' => 'majid.math@sonatala.edu.bd',
                         'photo' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
-                        'specialty' => 'গণিত অলিম্পিয়াড সমন্বয়ক',
                     ],
                     [
                         'name' => 'মো: আনিসুর রহমান',
@@ -335,7 +192,6 @@
                         'phone' => '+৮৮০ ১৭১৫-৬৭৮৯০১',
                         'email' => 'anisur.bangla@sonatala.edu.bd',
                         'photo' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80',
-                        'specialty' => 'বিতর্ক ক্লাব ও সাহিত্য পরিষদ পরিচালক',
                     ],
                     [
                         'name' => 'মো: কামরুল হাসান',
@@ -347,7 +203,6 @@
                         'phone' => '+৮৮০ ১৭১৬-৭৮৯০১২',
                         'email' => 'kamrul.english@sonatala.edu.bd',
                         'photo' => 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80',
-                        'specialty' => 'স্পোকেন ইংলিশ ও ল্যাঙ্গুয়েজ ল্যাব মেন্টর',
                     ],
                     [
                         'name' => 'মোছা: নাসরিন সুলতানা',
@@ -359,7 +214,6 @@
                         'phone' => '+৮৮০ ১৭১৭-৮৯০১২৩',
                         'email' => 'nasrin.science@sonatala.edu.bd',
                         'photo' => 'https://images.unsplash.com/photo-1580894732484-934d4001ec4c?auto=format&fit=crop&w=400&q=80',
-                        'specialty' => 'বিজ্ঞান মেলা ও ল্যাব প্র্যাকটিক্যাল ইনচার্জ',
                     ],
                     [
                         'name' => 'মো: মোশাররফ হোসেন',
@@ -371,7 +225,6 @@
                         'phone' => '+৮৮০ ১৭১৮-৯০১২৩৪',
                         'email' => 'mosharraf.ict@sonatala.edu.bd',
                         'photo' => 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80',
-                        'specialty' => 'শেখ রাসেল ডিজিটাল ল্যাব ও কোডিং ক্লাব প্রশিক্ষক',
                     ],
                     [
                         'name' => 'মাওলানা মো: ইউসুফ আলী',
@@ -383,7 +236,6 @@
                         'phone' => '+৮৮০ ১৭১৯-০১২৩৪৫',
                         'email' => 'yusuf.islamic@sonatala.edu.bd',
                         'photo' => 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80',
-                        'specialty' => 'কুরআন তিলাওয়াত ও হামদ-নাত প্রশিক্ষণ',
                     ],
                     [
                         'name' => 'মো: জহুরুল ইসলাম',
@@ -395,7 +247,6 @@
                         'phone' => '+৮৮০ ১৭১১-২৩৪৫৬৭',
                         'email' => 'zohurul.commerce@sonatala.edu.bd',
                         'photo' => 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
-                        'specialty' => 'ফিন্যান্স ও উদ্যোক্তা উন্নয়ন কোর্স সহায়ক',
                     ],
                     [
                         'name' => 'মো: সাইফুল ইসলাম',
@@ -407,7 +258,6 @@
                         'phone' => '+৮৮০ ১৭১০-৯৮৭৬৫৪',
                         'email' => 'saiful.sports@sonatala.edu.bd',
                         'photo' => 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=400&q=80',
-                        'specialty' => 'বার্ষিক ক্রীড়া প্রতিযোগিতা ও রোভার স্কাউট লিডার',
                     ],
                 ];
 
@@ -439,7 +289,6 @@
                             'phone' => $dbStaff->phone ?: '+৮৮০ ১৭১১-০০০০০০',
                             'email' => $dbStaff->email ?: 'teacher@sonatala.edu.bd',
                             'photo' => $photoUrl,
-                            'specialty' => 'বিষয়ভিত্তিক পাঠদান ও মেন্টরিং',
                         ];
                     }
                 } elseif (!request()->filled('q') && !request()->filled('department')) {
@@ -447,216 +296,141 @@
                 }
             @endphp
 
-            <div class="pt-3 border-t border-slate-100 flex items-center gap-2 overflow-x-auto pb-1 text-xs sm:text-sm">
-                <span class="text-slate-500 font-semibold text-xs sm:text-sm shrink-0 mr-1">বিভাগসমূহ:</span>
+            <div class="pt-3 border-t border-slate-100 flex items-center gap-2 overflow-x-auto pb-1 text-xs">
                 @foreach($standardDepts as $slug => $label)
                     <button type="button"
                             data-department="{{ $slug }}"
-                            class="dept-filter-tab px-4 py-2 rounded-full font-semibold transition-all shrink-0 cursor-pointer {{ $loop->first ? 'bg-[#005030] text-white shadow-xs active' : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200/90' }}">
+                            class="dept-filter-tab px-3.5 py-1.5 rounded-full font-semibold transition-all shrink-0 cursor-pointer {{ $loop->first ? 'bg-[#005030] text-white shadow-xs active' : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200' }}">
                         {{ $label }}
                     </button>
                 @endforeach
             </div>
         </div>
 
-        {{-- Teacher cards grid --}}
-        <div id="teachers-grid-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {{-- Teachers Grid --}}
+        <div id="teachers-grid-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             @foreach($displayStaff as $staff)
-                <div class="teacher-card-item p-4 sm:p-5 flex flex-col justify-between group shadow-2xs"
+                <div class="teacher-card-item bg-white border border-slate-200/90 rounded-2xl p-4 shadow-2xs flex flex-col justify-between hover:border-slate-300 transition-colors"
                      data-department="{{ $staff['dept_slug'] }}"
                      data-department-name="{{ $staff['department'] }}"
                      data-name="{{ $staff['name'] }}"
                      data-designation="{{ $staff['designation'] }}"
                      data-qualification="{{ $staff['qualification'] }}">
-                    <div>
-                        <div class="teacher-accent-bar"></div>
-
-                        <div class="teacher-photo-frame h-48 w-full bg-slate-100 relative mb-3.5 shadow-2xs">
+                    <div class="space-y-3">
+                        <div class="h-48 w-full bg-slate-100 rounded-xl overflow-hidden relative shadow-2xs">
                             <img src="{{ $staff['photo'] }}"
                                  alt="{{ $staff['name'] }}"
                                  loading="lazy"
-                                 class="teacher-photo-img w-full h-full object-cover">
-
-                            <div class="absolute bottom-2.5 left-2.5 bg-slate-900/85 text-white backdrop-blur-xs text-xs font-bold px-2.5 py-1 rounded-md shadow-sm">
+                                 class="w-full h-full object-cover">
+                            <div class="absolute bottom-2 left-2 bg-slate-900/80 text-white text-[10px] font-bold px-2 py-0.5 rounded-md">
                                 {{ $staff['department'] }}
-                            </div>
-
-                            <div class="absolute top-2.5 right-2.5 bg-white/95 text-slate-800 backdrop-blur-xs text-xs font-bold px-2.5 py-0.5 rounded-md border border-slate-200/90 shadow-2xs">
-                                {{ $staff['experience'] }}
                             </div>
                         </div>
 
-                        <div class="space-y-1.5">
-                            <h3 class="teacher-name text-base sm:text-lg font-bold text-slate-900 leading-snug">
+                        <div class="space-y-1">
+                            <h3 class="teacher-name text-base font-bold text-slate-900 leading-snug">
                                 {{ $staff['name'] }}
                             </h3>
-                            <p class="text-xs sm:text-sm font-semibold text-[#005030]">
+                            <p class="text-xs font-semibold text-[#005030]">
                                 {{ $staff['designation'] }}
                             </p>
-                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed pt-1.5 border-t border-slate-100 line-clamp-2" title="{{ $staff['qualification'] }}">
+                            <p class="text-[11px] text-slate-500 line-clamp-2 pt-1 border-t border-slate-100" title="{{ $staff['qualification'] }}">
                                 {{ $staff['qualification'] }}
                             </p>
-                            @if(!empty($staff['specialty']))
-                                <p class="text-xs text-slate-500 font-medium pt-1 flex items-center gap-1.5 truncate">
-                                    <i class="fa-solid fa-award text-amber-500 text-xs shrink-0"></i>
-                                    <span class="truncate">{{ $staff['specialty'] }}</span>
-                                </p>
-                            @endif
                         </div>
                     </div>
 
-                    {{-- Contact buttons --}}
-                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between mt-4 gap-2">
+                    {{-- Contact row --}}
+                    <div class="pt-3 mt-3 border-t border-slate-100 flex items-center justify-between gap-2 text-xs">
                         <a href="tel:{{ $staff['phone'] }}"
-                           class="teacher-btn-phone flex-1">
-                            <i class="fa-solid fa-phone text-xs"></i>
-                            <span class="text-xs truncate">{{ $staff['phone'] }}</span>
+                           class="flex-1 inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-50 text-slate-700 hover:bg-slate-100 font-mono text-[11px] truncate">
+                            <i class="fa-solid fa-phone text-[#005030] text-[10px]"></i>
+                            <span class="truncate">{{ $staff['phone'] }}</span>
                         </a>
-
                         <a href="mailto:{{ $staff['email'] }}"
-                           class="teacher-btn-email shrink-0"
+                           class="p-1.5 rounded-lg bg-slate-50 text-slate-700 hover:bg-slate-100 shrink-0"
                            title="{{ $staff['email'] }}">
-                            <i class="fa-solid fa-envelope text-xs"></i>
+                            <i class="fa-solid fa-envelope text-[#005030] text-[10px]"></i>
                         </a>
                     </div>
                 </div>
             @endforeach
         </div>
 
-        {{-- Empty state --}}
-        <div id="no-teachers-found" class="hidden bg-white border border-slate-200/90 rounded-2xl p-10 text-center space-y-4 max-w-lg mx-auto shadow-2xs mt-4">
-            <div class="w-14 h-14 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center mx-auto text-2xl">
+        {{-- Empty Search State --}}
+        <div id="no-teachers-found" class="hidden bg-white border border-slate-200/90 rounded-2xl p-10 text-center space-y-3 max-w-md mx-auto shadow-2xs">
+            <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-400 flex items-center justify-center mx-auto text-xl">
                 <i class="fa-solid fa-user-slash"></i>
             </div>
-            <div class="space-y-1">
-                <h3 class="text-lg font-bold text-slate-800">কোনো শিক্ষক খুঁজে পাওয়া যায়নি</h3>
-                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
-                    আপনার অনুসন্ধানকৃত বিষয়ের বা নামের সাথে মিল রয়েছে এমন কোনো শিক্ষক তালিকায় পাওয়া যায়নি। অনুগ্রহ করে বানান যাচাই করুন অথবা ফিল্টার রিসেট করুন।
-                </p>
-            </div>
+            <h3 class="text-base font-bold text-slate-800">কোনো শিক্ষক খুঁজে পাওয়া যায়নি</h3>
+            <p class="text-xs text-slate-500">
+                আপনার অনুসন্ধানের সাথে মিল রয়েছে এমন কোনো শিক্ষক তালিকায় পাওয়া যায়নি।
+            </p>
             <div class="pt-2">
                 <button type="button"
                         onclick="document.getElementById('reset-filters-btn').click()"
-                        class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-[#005030] text-white text-xs font-bold hover:bg-[#003820] transition-colors shadow-xs cursor-pointer">
+                        class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#005030] text-white text-xs font-bold hover:bg-[#003820] transition-colors shadow-xs cursor-pointer">
                     <i class="fa-solid fa-rotate-left text-xs"></i>
                     <span>সকল শিক্ষক প্রদর্শন করুন</span>
                 </button>
             </div>
         </div>
 
-    </div>
-</section>
-
-<div class="home-section-divider"></div>
-
-{{-- Academic Standards --}}
-<section class="home-section bg-white" id="pedagogy-standards">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="section-header-block">
-            <div class="section-header-left">
-                <span class="section-kicker">
-                    <span class="section-kicker-dot"></span>
-                    TEACHING EXCELLENCE — পাঠদান মানদণ্ড ও শিক্ষক অঙ্গীকার
-                </span>
-                <h2 class="section-title">
-                    মুখস্থ নির্ভরতা পরিহার করে <span class="text-[#005030] font-bold">বোঝা ও প্রয়োগের শিক্ষা</span>
-                </h2>
-            </div>
-            <div class="section-header-right">
-                <p class="section-subtitle">
-                    সোনাতলা উচ্চ বিদ্যালয়ে আমরা প্রতিটি শিক্ষার্থীর স্বাভাবিক কৌতূহলকে মূল্যায়ন করি এবং নিয়মিত ব্যবহারিক ক্লাস ও যত্নশীল মেন্টরিংয়ের মাধ্যমে বিষয়ের মূল ভিত্তি শক্ত করি।
-                </p>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="pedagogy-card space-y-3.5 shadow-2xs group">
-                <div class="pedagogy-icon-box w-12 h-12 rounded-xl bg-emerald-100 text-[#005030] flex items-center justify-center text-xl font-bold shadow-2xs">
+        {{-- Pedagogical Values (3 Cards) --}}
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5" id="pedagogy-standards">
+            <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs space-y-3">
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 text-[#005030] flex items-center justify-center text-base shadow-2xs">
                     <i class="fa-solid fa-book-open-reader"></i>
                 </div>
-                <h3 class="text-lg sm:text-xl font-bold text-slate-900 tracking-tight leading-snug">
-                    দৈনিক সুনির্দিষ্ট পাঠ পরিকল্পনা ও শিখনফল
-                </h3>
-                <p class="text-sm text-slate-700 leading-relaxed font-normal">
-                    প্রতিটি ক্লাসের আগেই শিক্ষকগণ জাতীয় পাঠ্যক্রম অনুযায়ী বিস্তারিত লেসন প্ল্যান তৈরি করেন। এতে প্রতিটি পিরিয়ডে নির্ধারিত শিখনফল পূর্ণাঙ্গভাবে অর্জন করা নিশ্চিত হয়।
+                <h4 class="text-base font-bold text-slate-900">সুনির্দিষ্ট পাঠ পরিকল্পনা</h4>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    প্রতিটি ক্লাসের আগেই শিক্ষকগণ জাতীয় পাঠ্যক্রম অনুযায়ী বিস্তারিত লেসন প্ল্যান প্রস্তুত করেন, যা শতভাগ শিখনফল অর্জনে ভূমিকা রাখে।
                 </p>
-                <div class="pt-2 text-xs sm:text-sm font-semibold text-[#005030] flex items-center gap-1.5">
-                    <i class="fa-solid fa-circle-check text-xs"></i>
-                    <span>সাপ্তাহিক শিক্ষক সমন্বয় ও অগ্রগতি পর্যালোচনা</span>
-                </div>
             </div>
 
-            <div class="pedagogy-card space-y-3.5 shadow-2xs group">
-                <div class="pedagogy-icon-box w-12 h-12 rounded-xl bg-sky-100 text-sky-800 flex items-center justify-center text-xl font-bold shadow-2xs">
+            <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs space-y-3">
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 text-[#005030] flex items-center justify-center text-base shadow-2xs">
                     <i class="fa-solid fa-laptop-code"></i>
                 </div>
-                <h3 class="text-lg sm:text-xl font-bold text-slate-900 tracking-tight leading-snug">
-                    হাতে-কলমে ল্যাব ও মাল্টিমিডিয়া ক্লাস
-                </h3>
-                <p class="text-sm text-slate-700 leading-relaxed font-normal">
-                    তত্ত্বীয় আলোচনার পাশাপাশি শেখ রাসেল ডিজিটাল ল্যাব এবং পদার্থ, রসায়ন ও জীববিজ্ঞানের সুসজ্জিত গবেষণাগারে নিয়মিত ব্যবহারিক পরীক্ষা সম্পন্ন করানো হয়।
+                <h4 class="text-base font-bold text-slate-900">ব্যবহারিক ল্যাব ও প্রজেক্টর</h4>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    তত্ত্বীয় আলোচনার পাশাপাশি শেখ রাসেল ডিজিটাল ল্যাব ও সুসজ্জিত বিজ্ঞানাগারে শিক্ষার্থীদের নিয়মিত ব্যবহারিক জ্ঞান প্রদান করা হয়।
                 </p>
-                <div class="pt-2 text-xs sm:text-sm font-semibold text-sky-800 flex items-center gap-1.5">
-                    <i class="fa-solid fa-circle-check text-xs"></i>
-                    <span>স্মার্ট প্রজেক্টর ও মাল্টিমিডিয়া ক্লাসরুম</span>
-                </div>
             </div>
 
-            <div class="pedagogy-card space-y-3.5 shadow-2xs group">
-                <div class="pedagogy-icon-box w-12 h-12 rounded-xl bg-amber-100 text-amber-900 flex items-center justify-center text-xl font-bold shadow-2xs">
+            <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs space-y-3">
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 text-[#005030] flex items-center justify-center text-base shadow-2xs">
                     <i class="fa-solid fa-hands-holding-child"></i>
                 </div>
-                <h3 class="text-lg sm:text-xl font-bold text-slate-900 tracking-tight leading-snug">
-                    দুর্বল শিক্ষার্থীদের জন্য নিবিড় রিমিডিয়াল কেয়ার
-                </h3>
-                <p class="text-sm text-slate-700 leading-relaxed font-normal">
-                    পড়াশোনায় যেকোনো বিষয়ে পিছিয়ে থাকা শিক্ষার্থীদের দ্রুত শনাক্ত করে নিয়মিত ক্লাসের অতিরিক্ত সময়ে বিশেষ শিক্ষক সহায়তার মাধ্যমে এগিয়ে নেওয়া হয়।
+                <h4 class="text-base font-bold text-slate-900">বিশেষ মেন্টরিং ও যত্ন</h4>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    যেকোনো বিষয়ে পিছিয়ে থাকা শিক্ষার্থীদের চিহ্নিত করে ক্লাসের অতিরিক্ত সময়ে যত্নশীল শিক্ষক সহায়তার মাধ্যমে এগিয়ে নেওয়া হয়।
                 </p>
-                <div class="pt-2 text-xs sm:text-sm font-semibold text-amber-800 flex items-center gap-1.5">
-                    <i class="fa-solid fa-circle-check text-xs"></i>
-                    <span>বিনা খরচে বিশেষ টিউটোরিয়াল সাপোর্ট</span>
-                </div>
             </div>
         </div>
-    </div>
-</section>
 
-<div class="home-section-divider"></div>
-
-{{-- Consultation & Visit CTA --}}
-<section class="home-section bg-slate-50/80" id="consultation-cta">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="cta-banner-box cta-box rounded-3xl p-8 sm:p-12 lg:p-16 relative overflow-hidden shadow-lg border border-emerald-700/60">
-            <div class="relative z-10 max-w-4xl space-y-4">
-                <span class="guardian-kicker-pill">
-                    <i class="fa-solid fa-calendar-days text-[11px] text-emerald-400"></i>
-                    <span>GUARDIAN ENGAGEMENT — অভিভাবক পরামর্শ ও মতবিনিময়</span>
-                </span>
-                <h2 class="cta-banner-title text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
-                    সন্তানের ভবিষ্যৎ ও অগ্রগতি নিয়ে <span class="text-amber-400 font-bold">শিক্ষকদের সাথে সরাসরি কথা বলুন</span>
-                </h2>
-                <p class="cta-banner-desc text-sm sm:text-base leading-relaxed">
-                    আপনার সন্তানের ক্লাসরুমের অগ্রগতি, আচরণ কিংবা ভবিষ্যৎ পরিকল্পনা নিয়ে যেকোনো শিক্ষক বা প্রতিষ্ঠান প্রধানের সাথে কথা বলতে পারেন। প্রতি রবিবার থেকে বৃহস্পতিবার দুপুর ১২:৩০ হতে ১:৩০ পর্যন্ত শিক্ষক মিলনায়তনে সুনির্দিষ্ট অভিভাবক সাক্ষাৎ সময় নির্ধারিত রয়েছে।
+        {{-- Consultation / Visit CTA --}}
+        <div class="bg-[#005030] text-white rounded-2xl p-6 sm:p-8 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6" id="consultation-cta">
+            <div class="space-y-1 text-center md:text-left">
+                <h3 class="text-lg sm:text-xl font-extrabold text-white">শিক্ষকদের সাথে সরাসরি পরামর্শ</h3>
+                <p class="text-xs sm:text-sm text-emerald-100/90">
+                    সন্তানের অগ্রগতি ও পড়াশোনা সংক্রান্ত যেকোনো প্রয়োজনে সরাসরি শিক্ষকদের সাথে সাক্ষাৎ করুন।
                 </p>
-
-                <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-                    <a href="{{ route('frontend.contact') }}"
-                       class="about-cta-btn about-cta-btn-primary text-sm sm:text-base">
-                        <span>সরাসরি সাক্ষাতের জন্য সময় নির্ধারণ করুন</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </a>
-
-                    <a href="tel:+8801712345678"
-                       class="about-cta-btn guardian-cta-btn-secondary text-sm sm:text-base">
-                        <i class="fa-solid fa-phone text-amber-300"></i>
-                        <span>হটলাইন: +৮৮০ ১৭১২-৩৪৫৬৭৮</span>
-                    </a>
-                </div>
             </div>
-
-            <div class="hidden lg:block absolute -right-12 -bottom-12 w-96 h-96 rounded-full bg-emerald-800/30 border border-emerald-600/30 pointer-events-none"></div>
-            
+            <div class="flex flex-wrap items-center gap-3 shrink-0">
+                <a href="{{ route('frontend.contact') }}"
+                   class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs shadow-xs transition-colors">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span>সাক্ষাতের সময় নিন</span>
+                </a>
+                <a href="tel:+8801712345678"
+                   class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/20 transition-colors">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>+৮৮০ ১৭১২-৩৪৫৬৭৮</span>
+                </a>
+            </div>
         </div>
+
     </div>
 </section>
 
@@ -665,7 +439,6 @@
 @push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    // Department tabs & search filter
     const searchInput = document.getElementById('teacher-search-input');
     const clearSearchBtn = document.getElementById('clear-search-btn');
     const deptTabs = document.querySelectorAll('.dept-filter-tab');
@@ -687,7 +460,6 @@ document.addEventListener('DOMContentLoaded', function () {
             const cardDesignation = (card.getAttribute('data-designation') || '').toLowerCase();
             const cardQualification = (card.getAttribute('data-qualification') || '').toLowerCase();
 
-            // Check department match
             const matchesDept = (currentDept === 'all') ||
                                 (cardDeptSlug === currentDept) ||
                                 (currentDept === 'science' && cardDeptName.includes('বিজ্ঞান')) ||
@@ -698,7 +470,6 @@ document.addEventListener('DOMContentLoaded', function () {
                                 (currentDept === 'religious' && cardDeptName.includes('ধর্ম')) ||
                                 (currentDept === 'admin' && (cardDeptName.includes('প্রশাসন') || cardDeptName.includes('স্টাফ') || cardDeptName.includes('শারীরিক')));
 
-            // Check search text match
             const matchesSearch = !currentSearch ||
                                   cardName.includes(currentSearch) ||
                                   cardDesignation.includes(currentSearch) ||
@@ -718,41 +489,22 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         if (noResultsState) {
-            noResultsState.style.display = (visibleCount === 0) ? 'block' : 'none';
+            if (visibleCount === 0) {
+                noResultsState.classList.remove('hidden');
+            } else {
+                noResultsState.classList.add('hidden');
+            }
         }
     }
 
-    // Set initial count
-    filterTeachers();
-
-    // Tab Click Listeners
-    deptTabs.forEach(tab => {
-        tab.addEventListener('click', function (e) {
-            e.preventDefault();
-            currentDept = this.getAttribute('data-department') || 'all';
-
-            // Update tab styles
-            deptTabs.forEach(t => {
-                t.classList.remove('bg-[#005030]', 'text-white', 'shadow-xs', 'active');
-                t.classList.add('bg-white', 'text-slate-700', 'border', 'border-slate-200/90');
-            });
-            this.classList.remove('bg-white', 'text-slate-700', 'border', 'border-slate-200/90');
-            this.classList.add('bg-[#005030]', 'text-white', 'shadow-xs', 'active');
-
-            filterTeachers();
-        });
-    });
-
-    // Real-time input search
+    // Bind search
     if (searchInput) {
         searchInput.addEventListener('input', function () {
             currentSearch = this.value.trim().toLowerCase();
             if (clearSearchBtn) {
-                if (currentSearch) {
+                if (currentSearch.length > 0) {
                     clearSearchBtn.classList.remove('hidden');
-                    clearSearchBtn.classList.add('flex');
                 } else {
-                    clearSearchBtn.classList.remove('flex');
                     clearSearchBtn.classList.add('hidden');
                 }
             }
@@ -760,19 +512,32 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Clear search button
     if (clearSearchBtn) {
         clearSearchBtn.addEventListener('click', function () {
-            searchInput.value = '';
-            currentSearch = '';
-            clearSearchBtn.classList.remove('flex');
-            clearSearchBtn.classList.add('hidden');
-            filterTeachers();
-            searchInput.focus();
+            if (searchInput) {
+                searchInput.value = '';
+                currentSearch = '';
+                this.classList.add('hidden');
+                filterTeachers();
+            }
         });
     }
 
-    // Reset button
+    // Bind department tabs
+    deptTabs.forEach(tab => {
+        tab.addEventListener('click', function () {
+            deptTabs.forEach(t => {
+                t.classList.remove('bg-[#005030]', 'text-white', 'shadow-xs', 'active');
+                t.classList.add('bg-white', 'text-slate-700', 'hover:bg-slate-100', 'border', 'border-slate-200');
+            });
+            this.classList.remove('bg-white', 'text-slate-700', 'hover:bg-slate-100', 'border', 'border-slate-200');
+            this.classList.add('bg-[#005030]', 'text-white', 'shadow-xs', 'active');
+
+            currentDept = this.getAttribute('data-department') || 'all';
+            filterTeachers();
+        });
+    });
+
     if (resetFiltersBtn) {
         resetFiltersBtn.addEventListener('click', function () {
             if (searchInput) {
@@ -780,87 +545,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 currentSearch = '';
             }
             if (clearSearchBtn) {
-                clearSearchBtn.classList.remove('flex');
                 clearSearchBtn.classList.add('hidden');
             }
-            const allTab = document.querySelector('.dept-filter-tab[data-department="all"]');
-            if (allTab) {
-                allTab.click();
+            currentDept = 'all';
+            if (deptTabs.length > 0) {
+                deptTabs[0].click();
+            } else {
+                filterTeachers();
             }
         });
     }
 
-    // Entrance animations
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (!prefersReducedMotion) {
-        // Hero Content Animation (Immediate upon page load)
-        if (window.gsap) {
-            gsap.fromTo(".hero-anim",
-                { opacity: 0, y: 16 },
-                { opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: "power2.out", clearProps: "all" }
-            );
-        }
-
-        // Section & Card Elements: Reveal ONLY when physically entering viewport
-        if ('IntersectionObserver' in window) {
-            const teacherPageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const el = entry.target;
-                        observer.unobserve(el);
-
-                        if (window.gsap) {
-                            gsap.fromTo(el,
-                                { opacity: 0, y: 18 },
-                                { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", clearProps: "all" }
-                            );
-                        } else {
-                            el.style.opacity = '1';
-                            el.style.transform = 'none';
-                        }
-                    }
-                });
-            }, {
-                rootMargin: '0px 0px -40px 0px',
-                threshold: 0.05
-            });
-
-            const elementsToReveal = document.querySelectorAll(
-                '.telemetry-metric-item, .leadership-card, .pedagogy-card, .cta-box'
-            );
-
-            elementsToReveal.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                // If already inside the visible viewport, reveal immediately
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    if (window.gsap) {
-                        gsap.fromTo(el,
-                            { opacity: 0, y: 14 },
-                            { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", clearProps: "all" }
-                        );
-                    }
-                } else {
-                    teacherPageObserver.observe(el);
-                }
-            });
-        }
-    }
-
-    // Visibility fallback
-    const ensureTeachersPageVisible = () => {
-        document.querySelectorAll(
-            '.hero-anim, .telemetry-metric-item, .leadership-card, .pedagogy-card, .cta-box, .teacher-card-item, .section-header-block'
-        ).forEach(el => {
-            if (window.getComputedStyle(el).opacity === '0') {
-                el.style.opacity = '1';
-                el.style.transform = 'none';
-            }
-        });
-    };
-
-    window.addEventListener('load', ensureTeachersPageVisible);
-    setTimeout(ensureTeachersPageVisible, 500);
+    filterTeachers();
 });
 </script>
 @endpush
