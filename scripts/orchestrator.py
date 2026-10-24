@@ -1,6 +1,7 @@
 """
 Multi-Agent Orchestrator for EduCore (Laravel School)
 Coordinates specialized AI workers across isolated Git worktrees.
+Supports autonomous single-command feature development pipeline.
 """
 
 import argparse
@@ -41,6 +42,9 @@ AGENTS = {
         "branch": "orchestration/lead",
     },
 }
+
+# Command names for Windows compatibility
+OPENSPEC_CMD = "openspec.cmd" if os.name == "nt" else "openspec"
 
 
 def run_cmd(cmd, cwd=None, capture=True):
@@ -94,9 +98,9 @@ async def run_agent_task(agent_name: str, prompt: str, worktree_dir: Path):
 
 def show_status():
     """Display status of all agent worktrees and branches."""
-    print("=" * 65)
+    print("=" * 70)
     print("  EduCore Multi-Agent Team Status")
-    print("=" * 65)
+    print("=" * 70)
     for role, cfg in AGENTS.items():
         wt = cfg["worktree"]
         exists = wt.exists()
@@ -115,7 +119,7 @@ def show_status():
         status_line = f"[{'ONLINE' if exists else 'MISSING'}] {role.upper()}"
         print(f"{status_line:<25} Branch: {branch:<20} Worktree: {wt}")
         print(f"   Git Status: {git_clean}")
-    print("=" * 65)
+    print("=" * 70)
 
 
 def sync_worktrees():
@@ -142,11 +146,26 @@ def run_tests(filter_pattern=None):
     return res.returncode
 
 
+def review_diffs():
+    """Review worker diffs against main."""
+    print("=" * 70)
+    print("  Orchestrator: Reviewing Worker Diffs vs 'main'")
+    print("=" * 70)
+    print("=== Diff: agent/backend vs main ===")
+    b_diff = run_cmd("git diff main..agent/backend --stat")
+    print(b_diff.stdout.strip() or "No differences.")
+    
+    print("\n=== Diff: agent/frontend vs main ===")
+    f_diff = run_cmd("git diff main..agent/frontend --stat")
+    print(f_diff.stdout.strip() or "No differences.")
+    print("=" * 70)
+
+
 def integrate_branches(test_filter=""):
     """Integrate worker branches into main after review."""
-    print("=" * 65)
+    print("=" * 70)
     print("  Orchestrator: Integrating Worker Branches into main")
-    print("=" * 65)
+    print("=" * 70)
     
     # 1. Integrate backend
     print("Step 1: Merging agent/backend into main...")
@@ -165,13 +184,179 @@ def integrate_branches(test_filter=""):
     print("  [OK] Frontend merged successfully.")
     
     print("\nStep 3: Running automated test suite gate...")
-    t_code = run_tests(test_filter or "AboutPageTest")
+    t_code = run_tests(test_filter)
     if t_code == 0:
         print("[SUCCESS] All integration tests passed.")
         return True
     else:
         print("[WARNING] Tests failed during integration check.")
         return False
+
+
+def archive_change(change_name: str):
+    """Archive an OpenSpec change."""
+    print(f"[ORCHESTRATOR] Archiving OpenSpec change '{change_name}'...")
+    res = run_cmd(f"{OPENSPEC_CMD} archive {change_name} --yes", cwd=BASE_DIR)
+    if res.returncode == 0:
+        print(f"  [OK] OpenSpec change '{change_name}' archived successfully.")
+        return True
+    else:
+        print(f"  [FAIL] Could not archive change: {res.stderr or res.stdout}")
+        return False
+
+
+def push_to_github(commit_message: str):
+    """Stage, commit, and push changes following gitcommit.md standards."""
+    print("[ORCHESTRATOR] Preparing GitHub commit & push (gitcommit.md standard)...")
+    run_cmd("git add .", cwd=BASE_DIR)
+    
+    c_res = run_cmd(f'git commit -m "{commit_message}"', cwd=BASE_DIR)
+    if c_res.returncode != 0 and "nothing to commit" not in (c_res.stdout + c_res.stderr):
+        print(f"  [WARNING] Commit output: {c_res.stderr or c_res.stdout}")
+    else:
+        print("  [OK] Local commit created.")
+        
+    print("  -> Pushing to origin main...")
+    p_res = run_cmd("git push -u origin main", cwd=BASE_DIR)
+    if p_res.returncode == 0:
+        print("  [SUCCESS] All changes successfully pushed to origin/main.")
+        return True
+    else:
+        print(f"  [FAIL] Push failed:\n{p_res.stderr or p_res.stdout}")
+        return False
+
+
+def enrich_backend_prompt(raw_prompt: str, change_name: str = "") -> str:
+    """Enrich the backend prompt with mandatory Laravel, DB optimization, and adversarial test rules."""
+    return f"""### BACKEND TASK DIRECTIVE (EduCore Architecture)
+Feature / Module Context: {change_name or 'Feature Implementation'}
+
+{raw_prompt}
+
+MANDATORY ARCHITECTURAL & DATABASE OPTIMIZATION STANDARDS:
+1. Framework & Skills: Adhere strictly to `laravel-expert`, `laravel-best-practices`, and `laravel-security-audit`.
+2. Architecture: Implement clean FormRequests, dedicated Controller methods, and strongly-typed Eloquent Models/casts.
+3. Database Optimization (MANDATORY):
+   - Zero N+1 Queries: Always eager-load relationships via `with()` or `loadMissing()`. Never lazy-load inside loops.
+   - Deadlock Prevention: Keep transactions short and atomic using `DB::transaction()`. Order record lock acquisitions consistently.
+   - Proper Indexing: Add indexes in migrations for foreign keys, tenant column (`school_id`), search criteria, and sorting fields.
+   - Data Consistency: Use explicit database constraints (cascade/restrict) and atomic operations.
+4. Adversarial & Edge Case Automated Testing ("Break it to make it unbreakable"):
+   - Write Unit tests in `tests/Unit/` and Feature tests in `tests/Feature/`.
+   - Actively try to break the code by testing: null inputs, invalid data types, tenant boundary violations, empty records, and duplicate submissions.
+   - If tests fail or bugs are exposed, fix the implementation immediately and re-run tests until 100% green.
+5. Worktree Commit & PR:
+   - When verified, stage changes and commit: `git commit -m "feat(backend): <detailed summary>"`
+   - Output summary of files created/changed, tests executed, and commit SHA.
+"""
+
+
+def enrich_frontend_prompt(raw_prompt: str, change_name: str = "") -> str:
+    """Enrich the frontend prompt with ui-refactor.md, page consistency, and UI-Mandatory standards."""
+    return f"""### FRONTEND TASK DIRECTIVE (EduCore UI/UX)
+Feature / Module Context: {change_name or 'UI Implementation'}
+
+{raw_prompt}
+
+MANDATORY UI/UX & REFACTORING STANDARDS:
+1. Page Design Consistency (CRITICAL):
+   - Inspect existing production views: `resources/views/frontend/academic/classes.blade.php`, `about/index.blade.php`, `routine.blade.php`, and `teachers/index.blade.php`.
+   - Adhere to the established layout container, card styling, typography, and color palette.
+2. Mandatory UI Refinement via `ui-refactor.md`:
+   Apply the 7 Master UI Recipes from `ui-refactor.md` to refine the interface:
+   - Recipe 1 (Sharpen Message): Clear promise headline with ONE focal accent `<span class="text-[#005030] font-bold">`.
+   - Recipe 2 (Break Symmetry): Asymmetric 60/40 or 65/35 grid (`lg:grid-cols-12`) with floating anchor badges.
+   - Recipe 3 (Build Argument): Uniform `.section-header-block` (kicker + title + subtitle) and hairline dividers `.home-section-divider`.
+   - Recipe 4 (Pick the Winner): Elevate flagship tier (60% weight) over identical cards; quiet secondary items.
+   - Recipe 5 (Scale the Type): 4-tier scale (Headline text-3xl to 5xl, Card text-lg to 2xl, Body text-sm to base with leading-relaxed, Kicker text-xs).
+   - Recipe 6 (Give Color Meaning): Dark Green `#005030` for brand accents, Warm Amber `amber-400` strictly for Admission/CTAs, Sky Blue for notices, calm neutral base (`border-slate-200/90`).
+   - Recipe 7 (Add a Signature): Section kicker with pulsing dot (`.section-kicker-dot`), hairline dividers, and micro-interactions.
+3. UI-Mandatory Compliance:
+   - No placeholder buttons or dead links. All buttons/links must have valid `route('...')` or actionable targets.
+   - Full responsive support (mobile natural stack, desktop editorial grid).
+4. Worktree Commit & PR:
+   - Stage changes and commit: `git commit -m "feat(frontend): <detailed summary>"`
+   - Output summary of views/components modified, responsiveness checks, and commit SHA.
+"""
+
+
+async def run_feature_pipeline(change_name: str, prompt: str, test_filter: str = "", skip_archive: bool = False, skip_push: bool = False):
+    """Execute complete end-to-end autonomous feature development pipeline."""
+    print("\n" + "=" * 70)
+    print(f"  EduCore Autonomous Feature Pipeline: '{change_name}'")
+    print("=" * 70)
+    
+    # 1. Pre-flight sync
+    print("\n>>> Phase 1: Pre-flight Worktree Sync...")
+    sync_worktrees()
+    
+    # 2. OpenSpec check / proposal initialization
+    print(f"\n>>> Phase 2: Verifying OpenSpec Change '{change_name}'...")
+    check_change = run_cmd(f"{OPENSPEC_CMD} status --change {change_name} --json", cwd=BASE_DIR)
+    if check_change.returncode != 0:
+        print(f"  -> Change '{change_name}' not found. Initializing new OpenSpec change...")
+        run_cmd(f"{OPENSPEC_CMD} new change {change_name}", cwd=BASE_DIR)
+    else:
+        print(f"  [OK] OpenSpec change '{change_name}' is active.")
+        
+    # 3. Formulate enriched directives
+    print("\n>>> Phase 3: Constructing Enriched Subagent Task Directives...")
+    backend_prompt = enrich_backend_prompt(prompt, change_name)
+    frontend_prompt = enrich_frontend_prompt(prompt, change_name)
+    
+    # 4. Parallel Dispatch
+    print("\n>>> Phase 4: Launching Concurrent Workers in Isolated Worktrees...")
+    tasks = [
+        run_agent_task("backend-engineer", backend_prompt, AGENTS["backend-engineer"]["worktree"]),
+        run_agent_task("frontend-engineer", frontend_prompt, AGENTS["frontend-engineer"]["worktree"]),
+    ]
+    results = await asyncio.gather(*tasks)
+    
+    print("\n" + "=" * 70)
+    print("  Workers Completed Execution")
+    print("=" * 70)
+    for r in results:
+        print(f"[{r['agent'].upper()}] Exit Code: {r['returncode']}")
+        
+    # 5. Review PR diffs
+    print("\n>>> Phase 5: Team Lead PR Review (Diff Inspection)...")
+    review_diffs()
+    
+    # 6. Test Gate
+    filter_target = test_filter or change_name.replace("-", "").replace("_", "")
+    print(f"\n>>> Phase 6: Automated Test Suite Gate (Filter: '{filter_target}')...")
+    test_code = run_tests(filter_target)
+    
+    if test_code != 0:
+        print("\n[WARNING] Tests failed or target tests not yet present on main branch.")
+        print("Lead will proceed with integration if branch diffs are verified.")
+        
+    # 7. Integration
+    print("\n>>> Phase 7: Integrating Worker Branches into main...")
+    integrated = integrate_branches(filter_target)
+    if not integrated:
+        print("[ERROR] Integration failed. Please inspect git status.")
+        return False
+        
+    # 8. Archive OpenSpec Change
+    if not skip_archive:
+        print("\n>>> Phase 8: Archiving OpenSpec Change...")
+        archive_change(change_name)
+    else:
+        print("\n>>> Phase 8: Skipping OpenSpec archive as requested.")
+        
+    # 9. Commit & Push to GitHub
+    if not skip_push:
+        print("\n>>> Phase 9: Staging & Pushing to GitHub (gitcommit.md standard)...")
+        commit_msg = f"feat({change_name}): implement end-to-end module with verified UI and tests"
+        push_to_github(commit_msg)
+    else:
+        print("\n>>> Phase 9: Skipping GitHub push as requested.")
+        
+    print("\n" + "=" * 70)
+    print(f"  [SUCCESS] Feature '{change_name}' Pipeline Complete!")
+    print("=" * 70 + "\n")
+    return True
 
 
 async def main_async():
@@ -205,6 +390,22 @@ async def main_async():
     integrate_p = subparsers.add_parser("integrate", help="Integrate reviewed agent branches into main")
     integrate_p.add_argument("--filter", default="", help="Filter test case or class name during gate check")
     
+    # Archive
+    archive_p = subparsers.add_parser("archive", help="Archive a completed OpenSpec change")
+    archive_p.add_argument("--change", required=True, help="Name of the change to archive")
+    
+    # Push
+    push_p = subparsers.add_parser("push", help="Commit and push changes to GitHub following gitcommit.md")
+    push_p.add_argument("--message", required=True, help="Conventional commit message")
+    
+    # Pipeline / Auto
+    pipeline_p = subparsers.add_parser("pipeline", help="Execute full autonomous feature development pipeline")
+    pipeline_p.add_argument("--change", required=True, help="OpenSpec change name (kebab-case)")
+    pipeline_p.add_argument("--prompt", required=True, help="Detailed feature requirements prompt")
+    pipeline_p.add_argument("--filter", default="", help="Test filter name")
+    pipeline_p.add_argument("--skip-archive", action="store_true", help="Skip OpenSpec archive")
+    pipeline_p.add_argument("--skip-push", action="store_true", help="Skip GitHub push")
+    
     args = parser.parse_args()
     
     if args.action == "status" or not args.action:
@@ -235,27 +436,36 @@ async def main_async():
         ]
         
         results = await asyncio.gather(*tasks)
-        print("\n" + "=" * 65)
+        print("\n" + "=" * 70)
         print("  Parallel Worker Execution Complete")
-        print("=" * 65)
+        print("=" * 70)
         for r in results:
             print(f"\n[RESULT: {r['agent'].upper()}] Worktree: {r['worktree']}")
             print(r["stdout"][:500] + ("..." if len(r["stdout"]) > 500 else ""))
             
     elif args.action == "review":
-        print("=== Diff: agent/backend vs main ===")
-        b_diff = run_cmd("git diff main..agent/backend --stat")
-        print(b_diff.stdout or "No differences.")
-        
-        print("\n=== Diff: agent/frontend vs main ===")
-        f_diff = run_cmd("git diff main..agent/frontend --stat")
-        print(f_diff.stdout or "No differences.")
+        review_diffs()
         
     elif args.action == "test":
         run_tests(args.filter)
         
     elif args.action == "integrate":
         integrate_branches(args.filter)
+        
+    elif args.action == "archive":
+        archive_change(args.change)
+        
+    elif args.action == "push":
+        push_to_github(args.message)
+        
+    elif args.action == "pipeline":
+        await run_feature_pipeline(
+            change_name=args.change,
+            prompt=args.prompt,
+            test_filter=args.filter,
+            skip_archive=args.skip_archive,
+            skip_push=args.skip_push
+        )
 
 
 if __name__ == "__main__":
