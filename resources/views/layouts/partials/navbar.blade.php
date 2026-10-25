@@ -135,8 +135,8 @@
                 </div>
 
                 {{-- News --}}
-                <div class="snhs-nav-item">
-                    <a href="{{ route('frontend.notices.index') }}" class="snhs-nav-link">সংবাদ</a>
+                <div class="snhs-nav-item {{ request()->routeIs('frontend.news*') ? 'is-active' : '' }}">
+                    <a href="{{ route('frontend.news.index') }}" class="snhs-nav-link">সংবাদ</a>
                 </div>
 
                 {{-- Events --}}
@@ -248,7 +248,7 @@
             </div>
 
             <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link {{ request()->routeIs('frontend.notices*') ? 'is-active' : '' }}">নোটিশ বোর্ড</a>
-            <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link">সংবাদ</a>
+            <a href="{{ route('frontend.news.index') }}" class="snhs-mobile-link {{ request()->routeIs('frontend.news*') ? 'is-active' : '' }}">সংবাদ</a>
             <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link">ইভেন্ট</a>
             <a href="{{ route('frontend.home') }}#gallery" class="snhs-mobile-link" @click="mobileMenuOpen = false">ছবির গ্যালারি</a>
             <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link">ছুটির দিন</a>
