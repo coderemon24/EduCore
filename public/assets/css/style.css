@@ -1733,4 +1733,23 @@ section[id],
     transform: translateY(0) scale(0.98) !important;
 }
 
+/* ==========================================================================
+   Clickable Cursor & Pointer Hover State Enforcement
+   ========================================================================== */
+a,
+button,
+[role="button"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+select,
+summary,
+.cursor-pointer,
+.event-card,
+.snhs-nav-link,
+.snhs-mobile-link,
+[onclick] {
+    cursor: pointer !important;
+}
+
 
