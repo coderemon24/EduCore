@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Frontend\AcademicController;
 use App\Http\Controllers\Frontend\ContactController;
+use App\Http\Controllers\Frontend\EventController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\NewsController;
 use App\Http\Controllers\Frontend\NoticeController;
@@ -42,6 +43,10 @@ Route::middleware(['web', 'frontend.school'])->name('frontend.')->group(function
     // News & Media Portal
     Route::get('/news', [NewsController::class, 'index'])->name('news.index');
     Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
+
+    // Events & Institutional Calendar
+    Route::get('/events', [EventController::class, 'index'])->name('events.index');
+    Route::get('/events/{slug}', [EventController::class, 'show'])->name('events.show');
 
     // Contact Us & Inquiry Form
     Route::get('/contact', [ContactController::class, 'index'])->name('contact');
