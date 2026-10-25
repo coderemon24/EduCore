@@ -86,7 +86,7 @@ python scripts/orchestrator.py run-parallel \
      ```
    - Worker fixes and re-commits. Re-review until 100% clean and verified.
 
-### Step 6: Integration, OpenSpec Archive & GitHub Push
+### Step 6: Integration, OpenSpec Archive & Mandatory User Review Gate
 1. **Integrate Worker Branches**:
    ```bash
    python scripts/orchestrator.py integrate --filter=<FeatureName>
@@ -95,13 +95,25 @@ python scripts/orchestrator.py run-parallel \
    ```bash
    openspec.cmd archive <change-name> --yes
    ```
-3. **Auto Commit & Push to GitHub**:
-   Follow [gitcommit.md](file:///c:/laragon/www/laravel-school/gitcommit.md):
-   ```bash
-   git add .
-   git commit -m "feat(<module>): <clear description of changes>"
-   git push -u origin main
-   ```
+3. **MANDATORY USER REVIEW GATE (Never Auto-Push without User Approval)**:
+   - The Team Lead **MUST NEVER** push directly to GitHub without explicit user permission.
+   - Present a detailed, structured review summary to the user:
+     - **Backend Changes**: Models, Migrations, Controllers, FormRequests, and Adversarial Tests.
+     - **Frontend Changes**: Blade templates, UI Recipe compliance (`ui-refactor.md`), and responsive layout proofs.
+     - **Quality & Test Proof**: Confirmation of green test suites and zero N+1 queries.
+   - Explicitly prompt the user: *"Local implementation, verification, and integration are complete. Please review the changes. When you are satisfied and give the command (e.g., 'push', 'approved'), I will deploy/push to GitHub main."*
+   - **Pause and wait for the user's explicit command/approval.**
+4. **Push to GitHub (Only Upon Explicit User Command)**:
+   - ONLY when the user gives their review and explicitly commands to push:
+     ```bash
+     python scripts/orchestrator.py push --message "feat(<module>): <clear description of changes>"
+     ```
+     or
+     ```bash
+     git add .
+     git commit -m "feat(<module>): <clear description of changes>"
+     git push -u origin main
+     ```
 
 ---
 

@@ -109,10 +109,21 @@ Archive the completed change:
 openspec.cmd archive <change-name> --yes
 ```
 
-### Step 11: Auto Commit & Push to GitHub
-Follow [gitcommit.md](file:///c:/laragon/www/laravel-school/gitcommit.md) standards:
-```bash
-git add .
-git commit -m "feat(<change-name>): implement end-to-end module with verified UI and tests"
-git push -u origin main
-```
+### Step 11: Mandatory User Review Gate
+- The Team Lead **MUST NEVER** push directly to GitHub without explicit user permission.
+- Present a detailed summary of all implemented features, views, DB changes, and test results to the user.
+- Ask the user to review the work:
+  > *"Feature `<change-name>` is built, tested, and integrated locally on `main`. Please inspect and review the changes. When you are ready and confirm, give me the command to push to GitHub main."*
+- **Pause and wait for user's explicit command/confirmation.**
+
+### Step 12: GitHub Commit & Push (Only Upon User Command)
+- Once the user confirms/commands to push:
+  ```bash
+  python scripts/orchestrator.py push --message "feat(<change-name>): implement verified module"
+  ```
+  or
+  ```bash
+  git add .
+  git commit -m "feat(<change-name>): implement end-to-end module with verified UI and tests"
+  git push -u origin main
+  ```

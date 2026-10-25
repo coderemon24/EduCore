@@ -53,7 +53,17 @@ The multi-agent system uses isolated **Git Worktrees** to eliminate file collisi
                │ Subagent Feedback Loop │  │ Phase 4: Integration        │
                │ (Dispatch targeted fix)│  │ - Merge to main             │
                └────────────────────────┘  │ - OpenSpec Archive Change   │
-                                           │ - Push to GitHub (gitcommit)│
+                                           └──────────────┬──────────────┘
+                                                          ▼
+                                           ┌─────────────────────────────┐
+                                           │ Mandatory User Review Gate  │
+                                           │ (Wait for User Approval)    │
+                                           └──────────────┬──────────────┘
+                                                          │ User gives command
+                                                          ▼
+                                           ┌─────────────────────────────┐
+                                           │ Phase 5: GitHub Push        │
+                                           │ (git push origin main)      │
                                            └─────────────────────────────┘
 ```
 
@@ -107,13 +117,14 @@ The multi-agent system uses isolated **Git Worktrees** to eliminate file collisi
   - **Iterative Feedback Loop**: If issues are found, dispatches corrective tasks to subagents until clean.
   - Merges approved branches (`python scripts/orchestrator.py integrate`).
   - Archives OpenSpec change (`openspec.cmd archive <name> --yes`).
-  - Staged commit and push to GitHub following [gitcommit.md](file:///c:/laragon/www/laravel-school/gitcommit.md) (`git push -u origin main`).
+  - **Mandatory User Review Gate**: Presents changes & test proofs to the user, waits for explicit review & command.
+  - Deploys/pushes to GitHub (`python scripts/orchestrator.py push` or `git push -u origin main`) **only after user command**.
 
 ---
 
 ## 3. Single-Command Autonomous Execution Pipeline
 
-You can run the entire lifecycle from planning to GitHub push with a single command:
+You can run the entire lifecycle up to the User Review Gate with a single command:
 
 ```bash
 python scripts/orchestrator.py pipeline \
@@ -121,7 +132,7 @@ python scripts/orchestrator.py pipeline \
   --prompt "Build an online admission application module where prospective students can submit applications, view application status, and administrators can review submissions."
 ```
 
-### What this single command executes automatically:
+### What this command executes automatically:
 1. **Sync**: Merges `main` into all worktrees.
 2. **OpenSpec Propose**: Creates or validates the change in `openspec/changes/student-admission-portal/`.
 3. **Enrich Directives**: Injects DB optimization, adversarial testing, and `ui-refactor.md` rules into worker prompts.
@@ -130,7 +141,8 @@ python scripts/orchestrator.py pipeline \
 6. **Test Gate**: Runs the Laravel test suite (`php artisan test`).
 7. **Integrate**: Merges `agent/backend` and `agent/frontend` cleanly into `main`.
 8. **Archive**: Archives the change via `openspec.cmd archive student-admission-portal --yes`.
-9. **GitHub Push**: Creates a conventional commit message and pushes to `origin/main` following `gitcommit.md`.
+9. **Mandatory User Review Gate (CLI Prompt)**: Halts and asks you to review changes before any remote deployment.
+10. **Push to GitHub**: Executes ONLY after you approve/give the command (`python scripts/orchestrator.py push --message "feat(...)"`).
 
 ---
 

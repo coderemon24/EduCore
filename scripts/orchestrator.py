@@ -336,7 +336,7 @@ MANDATORY UI/UX & REFACTORING STANDARDS:
 """
 
 
-async def run_feature_pipeline(change_name: str, prompt: str, test_filter: str = "", skip_archive: bool = False, skip_push: bool = False):
+async def run_feature_pipeline(change_name: str, prompt: str, test_filter: str = "", skip_archive: bool = False, skip_push: bool = False, auto_push: bool = False):
     """Execute complete end-to-end autonomous feature development pipeline."""
     print("\n" + "=" * 70)
     print(f"  EduCore Autonomous Feature Pipeline: '{change_name}'")
@@ -401,16 +401,42 @@ async def run_feature_pipeline(change_name: str, prompt: str, test_filter: str =
     else:
         print("\n>>> Phase 8: Skipping OpenSpec archive as requested.")
         
-    # 9. Commit & Push to GitHub
-    if not skip_push:
-        print("\n>>> Phase 9: Staging & Pushing to GitHub (gitcommit.md standard)...")
+    # 9. User Review Gate & Push to GitHub
+    print("\n" + "=" * 70)
+    print("  PHASE 9: USER REVIEW GATE (Inspection & Approval)")
+    print("=" * 70)
+    print(f"Feature '{change_name}' has been successfully built, tested, and integrated into local 'main'.")
+    print("OpenSpec change has been archived.")
+    print("\nLocal verification complete. Awaiting user review before remote deployment.")
+    
+    do_push = False
+    if auto_push:
+        print("[ORCHESTRATOR] --auto-push flag detected. Proceeding with GitHub push...")
+        do_push = True
+    elif skip_push:
+        print("[ORCHESTRATOR] Push skipped via --skip-push.")
+    else:
+        try:
+            user_input = input("\n>>> Would you like to push these changes to GitHub 'main' now? [y/N]: ").strip().lower()
+            if user_input in ("y", "yes"):
+                do_push = True
+            else:
+                print("\n[ORCHESTRATOR] Push skipped by user.")
+                print(f"Inspect your changes. When ready to deploy, run:")
+                print(f'  python scripts/orchestrator.py push --message "feat({change_name}): <summary>"')
+        except (EOFError, KeyboardInterrupt):
+            print("\n[ORCHESTRATOR] Non-interactive or interrupted session. Push withheld.")
+            print(f'To push manually when ready, run: python scripts/orchestrator.py push --message "feat({change_name}): <summary>"')
+            
+    if do_push:
+        print("\n>>> Staging & Pushing to GitHub (gitcommit.md standard)...")
         commit_msg = f"feat({change_name}): implement end-to-end module with verified UI and tests"
         push_to_github(commit_msg)
     else:
-        print("\n>>> Phase 9: Skipping GitHub push as requested.")
+        print("\n>>> Work tree is clean and ready for your review on branch 'main'.")
         
     print("\n" + "=" * 70)
-    print(f"  [SUCCESS] Feature '{change_name}' Pipeline Complete!")
+    print(f"  [COMPLETED] Feature '{change_name}' Ready for User Review!")
     print("=" * 70 + "\n")
     return True
 
@@ -464,6 +490,7 @@ async def main_async():
     pipeline_p.add_argument("--filter", default="", help="Test filter name")
     pipeline_p.add_argument("--skip-archive", action="store_true", help="Skip OpenSpec archive")
     pipeline_p.add_argument("--skip-push", action="store_true", help="Skip GitHub push")
+    pipeline_p.add_argument("--auto-push", action="store_true", help="Bypass interactive user review prompt and push immediately")
     
     args = parser.parse_args()
     
@@ -526,7 +553,8 @@ async def main_async():
             prompt=args.prompt,
             test_filter=args.filter,
             skip_archive=args.skip_archive,
-            skip_push=args.skip_push
+            skip_push=args.skip_push,
+            auto_push=args.auto_push
         )
 
 
