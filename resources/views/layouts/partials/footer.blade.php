@@ -60,100 +60,103 @@
                 </div>
             </div>
 
-            {{-- Quick links --}}
-            <div class="lg:col-span-2 space-y-4">
-                <h3 class="text-white font-bold text-sm sm:text-[15px] tracking-wide pb-2 border-b border-emerald-500/20 flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                    <span>দ্রুত লিংক</span>
-                </h3>
-                <ul class="space-y-2.5 text-xs sm:text-[13px]">
-                    <li>
-                        <a href="{{ route('frontend.home') }}" class="group flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
-                            <i class="fa-solid fa-chevron-right text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
-                            <span>প্রচ্ছদ (Home)</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('frontend.about') }}" class="group flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
-                            <i class="fa-solid fa-chevron-right text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
-                            <span>বিদ্যালয় পরিচিতি</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('frontend.academic.routine') }}" class="group flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
-                            <i class="fa-solid fa-chevron-right text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
-                            <span>ক্লাস ও পরীক্ষা রুটিন</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('frontend.teachers.index') }}" class="group flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
-                            <i class="fa-solid fa-chevron-right text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
-                            <span>শিক্ষক ও কর্মচারীবৃন্দ</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('frontend.notices.index') }}" class="group flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
-                            <i class="fa-solid fa-chevron-right text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
-                            <span>নোটিশ বোর্ড</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('frontend.events.index') }}" class="group flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
-                            <i class="fa-solid fa-chevron-right text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
-                            <span>ইভেন্ট ও ক্যালেন্ডার</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('frontend.contact') }}" class="group flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
-                            <i class="fa-solid fa-chevron-right text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
-                            <span>যোগাযোগ ও অবস্থান</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            {{-- Quick links & Services: Side-by-Side (2 cols) on Mobile, Seamless on Tablet & Desktop --}}
+            <div class="col-span-1 md:col-span-1 lg:col-span-4 grid grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+                {{-- Quick links --}}
+                <div class="space-y-4">
+                    <h3 class="text-white font-bold text-sm sm:text-[15px] tracking-wide pb-2 border-b border-emerald-500/20 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                        <span>দ্রুত লিংক</span>
+                    </h3>
+                    <ul class="space-y-2.5 text-xs sm:text-[13px]">
+                        <li>
+                            <a href="{{ route('frontend.home') }}" class="group flex items-center gap-1.5 sm:gap-2 text-slate-300 hover:text-white transition-colors cursor-pointer">
+                                <i class="fa-solid fa-chevron-right shrink-0 text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
+                                <span>প্রচ্ছদ (Home)</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('frontend.about') }}" class="group flex items-center gap-1.5 sm:gap-2 text-slate-300 hover:text-white transition-colors cursor-pointer">
+                                <i class="fa-solid fa-chevron-right shrink-0 text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
+                                <span>বিদ্যালয় পরিচিতি</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('frontend.academic.routine') }}" class="group flex items-center gap-1.5 sm:gap-2 text-slate-300 hover:text-white transition-colors cursor-pointer">
+                                <i class="fa-solid fa-chevron-right shrink-0 text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
+                                <span>ক্লাস ও রুটিন</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('frontend.teachers.index') }}" class="group flex items-center gap-1.5 sm:gap-2 text-slate-300 hover:text-white transition-colors cursor-pointer">
+                                <i class="fa-solid fa-chevron-right shrink-0 text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
+                                <span>শিক্ষকবৃন্দ</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('frontend.notices.index') }}" class="group flex items-center gap-1.5 sm:gap-2 text-slate-300 hover:text-white transition-colors cursor-pointer">
+                                <i class="fa-solid fa-chevron-right shrink-0 text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
+                                <span>নোটিশ বোর্ড</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('frontend.events.index') }}" class="group flex items-center gap-1.5 sm:gap-2 text-slate-300 hover:text-white transition-colors cursor-pointer">
+                                <i class="fa-solid fa-chevron-right shrink-0 text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
+                                <span>ইভেন্ট ও আয়োজন</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('frontend.contact') }}" class="group flex items-center gap-1.5 sm:gap-2 text-slate-300 hover:text-white transition-colors cursor-pointer">
+                                <i class="fa-solid fa-chevron-right shrink-0 text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
+                                <span>যোগাযোগ</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
-            {{-- Services --}}
-            <div class="lg:col-span-2 space-y-4">
-                <h3 class="text-white font-bold text-sm sm:text-[15px] tracking-wide pb-2 border-b border-emerald-500/20 flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                    <span>সেবাসমূহ</span>
-                </h3>
-                <ul class="space-y-2.5 text-xs sm:text-[13px]">
-                    <li>
-                        <a href="{{ route('frontend.contact') }}" class="group flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
-                            <i class="fa-solid fa-chevron-right text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
-                            <span>অনলাইন ভর্তি আবেদন</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('frontend.notices.index') }}" class="group flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
-                            <i class="fa-solid fa-chevron-right text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
-                            <span>ফলাফল ও ট্রান্সক্রিপ্ট</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('frontend.academic.routine') }}" class="group flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
-                            <i class="fa-solid fa-chevron-right text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
-                            <span>সিলেবাস ও পরীক্ষা সূচি</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ url('/admin/dashboard') }}" class="group flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
-                            <i class="fa-solid fa-chevron-right text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
-                            <span>শিক্ষক ও অভিভাবক পোর্টাল</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('frontend.contact') }}" class="group flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
-                            <i class="fa-solid fa-chevron-right text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
-                            <span>অভিযোগ ও মতামত বক্স</span>
-                        </a>
-                    </li>
-                </ul>
+                {{-- Services --}}
+                <div class="space-y-4">
+                    <h3 class="text-white font-bold text-sm sm:text-[15px] tracking-wide pb-2 border-b border-emerald-500/20 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                        <span>সেবাসমূহ</span>
+                    </h3>
+                    <ul class="space-y-2.5 text-xs sm:text-[13px]">
+                        <li>
+                            <a href="{{ route('frontend.contact') }}" class="group flex items-center gap-1.5 sm:gap-2 text-slate-300 hover:text-white transition-colors cursor-pointer">
+                                <i class="fa-solid fa-chevron-right shrink-0 text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
+                                <span>ভর্তি আবেদন</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('frontend.notices.index') }}" class="group flex items-center gap-1.5 sm:gap-2 text-slate-300 hover:text-white transition-colors cursor-pointer">
+                                <i class="fa-solid fa-chevron-right shrink-0 text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
+                                <span>ফলাফল ও গ্রেড</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('frontend.academic.routine') }}" class="group flex items-center gap-1.5 sm:gap-2 text-slate-300 hover:text-white transition-colors cursor-pointer">
+                                <i class="fa-solid fa-chevron-right shrink-0 text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
+                                <span>সিলেবাস সূচি</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/admin/dashboard') }}" class="group flex items-center gap-1.5 sm:gap-2 text-slate-300 hover:text-white transition-colors cursor-pointer">
+                                <i class="fa-solid fa-chevron-right shrink-0 text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
+                                <span>অভিভাবক পোর্টাল</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('frontend.contact') }}" class="group flex items-center gap-1.5 sm:gap-2 text-slate-300 hover:text-white transition-colors cursor-pointer">
+                                <i class="fa-solid fa-chevron-right shrink-0 text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
+                                <span>মতামত ও অভিযোগ</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
             {{-- Government portals --}}
-            <div class="lg:col-span-3 space-y-4">
+            <div class="col-span-1 md:col-span-2 lg:col-span-3 space-y-4">
                 <h3 class="text-white font-bold text-sm sm:text-[15px] tracking-wide pb-2 border-b border-emerald-500/20 flex items-center gap-2">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                     <span>সরকারি পোর্টাল ও সহায়তা</span>
