@@ -140,8 +140,8 @@
                 </div>
 
                 {{-- Events --}}
-                <div class="snhs-nav-item">
-                    <a href="{{ route('frontend.notices.index') }}" class="snhs-nav-link">ইভেন্ট</a>
+                <div class="snhs-nav-item {{ request()->routeIs('frontend.events*') ? 'is-active' : '' }}">
+                    <a href="{{ route('frontend.events.index') }}" class="snhs-nav-link">ইভেন্ট</a>
                 </div>
 
                 {{-- Gallery --}}
@@ -249,7 +249,7 @@
 
             <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link {{ request()->routeIs('frontend.notices*') ? 'is-active' : '' }}">নোটিশ বোর্ড</a>
             <a href="{{ route('frontend.news.index') }}" class="snhs-mobile-link {{ request()->routeIs('frontend.news*') ? 'is-active' : '' }}">সংবাদ</a>
-            <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link">ইভেন্ট</a>
+            <a href="{{ route('frontend.events.index') }}" class="snhs-mobile-link {{ request()->routeIs('frontend.events*') ? 'is-active' : '' }}">ইভেন্ট</a>
             <a href="{{ route('frontend.home') }}#gallery" class="snhs-mobile-link" @click="mobileMenuOpen = false">ছবির গ্যালারি</a>
             <a href="{{ route('frontend.notices.index') }}" class="snhs-mobile-link">ছুটির দিন</a>
             <a href="{{ route('frontend.contact') }}#enroll" class="snhs-mobile-link bg-amber-400 text-slate-950 font-bold hover:bg-amber-300">ভর্তি আবেদন (অনলাইন)</a>
