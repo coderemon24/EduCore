@@ -98,6 +98,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ route('frontend.events.index') }}" class="group flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
+                            <i class="fa-solid fa-chevron-right text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
+                            <span>ইভেন্ট ও ক্যালেন্ডার</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('frontend.contact') }}" class="group flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
                             <i class="fa-solid fa-chevron-right text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
                             <span>যোগাযোগ ও অবস্থান</span>
