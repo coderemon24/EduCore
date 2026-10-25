@@ -46,13 +46,17 @@ Whenever the user specifies a feature or module requirement:
      `python scripts/orchestrator.py dispatch --agent <agent-name> --prompt "Fix: <details of issue>"`
    - Repeat until both worker branches pass all reviews and tests.
 
-### Phase 4: Integration, Archive & GitHub Push
+### Phase 4: Integration, Local Archive & Mandatory User Review Gate
 1. **Integrate Branches**:
    `python scripts/orchestrator.py integrate --filter=<FeatureName>`
-2. **Archive OpenSpec Change**:
+2. **Archive OpenSpec Change Locally**:
    `openspec.cmd archive <change-name> --yes`
-3. **Git Commit & Push**:
-   Follow [gitcommit.md](file:///c:/laragon/www/laravel-school/gitcommit.md) to stage all changes, formulate conventional commit message, and push to main GitHub:
+   *(OpenSpec is strictly local. NEVER create a git commit for OpenSpec archive or changes).*
+3. **Mandatory User Review Gate (Never Auto-Push without User Approval)**:
+   - Present detailed review summary (backend, frontend, test verification).
+   - Explicitly request user approval before pushing.
+4. **Git Commit & Push (Only Upon User Approval)**:
+   Follow [gitcommit.md](file:///c:/laragon/www/laravel-school/gitcommit.md) to commit and push only verified module code to main GitHub:
    ```bash
    git add .
    git commit -m "feat(<module>): <comprehensive description of changes>"

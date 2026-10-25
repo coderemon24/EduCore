@@ -24,3 +24,6 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# OpenSpec (strictly local agent planning & archives, never committed to GitHub)
+/openspec/

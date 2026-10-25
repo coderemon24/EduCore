@@ -14,7 +14,7 @@ Use this workflow to develop, test, refine, review, integrate, and deploy any fe
 - Receive the feature requirements from the user (from `/opsx-explore`, detailed prompt, or change specifications).
 - Identify the target capability and derive a kebab-case change name (e.g., `routine-management`, `admission-portal`, `class-syllabus`).
 
-### Step 2: OpenSpec Change Setup
+### Step 2: OpenSpec Change Setup (Strictly Local)
 1. Verify OpenSpec status or initialize the change:
    ```bash
    openspec.cmd new change <change-name>
@@ -28,6 +28,7 @@ Use this workflow to develop, test, refine, review, integrate, and deploy any fe
    ```bash
    openspec.cmd instructions apply --change <change-name> --json
    ```
+*(Note: OpenSpec is strictly a local planning tool. NEVER stage, commit, or push OpenSpec files to GitHub).*
 
 ### Step 3: Establish Shared Contracts
 Extract and verify shared interface contracts:
@@ -103,11 +104,12 @@ Merge verified worker branches into `main`:
 python scripts/orchestrator.py integrate --filter=<FeatureName>
 ```
 
-### Step 10: OpenSpec Archive
-Archive the completed change:
+### Step 10: OpenSpec Local Archive (Never Commit to Git)
+Archive the completed change locally:
 ```bash
 openspec.cmd archive <change-name> --yes
 ```
+*(Note: Archiving moves the change files locally to `openspec/changes/archive/`. Do NOT stage, commit, or push OpenSpec archive changes to GitHub. Commits must strictly contain feature code).*
 
 ### Step 11: Mandatory User Review Gate
 - The Team Lead **MUST NEVER** push directly to GitHub without explicit user permission.

@@ -116,7 +116,7 @@ The multi-agent system uses isolated **Git Worktrees** to eliminate file collisi
   - Runs automated test suite and edge-case testing (`python scripts/orchestrator.py test`).
   - **Iterative Feedback Loop**: If issues are found, dispatches corrective tasks to subagents until clean.
   - Merges approved branches (`python scripts/orchestrator.py integrate`).
-  - Archives OpenSpec change (`openspec.cmd archive <name> --yes`).
+  - Archives OpenSpec change locally (`openspec.cmd archive <name> --yes`). *(OpenSpec is strictly local; never committed to Git).*
   - **Mandatory User Review Gate**: Presents changes & test proofs to the user, waits for explicit review & command.
   - Deploys/pushes to GitHub (`python scripts/orchestrator.py push` or `git push -u origin main`) **only after user command**.
 
@@ -140,7 +140,7 @@ python scripts/orchestrator.py pipeline \
 5. **PR Review**: Generates git diffs between agent branches and `main`.
 6. **Test Gate**: Runs the Laravel test suite (`php artisan test`).
 7. **Integrate**: Merges `agent/backend` and `agent/frontend` cleanly into `main`.
-8. **Archive**: Archives the change via `openspec.cmd archive student-admission-portal --yes`.
+8. **Archive (Local Only)**: Archives the change via `openspec.cmd archive student-admission-portal --yes` (remains local, never committed to Git).
 9. **Mandatory User Review Gate (CLI Prompt)**: Halts and asks you to review changes before any remote deployment.
 10. **Push to GitHub**: Executes ONLY after you approve/give the command (`python scripts/orchestrator.py push --message "feat(...)"`).
 
