@@ -169,152 +169,172 @@
 
                 {{-- 1. Flagship Featured Event (Pick the Winner Recipe 4) --}}
                 @if($featuredEvent)
-                    <div class="event-card bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-xs hover-card-lift gsap-reveal">
-                        <div class="grid grid-cols-1 md:grid-cols-12">
-                            
-                            {{-- Visual Image Container (5 Cols) --}}
-                            <div class="md:col-span-5 relative bg-slate-100 min-h-[220px] md:min-h-[280px] overflow-hidden">
-                                <img src="{{ asset($featuredEvent['image_url']) }}"
-                                     alt="{{ $featuredEvent['title'] }}"
-                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                     onerror="this.onerror=null; this.src='{{ asset('assets/images/news-1.jpg') }}';">
-                                
-                                {{-- Pulsing Status Badge --}}
-                                <div class="absolute top-3 left-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-xs text-[#005030] text-[11px] font-bold shadow-xs">
+                    <a href="{{ route('frontend.events.show', $featuredEvent['slug']) }}"
+                       class="event-card bg-white border border-slate-200/90 rounded-2xl shadow-xs overflow-hidden gsap-reveal hover-card-lift group block cursor-pointer transition-all duration-300">
+                        {{-- Top Wide Visual Frame --}}
+                        <div class="relative overflow-hidden aspect-[16/9] sm:aspect-[21/9] bg-slate-100">
+                            <img src="{{ asset($featuredEvent['image_url']) }}"
+                                 alt="{{ $featuredEvent['title'] }}"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                                 onerror="this.onerror=null; this.src='{{ asset('assets/images/news-2.jpg') }}';">
+
+                            {{-- Floating Badges on Image --}}
+                            <div class="absolute top-3.5 left-3.5 flex items-center gap-2">
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-white/95 text-[#005030] shadow-xs backdrop-blur-xs border border-emerald-100">
                                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                                     <span>{{ $featuredEvent['status_text'] }}</span>
-                                </div>
+                                </span>
 
-                                {{-- Category Tag --}}
-                                <div class="absolute bottom-3 left-3">
-                                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-lg text-[11px] font-bold bg-slate-950/80 text-white backdrop-blur-xs">
-                                        {{ $featuredEvent['category'] }}
-                                    </span>
-                                </div>
+                                <span class="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-slate-950/80 backdrop-blur-xs text-white shadow-xs">
+                                    {{ $featuredEvent['category'] }}
+                                </span>
                             </div>
 
-                            {{-- Narrative & Details (7 Cols) --}}
-                            <div class="md:col-span-7 p-5 sm:p-6 flex flex-col justify-between space-y-4">
-                                <div class="space-y-2.5">
-                                    {{-- Calendar Date Pill Bar --}}
-                                    <div class="flex items-center gap-2 text-xs text-slate-500 font-medium">
-                                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-50 text-[#005030] font-bold font-mono">
-                                            <i class="fa-regular fa-calendar-check text-[11px]"></i>
-                                            <span>{{ $featuredEvent['display_date'] }}</span>
-                                        </span>
-                                        <span>•</span>
-                                        <span class="flex items-center gap-1">
-                                            <i class="fa-regular fa-clock text-slate-400"></i>
-                                            <span>{{ $featuredEvent['time'] }}</span>
-                                        </span>
-                                    </div>
-
-                                    <h2 class="text-base sm:text-lg lg:text-xl font-bold text-slate-900 leading-snug hover:text-[#005030] transition-colors">
-                                        <a href="{{ route('frontend.events.show', $featuredEvent['slug']) }}">
-                                            {{ $featuredEvent['title'] }}
-                                        </a>
-                                    </h2>
-
-                                    <p class="text-xs text-slate-600 leading-relaxed line-clamp-3">
-                                        {{ $featuredEvent['excerpt'] }}
-                                    </p>
+                            {{-- Calendar Date Box Overlay --}}
+                            <div class="absolute bottom-3.5 right-3.5 bg-white/95 backdrop-blur-xs rounded-xl px-3 py-1.5 text-center shadow-md border border-slate-200/60 flex items-center gap-2.5">
+                                <div class="text-right">
+                                    <span class="block text-xs font-bold text-slate-800 leading-none">{{ $featuredEvent['date_month'] }} {{ $featuredEvent['date_year'] }}</span>
+                                    <span class="block text-[11px] text-slate-500 font-medium leading-none mt-1">{{ $featuredEvent['time'] }}</span>
                                 </div>
-
-                                {{-- Venue & CTA Footer --}}
-                                <div class="pt-3 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                                    <div class="flex items-center gap-1.5 text-xs text-slate-600">
-                                        <i class="fa-solid fa-location-dot text-[#005030]"></i>
-                                        <span class="line-clamp-1">{{ $featuredEvent['venue'] }}</span>
-                                    </div>
-
-                                    <a href="{{ route('frontend.events.show', $featuredEvent['slug']) }}"
-                                       class="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#005030] hover:bg-emerald-950 text-white text-xs font-bold shadow-2xs transition-all whitespace-nowrap">
-                                        <span>বিস্তারিত সময়সূচি</span>
-                                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                                    </a>
-                                </div>
-
+                                <div class="w-px h-7 bg-slate-200"></div>
+                                <span class="text-xl font-extrabold text-[#005030] leading-none">{{ $featuredEvent['date_day'] }}</span>
                             </div>
-
                         </div>
-                    </div>
+
+                        {{-- Card Body Canvas with High Legibility --}}
+                        <div class="p-5 sm:p-6 space-y-3.5">
+                            {{-- Meta Row --}}
+                            <div class="flex flex-wrap items-center gap-3 text-xs text-slate-500 font-medium">
+                                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-emerald-50 text-[#005030] border border-emerald-200/60">
+                                    <i class="fa-regular fa-calendar-check text-[11px]"></i>
+                                    <span>{{ $featuredEvent['display_date'] }}</span>
+                                </span>
+                                <span>•</span>
+                                <span class="flex items-center gap-1">
+                                    <i class="fa-regular fa-clock text-slate-400"></i>
+                                    <span>{{ $featuredEvent['time'] }}</span>
+                                </span>
+                                <span>•</span>
+                                <span class="flex items-center gap-1">
+                                    <i class="fa-solid fa-location-dot text-slate-400"></i>
+                                    <span class="line-clamp-1">{{ $featuredEvent['venue'] }}</span>
+                                </span>
+                            </div>
+
+                            {{-- Title --}}
+                            <h2 class="text-lg sm:text-2xl font-extrabold text-slate-900 group-hover:text-[#005030] leading-snug transition-colors">
+                                {{ $featuredEvent['title'] }}
+                            </h2>
+
+                            {{-- Excerpt --}}
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                                {{ $featuredEvent['excerpt'] }}
+                            </p>
+
+                            {{-- Action Strip --}}
+                            <div class="pt-3.5 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                                <div class="text-xs text-slate-500 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-user-tie text-[#005030]"></i>
+                                    <span>আয়োজক: <strong class="text-slate-700">{{ $featuredEvent['organizer'] }}</strong></span>
+                                </div>
+
+                                <span class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-[#005030] text-white text-xs font-bold shadow-xs group-hover:bg-emerald-950 transition-all group-hover:scale-102 self-start sm:self-auto">
+                                    <span>পূর্ণাঙ্গ সময়সূচি ও বিস্তারিত</span>
+                                    <i class="fa-solid fa-arrow-right text-[11px] group-hover:translate-x-1 transition-transform"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
                 @endif
 
                 {{-- 2. Secondary Events Grid (2 Columns) --}}
                 @if($eventsList->count() > 0)
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        @foreach($eventsList as $event)
-                            <div class="event-card bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-2xs hover-card-lift flex flex-col justify-between gsap-reveal">
-                                
-                                {{-- Card Media Header --}}
-                                <div class="relative bg-slate-100 h-44 overflow-hidden group">
-                                    <img src="{{ asset($event['image_url']) }}"
-                                         alt="{{ $event['title'] }}"
-                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                         onerror="this.onerror=null; this.src='{{ asset('assets/images/news-2.jpg') }}';">
-                                    
-                                    {{-- Date Box Overlay --}}
-                                    <div class="absolute top-3 left-3 bg-white/95 backdrop-blur-xs rounded-xl p-1.5 text-center min-w-[50px] shadow-xs border border-slate-200/60">
-                                        <span class="block text-sm font-extrabold text-[#005030] leading-none">{{ $event['date_day'] }}</span>
-                                        <span class="block text-[10px] font-bold text-slate-600 leading-tight mt-0.5">{{ $event['date_month'] }}</span>
-                                    </div>
-
-                                    {{-- Status & Category Pills --}}
-                                    <div class="absolute top-3 right-3 flex flex-col items-end gap-1">
-                                        <span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold {{ $event['status_badge'] }} border shadow-2xs">
-                                            {{ $event['status_text'] }}
-                                        </span>
-                                    </div>
-
-                                    <div class="absolute bottom-2.5 left-3">
-                                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold bg-slate-950/75 text-white backdrop-blur-xs">
-                                            {{ $event['category'] }}
-                                        </span>
-                                    </div>
-                                </div>
-
-                                {{-- Card Body Content --}}
-                                <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
-                                    <div class="space-y-2">
-                                        <h3 class="text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#005030] leading-snug line-clamp-2 transition-colors">
-                                            <a href="{{ route('frontend.events.show', $event['slug']) }}">
-                                                {{ $event['title'] }}
-                                            </a>
-                                        </h3>
-
-                                        <p class="text-xs text-slate-600 leading-relaxed line-clamp-2">
-                                            {{ $event['excerpt'] }}
-                                        </p>
-                                    </div>
-
-                                    {{-- Event Meta Details --}}
-                                    <div class="space-y-1.5 pt-2 border-t border-slate-100 text-xs text-slate-500">
-                                        <div class="flex items-center gap-1.5">
-                                            <i class="fa-regular fa-clock text-[#005030] text-[11px] w-3.5"></i>
-                                            <span class="line-clamp-1">{{ $event['time'] }}</span>
-                                        </div>
-                                        <div class="flex items-center gap-1.5">
-                                            <i class="fa-solid fa-location-dot text-[#005030] text-[11px] w-3.5"></i>
-                                            <span class="line-clamp-1">{{ $event['venue'] }}</span>
-                                        </div>
-                                    </div>
-
-                                    {{-- Card Action Footer --}}
-                                    <div class="pt-2 flex items-center justify-between">
-                                        <span class="text-[11px] text-slate-400 font-medium">
-                                            {{ $event['organizer'] }}
-                                        </span>
-                                        <a href="{{ route('frontend.events.show', $event['slug']) }}"
-                                           class="inline-flex items-center gap-1 text-xs font-bold text-[#005030] hover:text-emerald-950 hover:underline transition-colors">
-                                            <span>বিস্তারিত</span>
-                                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                                        </a>
-                                    </div>
-
-                                </div>
-
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-200 pb-2.5">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-[#005030]"></span>
+                                <h3 class="text-sm sm:text-base font-bold text-slate-900 tracking-tight">
+                                    সকল বার্ষিক আয়োজন ও সময়সূচি
+                                </h3>
                             </div>
-                        @endforeach
+                            <span class="text-xs text-slate-500 font-medium">পৃষ্ঠা {{ $eventsList->currentPage() }} এর {{ $eventsList->lastPage() }}</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            @foreach($eventsList as $event)
+                                <a href="{{ route('frontend.events.show', $event['slug']) }}"
+                                   class="event-card bg-white border border-slate-200/90 rounded-2xl shadow-2xs overflow-hidden flex flex-col justify-between gsap-reveal hover-card-lift group transition-all duration-300 block cursor-pointer">
+                                    
+                                    {{-- Card Media Header --}}
+                                    <div class="relative overflow-hidden aspect-[16/10] bg-slate-100">
+                                        <img src="{{ asset($event['image_url']) }}"
+                                             alt="{{ $event['title'] }}"
+                                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                                             onerror="this.onerror=null; this.src='{{ asset('assets/images/news-2.jpg') }}';">
+                                        
+                                        {{-- Date Box Overlay --}}
+                                        <div class="absolute top-3 left-3 bg-white/95 backdrop-blur-xs rounded-xl p-1.5 text-center min-w-[50px] shadow-xs border border-slate-200/60">
+                                            <span class="block text-sm font-extrabold text-[#005030] leading-none">{{ $event['date_day'] }}</span>
+                                            <span class="block text-[10px] font-bold text-slate-600 leading-tight mt-0.5">{{ $event['date_month'] }}</span>
+                                        </div>
+
+                                        {{-- Status & Category Pills --}}
+                                        <div class="absolute top-3 right-3 flex flex-col items-end gap-1">
+                                            <span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold {{ $event['status_badge'] }} border shadow-2xs">
+                                                {{ $event['status_text'] }}
+                                            </span>
+                                        </div>
+
+                                        <div class="absolute bottom-2.5 left-3">
+                                            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold bg-slate-950/75 text-white backdrop-blur-xs">
+                                                {{ $event['category'] }}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    {{-- Card Body Content --}}
+                                    <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
+                                        <div class="space-y-2">
+                                            <div class="flex items-center gap-2 text-[11px] text-slate-500">
+                                                <span class="inline-flex items-center gap-1">
+                                                    <i class="fa-regular fa-clock text-[#005030] text-[10px]"></i>
+                                                    <span class="line-clamp-1">{{ $event['time'] }}</span>
+                                                </span>
+                                            </div>
+
+                                            <h4 class="text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#005030] leading-snug line-clamp-2 transition-colors">
+                                                {{ $event['title'] }}
+                                            </h4>
+
+                                            <p class="text-xs text-slate-600 leading-relaxed line-clamp-2">
+                                                {{ $event['excerpt'] }}
+                                            </p>
+                                        </div>
+
+                                        {{-- Event Meta Details --}}
+                                        <div class="space-y-1.5 pt-2 border-t border-slate-100 text-xs text-slate-500">
+                                            <div class="flex items-center gap-1.5">
+                                                <i class="fa-solid fa-location-dot text-[#005030] text-[11px] w-3.5"></i>
+                                                <span class="line-clamp-1">{{ $event['venue'] }}</span>
+                                            </div>
+                                        </div>
+
+                                        {{-- Card Action Footer --}}
+                                        <div class="pt-2 flex items-center justify-between">
+                                            <span class="text-[11px] text-slate-400 font-medium line-clamp-1 max-w-[140px]">
+                                                {{ $event['organizer'] }}
+                                            </span>
+                                            <span class="inline-flex items-center gap-1 text-xs font-bold text-[#005030] group-hover:text-emerald-950 transition-colors">
+                                                <span>বিস্তারিত</span>
+                                                <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                                            </span>
+                                        </div>
+
+                                    </div>
+
+                                </a>
+                            @endforeach
+                        </div>
                     </div>
 
                     {{-- Pagination Controls --}}
