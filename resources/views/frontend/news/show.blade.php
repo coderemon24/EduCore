@@ -3,6 +3,76 @@
 @section('title', ($news['title'] ?? 'সংবাদ প্রতিবেদন') . ' | ' . ($school->name ?? 'সোনাতলা উচ্চ বিদ্যালয়'))
 @section('meta_description', \Illuminate\Support\Str::limit(strip_tags($news['excerpt'] ?? ''), 160))
 
+@push('styles')
+<style>
+    .share-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.125rem;
+        height: 2.125rem;
+        border-radius: 0.5rem;
+        font-size: 0.8125rem;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid transparent;
+        cursor: pointer;
+        text-decoration: none !important;
+    }
+    /* Facebook */
+    .share-btn.share-fb {
+        background-color: #eff6ff;
+        color: #1877f2;
+        border-color: #bfdbfe;
+    }
+    .share-btn.share-fb:hover {
+        background-color: #1877f2 !important;
+        color: #ffffff !important;
+        border-color: #1877f2 !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(24, 119, 242, 0.35);
+    }
+    /* X (Twitter) */
+    .share-btn.share-tw {
+        background-color: #f8fafc;
+        color: #0f172a;
+        border-color: #e2e8f0;
+    }
+    .share-btn.share-tw:hover {
+        background-color: #0f172a !important;
+        color: #ffffff !important;
+        border-color: #0f172a !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(15, 23, 42, 0.35);
+    }
+    /* WhatsApp */
+    .share-btn.share-wa {
+        background-color: #f0fdf4;
+        color: #16a34a;
+        border-color: #bbf7d0;
+    }
+    .share-btn.share-wa:hover {
+        background-color: #25d366 !important;
+        color: #ffffff !important;
+        border-color: #25d366 !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(37, 211, 102, 0.35);
+    }
+    /* Copy Link */
+    .share-btn.share-copy {
+        background-color: #f1f5f9;
+        color: #475569;
+        border-color: #cbd5e1;
+    }
+    .share-btn.share-copy:hover {
+        background-color: #005030 !important;
+        color: #ffffff !important;
+        border-color: #005030 !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0, 80, 48, 0.35);
+    }
+</style>
+@endpush
+
 @section('content')
 
 {{-- 1. Breadcrumb: Institutional Standard Matching Classes & Notices --}}
@@ -121,7 +191,8 @@
                                target="_blank"
                                rel="noopener noreferrer"
                                aria-label="ফেসবুকে শেয়ার করুন"
-                               class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white flex items-center justify-center text-xs transition-colors">
+                               class="share-btn share-fb"
+                               title="ফেসবুকে শেয়ার করুন">
                                 <i class="fa-brands fa-facebook-f"></i>
                             </a>
 
@@ -129,7 +200,8 @@
                                target="_blank"
                                rel="noopener noreferrer"
                                aria-label="টুইটারে শেয়ার করুন"
-                               class="w-8 h-8 rounded-lg bg-sky-50 text-sky-600 hover:bg-sky-500 hover:text-white flex items-center justify-center text-xs transition-colors">
+                               class="share-btn share-tw"
+                               title="টুইটারে শেয়ার করুন">
                                 <i class="fa-brands fa-x-twitter"></i>
                             </a>
 
@@ -137,14 +209,16 @@
                                target="_blank"
                                rel="noopener noreferrer"
                                aria-label="হোয়াটসঅ্যাপে শেয়ার করুন"
-                               class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 hover:bg-emerald-600 hover:text-white flex items-center justify-center text-xs transition-colors">
+                               class="share-btn share-wa"
+                               title="হোয়াটসঅ্যাপে শেয়ার করুন">
                                 <i class="fa-brands fa-whatsapp"></i>
                             </a>
 
                             <button type="button"
                                     onclick="navigator.clipboard.writeText('{{ url()->current() }}'); alert('সংবাদের লিংকটি কপি করা হয়েছে!');"
                                     aria-label="লিংক কপি করুন"
-                                    class="w-8 h-8 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-700 hover:text-white flex items-center justify-center text-xs transition-colors">
+                                    class="share-btn share-copy"
+                                    title="লিংক কপি করুন">
                                 <i class="fa-solid fa-link"></i>
                             </button>
                         </div>
