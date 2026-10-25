@@ -34,6 +34,7 @@ class FrontendPagesRenderTest extends TestCase
             'frontend.teachers.index',
             'frontend.academic.classes',
             'frontend.academic.routine',
+            'frontend.news.index',
             'frontend.contact',
         ];
 

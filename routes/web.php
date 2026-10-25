@@ -3,6 +3,7 @@
 use App\Http\Controllers\Frontend\AcademicController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\NewsController;
 use App\Http\Controllers\Frontend\NoticeController;
 use App\Http\Controllers\Frontend\TeacherController;
 use Illuminate\Support\Facades\Route;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 | All public routes for the school frontend portal. Multi-tenant
 | school context is automatically resolved via 'frontend.school' middleware.
 | Administrative routes remain loaded via routes/admin.php.
+|
 */
 
 Route::middleware(['web', 'frontend.school'])->name('frontend.')->group(function () {
@@ -36,6 +38,10 @@ Route::middleware(['web', 'frontend.school'])->name('frontend.')->group(function
 
     // Academic Information & Routine
     Route::get('/academic/routine', [AcademicController::class, 'routine'])->name('academic.routine');
+
+    // News & Media Portal
+    Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+    Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
 
     // Contact Us & Inquiry Form
     Route::get('/contact', [ContactController::class, 'index'])->name('contact');
