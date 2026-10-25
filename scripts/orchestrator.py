@@ -122,6 +122,62 @@ def show_status():
     print("=" * 70)
 
 
+def setup_worktrees():
+    """Initialize or repair Git worktrees, .env files, and dependency junctions."""
+    import shutil
+    print("=" * 70)
+    print("  EduCore Orchestrator: Setting Up Worktrees & Dependencies")
+    print("=" * 70)
+    
+    env_source = BASE_DIR / ".env"
+    vendor_source = BASE_DIR / "vendor"
+    node_modules_source = BASE_DIR / "node_modules"
+    
+    for role, cfg in AGENTS.items():
+        wt = cfg["worktree"]
+        branch = cfg["branch"]
+        print(f"\n[SETUP] Configuring {role.upper()} at {wt} (branch: {branch})...")
+        
+        if not wt.exists():
+            b_check = run_cmd(f"git rev-parse --verify {branch}", cwd=BASE_DIR)
+            if b_check.returncode == 0:
+                cmd = f'git worktree add "{wt}" {branch}'
+            else:
+                cmd = f'git worktree add "{wt}" -b {branch}'
+            
+            print(f"  -> Creating worktree: {cmd}")
+            res = run_cmd(cmd, cwd=BASE_DIR)
+            if res.returncode == 0:
+                print(f"     [OK] Worktree created for {branch}.")
+            else:
+                print(f"     [FAIL] Could not create worktree: {res.stderr or res.stdout}")
+                continue
+        else:
+            print(f"  -> Worktree directory already exists.")
+            
+        target_env = wt / ".env"
+        if env_source.exists() and not target_env.exists():
+            shutil.copyfile(env_source, target_env)
+            print(f"     [OK] Copied .env to {wt}")
+            
+        target_vendor = wt / "vendor"
+        if vendor_source.exists() and not target_vendor.exists():
+            res_v = run_cmd(f'cmd /c mklink /J "{target_vendor}" "{vendor_source}"')
+            if res_v.returncode == 0:
+                print(f"     [OK] Linked vendor junction in {wt}")
+                
+        target_nm = wt / "node_modules"
+        if node_modules_source.exists() and not target_nm.exists():
+            res_nm = run_cmd(f'cmd /c mklink /J "{target_nm}" "{node_modules_source}"')
+            if res_nm.returncode == 0:
+                print(f"     [OK] Linked node_modules junction in {wt}")
+                
+    print("\n" + "=" * 70)
+    print("  Setup Complete")
+    print("=" * 70 + "\n")
+    show_status()
+
+
 def sync_worktrees():
     """Synchronize all worktrees with main branch."""
     print("[ORCHESTRATOR] Synchronizing worktrees with 'main'...")
@@ -366,6 +422,9 @@ async def main_async():
     # Status
     subparsers.add_parser("status", help="Show worktree and agent statuses")
     
+    # Setup
+    subparsers.add_parser("setup", help="Initialize or repair worktrees, .env, and junctions")
+    
     # Sync
     subparsers.add_parser("sync", help="Synchronize all worktrees with main")
     
@@ -410,6 +469,9 @@ async def main_async():
     
     if args.action == "status" or not args.action:
         show_status()
+        
+    elif args.action == "setup":
+        setup_worktrees()
         
     elif args.action == "sync":
         sync_worktrees()

@@ -141,6 +141,7 @@ All orchestration actions are controlled via [scripts/orchestrator.py](file:///c
 | Command | Purpose | Example |
 | :--- | :--- | :--- |
 | `status` | Check worktree existence, branches, and git dirty status | `python scripts/orchestrator.py status` |
+| `setup` | Initialize or repair worktrees, branches, .env, and junctions | `python scripts/orchestrator.py setup` |
 | `sync` | Merge latest `main` into all agent worktrees | `python scripts/orchestrator.py sync` |
 | `pipeline` | Full end-to-end autonomous feature lifecycle | `python scripts/orchestrator.py pipeline --change fee-voucher --prompt "..."` |
 | `run-parallel` | Concurrently dispatch backend and frontend agents | `python scripts/orchestrator.py run-parallel --backend "..." --frontend "..."` |
