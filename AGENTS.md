@@ -15,7 +15,7 @@ Zero file collisions: Workers build simultaneously in their dedicated worktrees,
 
 Whenever the user specifies a feature or module requirement (via `/opsx-explore`, `/opsx-propose`, `/opsx-apply`, or a direct prompt):
 
-### Step 1: Requirements & OpenSpec Change Setup
+### Step 1: Requirements & OpenSpec Change Setup (Strictly Local)
 1. Take the user's requirement prompt (or OpenSpec explore output).
 2. Create or verify the OpenSpec change:
    ```bash
@@ -26,6 +26,9 @@ Whenever the user specifies a feature or module requirement (via `/opsx-explore`
    ```bash
    openspec.cmd instructions apply --change <change-name> --json
    ```
+> [!IMPORTANT]
+> **Zero OpenSpec Commits Policy**: OpenSpec is strictly a local architectural planning tool. **NEVER stage or commit OpenSpec files, specs, or changes to Git / GitHub** (no `chore(spec): ...`, `docs(spec): ...`, or `chore(openspec): ...` commits). Commits must strictly contain application source code (`feat`, `fix`, `refactor`).
+
 
 ### Step 2: Architecture Contracts & Worktree Synchronization
 1. **Pre-flight Sync**: Ensure all worktrees are up to date:
@@ -86,15 +89,16 @@ python scripts/orchestrator.py run-parallel \
      ```
    - Worker fixes and re-commits. Re-review until 100% clean and verified.
 
-### Step 6: Integration, OpenSpec Archive & Mandatory User Review Gate
+### Step 6: Integration, OpenSpec Local Archive & Mandatory User Review Gate
 1. **Integrate Worker Branches**:
    ```bash
    python scripts/orchestrator.py integrate --filter=<FeatureName>
    ```
-2. **Archive OpenSpec Change**:
+2. **Archive OpenSpec Change Locally (Never Commit to Git)**:
    ```bash
    openspec.cmd archive <change-name> --yes
    ```
+   *(Note: Archiving organizes files locally in `openspec/changes/archive/`. NEVER create a git commit for OpenSpec archive or changes).*
 3. **MANDATORY USER REVIEW GATE (Never Auto-Push without User Approval)**:
    - The Team Lead **MUST NEVER** push directly to GitHub without explicit user permission.
    - Present a detailed, structured review summary to the user:

@@ -250,11 +250,11 @@ def integrate_branches(test_filter=""):
 
 
 def archive_change(change_name: str):
-    """Archive an OpenSpec change."""
-    print(f"[ORCHESTRATOR] Archiving OpenSpec change '{change_name}'...")
+    """Archive an OpenSpec change locally (never committed to git)."""
+    print(f"[ORCHESTRATOR] Archiving OpenSpec change '{change_name}' locally...")
     res = run_cmd(f"{OPENSPEC_CMD} archive {change_name} --yes", cwd=BASE_DIR)
     if res.returncode == 0:
-        print(f"  [OK] OpenSpec change '{change_name}' archived successfully.")
+        print(f"  [OK] OpenSpec change '{change_name}' archived locally. (Strictly local, not committed to Git).")
         return True
     else:
         print(f"  [FAIL] Could not archive change: {res.stderr or res.stdout}")
@@ -265,6 +265,8 @@ def push_to_github(commit_message: str):
     """Stage, commit, and push changes following gitcommit.md standards."""
     print("[ORCHESTRATOR] Preparing GitHub commit & push (gitcommit.md standard)...")
     run_cmd("git add .", cwd=BASE_DIR)
+    # Ensure openspec is strictly local and never staged or committed
+    run_cmd("git reset HEAD -- openspec", cwd=BASE_DIR)
     
     c_res = run_cmd(f'git commit -m "{commit_message}"', cwd=BASE_DIR)
     if c_res.returncode != 0 and "nothing to commit" not in (c_res.stdout + c_res.stderr):
@@ -280,6 +282,7 @@ def push_to_github(commit_message: str):
     else:
         print(f"  [FAIL] Push failed:\n{p_res.stderr or p_res.stdout}")
         return False
+
 
 
 def enrich_backend_prompt(raw_prompt: str, change_name: str = "") -> str:
