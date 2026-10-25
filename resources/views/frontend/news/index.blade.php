@@ -119,9 +119,10 @@
             {{-- Main News Stream (Col 8) --}}
             <div class="lg:col-span-8 space-y-6">
 
-                {{-- Flagship / Featured Story Card (Refined Editorial Design) --}}
+                {{-- Flagship / Featured Story Card: 100% Fully Clickable to Details Page --}}
                 @if(isset($featuredNews) && $featuredNews)
-                    <article class="bg-white border border-slate-200/90 rounded-2xl shadow-xs overflow-hidden gsap-reveal hover-card-lift group">
+                    <a href="{{ route('frontend.news.show', $featuredNews['slug']) }}"
+                       class="bg-white border border-slate-200/90 rounded-2xl shadow-xs overflow-hidden gsap-reveal hover-card-lift group block cursor-pointer transition-all duration-300">
                         {{-- Top Image Frame --}}
                         <div class="relative overflow-hidden aspect-[16/9] sm:aspect-[21/9] bg-slate-100">
                             <img src="{{ asset($featuredNews['image_url']) }}"
@@ -159,9 +160,7 @@
 
                             {{-- Title --}}
                             <h2 class="text-lg sm:text-2xl font-extrabold text-slate-900 group-hover:text-[#005030] leading-snug transition-colors">
-                                <a href="{{ route('frontend.news.show', $featuredNews['slug']) }}">
-                                    {{ $featuredNews['title'] }}
-                                </a>
+                                {{ $featuredNews['title'] }}
                             </h2>
 
                             {{-- Excerpt --}}
@@ -176,17 +175,16 @@
                                     <span>{{ $featuredNews['views_count'] }} বার পঠিত</span>
                                 </div>
 
-                                <a href="{{ route('frontend.news.show', $featuredNews['slug']) }}"
-                                   class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#005030] text-white text-xs font-bold shadow-xs hover:bg-emerald-950 transition-all hover:scale-102">
+                                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#005030] text-white text-xs font-bold shadow-xs group-hover:bg-emerald-950 transition-all group-hover:scale-102">
                                     <span>সম্পূর্ণ সংবাদ পড়ুন</span>
                                     <i class="fa-solid fa-arrow-right text-[11px] group-hover:translate-x-1 transition-transform"></i>
-                                </a>
+                                </span>
                             </div>
                         </div>
-                    </article>
+                    </a>
                 @endif
 
-                {{-- Secondary News Grid --}}
+                {{-- Secondary News Grid: Every Card is 100% Fully Clickable --}}
                 @if($newsList->count() > 0)
                     <div class="space-y-4">
                         <div class="flex items-center justify-between border-b border-slate-200 pb-2.5">
@@ -201,7 +199,8 @@
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                             @foreach($newsList as $item)
-                                <article class="bg-white border border-slate-200/90 rounded-2xl shadow-2xs overflow-hidden flex flex-col justify-between gsap-reveal hover-card-lift group transition-all duration-300">
+                                <a href="{{ route('frontend.news.show', $item['slug']) }}"
+                                   class="bg-white border border-slate-200/90 rounded-2xl shadow-2xs overflow-hidden flex flex-col justify-between gsap-reveal hover-card-lift group transition-all duration-300 block cursor-pointer">
                                     {{-- Card Image Frame --}}
                                     <div class="relative overflow-hidden aspect-[16/10] bg-slate-100">
                                         <img src="{{ asset($item['image_url']) }}"
@@ -232,9 +231,7 @@
                                             </div>
 
                                             <h4 class="text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#005030] leading-snug transition-colors line-clamp-2">
-                                                <a href="{{ route('frontend.news.show', $item['slug']) }}">
-                                                    {{ $item['title'] }}
-                                                </a>
+                                                {{ $item['title'] }}
                                             </h4>
 
                                             <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed font-normal">
@@ -248,14 +245,13 @@
                                                 <i class="fa-regular fa-eye mr-1 text-[#005030]"></i>{{ $item['views_count'] }}
                                             </span>
 
-                                            <a href="{{ route('frontend.news.show', $item['slug']) }}"
-                                               class="text-xs font-bold text-[#005030] hover:text-emerald-950 flex items-center gap-1.5 transition-colors">
+                                            <span class="text-xs font-bold text-[#005030] group-hover:text-emerald-950 flex items-center gap-1.5 transition-colors">
                                                 <span>বিস্তারিত পড়ুন</span>
                                                 <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
-                                            </a>
+                                            </span>
                                         </div>
                                     </div>
-                                </article>
+                                </a>
                             @endforeach
                         </div>
 
@@ -342,7 +338,7 @@
                     </div>
                 </div>
 
-                {{-- 3. Recent News Stories Card --}}
+                {{-- 3. Recent News Stories Card: Clickable List Items --}}
                 <div class="bg-white border border-slate-200/90 rounded-2xl shadow-2xs p-5 space-y-4 gsap-reveal hover-card-lift">
                     <div class="flex items-center gap-2 pb-2.5 border-b border-slate-100">
                         <div class="w-7 h-7 rounded-lg bg-emerald-50 text-[#005030] flex items-center justify-center text-xs">
@@ -351,9 +347,10 @@
                         <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider">সাম্প্রতিক সংবাদ</h3>
                     </div>
 
-                    <div class="space-y-3 divide-y divide-slate-100">
+                    <div class="space-y-2.5 divide-y divide-slate-100">
                         @foreach($recentNews as $rNews)
-                            <div class="pt-3 first:pt-0 flex items-center gap-3 group">
+                            <a href="{{ route('frontend.news.show', $rNews['slug']) }}"
+                               class="pt-2.5 first:pt-0 flex items-center gap-3 group block hover:bg-slate-50 p-1.5 -mx-1.5 rounded-xl transition-colors cursor-pointer">
                                 <div class="w-13 h-13 rounded-xl overflow-hidden bg-slate-100 flex-shrink-0 relative">
                                     <img src="{{ asset($rNews['image_url']) }}"
                                          alt="{{ $rNews['title'] }}"
@@ -365,12 +362,10 @@
                                         <span><i class="fa-regular fa-calendar text-[10px]"></i> {{ $rNews['published_at'] }}</span>
                                     </div>
                                     <h5 class="text-xs font-bold text-slate-900 group-hover:text-[#005030] leading-snug line-clamp-2 transition-colors">
-                                        <a href="{{ route('frontend.news.show', $rNews['slug']) }}">
-                                            {{ $rNews['title'] }}
-                                        </a>
+                                        {{ $rNews['title'] }}
                                     </h5>
                                 </div>
-                            </div>
+                            </a>
                         @endforeach
                     </div>
                 </div>
@@ -393,7 +388,7 @@
                     </div>
                 </div>
 
-                {{-- 5. Clean Institutional Magazine & Publication Card (Replaced muddy dark gradient) --}}
+                {{-- 5. Clean Institutional Magazine & Publication Card --}}
                 <div class="bg-emerald-50/60 border border-emerald-200/80 rounded-2xl p-5 shadow-2xs space-y-3 gsap-reveal hover-card-lift">
                     <div class="flex items-center gap-2 pb-2.5 border-b border-emerald-100">
                         <div class="w-7 h-7 rounded-lg bg-emerald-100 text-[#005030] flex items-center justify-center text-xs">

@@ -152,7 +152,7 @@
 
                 </article>
 
-                {{-- Related News Section (3 Cards) --}}
+                {{-- Related News Section (3 Cards: 100% Fully Clickable) --}}
                 @if(isset($relatedNews) && $relatedNews->count() > 0)
                     <div class="space-y-4 pt-4">
                         <div class="flex items-center gap-2 border-b border-slate-200 pb-2.5">
@@ -164,14 +164,15 @@
 
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             @foreach($relatedNews as $rel)
-                                <article class="bg-white border border-slate-200/90 rounded-2xl shadow-2xs overflow-hidden flex flex-col justify-between gsap-reveal hover-card-lift group">
+                                <a href="{{ route('frontend.news.show', $rel['slug']) }}"
+                                   class="bg-white border border-slate-200/90 rounded-2xl shadow-2xs overflow-hidden flex flex-col justify-between gsap-reveal hover-card-lift group block cursor-pointer transition-all duration-300">
                                     <div class="relative overflow-hidden aspect-[16/10] bg-slate-100">
                                         <img src="{{ asset($rel['image_url']) }}"
                                              alt="{{ $rel['title'] }}"
                                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                              onerror="this.onerror=null; this.src='{{ asset('assets/images/news-1.jpg') }}';">
                                         <div class="absolute top-2 left-2">
-                                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-white/95 text-slate-800 shadow-xs">
+                                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-white/95 text-slate-800 shadow-xs border border-slate-200/60">
                                                 {{ $rel['category'] }}
                                             </span>
                                         </div>
@@ -183,19 +184,16 @@
                                                 <i class="fa-regular fa-calendar mr-1"></i>{{ $rel['published_at'] }}
                                             </div>
                                             <h5 class="text-xs font-bold text-slate-900 group-hover:text-[#005030] leading-snug line-clamp-2 transition-colors">
-                                                <a href="{{ route('frontend.news.show', $rel['slug']) }}">
-                                                    {{ $rel['title'] }}
-                                                </a>
+                                                {{ $rel['title'] }}
                                             </h5>
                                         </div>
 
-                                        <a href="{{ route('frontend.news.show', $rel['slug']) }}"
-                                           class="text-[11px] font-bold text-[#005030] hover:underline inline-flex items-center gap-1 pt-1">
+                                        <span class="text-[11px] font-bold text-[#005030] group-hover:text-emerald-950 inline-flex items-center gap-1 pt-1 transition-colors">
                                             <span>বিস্তারিত</span>
-                                            <i class="fa-solid fa-arrow-right text-[9px]"></i>
-                                        </a>
+                                            <i class="fa-solid fa-arrow-right text-[9px] group-hover:translate-x-1 transition-transform"></i>
+                                        </span>
                                     </div>
-                                </article>
+                                </a>
                             @endforeach
                         </div>
                     </div>
@@ -204,7 +202,7 @@
             </main>
 
             {{-- Sidebar Column (Col 4) --}}
-            <aside class="lg:col-span-4 space-y-6">
+            <aside class="lg:col-span-4 space-y-5">
 
                 {{-- Back to News Hub Button Card --}}
                 <div class="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-2xs space-y-3 gsap-reveal hover-card-lift">
@@ -222,16 +220,17 @@
                 {{-- Recent Stories Card --}}
                 <div class="bg-white border border-slate-200/90 rounded-2xl shadow-2xs p-5 space-y-4 gsap-reveal hover-card-lift">
                     <div class="flex items-center gap-2 pb-2.5 border-b border-slate-100">
-                        <div class="w-7 h-7 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center text-xs">
+                        <div class="w-7 h-7 rounded-lg bg-emerald-50 text-[#005030] flex items-center justify-center text-xs">
                             <i class="fa-solid fa-clock-rotate-left"></i>
                         </div>
                         <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider">সর্বশেষ অন্যান্য সংবাদ</h4>
                     </div>
 
-                    <div class="space-y-3.5 divide-y divide-slate-100">
+                    <div class="space-y-2.5 divide-y divide-slate-100">
                         @foreach($recentNews as $rNews)
-                            <div class="pt-3.5 first:pt-0 flex items-center gap-3 group">
-                                <div class="w-14 h-14 rounded-xl overflow-hidden bg-slate-100 flex-shrink-0 relative">
+                            <a href="{{ route('frontend.news.show', $rNews['slug']) }}"
+                               class="pt-2.5 first:pt-0 flex items-center gap-3 group block hover:bg-slate-50 p-1.5 -mx-1.5 rounded-xl transition-colors cursor-pointer">
+                                <div class="w-13 h-13 rounded-xl overflow-hidden bg-slate-100 flex-shrink-0 relative">
                                     <img src="{{ asset($rNews['image_url']) }}"
                                          alt="{{ $rNews['title'] }}"
                                          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
@@ -242,12 +241,10 @@
                                         {{ $rNews['published_at'] }}
                                     </div>
                                     <h5 class="text-xs font-bold text-slate-900 group-hover:text-[#005030] leading-snug line-clamp-2 transition-colors">
-                                        <a href="{{ route('frontend.news.show', $rNews['slug']) }}">
-                                            {{ $rNews['title'] }}
-                                        </a>
+                                        {{ $rNews['title'] }}
                                     </h5>
                                 </div>
-                            </div>
+                            </a>
                         @endforeach
                     </div>
                 </div>
