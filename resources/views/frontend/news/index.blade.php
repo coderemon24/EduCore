@@ -5,7 +5,7 @@
 
 @section('content')
 
-{{-- 1. Breadcrumb: Institutional Standard Matching Classes & Notices --}}
+{{-- 1. Breadcrumb (Standard Clean Layout Matching Classes Page) --}}
 <div class="bg-gray-100 border-b border-gray-200 py-3.5 text-xs text-gray-600" id="overview">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <nav class="flex items-center gap-1.5 font-medium" aria-label="Breadcrumb">
@@ -26,59 +26,69 @@
     </div>
 </div>
 
-{{-- 2. Top Hero Banner: Institutional Green #005030 Header --}}
-<div class="bg-[#005030] text-white py-8 sm:py-12 border-b border-emerald-900 page-hero-banner relative overflow-hidden">
-    {{-- Subtle decorative institutional pattern --}}
-    <div class="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-white/5 pointer-events-none blur-2xl"></div>
-    <div class="absolute left-1/3 -bottom-20 w-80 h-80 rounded-full bg-emerald-400/10 pointer-events-none blur-3xl"></div>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {{-- Signature Pill Badge (Recipe 7: Add a Signature) --}}
-        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/95 text-[#005030] text-xs font-extrabold shadow-xs page-hero-badge">
-            <span class="w-2 h-2 rounded-full bg-[#005030] animate-pulse"></span>
+{{-- 2. Top Hero Banner: Matches Reference Image Clean Green Header with GSAP Entrance --}}
+<div class="page-hero-banner bg-[#005030] text-white py-8 sm:py-10 border-b border-emerald-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {{-- Pill Badge --}}
+        <div class="page-hero-badge inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[#005030] text-xs font-bold shadow-xs">
             <i class="fa-solid fa-newspaper text-[#005030]"></i>
-            <span>সংবাদ সমাচার ও আপডেট</span>
+            <span>সংবাদ ও মিডিয়া</span>
         </div>
 
-        {{-- Page Heading (Recipe 1: Sharpen Message) --}}
-        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-3.5 mb-2.5 tracking-tight page-hero-title">
-            প্রাতিষ্ঠানিক <span class="text-amber-400 font-bold">সংবাদ ও মিডিয়া</span> পোর্টাল
+        {{-- Page Heading --}}
+        <h1 class="page-hero-title text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-3 mb-2 tracking-tight">
+            প্রাতিষ্ঠানিক সংবাদ ও মিডিয়া
         </h1>
 
         {{-- Sub-narrative context --}}
-        <p class="text-xs sm:text-sm text-emerald-100/90 font-medium max-w-2xl leading-relaxed page-hero-subtitle">
-            সোনাতলা উচ্চ বিদ্যালয়ের সকল একাডেমিক সাফল্য, সহশিক্ষা, বিজ্ঞান মেলা, সাংস্কৃতিক উৎসব ও ক্যাম্পাসের গৌরবময় অগ্রযাত্রার আনুষ্ঠানিক চিত্র ও প্রতিবেদন
+        <p class="page-hero-subtitle text-xs sm:text-sm text-emerald-100/90 font-medium">
+            সোনাতলা উচ্চ বিদ্যালয়ের সকল প্রাতিষ্ঠানিক সাফল্য, অর্জন, সহশিক্ষা ও গৌরবময় অগ্রযাত্রার বিবরণ
         </p>
-
-        {{-- Mobile & Tablet Quick Filter Pills Strip --}}
-        <div class="mt-6 pt-5 border-t border-emerald-800/80 flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 text-xs font-medium">
-            <span class="text-emerald-200/80 text-[11px] whitespace-nowrap mr-1 font-semibold">
-                <i class="fa-solid fa-filter mr-1"></i>ফিল্টার:
-            </span>
-            <a href="{{ route('frontend.news.index') }}"
-               class="px-3 py-1.5 rounded-lg whitespace-nowrap transition-colors {{ empty($activeCategory) ? 'bg-white text-[#005030] font-bold shadow-xs' : 'bg-emerald-900/70 text-emerald-100 hover:bg-emerald-800' }}">
-                সকল সংবাদ
-            </a>
-            @foreach($categoriesWithCounts as $cSlug => $cat)
-                <a href="{{ route('frontend.news.index', ['category' => $cSlug]) }}"
-                   class="px-3 py-1.5 rounded-lg whitespace-nowrap transition-colors flex items-center gap-1.5 {{ $activeCategory === $cSlug ? 'bg-white text-[#005030] font-bold shadow-xs' : 'bg-emerald-900/70 text-emerald-100 hover:bg-emerald-800' }}">
-                    <i class="fa-solid {{ $cat['icon'] }} text-[10px]"></i>
-                    <span>{{ $cat['name'] }}</span>
-                    <span class="text-[10px] opacity-75">({{ $cat['count'] }})</span>
-                </a>
-            @endforeach
-        </div>
     </div>
 </div>
 
-{{-- 3. Main Content Canvas --}}
-<section class="py-8 sm:py-12 bg-slate-50 min-h-[600px]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+{{-- 3. Main Content Section --}}
+<section class="py-8 sm:py-12 bg-slate-50/70 min-h-[550px]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
 
-        {{-- Active Search or Category Filter Indicator --}}
+        {{-- Category Navigation & Quick Filter Strip --}}
+        <div class="bg-white border border-slate-200/90 rounded-2xl p-2.5 sm:p-3 shadow-2xs flex items-center justify-between gap-3 overflow-x-auto no-scrollbar gsap-reveal">
+            <div class="flex items-center gap-1.5 min-w-max">
+                <a href="{{ route('frontend.news.index') }}"
+                   class="px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 {{ empty($activeCategory) ? 'bg-[#005030] text-white shadow-xs font-bold' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100' }}">
+                    <i class="fa-solid fa-layer-group text-[11px] {{ empty($activeCategory) ? 'text-emerald-100' : 'text-slate-400' }}"></i>
+                    <span>সকল সংবাদ</span>
+                    <span class="text-[10px] px-1.5 py-0.2 rounded-full {{ empty($activeCategory) ? 'bg-white/20 text-white' : 'bg-slate-200 text-slate-700' }}">
+                        {{ array_sum(array_column($categoriesWithCounts, 'count')) }}
+                    </span>
+                </a>
+
+                @foreach($categoriesWithCounts as $cSlug => $cat)
+                    <a href="{{ route('frontend.news.index', ['category' => $cSlug]) }}"
+                       class="px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 {{ $activeCategory === $cSlug ? 'bg-[#005030] text-white shadow-xs font-bold' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100' }}">
+                        <i class="fa-solid {{ $cat['icon'] }} text-[11px] {{ $activeCategory === $cSlug ? 'text-emerald-100' : 'text-slate-400' }}"></i>
+                        <span>{{ $cat['name'] }}</span>
+                        <span class="text-[10px] px-1.5 py-0.2 rounded-full {{ $activeCategory === $cSlug ? 'bg-white/20 text-white' : 'bg-slate-200 text-slate-700' }}">
+                            {{ $cat['count'] }}
+                        </span>
+                    </a>
+                @endforeach
+            </div>
+
+            {{-- Reset link when filter is active --}}
+            @if(!empty($activeCategory) || !empty($searchQuery))
+                <a href="{{ route('frontend.news.index') }}"
+                   class="text-xs text-rose-600 hover:text-rose-700 font-bold whitespace-nowrap px-2.5 py-1 flex items-center gap-1">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span>রিসেট</span>
+                </a>
+            @endif
+        </div>
+
+        {{-- Active Search or Category Filter Alert --}}
         @if(!empty($activeCategory) || !empty($searchQuery))
-            <div class="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-3 gsap-reveal">
-                <div class="flex items-center gap-2.5 text-xs text-slate-700 font-medium">
+            <div class="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-3 gsap-reveal">
+                <div class="flex items-center gap-2 text-xs text-slate-700 font-medium">
                     <span class="w-6 h-6 rounded-lg bg-emerald-50 text-[#005030] flex items-center justify-center font-bold">
                         <i class="fa-solid fa-magnifying-glass text-[11px]"></i>
                     </span>
@@ -91,70 +101,78 @@
                             @if(!empty($searchQuery)) • @endif
                             ক্যাটাগরি <span class="font-bold text-[#005030]">{{ $categoriesWithCounts[$activeCategory]['name'] }}</span>
                         @endif
-                        <span class="text-slate-500 font-normal">({{ $newsList->total() }}টি ফলাফল প্রাপ্ত)</span>
+                        <span class="text-slate-500 font-normal">({{ $newsList->total() }}টি সংবাদ)</span>
                     </div>
                 </div>
+
                 <a href="{{ route('frontend.news.index') }}"
-                   class="inline-flex items-center gap-1.5 text-xs text-rose-600 hover:text-rose-700 font-bold hover:underline">
-                    <i class="fa-solid fa-xmark"></i>
-                    <span>ফিল্টার রিসেট করুন</span>
+                   class="inline-flex items-center gap-1.5 text-xs text-slate-500 hover:text-[#005030] font-semibold">
+                    <i class="fa-solid fa-arrow-rotate-left text-[10px]"></i>
+                    <span>সকল সংবাদে ফিরুন</span>
                 </a>
             </div>
         @endif
 
-        {{-- 4. Asymmetric Layout Grid: Main News Canvas (Col 8) & Sidebar (Col 4) --}}
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {{-- Layout Grid: News Feed (Col 8) & Sidebar (Col 4) --}}
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
 
             {{-- Main News Stream (Col 8) --}}
-            <div class="lg:col-span-8 space-y-8">
+            <div class="lg:col-span-8 space-y-6">
 
-                {{-- Flagship Hero Winner Card (Recipe 4: Pick the Winner) --}}
+                {{-- Flagship / Featured Story Card (Refined Editorial Design) --}}
                 @if(isset($featuredNews) && $featuredNews)
                     <article class="bg-white border border-slate-200/90 rounded-2xl shadow-xs overflow-hidden gsap-reveal hover-card-lift group">
-                        <div class="relative overflow-hidden aspect-[16/9] sm:aspect-[21/10] bg-slate-100">
-                            {{-- Image with smooth zoom --}}
+                        {{-- Top Image Frame --}}
+                        <div class="relative overflow-hidden aspect-[16/9] sm:aspect-[21/9] bg-slate-100">
                             <img src="{{ asset($featuredNews['image_url']) }}"
                                  alt="{{ $featuredNews['title'] }}"
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                                  onerror="this.onerror=null; this.src='{{ asset('assets/images/news-1.jpg') }}';">
 
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent"></div>
-
-                            {{-- Floating Badges --}}
-                            <div class="absolute top-4 left-4 flex flex-wrap items-center gap-2">
-                                <span class="px-3 py-1 rounded-full text-xs font-bold shadow-xs bg-amber-400 text-slate-950">
-                                    <i class="fa-solid fa-star text-[10px] mr-1"></i>শীর্ষ সংবাদ
-                                </span>
-                                <span class="px-3 py-1 rounded-full text-xs font-semibold shadow-xs bg-white/95 text-slate-900 backdrop-blur-xs">
-                                    {{ $featuredNews['category'] }}
+                            {{-- Floating Badges on Image --}}
+                            <div class="absolute top-3.5 left-3.5 flex items-center gap-2">
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-white/95 text-[#005030] shadow-xs backdrop-blur-xs border border-emerald-100">
+                                    <span class="w-2 h-2 rounded-full bg-[#005030] animate-pulse"></span>
+                                    <span>শীর্ষ সংবাদ</span>
                                 </span>
                             </div>
 
-                            <div class="absolute bottom-4 left-4 right-4 text-white">
-                                <div class="flex items-center gap-3 text-xs text-slate-200 font-medium mb-1.5">
-                                    <span><i class="fa-regular fa-calendar mr-1"></i>{{ $featuredNews['published_at'] }}</span>
-                                    <span>•</span>
-                                    <span><i class="fa-regular fa-clock mr-1"></i>{{ $featuredNews['read_time'] }}</span>
-                                    <span>•</span>
-                                    <span><i class="fa-solid fa-user-pen mr-1"></i>{{ $featuredNews['author'] }}</span>
-                                </div>
-                                <h2 class="text-lg sm:text-2xl font-extrabold text-white leading-snug drop-shadow-xs group-hover:text-amber-300 transition-colors">
-                                    <a href="{{ route('frontend.news.show', $featuredNews['slug']) }}">
-                                        {{ $featuredNews['title'] }}
-                                    </a>
-                                </h2>
+                            <div class="absolute top-3.5 right-3.5">
+                                <span class="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-slate-900/80 backdrop-blur-xs text-white shadow-xs">
+                                    {{ $featuredNews['published_at'] }}
+                                </span>
                             </div>
                         </div>
 
-                        {{-- Flagship Body --}}
-                        <div class="p-5 sm:p-6 space-y-4">
+                        {{-- Card Body Canvas with High Legibility --}}
+                        <div class="p-5 sm:p-6 space-y-3.5">
+                            {{-- Meta Row --}}
+                            <div class="flex flex-wrap items-center gap-3 text-xs text-slate-500 font-medium">
+                                <span class="px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-emerald-50 text-[#005030] border border-emerald-200/60">
+                                    {{ $featuredNews['category'] }}
+                                </span>
+                                <span>•</span>
+                                <span><i class="fa-regular fa-clock mr-1 text-slate-400"></i>{{ $featuredNews['read_time'] }}</span>
+                                <span>•</span>
+                                <span><i class="fa-solid fa-user-pen mr-1 text-slate-400"></i>{{ $featuredNews['author'] }}</span>
+                            </div>
+
+                            {{-- Title --}}
+                            <h2 class="text-lg sm:text-2xl font-extrabold text-slate-900 group-hover:text-[#005030] leading-snug transition-colors">
+                                <a href="{{ route('frontend.news.show', $featuredNews['slug']) }}">
+                                    {{ $featuredNews['title'] }}
+                                </a>
+                            </h2>
+
+                            {{-- Excerpt --}}
                             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
                                 {{ $featuredNews['excerpt'] }}
                             </p>
 
-                            <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
-                                <div class="flex items-center gap-2 text-xs text-slate-500">
-                                    <i class="fa-solid fa-eye text-[11px] text-[#005030]"></i>
+                            {{-- Action Strip --}}
+                            <div class="pt-3.5 border-t border-slate-100 flex items-center justify-between">
+                                <div class="text-xs text-slate-400 flex items-center gap-1.5">
+                                    <i class="fa-regular fa-eye text-[#005030]"></i>
                                     <span>{{ $featuredNews['views_count'] }} বার পঠিত</span>
                                 </div>
 
@@ -168,10 +186,10 @@
                     </article>
                 @endif
 
-                {{-- Secondary News Grid (Recipe 2: Break Symmetry & Recipe 5: Scale the Type) --}}
+                {{-- Secondary News Grid --}}
                 @if($newsList->count() > 0)
                     <div class="space-y-4">
-                        <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+                        <div class="flex items-center justify-between border-b border-slate-200 pb-2.5">
                             <div class="flex items-center gap-2">
                                 <span class="w-2.5 h-2.5 rounded-full bg-[#005030]"></span>
                                 <h3 class="text-sm sm:text-base font-bold text-slate-900 tracking-tight">
@@ -193,7 +211,7 @@
 
                                         {{-- Top Category Pill Badge --}}
                                         <div class="absolute top-3 left-3">
-                                            <span class="px-2.5 py-0.5 rounded-md text-[11px] font-bold shadow-xs border bg-white/95 text-slate-800 backdrop-blur-xs">
+                                            <span class="px-2.5 py-0.5 rounded-md text-[11px] font-bold shadow-xs bg-white/95 text-slate-800 backdrop-blur-xs border border-slate-200/60">
                                                 {{ $item['category'] }}
                                             </span>
                                         </div>
@@ -208,7 +226,7 @@
                                     <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
                                         <div class="space-y-2">
                                             <div class="flex items-center gap-2 text-[11px] text-slate-500">
-                                                <span><i class="fa-regular fa-clock mr-1 text-[#005030]"></i>{{ $item['read_time'] }}</span>
+                                                <span><i class="fa-regular fa-clock mr-1 text-slate-400"></i>{{ $item['read_time'] }}</span>
                                                 <span>•</span>
                                                 <span><i class="fa-solid fa-pen-nib mr-1 text-slate-400"></i>{{ $item['author'] }}</span>
                                             </div>
@@ -227,7 +245,7 @@
                                         {{-- Card Footer --}}
                                         <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
                                             <span class="text-[11px] text-slate-400">
-                                                <i class="fa-regular fa-eye mr-1"></i>{{ $item['views_count'] }}
+                                                <i class="fa-regular fa-eye mr-1 text-[#005030]"></i>{{ $item['views_count'] }}
                                             </span>
 
                                             <a href="{{ route('frontend.news.show', $item['slug']) }}"
@@ -269,17 +287,11 @@
             </div>
 
             {{-- Sidebar Column (Col 4) --}}
-            <div class="lg:col-span-4 space-y-6">
+            <div class="lg:col-span-4 space-y-5">
 
                 {{-- 1. Search Box Widget --}}
                 <div class="bg-white border border-slate-200/90 rounded-2xl shadow-2xs p-5 space-y-3 gsap-reveal hover-card-lift">
-                    <div class="flex items-center gap-2 pb-2.5 border-b border-slate-100">
-                        <div class="w-7 h-7 rounded-lg bg-emerald-50 text-[#005030] flex items-center justify-center text-xs">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </div>
-                        <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider">সংবাদ খুঁজুন</h3>
-                    </div>
-
+                    <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider">সংবাদ খুঁজুন</h3>
                     <form action="{{ route('frontend.news.index') }}" method="GET" class="relative">
                         @if(!empty($activeCategory))
                             <input type="hidden" name="category" value="{{ $activeCategory }}">
@@ -288,27 +300,26 @@
                                name="q"
                                value="{{ $searchQuery }}"
                                placeholder="শিরোনাম বা কী-ওয়ার্ড লিখুন..."
-                               class="w-full pl-3.5 pr-10 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl text-slate-900 focus:outline-none focus:border-[#005030] focus:bg-white transition-colors">
+                               class="w-full px-3.5 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl text-slate-900 focus:outline-none focus:border-[#005030] focus:bg-white transition-colors">
                         <button type="submit"
                                 aria-label="অনুসন্ধান করুন"
                                 class="absolute right-3 top-2.5 text-slate-400 hover:text-[#005030] transition-colors">
-                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                            <i class="fa-solid fa-magnifying-glass text-xs"></i>
                         </button>
                     </form>
                 </div>
 
                 {{-- 2. News Categories Card --}}
                 <div class="bg-white border border-slate-200/90 rounded-2xl shadow-2xs p-5 space-y-3 gsap-reveal hover-card-lift">
-                    <div class="flex items-center justify-between pb-2.5 border-b border-slate-100">
-                        <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider">সংবাদ ক্যাটাগরি</h3>
-                        <span class="text-[11px] text-slate-400 font-semibold">{{ count($categoriesWithCounts) }}টি বিভাগ</span>
+                    <div class="text-xs font-bold text-slate-900 border-b border-slate-100 pb-2.5 uppercase tracking-wider">
+                        সংবাদ ক্যাটাগরি
                     </div>
 
                     <div class="space-y-1.5 text-xs font-medium">
                         <a href="{{ route('frontend.news.index') }}"
                            class="flex items-center justify-between px-3 py-2 rounded-xl transition-colors {{ empty($activeCategory) ? 'bg-[#005030] text-white font-bold shadow-xs' : 'text-slate-700 hover:bg-slate-50' }}">
                             <div class="flex items-center gap-2">
-                                <i class="fa-solid fa-layer-group text-[11px] {{ empty($activeCategory) ? 'text-amber-300' : 'text-slate-400' }}"></i>
+                                <i class="fa-solid fa-layer-group text-[11px] {{ empty($activeCategory) ? 'text-emerald-100' : 'text-slate-400' }}"></i>
                                 <span>সকল সংবাদ</span>
                             </div>
                             <span class="px-2 py-0.5 rounded-md text-[10px] {{ empty($activeCategory) ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600' }}">
@@ -320,7 +331,7 @@
                             <a href="{{ route('frontend.news.index', ['category' => $cSlug]) }}"
                                class="flex items-center justify-between px-3 py-2 rounded-xl transition-colors {{ $activeCategory === $cSlug ? 'bg-[#005030] text-white font-bold shadow-xs' : 'text-slate-700 hover:bg-slate-50' }}">
                                 <div class="flex items-center gap-2">
-                                    <i class="fa-solid {{ $cat['icon'] }} text-[11px] {{ $activeCategory === $cSlug ? 'text-amber-300' : 'text-slate-400' }}"></i>
+                                    <i class="fa-solid {{ $cat['icon'] }} text-[11px] {{ $activeCategory === $cSlug ? 'text-emerald-100' : 'text-slate-400' }}"></i>
                                     <span>{{ $cat['name'] }}</span>
                                 </div>
                                 <span class="px-2 py-0.5 rounded-md text-[10px] {{ $activeCategory === $cSlug ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600' }}">
@@ -331,19 +342,19 @@
                     </div>
                 </div>
 
-                {{-- 3. Recent News Widget Card --}}
+                {{-- 3. Recent News Stories Card --}}
                 <div class="bg-white border border-slate-200/90 rounded-2xl shadow-2xs p-5 space-y-4 gsap-reveal hover-card-lift">
                     <div class="flex items-center gap-2 pb-2.5 border-b border-slate-100">
-                        <div class="w-7 h-7 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center text-xs">
+                        <div class="w-7 h-7 rounded-lg bg-emerald-50 text-[#005030] flex items-center justify-center text-xs">
                             <i class="fa-solid fa-clock-rotate-left"></i>
                         </div>
                         <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider">সাম্প্রতিক সংবাদ</h3>
                     </div>
 
-                    <div class="space-y-3.5 divide-y divide-slate-100">
+                    <div class="space-y-3 divide-y divide-slate-100">
                         @foreach($recentNews as $rNews)
-                            <div class="pt-3.5 first:pt-0 flex items-center gap-3 group">
-                                <div class="w-14 h-14 rounded-xl overflow-hidden bg-slate-100 flex-shrink-0 relative">
+                            <div class="pt-3 first:pt-0 flex items-center gap-3 group">
+                                <div class="w-13 h-13 rounded-xl overflow-hidden bg-slate-100 flex-shrink-0 relative">
                                     <img src="{{ asset($rNews['image_url']) }}"
                                          alt="{{ $rNews['title'] }}"
                                          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
@@ -364,49 +375,43 @@
                     </div>
                 </div>
 
-                {{-- 4. Institutional Media & Press Contact Card --}}
+                {{-- 4. Press & Media Helpdesk Card --}}
                 <div class="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-2xs space-y-3 gsap-reveal hover-card-lift">
                     <div class="flex items-center gap-2 pb-2.5 border-b border-slate-100">
                         <div class="w-7 h-7 rounded-lg bg-emerald-50 text-[#005030] flex items-center justify-center text-xs">
-                            <i class="fa-solid fa-bullhorn"></i>
+                            <i class="fa-solid fa-headset"></i>
                         </div>
-                        <h4 class="font-bold text-xs text-slate-900 uppercase tracking-wider">মিডিয়া ও তথ্য সেল</h4>
+                        <h4 class="font-bold text-xs text-slate-900 uppercase tracking-wider">তথ্য ও প্রেস হেল্পডেস্ক</h4>
                     </div>
 
                     <p class="text-xs text-slate-600 leading-relaxed">
-                        বিদ্যালয়ের যেকোনো প্রাতিষ্ঠানিক সংবাদ, প্রেস বিজ্ঞপ্তি অথবা প্রেস কভারেজ সংক্রান্ত অনুসন্ধানের জন্য অফিসিয়াল মিডিয়া উইংয়ে যোগাযোগ করুন।
+                        যেকোনো প্রাতিষ্ঠানিক সংবাদ বিজ্ঞপ্তি, তথ্য ও প্রেস বিবৃতির জন্য বিদ্যালয়ের প্রধান অফিস অথবা মিডিয়া সেলের সাথে যোগাযোগ করুন।
                     </p>
 
-                    <div class="space-y-1.5 text-xs text-slate-700">
-                        <div class="flex items-center gap-2">
-                            <i class="fa-solid fa-phone text-[#005030] text-[11px] w-4"></i>
-                            <span class="font-bold">+৮৮০ ১৭১২-৩৪৫৬৭৮</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <i class="fa-solid fa-envelope text-[#005030] text-[11px] w-4"></i>
-                            <span>media@sonatalahighschool.edu.bd</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <i class="fa-solid fa-location-dot text-[#005030] text-[11px] w-4"></i>
-                            <span class="text-slate-500">প্রশাসনিক ভবন (কক্ষ ২০৪), সোনাতলা</span>
-                        </div>
+                    <div class="text-xs text-[#005030] font-bold font-mono">
+                        হেল্পলাইন: +৮৮০ ১৭১২-৩৪৫৬৭৮
                     </div>
                 </div>
 
-                {{-- 5. Annual Magazine & Gazette Card --}}
-                <div class="bg-gradient-to-br from-emerald-950 to-[#005030] rounded-2xl p-5 text-white shadow-xs space-y-3 gsap-reveal">
-                    <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[10px] font-extrabold">
-                        <i class="fa-solid fa-book-open"></i>
-                        <span>বার্ষিক প্রকাশনা</span>
+                {{-- 5. Clean Institutional Magazine & Publication Card (Replaced muddy dark gradient) --}}
+                <div class="bg-emerald-50/60 border border-emerald-200/80 rounded-2xl p-5 shadow-2xs space-y-3 gsap-reveal hover-card-lift">
+                    <div class="flex items-center gap-2 pb-2.5 border-b border-emerald-100">
+                        <div class="w-7 h-7 rounded-lg bg-emerald-100 text-[#005030] flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+                        <h4 class="font-bold text-xs text-[#005030] uppercase tracking-wider">বার্ষিক প্রকাশনা</h4>
                     </div>
-                    <h4 class="text-sm font-bold text-white leading-snug">
+
+                    <h5 class="text-xs font-bold text-slate-900 leading-snug">
                         সোনাতলা বিদ্যাপীঠ বার্ষিকী ও ডিজিটাল নিউজলেটার
-                    </h4>
-                    <p class="text-[11px] text-emerald-100/80 leading-relaxed">
+                    </h5>
+
+                    <p class="text-xs text-slate-600 leading-relaxed font-normal">
                         শিক্ষার্থী ও শিক্ষকদের স্বরচিত সাহিত্যকর্ম ও বাৎসরিক স্মৃতি স্মারক নিয়ে প্রকাশিত ডিজিটাল সংস্করণটি দেখুন।
                     </p>
+
                     <a href="{{ route('frontend.notices.index') }}"
-                       class="inline-flex items-center gap-1.5 text-xs font-bold text-amber-300 hover:text-amber-200 transition-colors">
+                       class="inline-flex items-center gap-1.5 text-xs font-bold text-[#005030] hover:text-emerald-950 hover:underline transition-colors pt-1">
                         <span>বিজ্ঞপ্তি ও প্রকাশনা আর্কাইভ</span>
                         <i class="fa-solid fa-arrow-right text-[10px]"></i>
                     </a>
