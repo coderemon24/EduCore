@@ -878,27 +878,13 @@ section[id],
 .section-header-block {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 2.75rem;
+    margin-bottom: 2rem;
+    max-width: 52rem;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 640px) {
     .section-header-block {
-        flex-direction: row;
-        align-items: flex-end;
-        justify-content: space-between;
-        gap: 3rem;
-        margin-bottom: 3.5rem;
-    }
-
-    .section-header-left {
-        flex: 0 0 50%;
-        max-width: 50%;
-    }
-
-    .section-header-right {
-        flex: 0 0 48%;
-        max-width: 48%;
+        margin-bottom: 2.5rem;
     }
 }
 
