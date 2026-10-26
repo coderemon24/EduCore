@@ -115,8 +115,19 @@ class AcademicController extends Controller
                 $slotsQuery->where('day_of_week', $selectedDay);
             }
 
+            $dayOrderCase = "CASE day_of_week
+                WHEN 'saturday' THEN 1
+                WHEN 'sunday' THEN 2
+                WHEN 'monday' THEN 3
+                WHEN 'tuesday' THEN 4
+                WHEN 'wednesday' THEN 5
+                WHEN 'thursday' THEN 6
+                WHEN 'friday' THEN 7
+                ELSE 8
+            END";
+
             $timetableSlots = $slotsQuery
-                ->orderByRaw("FIELD(day_of_week, 'saturday', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday')")
+                ->orderByRaw($dayOrderCase)
                 ->orderBy('start_time')
                 ->get();
         }
