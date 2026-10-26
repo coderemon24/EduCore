@@ -488,7 +488,7 @@
                 </div>
             </div>
 
-            <div class="mt-7 text-center">
+            <div class="mt-8 text-center">
                 <a href="{{ route('frontend.contact') }}#enroll"
                    class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#005030] hover:bg-[#003d24] text-white text-xs sm:text-sm font-bold shadow-xs transition-all hover:scale-105 active:scale-95">
                     <span>ভর্তি আবেদন ও তথ্যসহায়তা</span>
