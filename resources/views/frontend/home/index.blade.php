@@ -6,49 +6,49 @@
     {{-- Hero slider --}}
     @include('frontend.home.partials.fullscreen-slider')
 
-    {{-- Audience strip --}}
-    <section class="qualifying-strip-bar py-3.5 sm:py-4 px-4 sm:px-6 lg:px-8 relative z-20 shadow-xs" aria-label="কাদের জন্য সোনাতলা উচ্চ বিদ্যালয়">
+    {{-- Clean Trust & Audience Strip --}}
+    <section class="qualifying-strip-bar py-4 sm:py-5 px-4 sm:px-6 lg:px-8 relative z-20" aria-label="কাদের জন্য সোনাতলা উচ্চ বিদ্যালয়">
         <div class="max-w-7xl mx-auto flex flex-col xl:flex-row xl:items-center justify-between gap-4">
             <div class="flex items-center gap-3 shrink-0">
-                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[11px] font-bold uppercase tracking-wider border border-emerald-400/30">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    WHO WE SERVE
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-[#005030] text-xs font-bold border border-emerald-200 shadow-2xs">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#005030] animate-pulse"></span>
+                    আমাদের মূল অঙ্গীকার
                 </span>
-                <span class="text-xs sm:text-sm font-semibold text-slate-200">
+                <span class="text-xs sm:text-sm font-semibold text-slate-700">
                     সোনাতলা বিদ্যাপীঠ মূলত যাদের জন্য:
                 </span>
             </div>
 
             <div class="qualifying-cards-grid flex-1">
                 <div class="qualifying-card">
-                    <span class="text-emerald-400 shrink-0 mt-0.5"><i class="fa-solid fa-circle-check"></i></span>
+                    <span class="text-[#005030] shrink-0 mt-0.5 text-base"><i class="fa-solid fa-circle-check"></i></span>
                     <div>
-                        <strong class="text-white block font-semibold text-sm">সচেতন অভিভাবক</strong>
-                        <span class="text-xs text-slate-300 leading-relaxed block">সন্তানের নৈতিক চরিত্র গঠন, শৃঙ্খলা ও নিরাপদ পরিবেশ চান যারা</span>
+                        <strong class="text-slate-900 block font-bold text-sm">সচেতন অভিভাবক</strong>
+                        <span class="text-xs text-slate-600 leading-relaxed block">সন্তানের নৈতিক চরিত্র গঠন, শৃঙ্খলা ও নিরাপদ পরিবেশ চান যারা</span>
                     </div>
                 </div>
 
                 <div class="qualifying-card">
-                    <span class="text-emerald-400 shrink-0 mt-0.5"><i class="fa-solid fa-circle-check"></i></span>
+                    <span class="text-[#005030] shrink-0 mt-0.5 text-base"><i class="fa-solid fa-circle-check"></i></span>
                     <div>
-                        <strong class="text-white block font-semibold text-sm">৬ষ্ঠ-১০ম শ্রেণির শিক্ষার্থী</strong>
-                        <span class="text-xs text-slate-300 leading-relaxed block">বিজ্ঞানাগার ও কম্পিউটার ল্যাবে হাতেকলমে দক্ষতা শিখতে আগ্রহী</span>
+                        <strong class="text-slate-900 block font-bold text-sm">৬ষ্ঠ-১০ম শ্রেণির শিক্ষার্থী</strong>
+                        <span class="text-xs text-slate-600 leading-relaxed block">বিজ্ঞানাগার ও কম্পিউটার ল্যাবে হাতেকলমে দক্ষতা শিখতে আগ্রহী</span>
                     </div>
                 </div>
 
                 <div class="qualifying-card">
-                    <span class="text-emerald-400 shrink-0 mt-0.5"><i class="fa-solid fa-circle-check"></i></span>
+                    <span class="text-[#005030] shrink-0 mt-0.5 text-base"><i class="fa-solid fa-circle-check"></i></span>
                     <div>
-                        <strong class="text-white block font-semibold text-sm">মেধাবী ও উপবৃত্তি অন্বেষী</strong>
-                        <span class="text-xs text-slate-300 leading-relaxed block">আর্থিক অনটনে কোনো মেধা যেন ঝরে না পড়ে, সে নিশ্চয়তা প্রত্যাশী</span>
+                        <strong class="text-slate-900 block font-bold text-sm">মেধাবী ও উপবৃত্তি অন্বেষী</strong>
+                        <span class="text-xs text-slate-600 leading-relaxed block">আর্থিক অনটনে কোনো মেধা যেন ঝরে না পড়ে, সে নিশ্চয়তা প্রত্যাশী</span>
                     </div>
                 </div>
 
                 <div class="qualifying-card">
-                    <span class="text-emerald-400 shrink-0 mt-0.5"><i class="fa-solid fa-circle-check"></i></span>
+                    <span class="text-[#005030] shrink-0 mt-0.5 text-base"><i class="fa-solid fa-circle-check"></i></span>
                     <div>
-                        <strong class="text-white block font-semibold text-sm">আদর্শ সমাজ ও অ্যালামনাই</strong>
-                        <span class="text-xs text-slate-300 leading-relaxed block">পাবনার সাঁথিয়ার ৫৭ বছরের সমৃদ্ধ শিক্ষাধারাকে এগিয়ে নিতে চান</span>
+                        <strong class="text-slate-900 block font-bold text-sm">আদর্শ সমাজ ও শুভানুধ্যায়ী</strong>
+                        <span class="text-xs text-slate-600 leading-relaxed block">পাবনার সাঁথিয়ার ৫৭ বছরের সমৃদ্ধ শিক্ষাধারাকে এগিয়ে নিতে চান</span>
                     </div>
                 </div>
             </div>
@@ -56,16 +56,16 @@
     </section>
 
     {{-- Academic capabilities --}}
-    <section class="home-section bg-white" id="capabilities">
+    <section class="home-section bg-white py-14 sm:py-20" id="capabilities">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="section-header-block">
                 <div class="section-header-left">
                     <span class="section-kicker">
                         <span class="section-kicker-dot"></span>
-                        WHAT WE DELIVER — ACADEMIC EXCELLENCE
+                        একাডেমিক উৎকর্ষ ও ল্যাব সুবিধা
                     </span>
                     <h2 class="section-title">
-                        হাতেকলমে শিক্ষা, <span class="text-[#005030]">প্রযুক্তির আলো</span> ও মানবিক মূল্যবোধের পূর্ণাঙ্গ বিকাশ
+                        হাতেকলমে শিক্ষা, <span class="headline-signature-accent">প্রযুক্তির আলো</span> ও মানবিক মূল্যবোধের পূর্ণাঙ্গ বিকাশ
                     </h2>
                 </div>
                 <div class="section-header-right">
@@ -80,12 +80,12 @@
                 <div class="capability-card-hero group">
                     <div>
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-14 h-14 rounded-2xl bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center font-bold shadow-2xs group-hover:scale-105 transition-transform duration-300">
+                            <div class="w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-200 text-[#005030] flex items-center justify-center font-bold shadow-2xs group-hover:scale-105 transition-transform duration-300">
                                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
                                 </svg>
                             </div>
-                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-bold border border-slate-200">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-[#005030] text-xs font-bold border border-emerald-200">
                                 <span><i class="fa-solid fa-flask-vial"></i></span>
                                 <span>প্রধান প্রাতিষ্ঠানিক সক্ষমতা</span>
                             </span>
@@ -100,19 +100,19 @@
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-slate-200/80 mb-6">
                             <div class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800">
-                                <span class="w-5 h-5 rounded-full bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center shrink-0 text-[11px] font-bold"><i class="fa-solid fa-check"></i></span>
+                                <span class="w-5 h-5 rounded-full bg-emerald-50 border border-emerald-200 text-[#005030] flex items-center justify-center shrink-0 text-[11px] font-bold"><i class="fa-solid fa-check"></i></span>
                                 <span>পদার্থ, রসায়ন ও জীববিজ্ঞানের পৃথক ল্যাব</span>
                             </div>
                             <div class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800">
-                                <span class="w-5 h-5 rounded-full bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center shrink-0 text-[11px] font-bold"><i class="fa-solid fa-check"></i></span>
+                                <span class="w-5 h-5 rounded-full bg-emerald-50 border border-emerald-200 text-[#005030] flex items-center justify-center shrink-0 text-[11px] font-bold"><i class="fa-solid fa-check"></i></span>
                                 <span>উচ্চমানের মাইক্রোস্কোপ ও রিএজেন্ট সুবিধা</span>
                             </div>
                             <div class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800">
-                                <span class="w-5 h-5 rounded-full bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center shrink-0 text-[11px] font-bold"><i class="fa-solid fa-check"></i></span>
+                                <span class="w-5 h-5 rounded-full bg-emerald-50 border border-emerald-200 text-[#005030] flex items-center justify-center shrink-0 text-[11px] font-bold"><i class="fa-solid fa-check"></i></span>
                                 <span>অভিজ্ঞ ল্যাব সহকারী ও শিক্ষক তত্ত্বাবধান</span>
                             </div>
                             <div class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800">
-                                <span class="w-5 h-5 rounded-full bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center shrink-0 text-[11px] font-bold"><i class="fa-solid fa-check"></i></span>
+                                <span class="w-5 h-5 rounded-full bg-emerald-50 border border-emerald-200 text-[#005030] flex items-center justify-center shrink-0 text-[11px] font-bold"><i class="fa-solid fa-check"></i></span>
                                 <span>বার্ষিক বিজ্ঞান ও উদ্ভাবন প্রজেক্ট প্রদর্শনী</span>
                             </div>
                         </div>
@@ -132,7 +132,7 @@
                     <div class="capability-card-secondary group">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <div class="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center font-bold group-hover:scale-105 transition-transform duration-300">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 text-[#005030] flex items-center justify-center font-bold group-hover:scale-105 transition-transform duration-300">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                                     </svg>
@@ -156,7 +156,7 @@
                     <div class="capability-card-secondary group">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <div class="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center font-bold group-hover:scale-105 transition-transform duration-300">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 text-[#005030] flex items-center justify-center font-bold group-hover:scale-105 transition-transform duration-300">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
@@ -180,19 +180,17 @@
         </div>
     </section>
 
-    <div class="home-section-divider"></div>
-
-    {{-- Institutional advantage --}}
-    <section class="home-section bg-slate-50/60" id="advantage">
+    {{-- Institutional advantage & Metrics --}}
+    <section class="home-section bg-slate-50/70 py-14 sm:py-20" id="advantage">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="section-header-block">
                 <div class="section-header-left">
                     <span class="section-kicker">
                         <span class="section-kicker-dot"></span>
-                        WHY WE ARE DIFFERENT — THE ADVANTAGE
+                        আমাদের অনন্যতা ও প্রাতিষ্ঠানিক ঐতিহ্য
                     </span>
                     <h2 class="section-title">
-                        সাধারণ স্কুলের চেয়ে কেন ব্যতিক্রমী <span class="text-[#005030]">আমাদের শিক্ষাপদ্ধতি ও ঐতিহ্য</span>?
+                        সাধারণ স্কুলের চেয়ে কেন ব্যতিক্রমী <span class="headline-signature-accent">আমাদের শিক্ষাপদ্ধতি ও ঐতিহ্য</span>?
                     </h2>
                 </div>
                 <div class="section-header-right">
@@ -204,7 +202,7 @@
 
             <div class="differentiators-grid mb-12">
                 <div class="differentiator-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex gap-4 shadow-2xs group">
-                    <div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 text-slate-800 flex items-center justify-center shrink-0 font-bold text-sm group-hover:scale-105 transition-transform duration-300">
+                    <div class="w-10 h-10 rounded-full bg-emerald-50 border border-emerald-200 text-[#005030] flex items-center justify-center shrink-0 font-extrabold text-sm group-hover:scale-105 transition-transform duration-300">
                         ০১
                     </div>
                     <div>
@@ -218,7 +216,7 @@
                 </div>
 
                 <div class="differentiator-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex gap-4 shadow-2xs group">
-                    <div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 text-slate-800 flex items-center justify-center shrink-0 font-bold text-sm group-hover:scale-105 transition-transform duration-300">
+                    <div class="w-10 h-10 rounded-full bg-emerald-50 border border-emerald-200 text-[#005030] flex items-center justify-center shrink-0 font-extrabold text-sm group-hover:scale-105 transition-transform duration-300">
                         ০২
                     </div>
                     <div>
@@ -232,7 +230,7 @@
                 </div>
 
                 <div class="differentiator-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex gap-4 shadow-2xs group">
-                    <div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 text-slate-800 flex items-center justify-center shrink-0 font-bold text-sm group-hover:scale-105 transition-transform duration-300">
+                    <div class="w-10 h-10 rounded-full bg-emerald-50 border border-emerald-200 text-[#005030] flex items-center justify-center shrink-0 font-extrabold text-sm group-hover:scale-105 transition-transform duration-300">
                         ০৩
                     </div>
                     <div>
@@ -246,7 +244,7 @@
                 </div>
 
                 <div class="differentiator-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 flex gap-4 shadow-2xs group">
-                    <div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 text-slate-800 flex items-center justify-center shrink-0 font-bold text-sm group-hover:scale-105 transition-transform duration-300">
+                    <div class="w-10 h-10 rounded-full bg-emerald-50 border border-emerald-200 text-[#005030] flex items-center justify-center shrink-0 font-extrabold text-sm group-hover:scale-105 transition-transform duration-300">
                         ০৪
                     </div>
                     <div>
@@ -262,46 +260,50 @@
 
             {{-- Key metrics --}}
             <div class="metrics-counter-box bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-xs">
-                <div class="bg-[#005030] text-white px-6 py-3.5 flex items-center justify-between">
-                    <span class="text-xs font-bold uppercase tracking-wider">
-                        এক নজরে আমাদের প্রাতিষ্ঠানিক সক্ষমতা ও অর্জন
+                <div class="bg-slate-100/90 border-b border-slate-200/80 px-6 py-3.5 flex items-center justify-between text-xs font-bold text-slate-700">
+                    <span class="flex items-center gap-2">
+                        <i class="fa-solid fa-chart-line text-[#005030]"></i>
+                        <span>এক নজরে আমাদের প্রাতিষ্ঠানিক সক্ষমতা ও অর্জন</span>
                     </span>
-                    <span class="text-xs text-emerald-200 font-medium">প্রতিষ্ঠানের মূল সূচকসমূহ</span>
+                    <span class="text-emerald-800 font-semibold flex items-center gap-1.5">
+                        <i class="fa-solid fa-award text-[#005030]"></i>
+                        <span>স্বীকৃত মানদণ্ড</span>
+                    </span>
                 </div>
 
                 <div class="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-center border-b border-slate-100">
-                    <div class="metric-pill p-4 rounded-xl bg-slate-50/80 border border-slate-200/70 transition-all hover:bg-emerald-50/50 hover:border-emerald-200">
+                    <div class="metric-pill p-5 rounded-xl bg-slate-50/80 border border-slate-200/70 transition-all hover:bg-emerald-50/50 hover:border-emerald-200">
                         <div class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">এসএসসি ধারাবাহিক সাফল্য</div>
                         <div class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#005030] mt-2">৯৮.৫%</div>
                         <div class="text-xs text-slate-500 mt-1">বিগত ৫ বছরের ঈর্ষণীয় ফলাফল</div>
                     </div>
-                    <div class="metric-pill p-4 rounded-xl bg-slate-50/80 border border-slate-200/70 transition-all hover:bg-emerald-50/50 hover:border-emerald-200">
+                    <div class="metric-pill p-5 rounded-xl bg-slate-50/80 border border-slate-200/70 transition-all hover:bg-emerald-50/50 hover:border-emerald-200">
                         <div class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">বর্তমান শিক্ষার্থী পরিবার</div>
                         <div class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mt-2">{{ $stats['total_students'] ?? '১,২৫০+' }} জন</div>
                         <div class="text-xs text-slate-500 mt-1">সুশৃঙ্খল ও প্রাণবন্ত ক্যাম্পাস</div>
                     </div>
-                    <div class="metric-pill p-4 rounded-xl bg-slate-50/80 border border-slate-200/70 transition-all hover:bg-emerald-50/50 hover:border-emerald-200">
+                    <div class="metric-pill p-5 rounded-xl bg-slate-50/80 border border-slate-200/70 transition-all hover:bg-emerald-50/50 hover:border-emerald-200">
                         <div class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">গৌরবময় ঐতিহ্য ও ইতিহাস</div>
                         <div class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mt-2">৫৭ বছর</div>
                         <div class="text-xs text-slate-500 mt-1">প্রতিষ্ঠা সন: ১৯৬৮ খ্রি.</div>
                     </div>
                 </div>
 
-                <div class="px-6 py-4 bg-slate-50/70 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-600">
+                <div class="px-6 py-4 bg-slate-50/80 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-600">
                     <div class="flex items-center gap-2">
-                        <span class="font-bold text-slate-800 flex items-center gap-1.5"><i class="fa-solid fa-chalkboard-user text-emerald-700"></i> শিক্ষক ও স্টাফ:</span>
+                        <span class="font-bold text-slate-800 flex items-center gap-1.5"><i class="fa-solid fa-chalkboard-user text-[#005030]"></i> শিক্ষক ও স্টাফ:</span>
                         <span>{{ $stats['total_teachers'] ?? '৪২' }} জন প্রশিক্ষিত শিক্ষক</span>
                     </div>
                     <div class="flex items-center gap-2">
-                        <span class="font-bold text-slate-800 flex items-center gap-1.5"><i class="fa-solid fa-desktop text-emerald-700"></i> ডিজিটাল ক্লাসরুম:</span>
+                        <span class="font-bold text-slate-800 flex items-center gap-1.5"><i class="fa-solid fa-desktop text-[#005030]"></i> ডিজিটাল ক্লাসরুম:</span>
                         <span>১৮টি মাল্টিমিডিয়া রুম</span>
                     </div>
                     <div class="flex items-center gap-2 font-mono">
-                        <span class="font-bold text-slate-800 font-sans flex items-center gap-1.5"><i class="fa-solid fa-building-columns text-emerald-700"></i> EIIN:</span>
+                        <span class="font-bold text-slate-800 font-sans flex items-center gap-1.5"><i class="fa-solid fa-building-columns text-[#005030]"></i> EIIN:</span>
                         <span>১২৫৬৯৩</span>
                     </div>
                     <div class="flex items-center gap-2 font-mono">
-                        <span class="font-bold text-slate-800 font-sans flex items-center gap-1.5"><i class="fa-solid fa-file-shield text-emerald-700"></i> সরকারি কোড:</span>
+                        <span class="font-bold text-slate-800 font-sans flex items-center gap-1.5"><i class="fa-solid fa-file-shield text-[#005030]"></i> সরকারি কোড:</span>
                         <span>৮১০৭</span>
                     </div>
                 </div>
@@ -309,19 +311,17 @@
         </div>
     </section>
 
-    <div class="home-section-divider"></div>
-
     {{-- Notices & updates --}}
-    <section class="home-section bg-white" id="notices">
+    <section class="home-section bg-white py-14 sm:py-20" id="notices">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="section-header-block">
                 <div class="section-header-left">
                     <span class="section-kicker">
                         <span class="section-kicker-dot"></span>
-                        LIVE DISPATCHES & OFFICIAL NOTICES
+                        জরুরি নোটিশ বোর্ড ও প্রাতিষ্ঠানিক বুলেটিন
                     </span>
                     <h2 class="section-title">
-                        জরুরি নোটিশ বোর্ড ও <span class="text-[#005030]">চলমান প্রাতিষ্ঠানিক পরিক্রমা</span>
+                        জরুরি নোটিশ বোর্ড ও <span class="headline-signature-accent">চলমান প্রাতিষ্ঠানিক পরিক্রমা</span>
                     </h2>
                 </div>
                 <div class="section-header-right">
@@ -341,14 +341,15 @@
                 <div class="space-y-6">
                     <div class="bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-xs">
                         <div class="bg-[#005030] text-white px-5 py-3 flex items-center justify-between">
-                            <h3 class="font-bold text-xs uppercase tracking-wider">
-                                সাফল্য ও ক্যাম্পাস সংবাদ
+                            <h3 class="font-bold text-xs uppercase tracking-wider flex items-center gap-2">
+                                <i class="fa-solid fa-bullhorn text-emerald-300"></i>
+                                <span>সাফল্য ও ক্যাম্পাস সংবাদ</span>
                             </h3>
                             <span class="text-[11px] text-emerald-200">Campus Stories</span>
                         </div>
                         <div class="divide-y divide-slate-100">
-                            <article class="p-3.5 hover:bg-slate-50 transition-colors flex gap-3.5 items-center">
-                                <div class="w-20 h-16 sm:w-24 sm:h-18 shrink-0 rounded-lg overflow-hidden bg-slate-100 border border-slate-200">
+                            <article class="p-4 hover:bg-slate-50 transition-colors flex gap-4 items-center">
+                                <div class="w-20 h-16 sm:w-24 sm:h-18 shrink-0 rounded-xl overflow-hidden bg-slate-100 border border-slate-200">
                                     <img src="{{ asset('assets/images/news-1.jpg') }}" alt="বার্ষিক ক্রীড়া" class="w-full h-full object-cover">
                                 </div>
                                 <div class="flex-1 min-w-0">
@@ -361,8 +362,8 @@
                                 </div>
                             </article>
 
-                            <article class="p-3.5 hover:bg-slate-50 transition-colors flex gap-3.5 items-center">
-                                <div class="w-20 h-16 sm:w-24 sm:h-18 shrink-0 rounded-lg overflow-hidden bg-slate-100 border border-slate-200">
+                            <article class="p-4 hover:bg-slate-50 transition-colors flex gap-4 items-center">
+                                <div class="w-20 h-16 sm:w-24 sm:h-18 shrink-0 rounded-xl overflow-hidden bg-slate-100 border border-slate-200">
                                     <img src="{{ asset('assets/images/news-2.jpg') }}" alt="বিজ্ঞান মেলা" class="w-full h-full object-cover">
                                 </div>
                                 <div class="flex-1 min-w-0">
@@ -375,8 +376,8 @@
                                 </div>
                             </article>
 
-                            <article class="p-3.5 hover:bg-slate-50 transition-colors flex gap-3.5 items-center">
-                                <div class="w-20 h-16 sm:w-24 sm:h-18 shrink-0 rounded-lg overflow-hidden bg-slate-100 border border-slate-200">
+                            <article class="p-4 hover:bg-slate-50 transition-colors flex gap-4 items-center">
+                                <div class="w-20 h-16 sm:w-24 sm:h-18 shrink-0 rounded-xl overflow-hidden bg-slate-100 border border-slate-200">
                                     <img src="{{ asset('assets/images/news-3.jpg') }}" alt="অভিভাবক সমাবেশ" class="w-full h-full object-cover">
                                 </div>
                                 <div class="flex-1 min-w-0">
@@ -397,7 +398,7 @@
                         </div>
                     </div>
 
-                    {{-- Quick links --}}
+                    {{-- Quick services --}}
                     <div class="bg-slate-50 border border-slate-200/90 rounded-2xl p-4 sm:p-5 space-y-3">
                         <div class="text-xs font-bold text-slate-900 border-b border-slate-200/70 pb-2 uppercase tracking-wide">
                             অভিভাবক ও শিক্ষার্থী সেবা
@@ -425,19 +426,17 @@
         </div>
     </section>
 
-    <div class="home-section-divider"></div>
-
-    {{-- Admissions process --}}
-    <section class="home-section bg-slate-50/60" id="admission">
+    {{-- Admissions pathway --}}
+    <section class="home-section bg-slate-50/70 py-14 sm:py-20" id="admission">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="section-header-block">
                 <div class="section-header-left">
                     <span class="section-kicker">
                         <span class="section-kicker-dot"></span>
-                        HOW TO GET STARTED — ENROLLMENT PATHWAY
+                        ভর্তি প্রক্রিয়া ও সেশন প্রস্তুতি
                     </span>
                     <h2 class="section-title">
-                        মাত্র ৩টি সহজ ধাপে আপনার সন্তানের <span class="text-[#005030]">সোনাতলা যাত্রার সূচনা</span>
+                        মাত্র ৩টি সহজ ধাপে আপনার সন্তানের <span class="headline-signature-accent">সোনাতলা যাত্রার সূচনা</span>
                     </h2>
                 </div>
                 <div class="section-header-right">
@@ -447,12 +446,12 @@
                 </div>
             </div>
 
-            <div class="steps-grid mb-10">
+            <div class="steps-grid">
                 <div class="step-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 relative flex flex-col justify-between shadow-2xs group">
                     <div>
                         <div class="flex items-center justify-between mb-5">
-                            <span class="text-3xl font-extrabold text-slate-800 font-mono group-hover:scale-105 transition-transform duration-300">০১</span>
-                            <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-bold border border-slate-200">
+                            <span class="text-3xl font-extrabold text-[#005030] font-mono group-hover:scale-105 transition-transform duration-300">০১</span>
+                            <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-[#005030] text-[11px] font-bold border border-emerald-200">
                                 ধাপ ১
                             </span>
                         </div>
@@ -465,15 +464,15 @@
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium">
                         <span>অনলাইন / অফলাইন উভয় সুবিধা</span>
-                        <span class="text-slate-700 font-bold flex items-center gap-1.5"><i class="fa-solid fa-check text-xs"></i> সহজ</span>
+                        <span class="text-[#005030] font-bold flex items-center gap-1.5"><i class="fa-solid fa-check text-xs"></i> সহজ</span>
                     </div>
                 </div>
 
                 <div class="step-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 relative flex flex-col justify-between shadow-2xs group">
                     <div>
                         <div class="flex items-center justify-between mb-5">
-                            <span class="text-3xl font-extrabold text-slate-800 font-mono group-hover:scale-105 transition-transform duration-300">০২</span>
-                            <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-bold border border-slate-200">
+                            <span class="text-3xl font-extrabold text-[#005030] font-mono group-hover:scale-105 transition-transform duration-300">০২</span>
+                            <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-[#005030] text-[11px] font-bold border border-emerald-200">
                                 ধাপ ২
                             </span>
                         </div>
@@ -486,15 +485,15 @@
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium">
                         <span>ব্যক্তিগত পরামর্শ ও কাউন্সেলিং</span>
-                        <span class="text-slate-700 font-bold flex items-center gap-1.5"><i class="fa-solid fa-check text-xs"></i> বন্ধুত্বপূর্ণ</span>
+                        <span class="text-[#005030] font-bold flex items-center gap-1.5"><i class="fa-solid fa-check text-xs"></i> বন্ধুত্বপূর্ণ</span>
                     </div>
                 </div>
 
                 <div class="step-card bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 relative flex flex-col justify-between shadow-2xs group">
                     <div>
                         <div class="flex items-center justify-between mb-5">
-                            <span class="text-3xl font-extrabold text-slate-800 font-mono group-hover:scale-105 transition-transform duration-300">০৩</span>
-                            <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-bold border border-slate-200">
+                            <span class="text-3xl font-extrabold text-[#005030] font-mono group-hover:scale-105 transition-transform duration-300">০৩</span>
+                            <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-[#005030] text-[11px] font-bold border border-emerald-200">
                                 ধাপ ৩
                             </span>
                         </div>
@@ -507,43 +506,32 @@
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium">
                         <span>তাৎক্ষণিক সেশন প্রস্তুতি</span>
-                        <span class="text-emerald-600 font-bold flex items-center gap-1.5"><i class="fa-solid fa-check text-xs"></i> ক্লাসে স্বাগতম</span>
+                        <span class="text-emerald-700 font-bold flex items-center gap-1.5"><i class="fa-solid fa-check text-xs"></i> ক্লাসে স্বাগতম</span>
                     </div>
                 </div>
             </div>
 
-            <div class="p-6 sm:p-8 bg-gradient-to-r from-[#004027] via-[#005030] to-[#043420] text-white rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xs">
-                <div>
-                    <h3 class="text-xl sm:text-2xl font-bold">২০২৬ শিক্ষাবর্ষে আপনার সন্তানের মেধার বিকাশে আমরা পাশে আছি</h3>
-                    <p class="text-sm sm:text-base text-emerald-100 mt-1">ভর্তি সংক্রান্ত যেকোনো জিজ্ঞাসায় আমাদের হেল্পলাইনে কথা বলুন অথবা সরাসরি যোগাযোগ করুন।</p>
-                </div>
-                <div class="flex flex-wrap items-center gap-3 shrink-0">
-                    <a href="{{ route('frontend.contact') }}"
-                       class="px-5 py-2.5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs sm:text-sm transition-colors shadow-xs">
-                        ভর্তি অনুসন্ধান ও যোগাযোগ
-                    </a>
-                    <a href="{{ route('frontend.notices.index') }}"
-                       class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm border border-white/20 transition-colors">
-                        ভর্তি নোটিশ ডাউনলোড
-                    </a>
-                </div>
+            <div class="mt-8 text-center">
+                <a href="{{ route('frontend.contact') }}#enroll"
+                   class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#005030] hover:bg-[#003d24] text-white text-xs sm:text-sm font-bold shadow-xs transition-all hover:scale-105 active:scale-95">
+                    <span>ভর্তি আবেদন ও তথ্যসহায়তা</span>
+                    <i class="fa-solid fa-arrow-right-long text-xs"></i>
+                </a>
             </div>
         </div>
     </section>
 
-    <div class="home-section-divider"></div>
-
-    {{-- Campus experience --}}
-    <section class="home-section bg-white" id="experience">
+    {{-- Campus life experience & atmosphere --}}
+    <section class="home-section bg-white py-14 sm:py-20" id="experience">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="section-header-block">
                 <div class="section-header-left">
                     <span class="section-kicker">
                         <span class="section-kicker-dot"></span>
-                        DAY-TO-DAY EXPERIENCE — WHAT IT FEELS LIKE
+                        ক্যাম্পাস সংস্কৃতি ও প্রাত্যহিক পরিক্রমা
                     </span>
                     <h2 class="section-title">
-                        সোনাতলা ক্যাম্পাসে একটি সাধারণ দিনের <span class="text-[#005030]">বাস্তব অনুভূতি</span>
+                        সোনাতলা ক্যাম্পাসে একটি সাধারণ দিনের <span class="headline-signature-accent">বাস্তব অনুভূতি</span>
                     </h2>
                 </div>
                 <div class="section-header-right">
@@ -554,30 +542,28 @@
             </div>
 
             <div class="space-y-8">
-                <div class="experience-frame bg-slate-900 border border-slate-200">
-                    <div class="px-4 py-3 bg-slate-900 border-b border-slate-800 flex items-center justify-between text-xs text-slate-400">
-                        <div class="flex items-center gap-2">
-                            <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
-                            <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
-                            <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
-                            <span class="ml-2 font-mono text-[11px] text-slate-400 hidden sm:inline-block">sonatalahs.edu.bd/portal/live</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px] font-semibold border border-emerald-400/30">
+                {{-- Clean Authentic Campus Life Showcase --}}
+                <div class="relative rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm aspect-16/9 sm:aspect-21/9 max-h-[440px] group">
+                    <img src="{{ asset('assets/images/product-experience.jpg') }}"
+                         alt="সোনাতলা উচ্চ বিদ্যালয় ক্যাম্পাস ও শ্রেণিকক্ষ"
+                         class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/20 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 right-4 sm:right-6 flex flex-wrap items-center justify-between gap-3 text-white">
+                        <div>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#005030]/90 text-emerald-200 text-xs font-bold border border-emerald-400/40 backdrop-blur-xs mb-2">
                                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                                স্মার্ট ক্যাম্পাস ও ডিজিটাল লার্নিং প্ল্যাটফর্ম
+                                ক্যাম্পাস জীবন ও সংস্কৃতি
                             </span>
+                            <h3 class="text-lg sm:text-2xl font-extrabold text-white">শৃঙ্খলা, মমতা ও আধুনিক শিক্ষায় প্রস্ফুটিত প্রতিটি দিন</h3>
                         </div>
-                    </div>
-
-                    <div class="w-full relative bg-slate-950 aspect-video max-h-[500px] overflow-hidden">
-                        <img src="{{ asset('assets/images/product-experience.jpg') }}"
-                             alt="সোনাতলা উচ্চ বিদ্যালয় ডিজিটাল প্ল্যাটফর্ম ও স্মার্ট শিক্ষাঙ্গন"
-                             class="w-full h-full object-cover">
+                        <div class="hidden md:flex items-center gap-2 text-xs text-slate-200 bg-black/40 backdrop-blur-xs px-3.5 py-1.5 rounded-full border border-white/20">
+                            <i class="fa-solid fa-location-dot text-emerald-400"></i>
+                            <span>সাঁথিয়া, পাবনা</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="experience-summaries-grid pt-4">
+                <div class="experience-summaries-grid pt-2">
                     <div class="experience-card bg-slate-50 border border-slate-200/90 rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-2xs group transition-all">
                         <div>
                             <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-white text-[#005030] text-[11px] font-bold border border-slate-200 mb-3 shadow-2xs">
@@ -599,24 +585,6 @@
                     <div class="experience-card bg-slate-50 border border-slate-200/90 rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-2xs group transition-all">
                         <div>
                             <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-white text-[#005030] text-[11px] font-bold border border-slate-200 mb-3 shadow-2xs">
-                                <span><i class="fa-solid fa-mobile-screen-button text-emerald-600"></i></span>
-                                <span>সারাদিন রিয়েল-টাইম</span>
-                            </div>
-                            <h4 class="text-base sm:text-lg font-bold text-slate-900 mb-2 group-hover:text-[#005030] transition-colors">
-                                হাতের মুঠোয় স্বচ্ছ তথ্যপ্রবাহ
-                            </h4>
-                            <p class="text-sm text-slate-700 leading-relaxed">
-                                স্মার্ট ডায়েরি ও অনলাইন নোটিশ বোর্ডে রুটিন ও রেজাল্ট থাকে অভিভাবকের হাতের মুঠোয়।
-                            </p>
-                        </div>
-                        <div class="mt-4 pt-3 border-t border-slate-200/60 text-[11px] font-semibold text-emerald-700">
-                            অভিভাবকবান্ধব নিশ্চয়তা
-                        </div>
-                    </div>
-
-                    <div class="experience-card bg-slate-50 border border-slate-200/90 rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-2xs group transition-all">
-                        <div>
-                            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-white text-[#005030] text-[11px] font-bold border border-slate-200 mb-3 shadow-2xs">
                                 <span><i class="fa-solid fa-flask-vial text-emerald-600"></i></span>
                                 <span>দুপুর ১:৩০ টা</span>
                             </div>
@@ -631,24 +599,40 @@
                             ব্যবহারিক মেধার বিকাশ
                         </div>
                     </div>
+
+                    <div class="experience-card bg-slate-50 border border-slate-200/90 rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-2xs group transition-all">
+                        <div>
+                            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-white text-[#005030] text-[11px] font-bold border border-slate-200 mb-3 shadow-2xs">
+                                <span><i class="fa-solid fa-mobile-screen-button text-emerald-600"></i></span>
+                                <span>সারাদিন রিয়েল-টাইম</span>
+                            </div>
+                            <h4 class="text-base sm:text-lg font-bold text-slate-900 mb-2 group-hover:text-[#005030] transition-colors">
+                                হাতের মুঠোয় স্বচ্ছ তথ্যপ্রবাহ
+                            </h4>
+                            <p class="text-sm text-slate-700 leading-relaxed">
+                                স্মার্ট ডায়েরি ও অনলাইন নোটিশ বোর্ডে রুটিন ও রেজাল্ট থাকে অভিভাবকের হাতের মুঠোয়।
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-200/60 text-[11px] font-semibold text-emerald-700">
+                            অভিভাবকবান্ধব নিশ্চয়তা
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="home-section-divider"></div>
-
     {{-- Photo gallery --}}
-    <section class="home-section bg-slate-50/60" id="gallery">
+    <section class="home-section bg-slate-50/70 py-14 sm:py-20" id="gallery">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="section-header-block">
                 <div class="section-header-left">
                     <span class="section-kicker">
                         <span class="section-kicker-dot"></span>
-                        CAMPUS LIFE & PROUD MOMENTS
+                        ক্যাম্পাস প্রাঙ্গণচিত্র ও স্মরণীয় মুহূর্ত
                     </span>
                     <h2 class="section-title">
-                        ক্যাম্পাসের সোনালী মুহূর্ত ও <span class="text-[#005030]">সোনাতলা প্রাঙ্গণচিত্র</span>
+                        ক্যাম্পাসের সোনালী মুহূর্ত ও <span class="headline-signature-accent">সোনাতলা প্রাঙ্গণচিত্র</span>
                     </h2>
                 </div>
                 <div class="section-header-right">
@@ -698,28 +682,9 @@
         </div>
     </section>
 
-    <div class="home-section-divider"></div>
-
-    {{-- Admissions CTA --}}
-    <section class="home-section bg-white" id="enroll">
+    {{-- Admissions closing CTA --}}
+    <section class="home-section bg-white py-14 sm:py-20" id="enroll">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="section-header-block">
-                <div class="section-header-left">
-                    <span class="section-kicker">
-                        <span class="section-kicker-dot"></span>
-                        THE FINAL STEP — JOIN OUR FAMILY
-                    </span>
-                    <h2 class="section-title">
-                        ২০২৬ শিক্ষাবর্ষে আপনার সন্তানের মেধার বিকাশে <span class="text-[#005030]">আমরা প্রস্তুত</span>
-                    </h2>
-                </div>
-                <div class="section-header-right">
-                    <p class="section-subtitle">
-                        অভিজ্ঞ শিক্ষকমণ্ডলীর স্নেহ ও প্রযুক্তির সমন্বয়ে সন্তানের ভবিষ্যৎ গড়ুন সোনাতলা উচ্চ বিদ্যালয়ে। সীমিত আসনের জন্য আজই যোগাযোগ করুন অথবা সরাসরি অনলাইন আবেদন সম্পন্ন করুন।
-                    </p>
-                </div>
-            </div>
-
             <div class="cta-banner-box">
                 <div class="relative z-10 max-w-3xl">
                     <span class="inline-block px-3 py-1 rounded bg-amber-400 text-slate-950 text-xs font-bold uppercase tracking-wider mb-4">
@@ -729,7 +694,7 @@
                         আপনার সন্তানের <span class="text-amber-400">সম্ভাবনাময় ভবিষ্যতের</span> সূচনা হোক আজই
                     </h3>
                     <p class="text-sm sm:text-base text-emerald-100/90 leading-relaxed mb-8">
-                        ৬ষ্ঠ থেকে ১০ম শ্রেণিতে নতুন ভর্তির জন্য আমাদের প্রশাসনিক কার্যালয় সর্বদা প্রস্তুত। যেকোনো তথ্যের জন্য সরাসরি ফোনে কথা বলতে পারেন অথবা ক্যাম্পাস পরিদর্শনের জন্য আবেদন করতে পারেন।
+                        ৬ষ্ঠ থেকে ১০ম শ্রেণিতে নতুন ভর্তির জন্য আমাদের প্রশাসনিক কার্যালয় সর্বদা প্রস্তুত। যেকোনো তথ্যের জন্য সরাসরি ফোনে কথা বলতে পারেন অথবা ক্যাম্পাস পরিদর্শনের জন্য যোগাযোগ করতে পারেন।
                     </p>
 
                     <div class="flex flex-wrap items-center gap-4">
