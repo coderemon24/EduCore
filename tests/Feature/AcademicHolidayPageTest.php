@@ -52,6 +52,18 @@ class AcademicHolidayPageTest extends TestCase
     }
 
     /**
+     * Test navbar menu item 'ছুটির দিন' links directly to academic holidays.
+     */
+    public function test_navbar_chutir_din_menu_item_links_to_academic_holidays(): void
+    {
+        $response = $this->get(route('frontend.home'));
+
+        $response->assertStatus(200);
+        $response->assertSee(route('frontend.academic.holidays'));
+        $response->assertSee('ছুটির দিন');
+    }
+
+    /**
      * Test public academic holidays displays scheduled holidays with proper reason.
      */
     public function test_public_academic_holidays_page_displays_holidays_with_proper_reason(): void
