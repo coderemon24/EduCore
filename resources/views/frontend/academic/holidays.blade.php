@@ -129,15 +129,38 @@
             monthNamesEn: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             dayNames: ['রবি', 'সোম', 'মঙ্গল', 'বুধ', 'বৃহঃ', 'শুক্র', 'শনি'],
             
+            // Realtime Live Digital Clock Properties
+            clockHour: '--',
+            clockMinute: '--',
+            clockSecond: '--',
+            clockPeriod: 'AM',
+            clockBlink: true,
+
+            initClock() {
+                var update = () => {
+                    var now = new Date();
+                    var h = now.getHours();
+                    var m = now.getMinutes();
+                    var s = now.getSeconds();
+                    var period = h >= 12 ? 'PM' : 'AM';
+                    var h12 = h % 12;
+                    if (h12 === 0) h12 = 12;
+
+                    var pad = n => (n < 10 ? '0' : '') + n;
+                    this.clockHour = pad(h12);
+                    this.clockMinute = pad(m);
+                    this.clockSecond = pad(s);
+                    this.clockPeriod = period;
+                    this.clockBlink = !this.clockBlink;
+                };
+                update();
+                setInterval(update, 1000);
+            },
+            
             init() {
-                // Find initial event covering today or the first upcoming event
-                this.updateSelectedDate(this.selectedDate);
-                if (!this.selectedEvent && this.events.length > 0) {
-                    var closest = this.events.find(e => e.start_date >= this.selectedDate) || this.events[0];
-                    if (closest) {
-                        this.selectEvent(closest);
-                    }
-                }
+                this.initClock();
+                // User Requirement: By default calendar will have current date selected!
+                this.goToToday();
             },
             
             // Generate authentic 7-column calendar matrix (35 or 42 cells)
@@ -398,8 +421,17 @@
                             </div>
                         </div>
 
-                        {{-- Month Fast Controls --}}
+                        {{-- Month Fast Controls & Realtime Clock --}}
                         <div class="flex items-center gap-2 self-start sm:self-auto flex-wrap">
+                            {{-- Live Realtime Digital Clock Badge --}}
+                            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-950/90 border border-slate-700/80 shadow-inner font-mono text-xs">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                                <span class="text-emerald-300 font-bold tracking-wider text-xs sm:text-sm">
+                                    <span x-text="clockHour"></span><span :class="clockBlink ? 'opacity-100' : 'opacity-25'">:</span><span x-text="clockMinute"></span><span :class="clockBlink ? 'opacity-100' : 'opacity-25'">:</span><span x-text="clockSecond"></span>
+                                    <span class="text-[10px] text-amber-400 font-bold ml-0.5" x-text="clockPeriod"></span>
+                                </span>
+                            </div>
+
                             {{-- Direct Month Select Dropdown --}}
                             <select x-model.number="currentMonth"
                                     class="bg-slate-800 text-slate-200 text-xs font-semibold rounded-lg px-2.5 py-1.5 border border-slate-700 focus:outline-none focus:ring-1 focus:ring-emerald-500 cursor-pointer">
@@ -662,6 +694,76 @@
                 {{-- Right Side: The Reason & Details Inspector (4 Columns) (Recipe 4: Pick the Winner) --}}
                 <div class="lg:col-span-4 space-y-6 lg:sticky lg:top-24" id="selected-reason-card">
                     
+                    {{-- DEDICATED REAL-TIME DIGITAL WATCH CARD --}}
+                    <div class="bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-950 text-white rounded-2xl p-5 shadow-lg border border-emerald-900/60 relative overflow-hidden space-y-3">
+                        {{-- Subtle background radial glow --}}
+                        <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+                        {{-- Watch Header --}}
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <span class="relative flex h-2.5 w-2.5">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                                </span>
+                                <span class="text-[10px] font-black text-emerald-300 uppercase tracking-widest">লাইভ ডিজিটাল ঘড়ি</span>
+                            </div>
+                            <span class="text-[10px] font-mono text-slate-400 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/80">
+                                ঢাকা (GMT+6)
+                            </span>
+                        </div>
+
+                        {{-- Digital Clock Face: HH : MM : SS [AM/PM] --}}
+                        <div class="flex items-center justify-center gap-1.5 sm:gap-2 pt-1 font-mono">
+                            {{-- Hours Block --}}
+                            <div class="flex flex-col items-center">
+                                <div class="w-13 sm:w-14 h-12 rounded-xl bg-slate-950 border border-slate-700/80 flex items-center justify-center text-xl sm:text-2xl font-black text-emerald-300 shadow-inner">
+                                    <span x-text="clockHour"></span>
+                                </div>
+                                <span class="text-[9px] text-slate-400 font-sans mt-1 font-semibold">ঘণ্টা</span>
+                            </div>
+
+                            {{-- Colon Separator --}}
+                            <div class="text-xl font-bold text-emerald-400/80 pb-3" :class="clockBlink ? 'opacity-100' : 'opacity-25'">:</div>
+
+                            {{-- Minutes Block --}}
+                            <div class="flex flex-col items-center">
+                                <div class="w-13 sm:w-14 h-12 rounded-xl bg-slate-950 border border-slate-700/80 flex items-center justify-center text-xl sm:text-2xl font-black text-emerald-300 shadow-inner">
+                                    <span x-text="clockMinute"></span>
+                                </div>
+                                <span class="text-[9px] text-slate-400 font-sans mt-1 font-semibold">মিনিট</span>
+                            </div>
+
+                            {{-- Colon Separator --}}
+                            <div class="text-xl font-bold text-emerald-400/80 pb-3" :class="clockBlink ? 'opacity-100' : 'opacity-25'">:</div>
+
+                            {{-- Seconds Block (High Contrast Amber/Gold) --}}
+                            <div class="flex flex-col items-center">
+                                <div class="w-13 sm:w-14 h-12 rounded-xl bg-slate-950 border border-emerald-500/40 flex items-center justify-center text-xl sm:text-2xl font-black text-amber-400 shadow-inner">
+                                    <span x-text="clockSecond"></span>
+                                </div>
+                                <span class="text-[9px] text-slate-400 font-sans mt-1 font-semibold">সেকেন্ড</span>
+                            </div>
+
+                            {{-- AM/PM Period Pill --}}
+                            <div class="flex flex-col items-center ml-1">
+                                <div class="h-12 px-2.5 rounded-xl bg-slate-800/90 border border-slate-700 flex items-center justify-center text-xs font-black text-amber-300">
+                                    <span x-text="clockPeriod"></span>
+                                </div>
+                                <span class="text-[9px] text-slate-400 font-sans mt-1 font-semibold">সময়</span>
+                            </div>
+                        </div>
+
+                        {{-- Today's Realtime Date Banner --}}
+                        <div class="pt-2 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-300">
+                            <span class="flex items-center gap-1.5">
+                                <i class="fa-regular fa-calendar-check text-emerald-400"></i>
+                                <span>আজকের দিন:</span>
+                            </span>
+                            <span class="font-bold text-emerald-300" x-text="formatDateBn('{{ now()->toDateString() }}')"></span>
+                        </div>
+                    </div>
+
                     {{-- Active Selected Date Showcase Card --}}
                     <div class="bg-white border-2 border-[#005030]/20 rounded-2xl p-6 shadow-sm relative overflow-hidden transition-all">
                         {{-- Top Flag Accent --}}
