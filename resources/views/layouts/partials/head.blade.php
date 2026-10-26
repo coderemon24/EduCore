@@ -26,4 +26,7 @@
 <!-- Dedicated Responsive CSS (Local Asset: public/assets/css/responsive.css) -->
 <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
 
+<!-- Tailwind CSS v4 & Alpine.js Entry Point -->
+@vite(['resources/css/app.css', 'resources/js/app.js'])
+
 @stack('styles')
