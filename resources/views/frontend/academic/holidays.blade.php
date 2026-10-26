@@ -376,10 +376,10 @@
             <div x-show="activeTab === 'calendar'" x-transition:enter="transition ease-out duration-200" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
                 {{-- Left Side: The Interactive Monthly Calendar Grid (8 Columns) --}}
-                <div class="lg:col-span-8 bg-white border border-slate-200/90 rounded-2xl shadow-xs overflow-hidden">
+                <div class="lg:col-span-8 bg-white border border-slate-200/90 rounded-2xl shadow-xs relative overflow-visible">
                     
                     {{-- Calendar Header / Month Switcher --}}
-                    <div class="p-4 sm:p-5 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-700">
+                    <div class="p-4 sm:p-5 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-700 rounded-t-2xl">
                         <div class="flex items-center gap-3">
                             <div class="w-11 h-11 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center text-xl shrink-0 shadow-inner">
                                 <i class="fa-regular fa-calendar-check"></i>
@@ -473,55 +473,65 @@
                     </div>
 
                     {{-- Calendar Dates Grid Matrix (7 Columns x 5-6 Rows) --}}
-                    <div class="calendar-grid-7 grid grid-cols-7 gap-px bg-slate-200 border-b border-slate-200 p-px">
+                    <div class="calendar-grid-7 grid grid-cols-7 gap-px bg-slate-200 border-b border-slate-200 p-px relative overflow-visible">
                         <template x-for="(cell, idx) in calendarDays" :key="idx">
                             <div @click="clickCell(cell)"
                                  :class="{
-                                    'bg-white hover:bg-emerald-50/30 cursor-pointer': cell.isCurrentMonth && cell.dateStr !== selectedDate,
+                                    'bg-white hover:bg-emerald-50/30 cursor-pointer': cell.isCurrentMonth && cell.dateStr !== selectedDate && !cell.isHoliday,
                                     'bg-slate-50/80 cursor-pointer opacity-50 hover:opacity-90 hover:bg-slate-100': !cell.isCurrentMonth,
-                                    'ring-2 ring-inset ring-[#005030] bg-emerald-50/60 font-black shadow-inner z-10': cell.dateStr === selectedDate,
+                                    'ring-2 ring-inset ring-[#005030] bg-emerald-50/60 font-black shadow-inner z-20': cell.dateStr === selectedDate,
                                     'bg-rose-50/25': cell.isCurrentMonth && cell.isFriday && cell.dateStr !== selectedDate && !cell.isHoliday,
                                     'bg-amber-50/25': cell.isCurrentMonth && cell.isSaturday && cell.dateStr !== selectedDate && !cell.isHoliday,
-                                    'bg-emerald-50/40': cell.isCurrentMonth && cell.isHoliday && cell.dateStr !== selectedDate
+                                    'bg-emerald-50/75 border-b-2 border-b-emerald-600 hover:bg-emerald-100/90 cursor-pointer shadow-xs': cell.isCurrentMonth && cell.isHoliday && cell.dateStr !== selectedDate
                                  }"
-                                 class="calendar-cell min-h-[88px] sm:min-h-[104px] p-1.5 sm:p-2 flex flex-col justify-between relative group transition duration-150">
+                                 class="calendar-cell min-h-[88px] sm:min-h-[104px] p-1.5 sm:p-2 flex flex-col justify-between relative group hover:z-30 transition duration-150">
                                 
-                                {{-- Top Row: Date Number and Status Indicator --}}
+                                {{-- Top Row: Date Number and Holiday Indicator --}}
                                 <div class="flex items-center justify-between">
                                     <span class="text-xs sm:text-sm font-mono inline-flex items-center justify-center w-6 h-6 rounded-full transition-transform"
                                           :class="{
                                             'bg-[#005030] text-white font-black shadow-xs scale-105': cell.isToday,
-                                            'text-slate-900 font-bold': cell.isCurrentMonth && !cell.isToday && !cell.isFriday,
-                                            'text-rose-600 font-bold': cell.isCurrentMonth && !cell.isToday && cell.isFriday,
+                                            'text-emerald-950 font-extrabold': cell.isCurrentMonth && cell.isHoliday && !cell.isToday,
+                                            'text-slate-900 font-bold': cell.isCurrentMonth && !cell.isToday && !cell.isFriday && !cell.isHoliday,
+                                            'text-rose-600 font-bold': cell.isCurrentMonth && !cell.isToday && cell.isFriday && !cell.isHoliday,
                                             'text-slate-300 font-normal': !cell.isCurrentMonth
                                           }"
                                           x-text="cell.day">
                                     </span>
 
-                                    {{-- Holiday Type Icon Dot --}}
+                                    {{-- Holiday Type Icon Dot with Pulse Effect --}}
                                     <template x-if="cell.isHoliday">
-                                        <span class="w-2 h-2 rounded-full ring-2 ring-white shrink-0"
-                                              :class="{
-                                                'bg-emerald-600': cell.primaryHoliday && cell.primaryHoliday.type === 'holiday',
-                                                'bg-sky-600': cell.primaryHoliday && cell.primaryHoliday.type === 'exam_break',
-                                                'bg-amber-500': cell.primaryHoliday && cell.primaryHoliday.type === 'weekend',
-                                                'bg-rose-600': cell.primaryHoliday && cell.primaryHoliday.type === 'unplanned'
-                                              }">
+                                        <span class="inline-flex items-center gap-1">
+                                            <span class="w-2 h-2 rounded-full ring-2 ring-white shrink-0"
+                                                  :class="{
+                                                    'bg-emerald-600 shadow-emerald-400': cell.primaryHoliday && cell.primaryHoliday.type === 'holiday',
+                                                    'bg-sky-600 shadow-sky-400': cell.primaryHoliday && cell.primaryHoliday.type === 'exam_break',
+                                                    'bg-amber-500 shadow-amber-400': cell.primaryHoliday && cell.primaryHoliday.type === 'weekend',
+                                                    'bg-rose-600 shadow-rose-400': cell.primaryHoliday && cell.primaryHoliday.type === 'unplanned'
+                                                  }">
+                                            </span>
                                         </span>
                                     </template>
                                 </div>
 
-                                {{-- Middle/Bottom: Holiday Badge Pill (Ribbon) --}}
+                                {{-- Middle/Bottom: Selected Holiday Badge Marker --}}
                                 <div class="mt-1 space-y-1">
                                     <template x-if="cell.isHoliday && cell.primaryHoliday">
-                                        <div class="text-[10px] sm:text-[11px] font-semibold leading-tight line-clamp-2 px-1.5 py-0.5 rounded border shadow-2xs"
+                                        <div class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md text-[10px] sm:text-[11px] font-bold max-w-full truncate shadow-2xs border transition-transform group-hover:scale-105"
                                              :class="{
-                                                'bg-emerald-100/90 text-emerald-950 border-emerald-300/80': cell.primaryHoliday.type === 'holiday',
-                                                'bg-sky-100/90 text-sky-950 border-sky-300/80': cell.primaryHoliday.type === 'exam_break',
-                                                'bg-amber-100/90 text-amber-950 border-amber-300/80': cell.primaryHoliday.type === 'weekend',
-                                                'bg-rose-100/90 text-rose-950 border-rose-300/80': cell.primaryHoliday.type === 'unplanned'
+                                                'bg-emerald-100/90 text-emerald-950 border-emerald-300': cell.primaryHoliday.type === 'holiday',
+                                                'bg-sky-100/90 text-sky-950 border-sky-300': cell.primaryHoliday.type === 'exam_break',
+                                                'bg-amber-100/90 text-amber-950 border-amber-300': cell.primaryHoliday.type === 'weekend',
+                                                'bg-rose-100/90 text-rose-950 border-rose-300': cell.primaryHoliday.type === 'unplanned'
                                              }">
-                                            <span x-text="cell.primaryHoliday.title"></span>
+                                            <i class="fa-solid fa-umbrella-beach text-[9px] shrink-0"
+                                               :class="{
+                                                    'text-emerald-700': cell.primaryHoliday.type === 'holiday',
+                                                    'text-sky-700': cell.primaryHoliday.type === 'exam_break',
+                                                    'text-amber-700': cell.primaryHoliday.type === 'weekend',
+                                                    'text-rose-700': cell.primaryHoliday.type === 'unplanned'
+                                               }"></i>
+                                            <span class="truncate" x-text="cell.primaryHoliday.title"></span>
                                         </div>
                                     </template>
 
@@ -532,12 +542,101 @@
                                         </span>
                                     </template>
                                 </div>
+
+                                {{-- RICH HOVER TOOLTIP: AESTHETIC FLOATING REASON CARD --}}
+                                <template x-if="cell.isHoliday && cell.primaryHoliday">
+                                    <div class="pointer-events-none absolute z-50 invisible opacity-0 scale-95 translate-y-1 transition-all duration-200 ease-out group-hover:visible group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 w-72 sm:w-80 p-4 rounded-2xl bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 text-white shadow-2xl shadow-slate-950/70 border border-slate-700/80 backdrop-blur-md"
+                                         :class="{
+                                             'top-full mt-2.5': idx < 7,
+                                             'bottom-full mb-2.5': idx >= 7,
+                                             'left-0': idx % 7 === 0,
+                                             'right-0': idx % 7 === 6,
+                                             'left-1/2 -translate-x-1/2': (idx % 7 !== 0) && (idx % 7 !== 6)
+                                         }">
+                                         
+                                        {{-- Tooltip Top Row: Category Badge + Duration --}}
+                                        <div class="flex items-center justify-between gap-2 border-b border-slate-800 pb-2.5">
+                                            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider"
+                                                  :class="{
+                                                      'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30': cell.primaryHoliday.type === 'holiday',
+                                                      'bg-sky-500/20 text-sky-300 border border-sky-500/30': cell.primaryHoliday.type === 'exam_break',
+                                                      'bg-amber-500/20 text-amber-300 border border-amber-500/30': cell.primaryHoliday.type === 'weekend',
+                                                      'bg-rose-500/20 text-rose-300 border border-rose-500/30': cell.primaryHoliday.type === 'unplanned'
+                                                  }">
+                                                <span class="w-1.5 h-1.5 rounded-full animate-ping"
+                                                      :class="{
+                                                          'bg-emerald-400': cell.primaryHoliday.type === 'holiday',
+                                                          'bg-sky-400': cell.primaryHoliday.type === 'exam_break',
+                                                          'bg-amber-400': cell.primaryHoliday.type === 'weekend',
+                                                          'bg-rose-400': cell.primaryHoliday.type === 'unplanned'
+                                                      }"></span>
+                                                <span x-text="cell.primaryHoliday.type_label"></span>
+                                            </span>
+
+                                            <span class="text-[10px] font-mono font-bold text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded-md border border-amber-400/20">
+                                                <i class="fa-regular fa-clock text-[9px] mr-1"></i><span x-text="cell.primaryHoliday.duration_days + ' দিন অবকাশ'"></span>
+                                            </span>
+                                        </div>
+
+                                        {{-- Tooltip Middle: Title & Date Range --}}
+                                        <div class="mt-2.5 space-y-1">
+                                            <h5 class="text-sm font-black text-white leading-snug tracking-tight" x-text="cell.primaryHoliday.title"></h5>
+                                            <div class="flex items-center gap-1.5 text-[11px] font-mono text-emerald-300">
+                                                <i class="fa-regular fa-calendar-days text-[10px] text-emerald-400"></i>
+                                                <span x-text="cell.primaryHoliday.start_date + ' হতে ' + cell.primaryHoliday.end_date"></span>
+                                            </div>
+                                        </div>
+
+                                        {{-- Tooltip Core: Official Proper Reason from Backend --}}
+                                        <div class="mt-2.5 pt-2 border-t border-slate-800/80">
+                                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1 mb-1">
+                                                <i class="fa-solid fa-circle-info text-emerald-400"></i>
+                                                <span>ছুটির সুনির্দিষ্ট কারণ:</span>
+                                            </div>
+                                            <div class="text-[11px] sm:text-xs text-slate-200 bg-slate-800/80 p-2.5 rounded-xl border border-slate-700/70 leading-relaxed font-normal shadow-inner"
+                                                 x-text="cell.primaryHoliday.description">
+                                            </div>
+                                        </div>
+
+                                        {{-- Tooltip Footer Action Note --}}
+                                        <div class="mt-2.5 pt-2 border-t border-slate-800/90 flex items-center justify-between text-[10px] text-slate-400 font-medium">
+                                            <span class="text-rose-300/90 flex items-center gap-1">
+                                                <i class="fa-solid fa-school-circle-xmark text-rose-400 text-[10px]"></i>
+                                                <span>বিদ্যালয় বন্ধ থাকবে</span>
+                                            </span>
+                                            <span class="text-emerald-400 font-bold flex items-center gap-1">
+                                                <span>ক্লিক করে বিস্তারিত দেখুন</span>
+                                                <i class="fa-solid fa-arrow-right text-[8px]"></i>
+                                            </span>
+                                        </div>
+
+                                        {{-- Tooltip Arrow Caret (Pointing dynamically) --}}
+                                        <template x-if="idx >= 7">
+                                            <div class="absolute top-full border-solid border-t-slate-900 border-t-8 border-x-transparent border-x-8 border-b-0 w-0 h-0"
+                                                 :class="{
+                                                     'left-6': idx % 7 === 0,
+                                                     'right-6': idx % 7 === 6,
+                                                     'left-1/2 -translate-x-1/2': (idx % 7 !== 0) && (idx % 7 !== 6)
+                                                 }">
+                                            </div>
+                                        </template>
+                                        <template x-if="idx < 7">
+                                            <div class="absolute bottom-full border-solid border-b-slate-900 border-b-8 border-x-transparent border-x-8 border-t-0 w-0 h-0"
+                                                 :class="{
+                                                     'left-6': idx % 7 === 0,
+                                                     'right-6': idx % 7 === 6,
+                                                     'left-1/2 -translate-x-1/2': (idx % 7 !== 0) && (idx % 7 !== 6)
+                                                 }">
+                                            </div>
+                                        </template>
+                                    </div>
+                                </template>
                             </div>
                         </template>
                     </div>
 
                     {{-- Calendar Footer Legend --}}
-                    <div class="p-3 sm:p-4 bg-slate-50/90 flex flex-wrap items-center justify-between text-xs text-slate-600 gap-2 border-t border-slate-200">
+                    <div class="p-3 sm:p-4 bg-slate-50/90 flex flex-wrap items-center justify-between text-xs text-slate-600 gap-2 border-t border-slate-200 rounded-b-2xl">
                         <div class="flex flex-wrap items-center gap-3">
                             <span class="inline-flex items-center gap-1.5 font-medium">
                                 <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
