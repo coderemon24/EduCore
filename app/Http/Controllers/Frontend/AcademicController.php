@@ -18,37 +18,119 @@ use Illuminate\Support\Facades\Schema;
 class AcademicController extends Controller
 {
     /**
-     * Display class timetables and examination routines.
+     * Display class timetables and examination routines with academic year & class filters.
      */
     public function routine(Request $request): View
     {
         $school = CurrentSchoolContext::get();
 
+        $years = collect();
+        $selectedYear = null;
         $classes = collect();
         $selectedClass = null;
+        $sections = collect();
+        $selectedSection = null;
         $timetableSlots = collect();
 
+        // 1. Academic Years Filter
+        if ($school->exists && Schema::hasTable('academic_years')) {
+            $years = AcademicYear::where('school_id', $school->id)
+                ->orderByDesc('is_current')
+                ->latest('start_date')
+                ->get();
+
+            $yearId = $request->input('year_id');
+            if ($yearId) {
+                $selectedYear = $years->firstWhere('id', (int) $yearId);
+            }
+            if (! $selectedYear) {
+                $selectedYear = $years->firstWhere('is_current', true) ?? $years->first();
+            }
+        }
+
+        // 2. Academic Classes & Sections
         if ($school->exists && Schema::hasTable('academic_classes')) {
             $classes = AcademicClass::where('school_id', $school->id)
+                ->where('status', 'active')
+                ->with(['sections' => fn ($q) => $q->where('school_id', $school->id)->where('status', 'active')->orderBy('name')])
                 ->orderBy('order_index', 'asc')
                 ->orderBy('numeric_code', 'asc')
                 ->get();
 
-            $classId = $request->get('class_id', $classes->first()?->id);
+            $classId = $request->input('class_id');
             if ($classId) {
-                $selectedClass = $classes->firstWhere('id', $classId);
+                $selectedClass = $classes->firstWhere('id', (int) $classId);
+            }
+            if (! $selectedClass) {
+                // Default to Grade 6 if present, otherwise first active class
+                $selectedClass = $classes->firstWhere('numeric_code', 6) ?? $classes->first();
+            }
 
-                if (Schema::hasTable('timetable_slots')) {
-                    $timetableSlots = TimetableSlot::where('academic_class_id', $classId)
-                        ->with(['subject', 'teacher', 'section'])
-                        ->orderBy('day_of_week')
-                        ->orderBy('start_time')
-                        ->get();
+            if ($selectedClass) {
+                $sections = $selectedClass->sections;
+                $sectionId = $request->input('section_id');
+                if ($sectionId && $sectionId !== 'all') {
+                    $selectedSection = $sections->firstWhere('id', (int) $sectionId);
                 }
             }
         }
 
-        // Circulars specifically tagged with academic or exam types
+        // 3. Days of Week Mapping (Bangladesh Secondary School Standard: Sat - Thu)
+        $days = [
+            'saturday' => 'শনিবার',
+            'sunday' => 'রবিবার',
+            'monday' => 'সোমবার',
+            'tuesday' => 'মঙ্গলবার',
+            'wednesday' => 'বুধবার',
+            'thursday' => 'বৃহস্পতিবার',
+        ];
+
+        $selectedDay = strtolower((string) $request->input('day', 'all'));
+        if ($selectedDay !== 'all' && ! array_key_exists($selectedDay, $days)) {
+            $selectedDay = 'all';
+        }
+
+        // 4. Timetable Slots Query (Zero N+1 Queries with Eager Loading)
+        if ($school->exists && $selectedClass && Schema::hasTable('timetable_slots')) {
+            $slotsQuery = TimetableSlot::where('school_id', $school->id)
+                ->where('academic_class_id', $selectedClass->id)
+                ->with([
+                    'subject:id,school_id,name,code',
+                    'teacher:id,school_id,user_id,first_name,last_name,designation,photo',
+                    'teacher.user:id,name,avatar',
+                    'section:id,academic_class_id,name',
+                    'academicClass:id,name,numeric_code',
+                    'academicYear:id,name',
+                ]);
+
+            if ($selectedYear) {
+                $slotsQuery->where('academic_year_id', $selectedYear->id);
+            }
+
+            if ($selectedSection) {
+                $slotsQuery->where('section_id', $selectedSection->id);
+            }
+
+            if ($selectedDay !== 'all') {
+                $slotsQuery->where('day_of_week', $selectedDay);
+            }
+
+            $timetableSlots = $slotsQuery
+                ->orderByRaw("FIELD(day_of_week, 'saturday', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday')")
+                ->orderBy('start_time')
+                ->get();
+        }
+
+        $groupedSlots = $timetableSlots->groupBy('day_of_week');
+
+        // Telemetry Statistics
+        $stats = [
+            'total_slots' => $timetableSlots->count(),
+            'total_subjects' => $timetableSlots->pluck('subject_id')->unique()->filter()->count(),
+            'total_teachers' => $timetableSlots->pluck('teacher_id')->unique()->filter()->count(),
+        ];
+
+        // 5. Academic & Exam Circular Notices
         $routineNotices = collect();
         if ($school->exists && Schema::hasTable('notices')) {
             $routineNotices = Notice::where('school_id', $school->id)
@@ -61,9 +143,17 @@ class AcademicController extends Controller
 
         return view('frontend.academic.routine', compact(
             'school',
+            'years',
+            'selectedYear',
             'classes',
             'selectedClass',
+            'sections',
+            'selectedSection',
+            'days',
+            'selectedDay',
             'timetableSlots',
+            'groupedSlots',
+            'stats',
             'routineNotices'
         ));
     }

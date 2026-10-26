@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             StudentSeeder::class,
             RolePermissionSeeder::class,
             StaffSeeder::class,
+            ClassRoutineSeeder::class,
             NoticeSeeder::class,
             AboutPageSeeder::class,
         ]);
