@@ -62,7 +62,8 @@ python scripts/orchestrator.py run-parallel \
   - Recipe 6 (Give Color Meaning): Dark green `#005030`, warm amber `amber-400` strictly for primary CTA/Admission, sky blue for notices, calm neutral card base.
   - Recipe 7 (Add a Signature): Section kicker with pulsing dot (`.section-kicker-dot`), hairline dividers, and micro-interactions.
 - **UI-Mandatory Guidelines**: Zero placeholder buttons, full CRUD, responsive layouts.
-- **Worktree Commit**: Staged and committed to `agent/frontend` as PR for Lead.
+- **Single Atomic Commit Policy**: NEVER micro-commit after minor file edits or styling attempts. Commit EXACTLY ONCE at the very end when the entire page/view is fully completed and responsive:
+  `git commit -m "feat(frontend): <active verb title>" -m "- Views: <blade files>\n- Design: <UI recipes & tokens>\n- Verification: <responsive proof>"`
 
 #### Backend Engineer Mandatory Protocols:
 - **Framework Best Practices**: Follow `laravel-expert`, `laravel-best-practices`, and `laravel-security-audit`.
@@ -75,7 +76,8 @@ python scripts/orchestrator.py run-parallel \
   - Write Unit tests (`tests/Unit/`) and Feature tests (`tests/Feature/`).
   - Actively test edge cases to break the feature: invalid types, nulls, tenant boundary violations, empty records, and duplicate submissions.
   - If broken, diagnose, fix, and re-test until 100% green.
-- **Worktree Commit**: Staged and committed to `agent/backend` as PR for Lead.
+- **Single Atomic Commit Policy**: NEVER micro-commit on incremental edits, debugging, or partial code. Commit EXACTLY ONCE at the end when all models, migrations, controllers, and tests are complete and 100% passing:
+  `git commit -m "feat(backend): <active verb title>" -m "- Components: <classes & migrations>\n- Database: <indexes & eager loading>\n- Verification: <adversarial tests passed>"`
 
 ### Step 6: Team Lead PR Review
 Inspect worker diffs against `main`:

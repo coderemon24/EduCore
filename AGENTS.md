@@ -50,13 +50,25 @@ python scripts/orchestrator.py run-parallel \
 ```
 
 ### Step 4: Subagent Execution & Worktree PR Commits
+
+#### Strict Commit Policy: Single Atomic Commit Only (Zero Garbage Commits)
+- **Forbidden**: NEVER commit after incremental file edits, single-line CSS adjustments, debugging trials, or half-finished work. Git history must NEVER be polluted with broken states or vague commits.
+- **When to Commit (Definition of Done)**:
+  - **Frontend**: ONLY after the entire page or component is completely designed, fully responsive across all breakpoints, styled with `ui-refactor.md` recipes, and verified with zero dead links.
+  - **Backend**: ONLY after all models, migrations, controllers, form requests, and adversarial tests are completely implemented and 100% green.
+- **Human-Readable Message Requirement**: Every commit must be descriptive and follow Conventional Commits with a bulleted body explaining what was built, how it was structured, and how it was tested.
+
 - **Frontend Subagent**:
   - Implements Blade views in `resources/views/` and styles in `public/assets/`.
   - **Refines UI with `ui-refactor.md`**: Must apply the 7 Master UI Recipes (Sharpen Message, Break Symmetry, Build Argument, Pick Winner, Scale Type, Give Color Meaning, Add Signature).
   - **Preserves Page Consistency**: Inspects and adheres to design patterns of existing pages (`classes.blade.php`, `about/index.blade.php`, `routine.blade.php`, `teachers/index.blade.php`).
   - Adheres to [UI-Mandatory.md](file:///c:/laragon/www/laravel-school/UI-Mandatory.md) (no dead buttons, responsive, real links).
-  - Commits changes to `agent/frontend`:
-    `git commit -m "feat(frontend): <description>"`
+  - **Final Commit Command** (Executed ONCE upon full completion):
+    ```bash
+    git add .
+    git commit -m "feat(frontend): <concise active verb title describing completed UI>" -m "- Views: <list created or redesigned blade templates>\n- Design: <UI recipes applied, typography scale, color tokens used>\n- Verification: <mobile/desktop responsiveness confirmed, valid routes wired>"
+    ```
+
 - **Backend Subagent**:
   - Follows `laravel-expert`, `laravel-best-practices`, and `laravel-security-audit`.
   - Implements FormRequests, Controllers, Models, and Migrations in `app/`, `database/`, `routes/`.
@@ -69,8 +81,11 @@ python scripts/orchestrator.py run-parallel \
     - Writes Unit & Feature tests in `tests/Unit/` and `tests/Feature/`.
     - Actively attempts to break the feature with real-life edge cases: invalid types, nulls, tenant boundary crossovers, duplicate requests, high concurrency, and malicious input.
     - If broken during testing, fixes the root cause and re-tests until 100% green.
-  - Commits changes to `agent/backend`:
-    `git commit -m "feat(backend): <description>"`
+  - **Final Commit Command** (Executed ONCE upon full completion):
+    ```bash
+    git add .
+    git commit -m "feat(backend): <concise active verb title describing completed feature>" -m "- Components: <list created/modified models, controllers, requests>\n- Database: <indexes, migrations, and eager loading added>\n- Verification: <adversarial tests passed and edge cases covered>"
+    ```
 
 ### Step 5: Team Lead PR Review & Edge-Case Gate
 1. **Review Diffs (PR Inspection)**:

@@ -217,15 +217,17 @@ def review_diffs():
     print("=" * 70)
 
 
-def integrate_branches(test_filter=""):
+def integrate_branches(test_filter="", change_name=""):
     """Integrate worker branches into main after review."""
     print("=" * 70)
     print("  Orchestrator: Integrating Worker Branches into main")
     print("=" * 70)
     
+    scope_str = f"({change_name})" if change_name else ""
     # 1. Integrate backend
     print("Step 1: Merging agent/backend into main...")
-    b_res = run_cmd('git merge agent/backend -m "feat(backend): integrate verified backend changes" --no-ff', cwd=BASE_DIR)
+    b_msg = f"feat(backend{scope_str}): integrate verified backend changes into main"
+    b_res = run_cmd(f'git merge agent/backend -m "{b_msg}" --no-ff', cwd=BASE_DIR)
     if b_res.returncode != 0:
         print(f"[ERROR] Backend merge failed:\n{b_res.stderr or b_res.stdout}")
         return False
@@ -233,7 +235,8 @@ def integrate_branches(test_filter=""):
     
     # 2. Integrate frontend
     print("Step 2: Merging agent/frontend into main...")
-    f_res = run_cmd('git merge agent/frontend -m "feat(frontend): integrate verified frontend changes" --no-ff', cwd=BASE_DIR)
+    f_msg = f"feat(frontend{scope_str}): integrate verified frontend changes into main"
+    f_res = run_cmd(f'git merge agent/frontend -m "{f_msg}" --no-ff', cwd=BASE_DIR)
     if f_res.returncode != 0:
         print(f"[ERROR] Frontend merge failed:\n{f_res.stderr or f_res.stdout}")
         return False
@@ -286,7 +289,7 @@ def push_to_github(commit_message: str):
 
 
 def enrich_backend_prompt(raw_prompt: str, change_name: str = "") -> str:
-    """Enrich the backend prompt with mandatory Laravel, DB optimization, and adversarial test rules."""
+    """Enrich the backend prompt with mandatory Laravel, DB optimization, adversarial test rules, and atomic commit discipline."""
     return f"""### BACKEND TASK DIRECTIVE (EduCore Architecture)
 Feature / Module Context: {change_name or 'Feature Implementation'}
 
@@ -304,14 +307,19 @@ MANDATORY ARCHITECTURAL & DATABASE OPTIMIZATION STANDARDS:
    - Write Unit tests in `tests/Unit/` and Feature tests in `tests/Feature/`.
    - Actively try to break the code by testing: null inputs, invalid data types, tenant boundary violations, empty records, and duplicate submissions.
    - If tests fail or bugs are exposed, fix the implementation immediately and re-run tests until 100% green.
-5. Worktree Commit & PR:
-   - When verified, stage changes and commit: `git commit -m "feat(backend): <detailed summary>"`
-   - Output summary of files created/changed, tests executed, and commit SHA.
+5. STRICT COMMIT DISCIPLINE & HUMAN-READABLE PR POLICY (ZERO GARBAGE COMMITS):
+   - ABSOLUTELY FORBIDDEN: NEVER commit on incremental file edits, trial-and-error debugging steps, single-file fixes, or half-finished code. DO NOT pollute git history with micro-commits.
+   - TIMING: Commit EXACTLY ONCE at the very end of your task, ONLY AFTER all models, migrations, controllers, form requests, and adversarial tests are fully completed, verified, and passing.
+   - HUMAN-READABLE MESSAGE STANDARD: Every commit message must be self-explanatory, detailed, and human-readable. Never use vague titles like 'update', 'fix', 'feat(backend): backend changes', or 'changes'.
+   - REQUIRED COMMIT COMMAND:
+     git add .
+     git commit -m "feat(backend): <concise active verb title describing the feature>" -m "- Components: <list created/modified models, controllers, requests>\n- Database: <indexes, migrations, and eager loading added>\n- Verification: <adversarial tests passed and edge cases covered>"
+   - Output summary of files created/changed, tests executed, and the final commit SHA.
 """
 
 
 def enrich_frontend_prompt(raw_prompt: str, change_name: str = "") -> str:
-    """Enrich the frontend prompt with ui-refactor.md, page consistency, and UI-Mandatory standards."""
+    """Enrich the frontend prompt with ui-refactor.md, page consistency, UI-Mandatory, and atomic commit discipline."""
     return f"""### FRONTEND TASK DIRECTIVE (EduCore UI/UX)
 Feature / Module Context: {change_name or 'UI Implementation'}
 
@@ -333,9 +341,14 @@ MANDATORY UI/UX & REFACTORING STANDARDS:
 3. UI-Mandatory Compliance:
    - No placeholder buttons or dead links. All buttons/links must have valid `route('...')` or actionable targets.
    - Full responsive support (mobile natural stack, desktop editorial grid).
-4. Worktree Commit & PR:
-   - Stage changes and commit: `git commit -m "feat(frontend): <detailed summary>"`
-   - Output summary of views/components modified, responsiveness checks, and commit SHA.
+4. STRICT COMMIT DISCIPLINE & HUMAN-READABLE PR POLICY (ZERO GARBAGE COMMITS):
+   - ABSOLUTELY FORBIDDEN: NEVER commit on incremental file edits, individual CSS tweaks, fixing typos, or partial drafts. DO NOT pollute git history with micro-commits.
+   - TIMING: Commit EXACTLY ONCE at the very end of your task, ONLY AFTER the complete page or component layout is fully crafted, responsive across breakpoints, UI-recipes applied, and verified with zero dead links.
+   - HUMAN-READABLE MESSAGE STANDARD: Every commit message must be self-explanatory, detailed, and human-readable. Never use vague titles like 'update', 'style fix', 'frontend changes', or 'changes'.
+   - REQUIRED COMMIT COMMAND:
+     git add .
+     git commit -m "feat(frontend): <concise active verb title describing the UI/page>" -m "- Views: <list created or redesigned blade templates>\n- Design: <UI recipes applied, typography scale, color tokens used>\n- Verification: <mobile/desktop responsiveness confirmed, valid routes wired>"
+   - Output summary of views/components modified, responsiveness checks, and the final commit SHA.
 """
 
 
@@ -392,7 +405,7 @@ async def run_feature_pipeline(change_name: str, prompt: str, test_filter: str =
         
     # 7. Integration
     print("\n>>> Phase 7: Integrating Worker Branches into main...")
-    integrated = integrate_branches(filter_target)
+    integrated = integrate_branches(filter_target, change_name)
     if not integrated:
         print("[ERROR] Integration failed. Please inspect git status.")
         return False
@@ -477,6 +490,7 @@ async def main_async():
     # Integrate
     integrate_p = subparsers.add_parser("integrate", help="Integrate reviewed agent branches into main")
     integrate_p.add_argument("--filter", default="", help="Filter test case or class name during gate check")
+    integrate_p.add_argument("--change", default="", help="OpenSpec change name or feature scope for commit message")
     
     # Archive
     archive_p = subparsers.add_parser("archive", help="Archive a completed OpenSpec change")
@@ -542,7 +556,7 @@ async def main_async():
         run_tests(args.filter)
         
     elif args.action == "integrate":
-        integrate_branches(args.filter)
+        integrate_branches(args.filter, args.change)
         
     elif args.action == "archive":
         archive_change(args.change)
