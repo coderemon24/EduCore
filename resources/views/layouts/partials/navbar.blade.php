@@ -122,6 +122,7 @@
                     <div class="snhs-dropdown" data-dropdown="academic">
                         <a href="{{ route('frontend.academic.classes') }}" class="{{ request()->routeIs('frontend.academic.classes*') ? 'is-active' : '' }}">শ্রেণিসমূহ</a>
                         <a href="{{ route('frontend.academic.routine') }}" class="{{ request()->routeIs('frontend.academic.routine*') ? 'is-active' : '' }}">ক্লাস রুটিন</a>
+                        <a href="{{ route('frontend.academic.holidays') }}" class="{{ request()->routeIs('frontend.academic.holidays*') ? 'is-active' : '' }}">ছুটির তালিকা ও ক্যালেন্ডার</a>
                         <a href="{{ route('frontend.academic.routine') }}#exams">পরীক্ষার সময়সূচি</a>
                         <a href="{{ route('frontend.notices.index') }}">সিলেবাস ও পাঠ্যপুস্তক</a>
                         <a href="{{ route('frontend.notices.index') }}">ফলাফল ও নম্বরপত্র</a>
@@ -240,6 +241,7 @@
                 <div x-show="mAcademic" x-cloak class="snhs-mobile-sub" data-mobile-sub="academic">
                     <a href="{{ route('frontend.academic.classes') }}" @click="mobileMenuOpen = false" class="{{ request()->routeIs('frontend.academic.classes*') ? 'is-active' : '' }}">শ্রেণিসমূহ</a>
                     <a href="{{ route('frontend.academic.routine') }}" @click="mobileMenuOpen = false" class="{{ request()->routeIs('frontend.academic.routine*') ? 'is-active' : '' }}">ক্লাস রুটিন</a>
+                    <a href="{{ route('frontend.academic.holidays') }}" @click="mobileMenuOpen = false" class="{{ request()->routeIs('frontend.academic.holidays*') ? 'is-active' : '' }}">ছুটির তালিকা ও ক্যালেন্ডার</a>
                     <a href="{{ route('frontend.academic.routine') }}#exams" @click="mobileMenuOpen = false">পরীক্ষার সময়সূচি</a>
                     <a href="{{ route('frontend.notices.index') }}" @click="mobileMenuOpen = false">সিলেবাস ও পাঠ্যপুস্তক</a>
                     <a href="{{ route('frontend.notices.index') }}" @click="mobileMenuOpen = false">ফলাফল ও নম্বরপত্র</a>

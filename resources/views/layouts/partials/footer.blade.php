@@ -88,6 +88,12 @@
                             </a>
                         </li>
                         <li>
+                            <a href="{{ route('frontend.academic.holidays') }}" class="group flex items-center gap-1.5 sm:gap-2 text-slate-300 hover:text-white transition-colors cursor-pointer">
+                                <i class="fa-solid fa-chevron-right shrink-0 text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
+                                <span>ছুটির ক্যালেন্ডার</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{ route('frontend.teachers.index') }}" class="group flex items-center gap-1.5 sm:gap-2 text-slate-300 hover:text-white transition-colors cursor-pointer">
                                 <i class="fa-solid fa-chevron-right shrink-0 text-[10px] text-emerald-400/70 group-hover:text-emerald-300 group-hover:translate-x-1 transition-transform"></i>
                                 <span>শিক্ষকবৃন্দ</span>
