@@ -140,40 +140,109 @@
                 }
             },
             
-            // Generate grid cells for currently selected month
+            // Generate authentic 7-column calendar matrix (35 or 42 cells)
             get calendarDays() {
                 var year = this.currentYear;
                 var month = this.currentMonth; // 1-indexed
                 var firstDay = new Date(year, month - 1, 1).getDay(); // 0 is Sunday
                 var totalDays = new Date(year, month, 0).getDate();
+                var prevMonthTotalDays = new Date(year, month - 1, 0).getDate();
                 
                 var days = [];
-                // Empty padding cells before 1st of month
-                for (var p = 0; p < firstDay; p++) {
-                    days.push({ day: null, dateStr: null, isCurrentMonth: false, holidays: [] });
-                }
                 
-                // Actual days of the month
-                for (var d = 1; d <= totalDays; d++) {
-                    var mm = (month < 10 ? '0' : '') + month;
-                    var dd = (d < 10 ? '0' : '') + d;
-                    var dateStr = year + '-' + mm + '-' + dd;
+                // 1. Pre-padding: Days from previous month
+                for (var p = 0; p < firstDay; p++) {
+                    var prevD = prevMonthTotalDays - firstDay + 1 + p;
+                    var prevM = month === 1 ? 12 : month - 1;
+                    var prevY = month === 1 ? year - 1 : year;
+                    var prevMm = (prevM < 10 ? '0' : '') + prevM;
+                    var prevDd = (prevD < 10 ? '0' : '') + prevD;
+                    var prevDateStr = prevY + '-' + prevMm + '-' + prevDd;
                     
-                    var matchingHolidays = this.events.filter(e => {
-                        return dateStr >= e.start_date && dateStr <= e.end_date;
-                    });
+                    var matchingHolidays = this.events.filter(e => prevDateStr >= e.start_date && prevDateStr <= e.end_date);
                     
                     days.push({
-                        day: d,
-                        dateStr: dateStr,
-                        isCurrentMonth: true,
-                        isToday: dateStr === '{{ now()->toDateString() }}',
+                        day: prevD,
+                        dateStr: prevDateStr,
+                        isCurrentMonth: false,
+                        targetMonth: prevM,
+                        targetYear: prevY,
+                        isToday: prevDateStr === '{{ now()->toDateString() }}',
+                        isFriday: p === 5,
+                        isSaturday: p === 6,
                         holidays: matchingHolidays,
                         isHoliday: matchingHolidays.length > 0,
                         primaryHoliday: matchingHolidays[0] || null
                     });
                 }
+                
+                // 2. Current Month Days
+                for (var d = 1; d <= totalDays; d++) {
+                    var mm = (month < 10 ? '0' : '') + month;
+                    var dd = (d < 10 ? '0' : '') + d;
+                    var dateStr = year + '-' + mm + '-' + dd;
+                    var dayOfWeek = (firstDay + d - 1) % 7;
+                    
+                    var matchingHolidays = this.events.filter(e => dateStr >= e.start_date && dateStr <= e.end_date);
+                    
+                    days.push({
+                        day: d,
+                        dateStr: dateStr,
+                        isCurrentMonth: true,
+                        targetMonth: month,
+                        targetYear: year,
+                        isToday: dateStr === '{{ now()->toDateString() }}',
+                        isFriday: dayOfWeek === 5,
+                        isSaturday: dayOfWeek === 6,
+                        holidays: matchingHolidays,
+                        isHoliday: matchingHolidays.length > 0,
+                        primaryHoliday: matchingHolidays[0] || null
+                    });
+                }
+                
+                // 3. Post-padding: Days from next month to complete 35 or 42 grid cells
+                var totalCells = days.length;
+                var targetTotal = totalCells <= 35 ? 35 : 42;
+                var nextPaddingCount = targetTotal - totalCells;
+                
+                for (var n = 1; n <= nextPaddingCount; n++) {
+                    var nextM = month === 12 ? 1 : month + 1;
+                    var nextY = month === 12 ? year + 1 : year;
+                    var nextMm = (nextM < 10 ? '0' : '') + nextM;
+                    var nextDd = (n < 10 ? '0' : '') + n;
+                    var nextDateStr = nextY + '-' + nextMm + '-' + nextDd;
+                    var nextDayOfWeek = (firstDay + totalDays + n - 1) % 7;
+                    
+                    var matchingHolidays = this.events.filter(e => nextDateStr >= e.start_date && nextDateStr <= e.end_date);
+                    
+                    days.push({
+                        day: n,
+                        dateStr: nextDateStr,
+                        isCurrentMonth: false,
+                        targetMonth: nextM,
+                        targetYear: nextY,
+                        isToday: nextDateStr === '{{ now()->toDateString() }}',
+                        isFriday: nextDayOfWeek === 5,
+                        isSaturday: nextDayOfWeek === 6,
+                        holidays: matchingHolidays,
+                        isHoliday: matchingHolidays.length > 0,
+                        primaryHoliday: matchingHolidays[0] || null
+                    });
+                }
+                
                 return days;
+            },
+            
+            clickCell(cell) {
+                if (!cell.isCurrentMonth) {
+                    this.currentYear = cell.targetYear;
+                    this.currentMonth = cell.targetMonth;
+                }
+                this.updateSelectedDate(cell.dateStr);
+                if (window.innerWidth < 1024) {
+                    var el = document.getElementById('selected-reason-card');
+                    if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+                }
             },
             
             prevMonth() {
@@ -210,14 +279,12 @@
             selectEvent(evt) {
                 this.selectedEvent = evt;
                 this.selectedDate = evt.start_date;
-                // Switch calendar month/year if event belongs to another month
                 var parts = evt.start_date.split('-');
                 if (parts.length === 3) {
                     this.currentYear = parseInt(parts[0], 10);
                     this.currentMonth = parseInt(parts[1], 10);
                 }
-                // Scroll calendar into view smoothly if on mobile
-                if (window.innerWidth < 768) {
+                if (window.innerWidth < 1024) {
                     var el = document.getElementById('selected-reason-card');
                     if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
                 }
@@ -227,8 +294,11 @@
                 if (!dateStr) return '';
                 var parts = dateStr.split('-');
                 if (parts.length !== 3) return dateStr;
-                var y = parts[0], m = parseInt(parts[1], 10), d = parseInt(parts[2], 10);
-                return d + ' ' + this.monthNames[m - 1] + ', ' + y;
+                var y = parseInt(parts[0], 10), m = parseInt(parts[1], 10), d = parseInt(parts[2], 10);
+                var dt = new Date(y, m - 1, d);
+                var fullDays = ['রবিবার', 'সোমবার', 'মঙ্গলবার', 'বুধবার', 'বৃহস্পতিবার', 'শুক্রবার', 'শনিবার'];
+                var dayName = fullDays[dt.getDay()] || '';
+                return d + ' ' + this.monthNames[m - 1] + ', ' + y + (dayName ? ' (' + dayName + ')' : '');
             },
             
             get filteredEvents() {
@@ -309,28 +379,46 @@
                 <div class="lg:col-span-8 bg-white border border-slate-200/90 rounded-2xl shadow-xs overflow-hidden">
                     
                     {{-- Calendar Header / Month Switcher --}}
-                    <div class="p-5 sm:p-6 bg-slate-900 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="p-4 sm:p-5 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-700">
                         <div class="flex items-center gap-3">
-                            <div class="w-11 h-11 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center text-xl shrink-0">
+                            <div class="w-11 h-11 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center text-xl shrink-0 shadow-inner">
                                 <i class="fa-regular fa-calendar-check"></i>
                             </div>
                             <div>
-                                <h3 class="text-xl sm:text-2xl font-black text-white tracking-tight flex items-center gap-2">
-                                    <span x-text="monthNames[currentMonth - 1]"></span>
-                                    <span class="text-amber-400 font-mono" x-text="currentYear"></span>
-                                </h3>
-                                <p class="text-xs text-slate-400" x-text="monthNamesEn[currentMonth - 1] + ' ' + currentYear"></p>
+                                <div class="flex items-center gap-2">
+                                    <h3 class="text-xl sm:text-2xl font-black text-white tracking-tight">
+                                        <span x-text="monthNames[currentMonth - 1]"></span>
+                                        <span class="text-amber-400 font-mono ml-1" x-text="currentYear"></span>
+                                    </h3>
+                                    <span class="hidden sm:inline-flex px-2 py-0.5 rounded text-[10px] font-bold bg-white/10 text-emerald-300 border border-white/10">
+                                        {{ $selectedYear->name ?? 'শিক্ষাবর্ষ' }}
+                                    </span>
+                                </div>
+                                <p class="text-xs text-slate-400 font-medium" x-text="monthNamesEn[currentMonth - 1] + ' ' + currentYear"></p>
                             </div>
                         </div>
 
-                        {{-- Month Navigation Buttons --}}
-                        <div class="flex items-center gap-2">
+                        {{-- Month Fast Controls --}}
+                        <div class="flex items-center gap-2 self-start sm:self-auto flex-wrap">
+                            {{-- Direct Month Select Dropdown --}}
+                            <select x-model.number="currentMonth"
+                                    class="bg-slate-800 text-slate-200 text-xs font-semibold rounded-lg px-2.5 py-1.5 border border-slate-700 focus:outline-none focus:ring-1 focus:ring-emerald-500 cursor-pointer">
+                                <template x-for="(mName, mIdx) in monthNames" :key="mIdx">
+                                    <option :value="mIdx + 1" :selected="currentMonth === (mIdx + 1)" x-text="mName"></option>
+                                </template>
+                            </select>
+
+                            {{-- Jump to Today Button --}}
                             <button type="button"
                                     @click="goToToday()"
-                                    class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold border border-slate-700 transition cursor-pointer">
-                                আজ
+                                    class="px-2.5 py-1.5 rounded-lg bg-emerald-700/80 hover:bg-emerald-600 text-white text-xs font-bold border border-emerald-600/60 transition shadow-2xs cursor-pointer flex items-center gap-1"
+                                    title="বর্তমান তারিখে ফিরে যান">
+                                <i class="fa-solid fa-bullseye text-[10px]"></i>
+                                <span>আজ</span>
                             </button>
-                            <div class="inline-flex rounded-lg bg-slate-800 border border-slate-700 p-0.5">
+
+                            {{-- Prev/Next Month Arrow Buttons --}}
+                            <div class="inline-flex rounded-lg bg-slate-800 border border-slate-700 p-0.5 shadow-2xs">
                                 <button type="button"
                                         @click="prevMonth()"
                                         class="p-2 text-slate-300 hover:text-white hover:bg-slate-700 rounded-md transition cursor-pointer"
@@ -347,66 +435,101 @@
                         </div>
                     </div>
 
-                    {{-- Day Names Bar (Sunday through Saturday) --}}
-                    <div class="grid grid-cols-7 border-b border-slate-200 bg-slate-50/90 text-center text-xs font-bold text-slate-600 py-3">
-                        <div class="text-slate-500">রবি</div>
-                        <div>সোম</div>
-                        <div>মঙ্গল</div>
-                        <div>বুধ</div>
-                        <div>বৃহঃ</div>
-                        <div class="text-emerald-700">শুক্র</div>
-                        <div class="text-amber-700">শনি</div>
+                    {{-- Day Names Bar (Sunday through Saturday) -- 7 Equal Columns --}}
+                    <div class="calendar-grid-7 grid grid-cols-7 border-b border-slate-200 bg-slate-100/90 text-center text-xs font-bold divide-x divide-slate-200">
+                        <div class="py-2.5 px-1 text-slate-700 bg-slate-50">
+                            <div>রবি</div>
+                            <span class="text-[10px] text-slate-400 font-normal">Sun</span>
+                        </div>
+                        <div class="py-2.5 px-1 text-slate-700 bg-slate-50">
+                            <div>সোম</div>
+                            <span class="text-[10px] text-slate-400 font-normal">Mon</span>
+                        </div>
+                        <div class="py-2.5 px-1 text-slate-700 bg-slate-50">
+                            <div>মঙ্গল</div>
+                            <span class="text-[10px] text-slate-400 font-normal">Tue</span>
+                        </div>
+                        <div class="py-2.5 px-1 text-slate-700 bg-slate-50">
+                            <div>বুধ</div>
+                            <span class="text-[10px] text-slate-400 font-normal">Wed</span>
+                        </div>
+                        <div class="py-2.5 px-1 text-slate-700 bg-slate-50">
+                            <div>বৃহঃ</div>
+                            <span class="text-[10px] text-slate-400 font-normal">Thu</span>
+                        </div>
+                        {{-- Friday Highlight (Bangladesh Weekly Weekend) --}}
+                        <div class="py-2.5 px-1 text-rose-700 bg-rose-50/70 font-extrabold">
+                            <div class="flex items-center justify-center gap-1">
+                                <span>শুক্র</span>
+                                <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+                            </div>
+                            <span class="text-[10px] text-rose-500 font-semibold">Fri (ছুটি)</span>
+                        </div>
+                        {{-- Saturday (Secondary Weekend) --}}
+                        <div class="py-2.5 px-1 text-amber-800 bg-amber-50/60 font-extrabold">
+                            <div>শনি</div>
+                            <span class="text-[10px] text-amber-600 font-normal">Sat</span>
+                        </div>
                     </div>
 
-                    {{-- Calendar Dates Grid --}}
-                    <div class="grid grid-cols-7 gap-px bg-slate-200 p-px">
+                    {{-- Calendar Dates Grid Matrix (7 Columns x 5-6 Rows) --}}
+                    <div class="calendar-grid-7 grid grid-cols-7 gap-px bg-slate-200 border-b border-slate-200 p-px">
                         <template x-for="(cell, idx) in calendarDays" :key="idx">
-                            <div @click="cell.isCurrentMonth && updateSelectedDate(cell.dateStr)"
+                            <div @click="clickCell(cell)"
                                  :class="{
-                                    'bg-white cursor-pointer hover:bg-emerald-50/40 transition-colors': cell.isCurrentMonth,
-                                    'bg-slate-50/70 cursor-default opacity-40': !cell.isCurrentMonth,
-                                    'ring-2 ring-inset ring-[#005030] bg-emerald-50/60 font-black': cell.isCurrentMonth && cell.dateStr === selectedDate,
-                                    'bg-amber-50/30': cell.isCurrentMonth && cell.isHoliday && cell.dateStr !== selectedDate
+                                    'bg-white hover:bg-emerald-50/30 cursor-pointer': cell.isCurrentMonth && cell.dateStr !== selectedDate,
+                                    'bg-slate-50/80 cursor-pointer opacity-50 hover:opacity-90 hover:bg-slate-100': !cell.isCurrentMonth,
+                                    'ring-2 ring-inset ring-[#005030] bg-emerald-50/60 font-black shadow-inner z-10': cell.dateStr === selectedDate,
+                                    'bg-rose-50/25': cell.isCurrentMonth && cell.isFriday && cell.dateStr !== selectedDate && !cell.isHoliday,
+                                    'bg-amber-50/25': cell.isCurrentMonth && cell.isSaturday && cell.dateStr !== selectedDate && !cell.isHoliday,
+                                    'bg-emerald-50/40': cell.isCurrentMonth && cell.isHoliday && cell.dateStr !== selectedDate
                                  }"
-                                 class="min-h-[82px] sm:min-h-[96px] p-2 flex flex-col justify-between relative group">
+                                 class="calendar-cell min-h-[88px] sm:min-h-[104px] p-1.5 sm:p-2 flex flex-col justify-between relative group transition duration-150">
                                 
                                 {{-- Top Row: Date Number and Status Indicator --}}
                                 <div class="flex items-center justify-between">
-                                    <span class="text-xs sm:text-sm font-bold font-mono inline-flex items-center justify-center w-6 h-6 rounded-full"
+                                    <span class="text-xs sm:text-sm font-mono inline-flex items-center justify-center w-6 h-6 rounded-full transition-transform"
                                           :class="{
-                                            'bg-[#005030] text-white': cell.isCurrentMonth && cell.isToday,
-                                            'text-slate-900': cell.isCurrentMonth && !cell.isToday && !cell.isHoliday,
-                                            'text-emerald-800 font-extrabold': cell.isCurrentMonth && cell.isHoliday && !cell.isToday,
-                                            'text-slate-300': !cell.isCurrentMonth
+                                            'bg-[#005030] text-white font-black shadow-xs scale-105': cell.isToday,
+                                            'text-slate-900 font-bold': cell.isCurrentMonth && !cell.isToday && !cell.isFriday,
+                                            'text-rose-600 font-bold': cell.isCurrentMonth && !cell.isToday && cell.isFriday,
+                                            'text-slate-300 font-normal': !cell.isCurrentMonth
                                           }"
                                           x-text="cell.day">
                                     </span>
 
-                                    {{-- Holiday Type Icon Pill for cell --}}
+                                    {{-- Holiday Type Icon Dot --}}
                                     <template x-if="cell.isHoliday">
-                                        <span class="w-2 h-2 rounded-full"
+                                        <span class="w-2 h-2 rounded-full ring-2 ring-white shrink-0"
                                               :class="{
-                                                'bg-emerald-500': cell.primaryHoliday && cell.primaryHoliday.type === 'holiday',
-                                                'bg-sky-500': cell.primaryHoliday && cell.primaryHoliday.type === 'exam_break',
+                                                'bg-emerald-600': cell.primaryHoliday && cell.primaryHoliday.type === 'holiday',
+                                                'bg-sky-600': cell.primaryHoliday && cell.primaryHoliday.type === 'exam_break',
                                                 'bg-amber-500': cell.primaryHoliday && cell.primaryHoliday.type === 'weekend',
-                                                'bg-rose-500': cell.primaryHoliday && cell.primaryHoliday.type === 'unplanned'
+                                                'bg-rose-600': cell.primaryHoliday && cell.primaryHoliday.type === 'unplanned'
                                               }">
                                         </span>
                                     </template>
                                 </div>
 
-                                {{-- Bottom Content: Holiday Badge on cell --}}
+                                {{-- Middle/Bottom: Holiday Badge Pill (Ribbon) --}}
                                 <div class="mt-1 space-y-1">
                                     <template x-if="cell.isHoliday && cell.primaryHoliday">
-                                        <div class="text-[10px] sm:text-[11px] font-semibold leading-tight line-clamp-2 px-1.5 py-0.5 rounded border"
+                                        <div class="text-[10px] sm:text-[11px] font-semibold leading-tight line-clamp-2 px-1.5 py-0.5 rounded border shadow-2xs"
                                              :class="{
-                                                'bg-emerald-100/80 text-emerald-900 border-emerald-300': cell.primaryHoliday.type === 'holiday',
-                                                'bg-sky-100/80 text-sky-900 border-sky-300': cell.primaryHoliday.type === 'exam_break',
-                                                'bg-amber-100/80 text-amber-900 border-amber-300': cell.primaryHoliday.type === 'weekend',
-                                                'bg-rose-100/80 text-rose-900 border-rose-300': cell.primaryHoliday.type === 'unplanned'
+                                                'bg-emerald-100/90 text-emerald-950 border-emerald-300/80': cell.primaryHoliday.type === 'holiday',
+                                                'bg-sky-100/90 text-sky-950 border-sky-300/80': cell.primaryHoliday.type === 'exam_break',
+                                                'bg-amber-100/90 text-amber-950 border-amber-300/80': cell.primaryHoliday.type === 'weekend',
+                                                'bg-rose-100/90 text-rose-950 border-rose-300/80': cell.primaryHoliday.type === 'unplanned'
                                              }">
                                             <span x-text="cell.primaryHoliday.title"></span>
                                         </div>
+                                    </template>
+
+                                    {{-- If Multiple Holidays --}}
+                                    <template x-if="cell.holidays && cell.holidays.length > 1">
+                                        <span class="inline-block text-[9px] font-bold text-slate-500 bg-slate-100 px-1 rounded border border-slate-200">
+                                            +<span x-text="cell.holidays.length - 1"></span> আরও
+                                        </span>
                                     </template>
                                 </div>
                             </div>
@@ -414,31 +537,31 @@
                     </div>
 
                     {{-- Calendar Footer Legend --}}
-                    <div class="p-3 sm:p-4 bg-slate-50 border-t border-slate-200/90 flex flex-wrap items-center justify-between text-xs text-slate-600 gap-2">
+                    <div class="p-3 sm:p-4 bg-slate-50/90 flex flex-wrap items-center justify-between text-xs text-slate-600 gap-2 border-t border-slate-200">
                         <div class="flex flex-wrap items-center gap-3">
                             <span class="inline-flex items-center gap-1.5 font-medium">
-                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-                                <span>সরকারি ও উৎসব ছুটি</span>
-                            </span>
-                            <span class="inline-flex items-center gap-1.5 font-medium">
-                                <span class="w-2.5 h-2.5 rounded-full bg-sky-500"></span>
-                                <span>পরীক্ষা প্রস্তুতি অবকাশ</span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+                                <span>সরকারি ও জাতীয় ছুটি</span>
                             </span>
                             <span class="inline-flex items-center gap-1.5 font-medium">
                                 <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
-                                <span>সাপ্তাহিক / সমন্বিত ছুটি</span>
+                                <span>দীর্ঘ অবকাশ (ঈদ/গ্রীষ্ম/শীত)</span>
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 font-medium">
+                                <span class="w-2.5 h-2.5 rounded-full bg-sky-600"></span>
+                                <span>পরীক্ষা প্রস্তুতি ছুটি</span>
                             </span>
                             <span class="inline-flex items-center gap-1.5 font-medium">
                                 <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
-                                <span>বিশেষ আদেশ / জরুরি ছুটি</span>
+                                <span>সাপ্তাহিক ছুটি (শুক্রবার)</span>
                             </span>
                         </div>
-                        <span class="text-[11px] text-slate-400 font-medium">ক্যালেন্ডারের তারিখে ক্লিক করে কারণ দেখুন</span>
+                        <span class="text-[11px] text-slate-400 font-medium hidden sm:inline">যেকোনো তারিখে ক্লিক করে বিস্তারিত কারণ দেখুন</span>
                     </div>
                 </div>
 
                 {{-- Right Side: The Reason & Details Inspector (4 Columns) (Recipe 4: Pick the Winner) --}}
-                <div class="lg:col-span-4 space-y-6" id="selected-reason-card">
+                <div class="lg:col-span-4 space-y-6 lg:sticky lg:top-24" id="selected-reason-card">
                     
                     {{-- Active Selected Date Showcase Card --}}
                     <div class="bg-white border-2 border-[#005030]/20 rounded-2xl p-6 shadow-sm relative overflow-hidden transition-all">
@@ -680,8 +803,21 @@
     </div>
 </section>
 
-{{-- Print Styles --}}
+@push('styles')
 <style>
+/* 7-Column Calendar Grid Resilience */
+.calendar-grid-7 {
+    display: grid !important;
+    grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+}
+.calendar-cell {
+    min-height: 88px;
+}
+@media (min-width: 640px) {
+    .calendar-cell {
+        min-height: 104px;
+    }
+}
 @media print {
     header, footer, .page-hero-banner, .snhs-nav-container, button, form {
         display: none !important;
@@ -699,5 +835,6 @@
     }
 }
 </style>
+@endpush
 
 @endsection

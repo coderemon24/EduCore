@@ -1778,4 +1778,24 @@ summary,
     cursor: pointer !important;
 }
 
+/* ==========================================================================
+   Academic Holiday Calendar 7-Column Layout Enforcement (Tailwind 4)
+   ========================================================================== */
+.calendar-grid-7,
+.grid-cols-7 {
+    display: grid !important;
+    grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+}
+
+.calendar-cell {
+    min-height: 84px;
+}
+
+@media (min-width: 640px) {
+    .calendar-cell {
+        min-height: 104px;
+    }
+}
+
+
 
