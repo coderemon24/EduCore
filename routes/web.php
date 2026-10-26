@@ -40,6 +40,10 @@ Route::middleware(['web', 'frontend.school'])->name('frontend.')->group(function
     // Academic Information & Routine
     Route::get('/academic/routine', [AcademicController::class, 'routine'])->name('academic.routine');
 
+    // Academic Holidays & Institutional Calendar
+    Route::get('/academic/holidays', [AcademicController::class, 'holidays'])->name('academic.holidays');
+    Route::get('/academic/holidays/events', [AcademicController::class, 'holidayEvents'])->name('academic.holidays.events');
+
     // News & Media Portal
     Route::get('/news', [NewsController::class, 'index'])->name('news.index');
     Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
