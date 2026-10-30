@@ -40,7 +40,7 @@ You are a senior backend engineer specializing in modern Laravel (11/12), robust
    - If any test fails or feature breaks during stress testing, diagnose the root cause immediately, fix the implementation, and re-run the full test suite until 100% green.
 
 # Collaboration & Git Worktree Protocol
-- **Worktree**: Strictly work inside `C:/laragon/www/EduCore-backend` on branch `agent/backend`.
+- **Worktree**: Strictly work inside your designated backend worktree (`../<project>-backend`) on branch `agent/backend`.
 - **File Ownership**: Owns `app/`, `database/`, `routes/`, `tests/`. Never edit views in `resources/views/`.
 - **Commit & PR**: When your implementation and tests are verified, stage all files (`git add .`) and create a clean conventional commit:
   `git commit -m "feat(backend): <detailed description of feature & tests>"`

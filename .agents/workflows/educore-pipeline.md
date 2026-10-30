@@ -2,7 +2,7 @@
 description: "Autonomous End-to-End Multi-Agent Feature Development (Explore -> Plan -> Propose -> Parallel Workers -> PR Review -> Test Gate -> Integration -> Archive -> Git Push)"
 ---
 
-# EduCore Autonomous Feature Pipeline
+# Universal Autonomous Feature Pipeline
 
 Use this workflow to develop, test, refine, review, integrate, and deploy any feature or module across isolated Git worktrees with a single prompt.
 
@@ -10,11 +10,13 @@ Use this workflow to develop, test, refine, review, integrate, and deploy any fe
 
 ## Workflow Steps
 
-### Step 1: Ingest Feature Requirements
+### Step 1: Ingest Feature Requirements & UX Discovery (Gate 1 & Gate 2)
 - Receive the feature requirements from the user (from `/opsx-explore`, detailed prompt, or change specifications).
 - Identify the target capability and derive a kebab-case change name (e.g., `routine-management`, `admission-portal`, `class-syllabus`).
+- **Gate 1 (Discovery Approval)**: Formulate `PROJECT_BRIEF.md`, `UX_RESEARCH.md`, `COMPETITOR_ANALYSIS.md`, `USER_PERSONAS.md`, `INFORMATION_ARCHITECTURE.md`.
+- **Gate 2 (Visual Direction Approval)**: Formulate `DESIGN_DIRECTION.md`, `DESIGN_REFERENCES.md`, `VISUAL_MOODBOARD.md`.
 
-### Step 2: OpenSpec Change Setup (Strictly Local)
+### Step 2: OpenSpec Change Setup & Design Tokens (Gate 3 & Gate 4)
 1. Verify OpenSpec status or initialize the change:
    ```bash
    openspec.cmd new change <change-name>
@@ -24,7 +26,9 @@ Use this workflow to develop, test, refine, review, integrate, and deploy any fe
    - `specs/<capability>/spec.md`: Delta requirements and acceptance criteria.
    - `design.md`: Technical architecture and database schema.
    - `tasks.md`: Decoupled backend and frontend task checklists.
-3. Check apply instructions:
+3. **Gate 3 (Design System Approval)**: Produce `DESIGN_SYSTEM.md`, `DESIGN_TOKENS.md`, `design-tokens.css`, `COMPONENT_INVENTORY.md`, `COMPONENT_GUIDELINES.md`.
+4. **Gate 4 (Wireframe Approval)**: Formulate content-first structural layouts in `WIREFRAMES.md`.
+5. Check apply instructions:
    ```bash
    openspec.cmd instructions apply --change <change-name> --json
    ```
@@ -40,18 +44,19 @@ Extract and verify shared interface contracts:
 ### Step 4: Pre-flight Worktree Sync
 Ensure all agent worktrees are up-to-date with `main`:
 ```bash
-python scripts/orchestrator.py sync
+agx sync
 ```
 
-### Step 5: Concurrent Worker Dispatch
+### Step 5: Concurrent Worker Dispatch (Gate 5)
 Launch the Backend and Frontend engineers simultaneously in their isolated worktrees:
 ```bash
-python scripts/orchestrator.py run-parallel \
-  --backend "<Enriched Backend prompt with DB optimization & adversarial tests>" \
-  --frontend "<Enriched Frontend prompt with ui-refactor.md & page consistency>"
+agx run \
+  -b "<Enriched Backend prompt with DB optimization & adversarial tests>" \
+  -f "<Enriched Frontend prompt with design tokens, UI-Mandatory & ui-refactor.md>"
 ```
 
 #### Frontend Engineer Mandatory Protocols:
+- **Adopt Approved Design Tokens**: Follow `DESIGN_TOKENS.md` and `design-tokens.css`.
 - **Design Consistency**: Match styling, card patterns, typography, and palette of existing pages (`classes.blade.php`, `about/index.blade.php`, `routine.blade.php`, `teachers/index.blade.php`).
 - **UI Refactoring Framework (`ui-refactor.md`)**:
   - Recipe 1 (Sharpen Message): Headline focal span `<span class="text-[#005030] font-bold">`.
@@ -82,52 +87,55 @@ python scripts/orchestrator.py run-parallel \
 ### Step 6: Team Lead PR Review
 Inspect worker diffs against `main`:
 ```bash
-python scripts/orchestrator.py review
+agx review
+# or: agx diff
 ```
 
 ### Step 7: Automated Test Gate & Edge Case Verification
-Run the Laravel automated test suite:
+Run the automated test suite:
 ```bash
-python scripts/orchestrator.py test --filter=<FeatureName>
+agx test -f <FeatureName>
+# or: agx t -f <FeatureName>
 ```
 
-### Step 8: Iterative Feedback Loop
-If any issue, broken test, N+1 query, or UI inconsistency is detected:
+### Step 8: Automated Visual QA & Design Criticism (Gate 6)
+Run Playwright browser capture and visual audit:
+```bash
+agx vqa -u http://127.0.0.1:8000/<route>
+```
+Audit rendered output against `DESIGN_TOKENS.md`, `no-slop-ui`, and responsive standards. Deliver `DESIGN_REVIEW.md` and `VISUAL_QA_REPORT.md`.
+
+### Step 9: Iterative Feedback Loop
+If any issue, broken test, N+1 query, or UI defect is detected:
 1. Dispatch corrective prompt to that worker:
    ```bash
-   python scripts/orchestrator.py dispatch --agent <agent-name> --prompt "Fix: <details of issue>"
+   agx dispatch -a <agent-name> -p "Fix: <details of issue>"
+   # shorthand: agx d -a <agent-name> -p "..."
    ```
 2. Worker fixes the issue in its worktree, re-runs tests, and re-commits.
 3. Team Lead re-reviews.
 
-### Step 9: Integration
+### Step 10: Integration
 Merge verified worker branches into `main`:
 ```bash
-python scripts/orchestrator.py integrate --filter=<FeatureName>
+agx integrate -f <FeatureName>
+# or: agx merge -f <FeatureName>
 ```
 
-### Step 10: OpenSpec Local Archive (Never Commit to Git)
+### Step 11: OpenSpec Local Archive (Never Commit to Git)
 Archive the completed change locally:
 ```bash
 openspec.cmd archive <change-name> --yes
 ```
 *(Note: Archiving moves the change files locally to `openspec/changes/archive/`. Do NOT stage, commit, or push OpenSpec archive changes to GitHub. Commits must strictly contain feature code).*
 
-### Step 11: Mandatory User Review Gate
+### Step 12: Mandatory User Review Gate & Push to GitHub
 - The Team Lead **MUST NEVER** push directly to GitHub without explicit user permission.
 - Present a detailed summary of all implemented features, views, DB changes, and test results to the user.
 - Ask the user to review the work:
   > *"Feature `<change-name>` is built, tested, and integrated locally on `main`. Please inspect and review the changes. When you are ready and confirm, give me the command to push to GitHub main."*
 - **Pause and wait for user's explicit command/confirmation.**
-
-### Step 12: GitHub Commit & Push (Only Upon User Command)
 - Once the user confirms/commands to push:
   ```bash
-  python scripts/orchestrator.py push --message "feat(<change-name>): implement verified module"
-  ```
-  or
-  ```bash
-  git add .
-  git commit -m "feat(<change-name>): implement end-to-end module with verified UI and tests"
-  git push -u origin main
+  agx push -m "feat(<change-name>): implement end-to-end module with verified UI and tests"
   ```
