@@ -97,7 +97,7 @@
                             শিক্ষাবর্ষ <span class="text-emerald-700">*</span>
                         </label>
                         <select name="year_id" id="filter-year"
-                                class="w-full text-xs sm:text-sm font-medium rounded-xl border-slate-300 bg-slate-50/60 focus:bg-white focus:border-[#005030] focus:ring-2 focus:ring-[#005030]/20 py-2.5 px-3 transition-colors">
+                                class="w-full text-xs sm:text-sm font-medium text-slate-800 rounded-xl border border-slate-300 bg-white hover:border-slate-400 focus:bg-white focus:border-[#005030] focus:ring-2 focus:ring-[#005030]/20 focus:outline-none py-2.5 px-3 shadow-2xs transition-all cursor-pointer">
                             @foreach ($academicYears as $yr)
                                 <option value="{{ $yr->id }}" {{ ($selectedYear && $selectedYear->id == $yr->id) ? 'selected' : '' }}>
                                     {{ $yr->name }} {{ $yr->is_current ? '(বর্তমান)' : '' }}
@@ -115,7 +115,7 @@
                             পরীক্ষার নাম <span class="text-emerald-700">*</span>
                         </label>
                         <select name="exam_id" id="filter-exam"
-                                class="w-full text-xs sm:text-sm font-medium rounded-xl border-slate-300 bg-slate-50/60 focus:bg-white focus:border-[#005030] focus:ring-2 focus:ring-[#005030]/20 py-2.5 px-3 transition-colors">
+                                class="w-full text-xs sm:text-sm font-medium text-slate-800 rounded-xl border border-slate-300 bg-white hover:border-slate-400 focus:bg-white focus:border-[#005030] focus:ring-2 focus:ring-[#005030]/20 focus:outline-none py-2.5 px-3 shadow-2xs transition-all cursor-pointer">
                             @forelse ($exams as $ex)
                                 <option value="{{ $ex->id }}" {{ ($selectedExam && $selectedExam->id == $ex->id) ? 'selected' : '' }}>
                                     {{ $ex->name }}
@@ -132,7 +132,7 @@
                             শ্রেণি <span class="text-emerald-700">*</span>
                         </label>
                         <select name="academic_class_id" id="filter-class"
-                                class="w-full text-xs sm:text-sm font-medium rounded-xl border-slate-300 bg-slate-50/60 focus:bg-white focus:border-[#005030] focus:ring-2 focus:ring-[#005030]/20 py-2.5 px-3 transition-colors">
+                                class="w-full text-xs sm:text-sm font-medium text-slate-800 rounded-xl border border-slate-300 bg-white hover:border-slate-400 focus:bg-white focus:border-[#005030] focus:ring-2 focus:ring-[#005030]/20 focus:outline-none py-2.5 px-3 shadow-2xs transition-all cursor-pointer">
                             @foreach ($academicClasses as $cls)
                                 <option value="{{ $cls->id }}" {{ ($selectedClass && $selectedClass->id == $cls->id) ? 'selected' : '' }}>
                                     {{ $cls->name }}
@@ -150,7 +150,7 @@
                             শাখা (সেকশন)
                         </label>
                         <select name="section_id" id="filter-section"
-                                class="w-full text-xs sm:text-sm font-medium rounded-xl border-slate-300 bg-slate-50/60 focus:bg-white focus:border-[#005030] focus:ring-2 focus:ring-[#005030]/20 py-2.5 px-3 transition-colors">
+                                class="w-full text-xs sm:text-sm font-medium text-slate-800 rounded-xl border border-slate-300 bg-white hover:border-slate-400 focus:bg-white focus:border-[#005030] focus:ring-2 focus:ring-[#005030]/20 focus:outline-none py-2.5 px-3 shadow-2xs transition-all cursor-pointer">
                             <option value="all">সকল শাখা (All)</option>
                             @foreach ($sections as $sec)
                                 <option value="{{ $sec->id }}" {{ ($selectedSection && $selectedSection->id == $sec->id) ? 'selected' : '' }}>
@@ -171,7 +171,7 @@
                                    id="filter-roll"
                                    value="{{ $searchQuery }}"
                                    placeholder="উদাঃ 01 বা STU-2026-001"
-                                   class="w-full text-xs sm:text-sm font-medium rounded-xl border-slate-300 bg-slate-50/60 focus:bg-white focus:border-[#005030] focus:ring-2 focus:ring-[#005030]/20 py-2.5 pl-3 pr-8 transition-colors">
+                                   class="w-full text-xs sm:text-sm font-medium text-slate-800 rounded-xl border border-slate-300 bg-white hover:border-slate-400 focus:bg-white focus:border-[#005030] focus:ring-2 focus:ring-[#005030]/20 focus:outline-none py-2.5 pl-3 pr-8 shadow-2xs transition-all">
                             @if ($searchQuery)
                                 <button type="button"
                                         onclick="document.getElementById('filter-roll').value=''; this.parentElement.closest('form').submit();"
