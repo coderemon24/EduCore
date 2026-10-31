@@ -1,4 +1,4 @@
-# Agentix (agx) — Universal Multi-Agent User Manual
+﻿# Agentix (agx) â€” Universal Multi-Agent User Manual
 > **Production-Grade AI Engineering & Design Orchestration Across Isolated Git Worktrees**
 
 **Agentix** (CLI: **`agx`**) is an autonomous multi-agent orchestration system for software engineering teams. Inspired by OpenSpec (`opsx`), `agx` coordinates 5 specialized AI agents working concurrently in isolated Git worktrees with staged design gates, automated Playwright visual testing, and zero file collisions.
@@ -11,36 +11,36 @@ Instead of one AI trying to do everything and generating generic templates or co
 
 ```
                                   AGENTIX ARCHITECTURE
-                             ┌───────────────────────────────┐
-                             │    Team Lead (Main Worktree)  │
-                             │   Orchestrator & Gatekeeper   │
-                             └───────────────┬───────────────┘
-                                             │
-               ┌─────────────────────────────┼─────────────────────────────┐
-               │                             │                             │
-               ▼                             ▼                             ▼
-  ┌──────────────────────────┐  ┌──────────────────────────┐  ┌──────────────────────────┐
-  │     Design Engineer      │  │     Backend Engineer     │  │    Frontend Engineer     │
-  │ UX Discovery, Tokens,    │  │ Endpoints, DB Opt,       │  │ Components, Views, CSS,  │
-  │ Wireframes, Direction    │  │ Adversarial Tests        │  │ 7 Master UI Recipes      │
-  │ (Root Workspace)         │  │ (../<project>-backend)   │  │ (../<project>-frontend)  │
-  └────────────┬─────────────┘  └────────────┬─────────────┘  └────────────┬─────────────┘
-               │                             │                             │
-               │ Design Specs & Tokens       │ API Endpoints & Logic       │ Rendered Markup & Styles
-               └─────────────────────────────┼─────────────────────────────┘
-                                             │
-                                             ▼
-                                ┌──────────────────────────┐
-                                │   Visual QA Specialist   │
-                                │ Playwright Multi-Device  │
-                                │ Screenshot & Slop Audit  │
-                                └────────────┬─────────────┘
-                                             │
-                                             ▼
-                                ┌──────────────────────────┐
-                                │   Team Lead Integration  │
-                                │ Merge, Archive, Git Push │
-                                └──────────────────────────┘
+                             â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+                             â”‚    Team Lead (Main Worktree)  â”‚
+                             â”‚   Orchestrator & Gatekeeper   â”‚
+                             â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                                             â”‚
+               â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+               â”‚                             â”‚                             â”‚
+               â–¼                             â–¼                             â–¼
+  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+  â”‚     Design Engineer      â”‚  â”‚     Backend Engineer     â”‚  â”‚    Frontend Engineer     â”‚
+  â”‚ UX Discovery, Tokens,    â”‚  â”‚ Endpoints, DB Opt,       â”‚  â”‚ Components, Views, CSS,  â”‚
+  â”‚ Wireframes, Direction    â”‚  â”‚ Adversarial Tests        â”‚  â”‚ 7 Master UI Recipes      â”‚
+  â”‚ (Root Workspace)         â”‚  â”‚ (../<project>-backend)   â”‚  â”‚ (../<project>-frontend)  â”‚
+  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+               â”‚                             â”‚                             â”‚
+               â”‚ Design Specs & Tokens       â”‚ API Endpoints & Logic       â”‚ Rendered Markup & Styles
+               â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                                             â”‚
+                                             â–¼
+                                â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+                                â”‚   Visual QA Specialist   â”‚
+                                â”‚ Playwright Multi-Device  â”‚
+                                â”‚ Screenshot & Slop Audit  â”‚
+                                â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                                             â”‚
+                                             â–¼
+                                â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+                                â”‚   Team Lead Integration  â”‚
+                                â”‚ Merge, Archive, Git Push â”‚
+                                â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 ```
 
 ---
@@ -53,12 +53,12 @@ Agentix is 100% portable. It contains **no hardcoded paths** and **no project br
 Copy these files and folders into your new repository root:
 ```
 your-new-project/
-├── .agents/              # Agent prompts, 11 design skills, 16 templates
-├── scripts/              # agx.py engine (backward-compatible with orchestrator.py)
-├── tests/visual-qa/      # Playwright browser screenshot capture harness
-├── agx.cmd / agx         # Native CLI launchers (Windows .cmd & Linux/Mac bash)
-├── AGENTS.md             # Master operating guidelines
-└── USER_MANUAL.md        # This operating manual
+â”œâ”€â”€ .agents/              # Agent prompts, 11 design skills, 16 templates
+â”œâ”€â”€ scripts/              # agx.py engine (backward-compatible with orchestrator.py)
+â”œâ”€â”€ tests/visual-qa/      # Playwright browser screenshot capture harness
+â”œâ”€â”€ agx.cmd / agx         # Native CLI launchers (Windows .cmd & Linux/Mac bash)
+â”œâ”€â”€ AGENTS.md             # Master operating guidelines
+â””â”€â”€ USER_MANUAL.md        # This operating manual
 ```
 
 ### Step 2: Install Visual QA Engine
@@ -87,15 +87,17 @@ Agentix commands are short, memorable, and support single-letter aliases:
 | What You Want To Do | Full Command | Shorthand Alias | What It Does |
 | :--- | :--- | :--- | :--- |
 | **Check Team & Worktree Status** | `agx status` | `agx st` | Shows branches, worktree directories, and uncommitted git changes. |
-| **Initialize Workspace** | `agx init` | — | Automatically sets up Git branches and worktrees in 3 seconds. |
-| **Sync All Worktrees** | `agx sync` | — | Merges latest `main` into all agent worktree branches. |
+| **Initialize Workspace** | `agx init` | â€” | Automatically sets up Git branches and worktrees in 3 seconds. |
+| **Sync All Worktrees** | `agx sync` | â€” | Merges latest `main` into all agent worktree branches. |
 | **Run Parallel Workers** | `agx run-parallel -b "..." -f "..."` | `agx run -b "..." -f "..."` | Launches Backend and Frontend engineers simultaneously in their isolated worktrees. |
 | **Review Worker PR Diffs** | `agx review` | `agx diff` | Shows exact git diffs of `agent/backend` and `agent/frontend` against `main`. |
-| **Run Automated Tests** | `agx test -f <filter>` | `agx t -f <filter>` | Executes PHPUnit/test suite with optional filter. |
+| **Run Automated Tests** | gx test -f <filter> | gx t -f <filter> | Executes PHPUnit/test suite with optional filter. |
+| **Orchestrator Self-Test** | gx self-test | gx test --self | Executes full 26-test hermetic test suite (Unit, Worktrees, Pipeline Simulation & Visual QA). |
+| **Export Production Bundle** | gx export [-o <path>] [--dir] | gx bundle / gx pack | Strips all AI agent/orchestration files and creates clean production zip or directory. |
 | **Run Playwright Visual QA** | `agx visual-qa -u <URL>` | `agx vqa -u <URL>` | Launches Playwright Chromium and captures Mobile (375px), Tablet (768px), and Desktop (1440px) screenshots. |
 | **Integrate & Merge** | `agx integrate -f <filter>` | `agx merge -f <filter>` | Merges verified worker branches into `main` after test gate verification. |
 | **Push to GitHub** | `agx push -m "<commit message>"` | `agx p -m "<msg>"` | Formulates Conventional Commit and pushes to `origin main`. |
-| **Single-Command Super Flow** | `agx pipeline -c <name> -p "<prompt>"` | `agx auto -c <name> -p "<prompt>"` | Autonomous end-to-end pipeline: sync → parallel code → PR review → tests → visual QA → merge → push. |
+| **Single-Command Super Flow** | `agx pipeline -c <name> -p "<prompt>"` | `agx auto -c <name> -p "<prompt>"` | Autonomous end-to-end pipeline: sync â†’ parallel code â†’ PR review â†’ tests â†’ visual QA â†’ merge â†’ push. |
 | **Dispatch Targeted Fix** | `agx dispatch -a <agent> -p "<prompt>"` | `agx d -a <agent> -p "<prompt>"` | Dispatches corrective prompt to a specific agent in its worktree. |
 
 ---
@@ -114,42 +116,42 @@ Agentix commands are short, memorable, and support single-letter aliases:
 
 ## 5. The 6 Staged Design Approval Gates
 
-To avoid ugly "AI slop" (cliché purple gradients, generic bento grids, and floating glass cards), Agentix enforces 6 gates:
+To avoid ugly "AI slop" (clichÃ© purple gradients, generic bento grids, and floating glass cards), Agentix enforces 6 gates:
 
 ```
    Gate 1: Discovery Approval
-   ├── PROJECT_BRIEF.md
-   ├── UX_RESEARCH.md
-   ├── USER_PERSONAS.md
-   └── INFORMATION_ARCHITECTURE.md
-              │
-              ▼
+   â”œâ”€â”€ PROJECT_BRIEF.md
+   â”œâ”€â”€ UX_RESEARCH.md
+   â”œâ”€â”€ USER_PERSONAS.md
+   â””â”€â”€ INFORMATION_ARCHITECTURE.md
+              â”‚
+              â–¼
    Gate 2: Visual Direction Approval
-   ├── DESIGN_DIRECTION.md
-   ├── DESIGN_REFERENCES.md
-   └── VISUAL_MOODBOARD.md
-              │
-              ▼
+   â”œâ”€â”€ DESIGN_DIRECTION.md
+   â”œâ”€â”€ DESIGN_REFERENCES.md
+   â””â”€â”€ VISUAL_MOODBOARD.md
+              â”‚
+              â–¼
    Gate 3: Design System Approval
-   ├── DESIGN_SYSTEM.md
-   ├── DESIGN_TOKENS.md
-   ├── design-tokens.css
-   └── COMPONENT_GUIDELINES.md
-              │
-              ▼
+   â”œâ”€â”€ DESIGN_SYSTEM.md
+   â”œâ”€â”€ DESIGN_TOKENS.md
+   â”œâ”€â”€ design-tokens.css
+   â””â”€â”€ COMPONENT_GUIDELINES.md
+              â”‚
+              â–¼
    Gate 4: Wireframe Approval
-   └── WIREFRAMES.md (Asymmetric 60/40 layouts & Mobile Reflow)
-              │
-              ▼
+   â””â”€â”€ WIREFRAMES.md (Asymmetric 60/40 layouts & Mobile Reflow)
+              â”‚
+              â–¼
    Gate 5: Implementation Review
-   ├── Backend PR (Zero N+1 queries, adversarial edge tests)
-   └── Frontend PR (7 UI recipes, responsive reflow, zero dead buttons)
-              │
-              ▼
+   â”œâ”€â”€ Backend PR (Zero N+1 queries, adversarial edge tests)
+   â””â”€â”€ Frontend PR (7 UI recipes, responsive reflow, zero dead buttons)
+              â”‚
+              â–¼
    Gate 6: Visual QA Approval
-   ├── Multi-viewport screenshots (375px, 768px, 1440px)
-   ├── DESIGN_REVIEW.md
-   └── VISUAL_QA_REPORT.md
+   â”œâ”€â”€ Multi-viewport screenshots (375px, 768px, 1440px)
+   â”œâ”€â”€ DESIGN_REVIEW.md
+   â””â”€â”€ VISUAL_QA_REPORT.md
 ```
 
 ---
@@ -158,7 +160,7 @@ To avoid ugly "AI slop" (cliché purple gradients, generic bento grids, and floa
 
 ### Workflow 1: The Step-by-Step Staged Flow (Full Quality Control)
 
-#### 1. UX Discovery & Design Tokens (Gates 1–4)
+#### 1. UX Discovery & Design Tokens (Gates 1â€“4)
 ```bash
 agy --agent design-engineer -p "Conduct UX research and generate DESIGN_TOKENS.md and WIREFRAMES.md for student report card download module."
 ```
