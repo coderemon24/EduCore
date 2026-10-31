@@ -78,32 +78,13 @@ class LoginRequest extends FormRequest
             return;
         }
 
-        // 2. Attempt school User authentication (users table via web guard)
-        $userCredentials = [
-            'email' => $identifier,
-            'password' => $password,
-        ];
+        // 2. Reject regular school users (students, guardians, faculty) attempting super admin login
+        if (\App\Models\User::where('email', $identifier)->orWhere('phone', $identifier)->exists()) {
+            RateLimiter::hit($this->throttleKey(), 60);
 
-        if (Auth::guard('web')->attempt($userCredentials, $remember)) {
-            $user = Auth::guard('web')->user();
-
-            if (! $user || ! $user->isActive()) {
-                Auth::guard('web')->logout();
-                RateLimiter::hit($this->throttleKey(), 60);
-
-                throw ValidationException::withMessages([
-                    $errorField => 'Your account is currently inactive. Please contact your school administrator.',
-                ]);
-            }
-
-            if ($user->school_id) {
-                session(['current_school_id' => $user->school_id]);
-                app()->instance('current_school_id', $user->school_id);
-            }
-
-            RateLimiter::clear($this->throttleKey());
-
-            return;
+            throw ValidationException::withMessages([
+                $errorField => 'This login portal is strictly reserved for Super Administrators. Students, guardians, and faculty must use the Institutional User Portal at /portal/login.',
+            ]);
         }
 
         RateLimiter::hit($this->throttleKey(), 60);

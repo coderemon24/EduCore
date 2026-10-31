@@ -70,6 +70,61 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the student profile linked to this user account, if any.
+     */
+    public function student(): HasOne
+    {
+        return $this->hasOne(Student::class);
+    }
+
+    /**
+     * Get the guardian profile linked to this user account, if any.
+     */
+    public function guardian(): HasOne
+    {
+        return $this->hasOne(Guardian::class);
+    }
+
+    /**
+     * Determine primary institutional portal role for navigation and dashboards.
+     */
+    public function portalRole(): string
+    {
+        $roles = $this->relationLoaded('roles') ? $this->roles : $this->roles()->get();
+        $slugs = $roles->pluck('slug')->toArray();
+
+        if (in_array('student', $slugs, true)) {
+            return 'student';
+        }
+        if (in_array('guardian', $slugs, true)) {
+            return 'guardian';
+        }
+        if (in_array('teacher', $slugs, true)) {
+            return 'teacher';
+        }
+        if (in_array('school_admin', $slugs, true)) {
+            return 'school_admin';
+        }
+        if (in_array('staff_member', $slugs, true) || in_array('accountant', $slugs, true)) {
+            return 'staff_member';
+        }
+
+        // Relation-based fallback if roles table isn't populated
+        if ($this->relationLoaded('student') ? $this->student !== null : $this->student()->exists()) {
+            return 'student';
+        }
+        if ($this->relationLoaded('guardian') ? $this->guardian !== null : $this->guardian()->exists()) {
+            return 'guardian';
+        }
+        if ($this->relationLoaded('staff') ? $this->staff !== null : $this->staff()->exists()) {
+            $staff = $this->relationLoaded('staff') ? $this->staff : $this->staff()->first();
+            return $staff?->is_teaching ? 'teacher' : 'staff_member';
+        }
+
+        return $slugs[0] ?? 'student';
+    }
+
+    /**
      * The institutional roles assigned to this user.
      */
     public function roles(): BelongsToMany
