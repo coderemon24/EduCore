@@ -188,11 +188,13 @@ class PortalDashboardController extends Controller
             $staff = Staff::with([
                 'classTeacherSections.academicClass',
                 'subjectAssignments.academicClass',
-                'subjectAssignments.section',
                 'subjectAssignments.subject',
+                'subjectAssignments.academicYear',
             ])->where('user_id', $user->id)
               ->orWhere('email', $user->email)
               ->first();
+
+            $teacher = $staff;
 
             $todaySchedule = collect();
             if ($staff) {
@@ -217,6 +219,7 @@ class PortalDashboardController extends Controller
             return view('portal.dashboards.teacher', compact(
                 'user',
                 'staff',
+                'teacher',
                 'assignedSections',
                 'assignedSubjects',
                 'todaySchedule',

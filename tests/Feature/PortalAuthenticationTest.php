@@ -183,6 +183,11 @@ class PortalAuthenticationTest extends TestCase
 
         $response->assertRedirect(route('frontend.portal.dashboard'));
         $this->assertAuthenticatedAs($user, 'web');
+
+        // Verify teacher dashboard loads without any relation errors
+        $dashboardResponse = $this->get(route('frontend.portal.dashboard'));
+        $dashboardResponse->assertStatus(200);
+        $dashboardResponse->assertSee('শিক্ষক অনুষদ প্যানেল');
     }
 
     public function test_login_rate_limiting_triggers_after_five_failed_attempts(): void
