@@ -45,7 +45,7 @@
                     <span>অনলাইন ভর্তি</span>
                 </a>
                 <div class="h-6 w-px bg-slate-200 mx-0.5"></div>
-                <a href="{{ url('/admin/dashboard') }}"
+                <a href="{{ Route::has('frontend.portal.login') ? route('frontend.portal.login') : url('/portal/login') }}"
                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold shadow-2xs transition-colors">
                     <svg class="w-3.5 h-3.5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
@@ -257,7 +257,7 @@
             <a href="{{ route('frontend.contact') }}#enroll" class="snhs-mobile-link bg-amber-400 text-slate-950 font-bold hover:bg-amber-300">ভর্তি আবেদন (অনলাইন)</a>
             <a href="{{ route('frontend.contact') }}" class="snhs-mobile-link {{ request()->routeIs('frontend.contact*') ? 'is-active' : '' }}">যোগাযোগ</a>
 
-            <a href="{{ url('/admin/dashboard') }}" class="snhs-mobile-link snhs-mobile-login">পোর্টাল লগইন</a>
+            <a href="{{ Route::has('frontend.portal.login') ? route('frontend.portal.login') : url('/portal/login') }}" class="snhs-mobile-link snhs-mobile-login">পোর্টাল লগইন</a>
         </div>
     </div>
 </header>
