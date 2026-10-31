@@ -41,18 +41,7 @@
 
         {{-- School Emblem & Heading Block --}}
         <div class="text-center mb-6">
-            <div class="w-16 h-16 sm:w-18 sm:h-18 mx-auto rounded-full bg-white border border-slate-200 p-1 shadow-xs flex items-center justify-center mb-3">
-                <img src="{{ asset('assets/images/logo.png') }}"
-                     alt="সোনাতলা উচ্চ বিদ্যালয়"
-                     class="max-w-full max-h-full object-contain"
-                     onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=SHS&background=005030&color=fff&size=128';">
-            </div>
             
-            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-[#005030] text-xs font-bold mb-2">
-                <span class="w-2 h-2 rounded-full bg-[#005030] animate-pulse"></span>
-                <span>প্রাতিষ্ঠানিক ডিজিটাল গেটওয়ে</span>
-            </div>
-
             <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 পোর্টাল <span class="text-[#005030] font-bold">লগইন</span>
             </h1>
@@ -101,15 +90,6 @@
                         <i class="fa-solid fa-id-card-clip text-xs"></i>
                         <span>কর্মচারী</span>
                     </button>
-                </div>
-
-                {{-- Demo Hint Helper Text --}}
-                <div class="mt-2 text-[11px] text-slate-500 bg-slate-50 p-2 rounded-lg border border-slate-100 flex items-center justify-between">
-                    <span x-show="role === 'student'">💡 বিকল্প আইডি: <strong>ADM-2026-0001</strong></span>
-                    <span x-show="role === 'guardian'">💡 বিকল্প আইডি: <strong>+1 (555) 987-6543</strong></span>
-                    <span x-show="role === 'teacher'">💡 বিকল্প আইডি: <strong>TCH-1001</strong></span>
-                    <span x-show="role === 'staff'">💡 বিকল্প আইডি: <strong>STF-2001</strong></span>
-                    <span class="text-slate-400">পাসওয়ার্ড: <strong class="text-slate-700">password</strong></span>
                 </div>
             </div>
 
@@ -217,23 +197,6 @@
                 <div class="flex-grow border-t border-slate-200"></div>
                 <span class="flex-shrink mx-4 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">প্রশাসনিক সহায়তা</span>
                 <div class="flex-grow border-t border-slate-200"></div>
-            </div>
-
-            {{-- Super Admin Security Callout Box (Crucial Specification) --}}
-            <div class="p-3.5 rounded-xl bg-amber-50/80 border border-amber-200 text-slate-700 text-xs space-y-1">
-                <div class="flex items-start gap-2">
-                    <span class="text-base leading-none">🛡️</span>
-                    <div>
-                        <span class="font-bold text-slate-900">সুপার অ্যাডমিন এক্সেস:</span>
-                        <p class="text-[11px] text-slate-600 mt-0.5 leading-relaxed">
-                            প্রধান প্রশাসনিক নিয়ন্ত্রণ প্যানেলে প্রবেশের জন্য অনুগ্রহ করে 
-                            <a href="{{ url('/admin/login') }}" class="underline font-bold text-amber-800 hover:text-amber-950">
-                                অ্যাডমিন লগইন পোর্টাল
-                            </a> 
-                            ব্যবহার করুন।
-                        </p>
-                    </div>
-                </div>
             </div>
 
             {{-- Return to Website Link --}}
