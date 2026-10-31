@@ -172,6 +172,44 @@ class RolePermissionSeeder extends Seeder
                 Permission::whereIn('slug', ['staff.view', 'notices.view'])->pluck('id')->toArray()
             );
 
+            // 5. Student Role
+            $studentRole = Role::updateOrCreate(
+                ['school_id' => $school->id, 'slug' => 'student'],
+                [
+                    'name' => 'Student',
+                    'description' => 'Student portal access for academic timetables, attendance, grades, and invoices.',
+                    'is_system' => true,
+                ]
+            );
+            $studentRole->permissions()->sync(
+                Permission::whereIn('slug', [
+                    'notices.view',
+                    'academic.view',
+                    'attendance.view',
+                    'exams.view',
+                    'fees.view',
+                ])->pluck('id')->toArray()
+            );
+
+            // 6. Guardian Role
+            $guardianRole = Role::updateOrCreate(
+                ['school_id' => $school->id, 'slug' => 'guardian'],
+                [
+                    'name' => 'Parent / Guardian',
+                    'description' => 'Guardian portal access for wards performance, attendance, routine, and fee tracking.',
+                    'is_system' => true,
+                ]
+            );
+            $guardianRole->permissions()->sync(
+                Permission::whereIn('slug', [
+                    'notices.view',
+                    'academic.view',
+                    'attendance.view',
+                    'exams.view',
+                    'fees.view',
+                ])->pluck('id')->toArray()
+            );
+
             // Default School Admin User for First School
             if ($school->id === $schools->first()->id) {
                 $schoolUser = User::updateOrCreate(

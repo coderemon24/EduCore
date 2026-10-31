@@ -27,7 +27,13 @@ return Application::configure(basePath: dirname(__DIR__))
             'frontend.school' => SetFrontendSchoolContext::class,
         ]);
 
-        $middleware->redirectGuestsTo(fn () => route('admin.login'));
+        $middleware->redirectGuestsTo(function ($request) {
+            if ($request->is('portal') || $request->is('portal/*')) {
+                return route('frontend.portal.login');
+            }
+
+            return route('admin.login');
+        });
         $middleware->redirectUsersTo(fn () => route('admin.dashboard'));
     })
     ->withExceptions(function (Exceptions $exceptions): void {

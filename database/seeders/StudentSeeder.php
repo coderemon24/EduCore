@@ -5,10 +5,13 @@ namespace Database\Seeders;
 use App\Models\AcademicClass;
 use App\Models\AcademicYear;
 use App\Models\Guardian;
+use App\Models\Role;
 use App\Models\School;
 use App\Models\Student;
 use App\Models\StudentEnrollment;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class StudentSeeder extends Seeder
 {
@@ -122,11 +125,30 @@ class StudentSeeder extends Seeder
 
         $firstClass = $classes->first();
         $firstSection = $firstClass?->sections->first();
+        $studentRole = Role::where('school_id', $school->id)->where('slug', 'student')->first();
+        $guardianRole = Role::where('school_id', $school->id)->where('slug', 'guardian')->first();
 
         foreach ($sampleStudents as $data) {
+            // Student User Account
+            $studentUser = User::updateOrCreate(
+                ['email' => $data['email']],
+                [
+                    'school_id' => $school->id,
+                    'name' => "{$data['first_name']} {$data['last_name']}",
+                    'password' => Hash::make('password'),
+                    'status' => 'active',
+                    'phone' => $data['phone'],
+                ]
+            );
+
+            if ($studentRole) {
+                $studentUser->roles()->syncWithoutDetaching([$studentRole->id]);
+            }
+
             $student = Student::withoutGlobalScopes()->updateOrCreate(
                 ['school_id' => $school->id, 'admission_number' => $data['admission_number']],
                 [
+                    'user_id' => $studentUser->id,
                     'admission_date' => $data['admission_date'],
                     'first_name' => $data['first_name'],
                     'last_name' => $data['last_name'],
@@ -142,12 +164,30 @@ class StudentSeeder extends Seeder
                 ]
             );
 
+            // Guardian User Account
+            $guardianEmail = strtolower(str_replace([' ', '\''], ['.', ''], $data['guardian_name'])).'@guardian.test';
+            $guardianUser = User::updateOrCreate(
+                ['email' => $guardianEmail],
+                [
+                    'school_id' => $school->id,
+                    'name' => $data['guardian_name'],
+                    'password' => Hash::make('password'),
+                    'status' => 'active',
+                    'phone' => $data['guardian_phone'],
+                ]
+            );
+
+            if ($guardianRole) {
+                $guardianUser->roles()->syncWithoutDetaching([$guardianRole->id]);
+            }
+
             // Create/link Guardian
             $guardian = Guardian::withoutGlobalScopes()->updateOrCreate(
                 ['school_id' => $school->id, 'phone' => $data['guardian_phone']],
                 [
+                    'user_id' => $guardianUser->id,
                     'name' => $data['guardian_name'],
-                    'email' => strtolower(str_replace(' ', '.', $data['guardian_name'])).'@gmail.com',
+                    'email' => $guardianEmail,
                     'occupation' => 'Professional',
                     'address' => '742 Evergreen Terrace, Springfield, OR',
                     'national_id' => 'NID-'.rand(10000000, 99999999),

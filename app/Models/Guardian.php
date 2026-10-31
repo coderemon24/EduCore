@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\BelongsToSchool;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -26,6 +27,7 @@ class Guardian extends Model
      */
     protected $fillable = [
         'school_id',
+        'user_id',
         'name',
         'phone',
         'email',
@@ -34,6 +36,14 @@ class Guardian extends Model
         'national_id',
         'photo',
     ];
+
+    /**
+     * Get the user account linked to this guardian record.
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
     /**
      * Get students associated with this guardian.
