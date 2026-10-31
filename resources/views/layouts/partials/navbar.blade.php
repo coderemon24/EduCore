@@ -125,7 +125,7 @@
                         <a href="{{ route('frontend.academic.holidays') }}" class="{{ request()->routeIs('frontend.academic.holidays*') ? 'is-active' : '' }}">ছুটির তালিকা ও ক্যালেন্ডার</a>
                         <a href="{{ route('frontend.academic.routine') }}#exams">পরীক্ষার সময়সূচি</a>
                         <a href="{{ route('frontend.notices.index') }}">সিলেবাস ও পাঠ্যপুস্তক</a>
-                        <a href="{{ route('frontend.notices.index') }}">ফলাফল ও নম্বরপত্র</a>
+                        <a href="{{ route('frontend.academic.results') }}" class="{{ request()->routeIs('frontend.academic.results*') ? 'is-active' : '' }}">ফলাফল ও নম্বরপত্র</a>
                         <a href="{{ route('frontend.notices.index') }}">সহপাঠক্রমিক কার্যক্রম</a>
                     </div>
                 </div>
@@ -244,7 +244,7 @@
                     <a href="{{ route('frontend.academic.holidays') }}" @click="mobileMenuOpen = false" class="{{ request()->routeIs('frontend.academic.holidays*') ? 'is-active' : '' }}">ছুটির তালিকা ও ক্যালেন্ডার</a>
                     <a href="{{ route('frontend.academic.routine') }}#exams" @click="mobileMenuOpen = false">পরীক্ষার সময়সূচি</a>
                     <a href="{{ route('frontend.notices.index') }}" @click="mobileMenuOpen = false">সিলেবাস ও পাঠ্যপুস্তক</a>
-                    <a href="{{ route('frontend.notices.index') }}" @click="mobileMenuOpen = false">ফলাফল ও নম্বরপত্র</a>
+                    <a href="{{ route('frontend.academic.results') }}" @click="mobileMenuOpen = false" class="{{ request()->routeIs('frontend.academic.results*') ? 'is-active' : '' }}">ফলাফল ও নম্বরপত্র</a>
                     <a href="{{ route('frontend.notices.index') }}" @click="mobileMenuOpen = false">সহপাঠক্রমিক কার্যক্রম</a>
                 </div>
             </div>
