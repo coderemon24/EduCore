@@ -44,6 +44,9 @@ Route::middleware(['web', 'frontend.school'])->name('frontend.')->group(function
     Route::get('/academic/holidays', [AcademicController::class, 'holidays'])->name('academic.holidays');
     Route::get('/academic/holidays/events', [AcademicController::class, 'holidayEvents'])->name('academic.holidays.events');
 
+    // Academic Examination Results & Student Marksheets
+    Route::get('/academic/results', [AcademicController::class, 'results'])->name('academic.results');
+
     // News & Media Portal
     Route::get('/news', [NewsController::class, 'index'])->name('news.index');
     Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');

@@ -6,7 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Models\AcademicClass;
 use App\Models\AcademicHoliday;
 use App\Models\AcademicYear;
+use App\Models\ClassSubjectAssignment;
+use App\Models\Exam;
+use App\Models\ExamMark;
+use App\Models\ExamResult;
+use App\Models\ExamSubject;
+use App\Models\GradingScale;
+use App\Models\GradeTier;
+use App\Models\MarksheetSetting;
 use App\Models\Notice;
+use App\Models\School;
+use App\Models\Section;
+use App\Models\Student;
 use App\Models\TimetableSlot;
 use App\Services\CurrentSchoolContext;
 use Carbon\Carbon;
@@ -389,5 +400,267 @@ class AcademicController extends Controller
             'count' => $events->count(),
             'data' => $events,
         ]);
+    }
+
+    /**
+     * Display examination results and student marksheets with interactive cohort filtering.
+     */
+    public function results(Request $request): View
+    {
+        $school = CurrentSchoolContext::get();
+
+        $academicYears = collect();
+        $selectedYear = null;
+        $exams = collect();
+        $selectedExam = null;
+        $academicClasses = collect();
+        $selectedClass = null;
+        $sections = collect();
+        $selectedSection = null;
+        $results = collect();
+        $telemetry = [
+            'appeared' => 0,
+            'passed' => 0,
+            'failed' => 0,
+            'pass_rate' => 0,
+            'gpa5_count' => 0,
+        ];
+        $individualMarksheet = null;
+        $gradingScale = null;
+        $searchQuery = trim((string) $request->input('roll_or_id', ''));
+        $activeTab = $request->input('tab', $searchQuery !== '' ? 'marksheet' : 'merit');
+
+        if ($school->exists) {
+            // 1. Academic Years
+            if (Schema::hasTable('academic_years')) {
+                $academicYears = AcademicYear::where('school_id', $school->id)
+                    ->orderByDesc('is_current')
+                    ->latest('start_date')
+                    ->get();
+
+                $yearId = $request->input('year_id');
+                if ($yearId) {
+                    $selectedYear = $academicYears->firstWhere('id', (int) $yearId);
+                }
+                if (! $selectedYear) {
+                    $selectedYear = $academicYears->firstWhere('is_current', true) ?? $academicYears->first();
+                }
+            }
+
+            // 2. Exams Filter (scoped to selected year if available)
+            if (Schema::hasTable('exams')) {
+                $examQuery = Exam::where('school_id', $school->id);
+                if ($selectedYear) {
+                    $examQuery->where('academic_year_id', $selectedYear->id);
+                }
+                $exams = $examQuery->with(['gradingScale.gradeTiers'])->latest('start_date')->get();
+
+                $examId = $request->input('exam_id');
+                if ($examId) {
+                    $selectedExam = $exams->firstWhere('id', (int) $examId);
+                }
+                if (! $selectedExam) {
+                    $selectedExam = $exams->first();
+                }
+            }
+
+            // 3. Academic Classes & Sections
+            if (Schema::hasTable('academic_classes')) {
+                $academicClasses = AcademicClass::where('school_id', $school->id)
+                    ->where('status', 'active')
+                    ->with(['sections' => fn ($q) => $q->where('school_id', $school->id)->where('status', 'active')->orderBy('name')])
+                    ->orderBy('order_index', 'asc')
+                    ->orderBy('numeric_code', 'asc')
+                    ->get();
+
+                $classId = $request->input('academic_class_id');
+                if ($classId) {
+                    $selectedClass = $academicClasses->firstWhere('id', (int) $classId);
+                }
+                if (! $selectedClass) {
+                    $selectedClass = $academicClasses->first();
+                }
+
+                if ($selectedClass) {
+                    $sections = $selectedClass->sections;
+                    $sectionId = $request->input('section_id');
+                    if ($sectionId && $sectionId !== 'all') {
+                        $selectedSection = $sections->firstWhere('id', (int) $sectionId);
+                    }
+                }
+            }
+
+            // 4. Grading Scale Reference (From selected exam or default school grading scale)
+            if ($selectedExam && $selectedExam->gradingScale) {
+                $gradingScale = $selectedExam->gradingScale;
+            } elseif (Schema::hasTable('grading_scales')) {
+                $gradingScale = GradingScale::where('school_id', $school->id)
+                    ->with(['gradeTiers' => fn ($q) => $q->orderByDesc('point')])
+                    ->first();
+            }
+
+            // 5. Query Results & Telemetry if Exam & Class are selected
+            if ($selectedExam && Schema::hasTable('exam_results')) {
+                $query = ExamResult::where('school_id', $school->id)
+                    ->where('exam_id', $selectedExam->id)
+                    ->with([
+                        'student.currentEnrollment',
+                        'academicClass:id,name,numeric_code',
+                        'section:id,name',
+                        'exam:id,name,academic_year_id',
+                    ]);
+
+                if ($selectedClass) {
+                    $query->where('academic_class_id', $selectedClass->id);
+                }
+
+                if ($selectedSection) {
+                    $query->where('section_id', $selectedSection->id);
+                }
+
+                $results = $query->orderBy('rank_in_class')->get();
+
+                // Telemetry Calculation
+                $totalAppeared = $results->count();
+                $totalPassed = $results->where('status', 'pass')->count();
+                $totalFailed = $results->where('status', 'fail')->count();
+                $passRate = $totalAppeared > 0 ? round(($totalPassed / $totalAppeared) * 100, 1) : 0;
+                $gpa5Count = $results->where('gpa', '>=', 5.00)->count();
+
+                $telemetry = [
+                    'appeared' => $totalAppeared,
+                    'passed' => $totalPassed,
+                    'failed' => $totalFailed,
+                    'pass_rate' => $passRate,
+                    'gpa5_count' => $gpa5Count,
+                ];
+
+                // 6. Individual Marksheet Lookup (if search query provided or student_id requested)
+                $targetStudent = null;
+                $studentId = $request->input('student_id');
+
+                if ($studentId) {
+                    $targetStudent = Student::where('school_id', $school->id)
+                        ->with(['currentEnrollment'])
+                        ->find($studentId);
+                } elseif ($searchQuery !== '') {
+                    // Search by admission_number or currentEnrollment roll_number
+                    $targetStudent = Student::where('school_id', $school->id)
+                        ->with(['currentEnrollment'])
+                        ->where(function ($q) use ($searchQuery, $selectedClass, $selectedSection) {
+                            $q->where('admission_number', $searchQuery)
+                              ->orWhereHas('currentEnrollment', function ($eq) use ($searchQuery, $selectedClass, $selectedSection) {
+                                  $eq->where('roll_number', $searchQuery);
+                                  if ($selectedClass) {
+                                      $eq->where('academic_class_id', $selectedClass->id);
+                                  }
+                                  if ($selectedSection) {
+                                      $eq->where('section_id', $selectedSection->id);
+                                  }
+                              });
+                        })
+                        ->first();
+                }
+
+                if ($targetStudent) {
+                    $individualMarksheet = $this->buildMarksheetPayload($selectedExam, $targetStudent);
+                    $activeTab = 'marksheet';
+                }
+            }
+        }
+
+        return view('frontend.academic.results', compact(
+            'school',
+            'academicYears',
+            'selectedYear',
+            'exams',
+            'selectedExam',
+            'academicClasses',
+            'selectedClass',
+            'sections',
+            'selectedSection',
+            'results',
+            'telemetry',
+            'individualMarksheet',
+            'gradingScale',
+            'searchQuery',
+            'activeTab'
+        ));
+    }
+
+    /**
+     * Helper to prepare complete marksheet data payload for public view.
+     */
+    protected function buildMarksheetPayload(Exam $exam, Student $student): array
+    {
+        $exam->loadMissing(['academicYear', 'gradingScale.gradeTiers']);
+        $school = $exam->school ?? School::find($exam->school_id) ?? CurrentSchoolContext::get();
+
+        $enrollment = $student->currentEnrollment;
+        $classId = $enrollment?->academic_class_id;
+
+        $result = ExamResult::where('exam_id', $exam->id)
+            ->where('student_id', $student->id)
+            ->first();
+
+        $examSubjects = collect();
+        if ($classId && Schema::hasTable('exam_subjects')) {
+            $examSubjects = ExamSubject::where('exam_id', $exam->id)
+                ->where('academic_class_id', $classId)
+                ->with(['subject', 'components'])
+                ->orderBy('order_index')
+                ->get();
+        }
+
+        $marks = collect();
+        if (Schema::hasTable('exam_marks')) {
+            $marks = ExamMark::where('exam_id', $exam->id)
+                ->where('student_id', $student->id)
+                ->with(['components.examSubjectComponent', 'gradeTier'])
+                ->get()
+                ->keyBy('exam_subject_id');
+        }
+
+        $highestTotalInClass = 0;
+        if ($classId && Schema::hasTable('exam_results')) {
+            $highestTotalInClass = ExamResult::where('exam_id', $exam->id)
+                ->where('academic_class_id', $classId)
+                ->max('total_marks_obtained') ?? 0;
+        }
+
+        $setting = null;
+        if (Schema::hasTable('marksheet_settings')) {
+            $setting = MarksheetSetting::firstOrCreate(
+                ['school_id' => $school->id ?? 1],
+                [
+                    'headmaster_title' => 'প্রধান শিক্ষক',
+                    'show_highest_marks' => true,
+                    'show_attendance_report' => true,
+                    'show_extra_activities' => false,
+                    'show_gpa_grading_scale' => true,
+                ]
+            );
+        }
+
+        // Optional subject
+        $optionalSubjectId = (int) ($enrollment?->optional_subject_id ?? 0);
+        if (! $optionalSubjectId && $classId && Schema::hasTable('class_subject_assignments')) {
+            $optionalSubjectId = (int) ClassSubjectAssignment::where('academic_class_id', $classId)
+                ->where('type', 'optional')
+                ->value('subject_id');
+        }
+
+        return [
+            'exam' => $exam,
+            'student' => $student,
+            'enrollment' => $enrollment,
+            'result' => $result,
+            'examSubjects' => $examSubjects,
+            'marks' => $marks,
+            'highestTotalInClass' => $highestTotalInClass,
+            'setting' => $setting,
+            'gradingScale' => $exam->gradingScale,
+            'optionalSubjectId' => $optionalSubjectId,
+        ];
     }
 }
